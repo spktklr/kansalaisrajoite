@@ -10,10 +10,11 @@ Mitä kieltäisimme seuraavaksi?
 - Tietokanta ym.
 
 -Sivut
-	Tee kansalaisrajoite
-	Ohjeet
-	Tiedotteet
-	Ota yhteyttä
-	Henkilörekisteriseloste
-	Henkilösuoja ja tietoturva
-	På svenska & In English kevyet infosivut
+	- Responsiivisuus selaukseen
+	- Tee kansalaisrajoite
+	- Ohjeet
+	- Tiedotteet
+	- Ota yhteyttä
+	- Henkilörekisteriseloste
+	- Henkilösuoja ja tietoturva
+	- På svenska & In English kevyet infosivut
