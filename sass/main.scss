@@ -3,7 +3,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic);
 @import "compass";
 $themecolor: #e56c69;
-$headergray: #c2c2c2;
+$headergray: #dcdcdc;
 $semigray: #f9f9f9;
 
 $break: 980px;
@@ -64,10 +64,10 @@ a {
 }
 /* HEADER TYYLIT */
 header {
-	background:url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
+	background:url(../img/headerbg.jpg) bottom center no-repeat, url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
 	@media screen and (min-width:$break) {
 		height:240px;
-	}	
+	}
 }
 nav,div,footer {
 	@media screen and (min-width:$break){
@@ -115,6 +115,7 @@ nav ul li {
 	padding:5px;
 	@include transition(all, 0.5s ease-in);
 	@include border-radius(4px);
+	color:$themecolor;
 }
 nav ul li:hover {
 	background:lighten($headergray, 3%);
@@ -129,13 +130,13 @@ nav ul:nth-of-type(2) li {
 		display:none;
 	}
 	font-size:12px;
-	color:$themecolor;
+	color:white;
 }
 nav ul:nth-of-type(1) li:before {
-	content:url(../img/nuoli1.gif) " ";
+	content:url(../img/nuoli12.gif) " ";
 }
 nav ul:nth-of-type(2) li:before {
-	content:url(../img/nuoli2.gif) " ";
+	content:url(../img/nuoli22.gif) " ";
 }
 /* CONTENT TYYLIT */
 section {
@@ -184,7 +185,7 @@ article h2:nth-of-type(2) {
 	@include transition(background, 0.5s ease-in);
 }
 article h2:nth-of-type(2):hover {
-	@media screen and (mix-width:$break){
+	@media screen and (min-width:$break){
 		background:darken($themecolor, 10%) url(../img/nuoli3.png) no-repeat 45px;
 	}
 	@media screen and (max-width:$break){
