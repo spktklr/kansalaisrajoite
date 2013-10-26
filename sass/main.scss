@@ -5,7 +5,6 @@
 $themecolor: #e56c69;
 $headergray: #dcdcdc;
 $semigray: #f9f9f9;
-
 $break: 980px;
 
 @mixin transition($transition...) {
@@ -14,7 +13,6 @@ $break: 980px;
   -o-transition: $transition;
   transition: $transition; 
 }
-
 @mixin columns($column-count, $column-width, $column-gap) {
   -webkit-column-count: $column-count;
   -moz-column-count: $column-count;
@@ -29,7 +27,6 @@ $break: 980px;
   -o-column-gap: $column-gap;
   column-gap: $column-gap;
 }
-
 @mixin border-radius($border-radius) {
 	-webkit-border-radius: $border-radius;
 	-moz-border-radius: $border-radius;
@@ -64,9 +61,10 @@ a {
 }
 /* HEADER TYYLIT */
 header {
-	background:url(../img/headerbg.jpg) bottom center no-repeat, url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
+	background:url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
 	@media screen and (min-width:$break) {
 		height:240px;
+		background:url(../img/headerbg.jpg) bottom center no-repeat, url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
 	}
 }
 nav,div,footer {
@@ -87,6 +85,9 @@ nav {
 	font-weight:bold;
 	color:white;
 }
+em {
+	color:$themecolor;
+}
 nav h1 {
 	@media screen and (min-width:$break) {
 		float:left;
@@ -94,9 +95,7 @@ nav h1 {
 	margin:-12px 0 0 100px;
 	font-size:36px;
 }
-nav h1 em {
-	color:$themecolor;
-}
+
 nav ul {
 	@media screen and (min-width:$break) {
 		margin-bottom:30px;
@@ -142,13 +141,14 @@ nav ul:nth-of-type(2) li:before {
 section {
 	background:url(../img/dot2.gif) bottom repeat-x $semigray;
 }
-div {
+/* ETUSIVU TYYLIT */
+div.etusivu {
 	@media screen and (min-width:$break){
 			background:url(../img/mainbg.png) no-repeat;
 	}
 	padding:20px 0 20px 0;
 }
-article {
+div.etusivu article {
 	background-color:white;
 	opacity:0.9;
 	@media screen and (min-width:$break){
@@ -159,14 +159,14 @@ article {
 	}
 	padding:50px 50px 50px 50px;
 }
-article h1 {
+div.etusivu article h1 {
 	margin:0 0 30px 0;
 }
-article h2:nth-of-type(1) {
+div.etusivu article h2:nth-of-type(1) {
 	font-size:18px;
 	line-height:125%;
 }
-article h2:nth-of-type(2) {
+div.etusivu article h2:nth-of-type(2), div.rajoite > p {
 	color:white;
 	background-color:$themecolor;
 	@media screen and (min-width:$break){
@@ -184,13 +184,40 @@ article h2:nth-of-type(2) {
 	margin:30px 0 0 0;
 	@include transition(background, 0.5s ease-in);
 }
-article h2:nth-of-type(2):hover {
+div.etusivu article h2:nth-of-type(2):hover, div.rajoite > p:hover {
 	@media screen and (min-width:$break){
 		background:darken($themecolor, 10%) url(../img/nuoli3.png) no-repeat 45px;
 	}
 	@media screen and (max-width:$break){
 		background:darken($themecolor, 10%);
 	}
+}
+/* RAJOITE TYYLIT */
+div.rajoite {
+	padding:30px 0 30px 0;
+}
+div.rajoite h1 {
+	margin:0 0 30px 0;
+}
+div.rajoite p {
+	font-size:14px;
+}
+div.rajoite article {
+	padding:60px 40px 60px 160px;
+	margin:0 0 30px 0;
+}
+div.rajoite article:nth-of-type(1) {
+	background:url(../img/punviiva.gif) top repeat-x, url(../img/kielto.png) 40px 32px no-repeat white;
+}
+div.rajoite article:nth-of-type(2) {
+	background:url(../img/harviiva.gif) top repeat-x, url(../img/info.png) 40px 32px no-repeat white;
+}
+div.rajoite article:nth-of-type(3) {
+	background:url(../img/punviiva.gif) top repeat-x, url(../img/hlo.png) 40px 32px no-repeat white;
+}
+div.rajoite > p {
+	max-width:410px;
+	margin:0 auto;
 }
 /* FOOTER TYYLIT */
 footer {
