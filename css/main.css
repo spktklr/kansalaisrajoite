@@ -81,37 +81,49 @@ a {
   text-decoration: none;
 }
 
+/* line 67, ../sass/main.scss */
+em {
+  color: #e56c69;
+}
+
+/* line 70, ../sass/main.scss */
+span {
+  font-weight: 300;
+  font-size: 37px;
+}
+
+/* line 74, ../sass/main.scss */
+nav, div, footer {
+  margin: 0 auto;
+}
+@media screen and (min-width: 980px) {
+  /* line 74, ../sass/main.scss */
+  nav, div, footer {
+    width: 960px;
+  }
+}
+@media screen and (max-width: 980px) {
+  /* line 74, ../sass/main.scss */
+  nav, div, footer {
+    min-width: 410px;
+    width: 80%;
+  }
+}
+
 /* HEADER TYYLIT */
-/* line 68, ../sass/main.scss */
+/* line 85, ../sass/main.scss */
 header {
   background: url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, gainsboro;
 }
 @media screen and (min-width: 980px) {
-  /* line 68, ../sass/main.scss */
+  /* line 85, ../sass/main.scss */
   header {
     height: 240px;
     background: url(../img/headerbg.jpg) bottom center no-repeat, url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, gainsboro;
   }
 }
 
-/* line 75, ../sass/main.scss */
-nav, div, footer {
-  margin: 0 auto;
-}
-@media screen and (min-width: 980px) {
-  /* line 75, ../sass/main.scss */
-  nav, div, footer {
-    width: 960px;
-  }
-}
-@media screen and (max-width: 980px) {
-  /* line 75, ../sass/main.scss */
-  nav, div, footer {
-    width: 410px;
-  }
-}
-
-/* line 84, ../sass/main.scss */
+/* line 92, ../sass/main.scss */
 nav {
   padding: 134px 0 0 0;
   background: url(../img/logo.png) no-repeat 0 94px;
@@ -119,48 +131,43 @@ nav {
   color: white;
 }
 @media screen and (min-width: 980px) {
-  /* line 84, ../sass/main.scss */
+  /* line 92, ../sass/main.scss */
   nav {
     text-align: right;
   }
 }
 
-/* line 93, ../sass/main.scss */
-em {
-  color: #e56c69;
-}
-
-/* line 96, ../sass/main.scss */
+/* line 101, ../sass/main.scss */
 nav h1 {
   margin: -12px 0 0 100px;
   font-size: 36px;
 }
 @media screen and (min-width: 980px) {
-  /* line 96, ../sass/main.scss */
+  /* line 101, ../sass/main.scss */
   nav h1 {
     float: left;
   }
 }
 
-/* line 104, ../sass/main.scss */
+/* line 109, ../sass/main.scss */
 nav ul {
   font-size: 14px;
 }
 @media screen and (min-width: 980px) {
-  /* line 104, ../sass/main.scss */
+  /* line 109, ../sass/main.scss */
   nav ul {
     margin-bottom: 30px;
   }
 }
 @media screen and (max-width: 980px) {
-  /* line 104, ../sass/main.scss */
+  /* line 109, ../sass/main.scss */
   nav ul {
     margin: 44px 0 0 0;
     padding: 0 0 24px 0;
   }
 }
 
-/* line 114, ../sass/main.scss */
+/* line 119, ../sass/main.scss */
 nav ul li {
   margin-left: 0px;
   padding: 5px;
@@ -175,95 +182,95 @@ nav ul li {
   color: #e56c69;
 }
 @media screen and (min-width: 980px) {
-  /* line 114, ../sass/main.scss */
+  /* line 119, ../sass/main.scss */
   nav ul li {
     display: inline;
   }
 }
 
-/* line 124, ../sass/main.scss */
+/* line 129, ../sass/main.scss */
 nav ul li:hover {
   background: #e4e4e4;
 }
 
 @media screen and (max-width: 980px) {
-  /* line 127, ../sass/main.scss */
+  /* line 132, ../sass/main.scss */
   nav ul:nth-of-type(2) {
     display: none;
   }
 }
 
-/* line 132, ../sass/main.scss */
+/* line 137, ../sass/main.scss */
 nav ul:nth-of-type(2) li {
   font-size: 12px;
   color: white;
 }
 @media screen and (max-width: 980px) {
-  /* line 132, ../sass/main.scss */
+  /* line 137, ../sass/main.scss */
   nav ul:nth-of-type(2) li {
     display: none;
   }
 }
 
-/* line 139, ../sass/main.scss */
+/* line 144, ../sass/main.scss */
 nav ul:nth-of-type(1) li:before {
   content: url(../img/nuoli12.gif) " ";
 }
 
-/* line 142, ../sass/main.scss */
+/* line 147, ../sass/main.scss */
 nav ul:nth-of-type(2) li:before {
   content: url(../img/nuoli22.gif) " ";
 }
 
 /* CONTENT TYYLIT */
-/* line 146, ../sass/main.scss */
+/* line 151, ../sass/main.scss */
 section {
   background: url(../img/dot2.gif) bottom repeat-x #f9f9f9;
 }
 
 /* ETUSIVU TYYLIT */
-/* line 150, ../sass/main.scss */
+/* line 155, ../sass/main.scss */
 div.etusivu {
   padding: 20px 0 20px 0;
 }
 @media screen and (min-width: 980px) {
-  /* line 150, ../sass/main.scss */
+  /* line 155, ../sass/main.scss */
   div.etusivu {
     background: url(../img/mainbg.png) no-repeat;
   }
 }
 
-/* line 156, ../sass/main.scss */
+/* line 161, ../sass/main.scss */
 div.etusivu article {
   background-color: white;
   opacity: 0.9;
   padding: 50px 50px 50px 50px;
 }
 @media screen and (min-width: 980px) {
-  /* line 156, ../sass/main.scss */
+  /* line 161, ../sass/main.scss */
   div.etusivu article {
     margin: 0 0 40px 410px;
   }
 }
 @media screen and (max-width: 980px) {
-  /* line 156, ../sass/main.scss */
+  /* line 161, ../sass/main.scss */
   div.etusivu article {
     margin: 0 0 40px 0;
   }
 }
 
-/* line 167, ../sass/main.scss */
+/* line 172, ../sass/main.scss */
 div.etusivu article h1 {
   margin: 0 0 30px 0;
 }
 
-/* line 170, ../sass/main.scss */
+/* line 175, ../sass/main.scss */
 div.etusivu article h2:nth-of-type(1) {
   font-size: 18px;
   line-height: 125%;
 }
 
-/* line 174, ../sass/main.scss */
+/* line 179, ../sass/main.scss */
 div.etusivu article h2:nth-of-type(2), div.rajoite > p {
   color: white;
   background-color: #e56c69;
@@ -275,7 +282,7 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p {
   transition: background, 0.5s ease-in;
 }
 @media screen and (min-width: 980px) {
-  /* line 174, ../sass/main.scss */
+  /* line 179, ../sass/main.scss */
   div.etusivu article h2:nth-of-type(2), div.rajoite > p {
     background: #e56c69 url(../img/nuoli3.png) no-repeat 40px;
     text-align: right;
@@ -287,7 +294,7 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p {
   }
 }
 @media screen and (max-width: 980px) {
-  /* line 174, ../sass/main.scss */
+  /* line 179, ../sass/main.scss */
   div.etusivu article h2:nth-of-type(2), div.rajoite > p {
     text-align: center;
     padding: 14px 0 0 0;
@@ -299,91 +306,91 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p {
 }
 
 @media screen and (min-width: 980px) {
-  /* line 192, ../sass/main.scss */
+  /* line 197, ../sass/main.scss */
   div.etusivu article h2:nth-of-type(2):hover, div.rajoite > p:hover {
     background: #dd413e url(../img/nuoli3.png) no-repeat 45px;
   }
 }
 @media screen and (max-width: 980px) {
-  /* line 192, ../sass/main.scss */
+  /* line 197, ../sass/main.scss */
   div.etusivu article h2:nth-of-type(2):hover, div.rajoite > p:hover {
     background: #dd413e;
   }
 }
 
 /* RAJOITE TYYLIT */
-/* line 201, ../sass/main.scss */
+/* line 206, ../sass/main.scss */
 div.rajoite {
   padding: 30px 0 30px 0;
 }
 
-/* line 204, ../sass/main.scss */
+/* line 209, ../sass/main.scss */
 div.rajoite h1 {
   margin: 0 0 30px 0;
 }
 
-/* line 207, ../sass/main.scss */
+/* line 212, ../sass/main.scss */
 div.rajoite p {
   font-size: 14px;
 }
 
-/* line 210, ../sass/main.scss */
+/* line 215, ../sass/main.scss */
 div.rajoite article {
   margin: 0 0 30px 0;
 }
 @media screen and (min-width: 980px) {
-  /* line 210, ../sass/main.scss */
+  /* line 215, ../sass/main.scss */
   div.rajoite article {
     padding: 60px 40px 60px 160px;
   }
 }
 @media screen and (max-width: 980px) {
-  /* line 210, ../sass/main.scss */
+  /* line 215, ../sass/main.scss */
   div.rajoite article {
     padding: 60px 40px 60px 40px;
   }
 }
 
 @media screen and (min-width: 980px) {
-  /* line 219, ../sass/main.scss */
+  /* line 224, ../sass/main.scss */
   div.rajoite article:nth-of-type(1) {
     background: url(../img/punviiva.gif) top repeat-x, url(../img/kielto.png) 40px 32px no-repeat white;
   }
 }
 @media screen and (max-width: 980px) {
-  /* line 219, ../sass/main.scss */
+  /* line 224, ../sass/main.scss */
   div.rajoite article:nth-of-type(1) {
     background: url(../img/punviiva.gif) top repeat-x white;
   }
 }
 
 @media screen and (min-width: 980px) {
-  /* line 227, ../sass/main.scss */
+  /* line 232, ../sass/main.scss */
   div.rajoite article:nth-of-type(2) {
     background: url(../img/harviiva.gif) top repeat-x, url(../img/info.png) 40px 32px no-repeat white;
   }
 }
 @media screen and (max-width: 980px) {
-  /* line 227, ../sass/main.scss */
+  /* line 232, ../sass/main.scss */
   div.rajoite article:nth-of-type(2) {
     background: url(../img/harviiva.gif) top repeat-x white;
   }
 }
 
 @media screen and (min-width: 980px) {
-  /* line 235, ../sass/main.scss */
+  /* line 240, ../sass/main.scss */
   div.rajoite article:nth-of-type(3) {
     background: url(../img/punviiva.gif) top repeat-x, url(../img/hlo.png) 40px 32px no-repeat white;
   }
 }
 @media screen and (max-width: 980px) {
-  /* line 235, ../sass/main.scss */
+  /* line 240, ../sass/main.scss */
   div.rajoite article:nth-of-type(3) {
     background: url(../img/punviiva.gif) top repeat-x white;
   }
 }
 
-/* line 243, ../sass/main.scss */
+/* line 248, ../sass/main.scss */
 div.rajoite > p {
   max-width: 410px;
   margin: 0 auto;
@@ -392,13 +399,13 @@ div.rajoite > p {
 }
 
 /* FOOTER TYYLIT */
-/* line 250, ../sass/main.scss */
+/* line 255, ../sass/main.scss */
 footer {
   color: #666;
   padding: 40px 0 200px 0;
 }
 
-/* line 254, ../sass/main.scss */
+/* line 259, ../sass/main.scss */
 footer a {
   color: #e56c69;
   -webkit-transition: all, 0.5s ease-in;
@@ -407,12 +414,12 @@ footer a {
   transition: all, 0.5s ease-in;
 }
 
-/* line 258, ../sass/main.scss */
+/* line 263, ../sass/main.scss */
 footer a:hover {
   color: #dd413e;
 }
 
-/* line 261, ../sass/main.scss */
+/* line 266, ../sass/main.scss */
 footer p, footer ul {
   font-size: 13px;
   width: 220px;
@@ -421,22 +428,22 @@ footer p, footer ul {
   padding: 0 0 0 70px;
 }
 
-/* line 268, ../sass/main.scss */
+/* line 273, ../sass/main.scss */
 footer p a:after {
   content: " " url(../img/nuoli4.png);
 }
 
-/* line 271, ../sass/main.scss */
+/* line 276, ../sass/main.scss */
 footer p:nth-of-type(1) {
   background: url(../img/raksi.png) no-repeat;
 }
 
-/* line 274, ../sass/main.scss */
+/* line 279, ../sass/main.scss */
 footer p:nth-of-type(2) {
   background: url(../img/affa.png) no-repeat;
 }
 
-/* line 277, ../sass/main.scss */
+/* line 282, ../sass/main.scss */
 footer ul li {
   margin: 0 0 5px 0;
 }
