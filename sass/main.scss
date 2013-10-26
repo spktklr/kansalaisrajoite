@@ -38,6 +38,8 @@ $break: 980px;
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h7,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
 
 /* Kansalaisrajoite */
+
+/* YLEISET TYYLIT */
 body {
 	font-family: 'Merriweather Sans', sans-serif;
 	background:white;
@@ -147,16 +149,18 @@ nav ul:nth-of-type(1) li:before {
 nav ul:nth-of-type(2) li:before {
 	content:url(../img/nuoli22.gif) " ";
 }
-/* CONTENT TYYLIT */
+/* GLOBAALIT CONTENT TYYLIT */
 section {
 	background:url(../img/dot2.gif) bottom repeat-x $semigray;
+}
+div.etusivu, div.rajoite, div.rajoitteet {
+	padding:30px 0 30px 0;
 }
 /* ETUSIVU TYYLIT */
 div.etusivu {
 	@media screen and (min-width:$break){
 			background:url(../img/mainbg.png) no-repeat;
 	}
-	padding:20px 0 20px 0;
 }
 div.etusivu article {
 	background-color:white;
@@ -203,16 +207,13 @@ div.etusivu article h2:nth-of-type(2):hover, div.rajoite > p:hover {
 	}
 }
 /* RAJOITE TYYLIT */
-div.rajoite {
-	padding:30px 0 30px 0;
-}
-div.rajoite h1 {
+.rajoite h1 {
 	margin:0 0 30px 0;
 }
-div.rajoite p {
+.rajoite p {
 	font-size:14px;
 }
-div.rajoite article {
+.rajoite article {
 	@media screen and (min-width:$break) {
 		padding:60px 40px 60px 160px;
 	}
@@ -221,7 +222,7 @@ div.rajoite article {
 	}
 	margin:0 0 30px 0;
 }
-div.rajoite article:nth-of-type(1) {
+.rajoite article:nth-of-type(1) {
 	@media screen and (min-width:$break) {
 		background:url(../img/punviiva.gif) top repeat-x, url(../img/kielto.png) 40px 32px no-repeat white;
 	}
@@ -229,7 +230,7 @@ div.rajoite article:nth-of-type(1) {
 		background:url(../img/punviiva.gif) top repeat-x white;
 	}
 }
-div.rajoite article:nth-of-type(2) {
+.rajoite article:nth-of-type(2) {
 	@media screen and (min-width:$break) {
 		background:url(../img/harviiva.gif) top repeat-x, url(../img/info.png) 40px 32px no-repeat white;
 	}
@@ -237,7 +238,7 @@ div.rajoite article:nth-of-type(2) {
 		background:url(../img/harviiva.gif) top repeat-x white;
 	}
 }
-div.rajoite article:nth-of-type(3) {
+.rajoite article:nth-of-type(3) {
 	@media screen and (min-width:$break) {
 		background:url(../img/punviiva.gif) top repeat-x, url(../img/hlo.png) 40px 32px no-repeat white;
 	}
@@ -250,6 +251,77 @@ div.rajoite > p {
 	margin:0 auto;
 	margin-top:60px;
 	margin-bottom:40px;
+}
+/* RAJOITTEET TYYLIT */
+.rajoitteet h1 {
+	margin:0 0 30px 0;
+}
+.rajoitteet ul {
+	font-size:12px;
+}
+.rajoitenavi ul:nth-of-type(1) {
+	float:left;
+}
+.rajoitenavi ul:nth-of-type(2), .alarajoitenavi ul {
+	float:right;
+}
+.rajoitteet ul li {
+	position:relative;
+	padding:5px;
+	margin:0 5px 0 0;
+	display:inline;
+}
+.rajoitteet ul:nth-of-type(2) li:nth-of-type(1):before, .alarajoitenavi li:nth-of-type(1):before {
+	content:url(../img/harnuolivas.gif) " ";
+}
+.rajoitteet ul:nth-of-type(2) li:nth-of-type(3):after, .alarajoitenavi li:nth-of-type(3):after {
+	content:" " url(../img/harnuoli.gif);
+}
+.valittu {
+	@include border-radius(4px);
+	background:$themecolor;
+	color:white;
+}
+.rajoitenavi {
+	background:url(../img/dot.gif) bottom repeat-x;
+	height:25px;
+}
+.alarajoitenavi {
+	background:url(../img/dot.gif) top repeat-x;
+	margin:8px 0 0 0;
+	padding:12px 0 0 0;
+}
+.rajoitteet article {
+	background:url(../img/harviiva.gif) bottom repeat-x;
+	height:80px;
+	margin:8px 0 0 0;
+}
+.rajoitteet article:nth-of-type(2n-1) {
+	background:url(../img/harviiva.gif) bottom repeat-x white;
+}
+
+.rajoitteet h4, .rajoitteet p:nth-of-type(1) {
+	float:left;
+	margin:30px 0 0 30px;
+}
+.rajoitteet p:nth-of-type(2), .rajoitteet p:nth-of-type(3) {
+	text-align:center;
+	font-size:12px;
+	width:140px;
+	float:right;
+	margin:28px 0 0 0px;
+}
+.rajoitteet p:nth-of-type(3) {
+	margin:34px 0 0 0px;
+}
+.rajoitteet h4 {
+	color:$themecolor;
+	font-style:italic;
+	text-align:center;
+	margin:30px 0 0 0px;
+	width:140px;
+}
+.rajoitteet p {
 }
 /* FOOTER TYYLIT */
 footer {
