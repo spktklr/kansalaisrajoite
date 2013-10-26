@@ -52,6 +52,11 @@ h2 {
 	font-size:16px;
 	font-weight:400;
 }
+h3 {
+	font-size:14px;
+	font-weight:700;
+	margin:0 0 5px 0;
+}
 p {
 	font-weight:300;
 }
@@ -203,21 +208,43 @@ div.rajoite p {
 	font-size:14px;
 }
 div.rajoite article {
-	padding:60px 40px 60px 160px;
+	@media screen and (min-width:$break) {
+		padding:60px 40px 60px 160px;
+	}
+	@media screen and (max-width:$break) {
+		padding:60px 40px 60px 40px;
+	}
 	margin:0 0 30px 0;
 }
 div.rajoite article:nth-of-type(1) {
-	background:url(../img/punviiva.gif) top repeat-x, url(../img/kielto.png) 40px 32px no-repeat white;
+	@media screen and (min-width:$break) {
+		background:url(../img/punviiva.gif) top repeat-x, url(../img/kielto.png) 40px 32px no-repeat white;
+	}
+	@media screen and (max-width:$break) {
+		background:url(../img/punviiva.gif) top repeat-x white;
+	}
 }
 div.rajoite article:nth-of-type(2) {
-	background:url(../img/harviiva.gif) top repeat-x, url(../img/info.png) 40px 32px no-repeat white;
+	@media screen and (min-width:$break) {
+		background:url(../img/harviiva.gif) top repeat-x, url(../img/info.png) 40px 32px no-repeat white;
+	}
+	@media screen and (max-width:$break) {
+		background:url(../img/harviiva.gif) top repeat-x white;
+	}
 }
 div.rajoite article:nth-of-type(3) {
-	background:url(../img/punviiva.gif) top repeat-x, url(../img/hlo.png) 40px 32px no-repeat white;
+	@media screen and (min-width:$break) {
+		background:url(../img/punviiva.gif) top repeat-x, url(../img/hlo.png) 40px 32px no-repeat white;
+	}
+	@media screen and (max-width:$break) {
+		background:url(../img/punviiva.gif) top repeat-x white;
+	}
 }
 div.rajoite > p {
 	max-width:410px;
 	margin:0 auto;
+	margin-top:60px;
+	margin-bottom:40px;
 }
 /* FOOTER TYYLIT */
 footer {
