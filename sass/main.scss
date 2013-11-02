@@ -261,9 +261,17 @@ div.rajoite > p {
 }
 .rajoitenavi ul:nth-of-type(1) {
 	float:left;
+	@media screen and (max-width:$break) {
+		float:none;
+		margin:0 auto;
+	}
 }
 .rajoitenavi ul:nth-of-type(2), .alarajoitenavi ul {
 	float:right;
+	@media screen and (max-width:$break) {
+		float:none;
+		margin:20px 0 0 0;
+	}
 }
 .rajoitteet ul li {
 	position:relative;
@@ -283,10 +291,17 @@ div.rajoite > p {
 	color:white;
 }
 .rajoitenavi {
+	text-align:center;
+	width:100%;
 	background:url(../img/dot.gif) bottom repeat-x;
 	height:25px;
+	@media screen and (max-width:$break) {
+		height:50px;
+	}
 }
 .alarajoitenavi {
+	text-align:center;
+	width:100%;
 	background:url(../img/dot.gif) top repeat-x;
 	margin:8px 0 0 0;
 	padding:12px 0 0 0;
@@ -316,13 +331,29 @@ div.rajoite > p {
 	margin:34px 0 0 0px;
 }
 .rajoitteet h4 {
+	@media screen and (max-width:$break) {
+		display:none;
+	}
 	color:$themecolor;
 	font-style:italic;
 	text-align:center;
 	margin:30px 0 0 0px;
 	width:140px;
 }
-.rajoitteet p {
+.rajoitteet article p:nth-of-type(2) {
+	@media screen and (max-width:$break) {
+		display:none;
+	}
+}
+.rajoitteet article p:first-of-type {
+	@media screen and (max-width:$break) {
+		display:block;
+	}
+}
+.rajoitteet article p:nth-of-type(3) {
+	@media screen and (max-width:784px) {
+		display:none;
+	}
 }
 .rajoitteet a {
 	@include transition(all, 0.5s ease-in)
@@ -332,6 +363,7 @@ div.rajoite > p {
 }
 .bar {
 	margin:0;
+	min-width:0;
 	position:relative;
 	top:76px;
 	height:4px;

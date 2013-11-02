@@ -410,13 +410,27 @@ div.rajoite > p {
 .rajoitenavi ul:nth-of-type(1) {
   float: left;
 }
+@media screen and (max-width: 980px) {
+  /* line 262, ../sass/main.scss */
+  .rajoitenavi ul:nth-of-type(1) {
+    float: none;
+    margin: 0 auto;
+  }
+}
 
-/* line 265, ../sass/main.scss */
+/* line 269, ../sass/main.scss */
 .rajoitenavi ul:nth-of-type(2), .alarajoitenavi ul {
   float: right;
 }
+@media screen and (max-width: 980px) {
+  /* line 269, ../sass/main.scss */
+  .rajoitenavi ul:nth-of-type(2), .alarajoitenavi ul {
+    float: none;
+    margin: 20px 0 0 0;
+  }
+}
 
-/* line 268, ../sass/main.scss */
+/* line 276, ../sass/main.scss */
 .rajoitteet ul li {
   position: relative;
   padding: 5px;
@@ -424,17 +438,17 @@ div.rajoite > p {
   display: inline;
 }
 
-/* line 274, ../sass/main.scss */
+/* line 282, ../sass/main.scss */
 .rajoitteet ul:nth-of-type(2) li:nth-of-type(1):before, .alarajoitenavi li:nth-of-type(1):before {
   content: url(../img/harnuolivas.gif) " ";
 }
 
-/* line 277, ../sass/main.scss */
+/* line 285, ../sass/main.scss */
 .rajoitteet ul:nth-of-type(2) li:nth-of-type(3):after, .alarajoitenavi li:nth-of-type(3):after {
   content: " " url(../img/harnuoli.gif);
 }
 
-/* line 280, ../sass/main.scss */
+/* line 288, ../sass/main.scss */
 .valittu {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -444,20 +458,30 @@ div.rajoite > p {
   color: white;
 }
 
-/* line 285, ../sass/main.scss */
+/* line 293, ../sass/main.scss */
 .rajoitenavi {
+  text-align: center;
+  width: 100%;
   background: url(../img/dot.gif) bottom repeat-x;
   height: 25px;
 }
+@media screen and (max-width: 980px) {
+  /* line 293, ../sass/main.scss */
+  .rajoitenavi {
+    height: 50px;
+  }
+}
 
-/* line 289, ../sass/main.scss */
+/* line 302, ../sass/main.scss */
 .alarajoitenavi {
+  text-align: center;
+  width: 100%;
   background: url(../img/dot.gif) top repeat-x;
   margin: 8px 0 0 0;
   padding: 12px 0 0 0;
 }
 
-/* line 294, ../sass/main.scss */
+/* line 309, ../sass/main.scss */
 .rajoitteet article {
   text-align: left;
   background: url(../img/harviiva.gif) bottom repeat-x;
@@ -465,18 +489,18 @@ div.rajoite > p {
   margin: 8px 0 0 0;
 }
 
-/* line 300, ../sass/main.scss */
+/* line 315, ../sass/main.scss */
 .rajoitteet article:nth-of-type(2n-1) {
   background: url(../img/harviiva.gif) bottom repeat-x white;
 }
 
-/* line 304, ../sass/main.scss */
+/* line 319, ../sass/main.scss */
 .rajoitteet h4, .rajoitteet p:nth-of-type(1) {
   float: left;
   margin: 30px 0 0 30px;
 }
 
-/* line 308, ../sass/main.scss */
+/* line 323, ../sass/main.scss */
 .rajoitteet p:nth-of-type(2), .rajoitteet p:nth-of-type(3) {
   text-align: center;
   font-size: 12px;
@@ -485,12 +509,12 @@ div.rajoite > p {
   margin: 28px 0 0 0px;
 }
 
-/* line 315, ../sass/main.scss */
+/* line 330, ../sass/main.scss */
 .rajoitteet p:nth-of-type(3) {
   margin: 34px 0 0 0px;
 }
 
-/* line 318, ../sass/main.scss */
+/* line 333, ../sass/main.scss */
 .rajoitteet h4 {
   color: #e56c69;
   font-style: italic;
@@ -498,8 +522,35 @@ div.rajoite > p {
   margin: 30px 0 0 0px;
   width: 140px;
 }
+@media screen and (max-width: 980px) {
+  /* line 333, ../sass/main.scss */
+  .rajoitteet h4 {
+    display: none;
+  }
+}
 
-/* line 327, ../sass/main.scss */
+@media screen and (max-width: 980px) {
+  /* line 343, ../sass/main.scss */
+  .rajoitteet article p:nth-of-type(2) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  /* line 348, ../sass/main.scss */
+  .rajoitteet article p:first-of-type {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 784px) {
+  /* line 353, ../sass/main.scss */
+  .rajoitteet article p:nth-of-type(3) {
+    display: none;
+  }
+}
+
+/* line 358, ../sass/main.scss */
 .rajoitteet a {
   -webkit-transition: all, 0.5s ease-in;
   -moz-transition: all, 0.5s ease-in;
@@ -507,14 +558,15 @@ div.rajoite > p {
   transition: all, 0.5s ease-in;
 }
 
-/* line 330, ../sass/main.scss */
+/* line 361, ../sass/main.scss */
 .rajoitteet a:hover {
   color: #e56c69;
 }
 
-/* line 333, ../sass/main.scss */
+/* line 364, ../sass/main.scss */
 .bar {
   margin: 0;
+  min-width: 0;
   position: relative;
   top: 76px;
   height: 4px;
@@ -522,13 +574,13 @@ div.rajoite > p {
 }
 
 /* FOOTER TYYLIT */
-/* line 341, ../sass/main.scss */
+/* line 373, ../sass/main.scss */
 footer {
   color: #666;
   padding: 40px 0 200px 0;
 }
 
-/* line 345, ../sass/main.scss */
+/* line 377, ../sass/main.scss */
 footer a {
   color: #e56c69;
   -webkit-transition: all, 0.5s ease-in;
@@ -537,12 +589,12 @@ footer a {
   transition: all, 0.5s ease-in;
 }
 
-/* line 349, ../sass/main.scss */
+/* line 381, ../sass/main.scss */
 footer a:hover {
   color: #dd413e;
 }
 
-/* line 352, ../sass/main.scss */
+/* line 384, ../sass/main.scss */
 footer p, footer ul {
   font-size: 13px;
   width: 220px;
@@ -551,22 +603,22 @@ footer p, footer ul {
   padding: 0 0 0 70px;
 }
 
-/* line 359, ../sass/main.scss */
+/* line 391, ../sass/main.scss */
 footer p a:after {
   content: " " url(../img/nuoli4.png);
 }
 
-/* line 362, ../sass/main.scss */
+/* line 394, ../sass/main.scss */
 footer p:nth-of-type(1) {
   background: url(../img/raksi.png) no-repeat;
 }
 
-/* line 365, ../sass/main.scss */
+/* line 397, ../sass/main.scss */
 footer p:nth-of-type(2) {
   background: url(../img/affa.png) no-repeat;
 }
 
-/* line 368, ../sass/main.scss */
+/* line 400, ../sass/main.scss */
 footer ul li {
   margin: 0 0 5px 0;
 }

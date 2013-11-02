@@ -8,7 +8,6 @@ Mitä kieltäisimme seuraavaksi?
 - SoMe-jakonapit ja toiminnallisuus
 - Tietokanta ym.
 
-- Responsiivisuus selaukseen
 - Tee kansalaisrajoite
 - Ohjeet
 - Tiedotteet
