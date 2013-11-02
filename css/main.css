@@ -273,7 +273,7 @@ div.etusivu article h2:nth-of-type(1) {
 }
 
 /* line 183, ../sass/main.scss */
-div.etusivu article h2:nth-of-type(2), div.rajoite > p {
+div.etusivu article h2:nth-of-type(2), div.rajoite > p, input.button {
   color: white;
   background-color: #e56c69;
   height: 30px;
@@ -285,7 +285,7 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p {
 }
 @media screen and (min-width: 980px) {
   /* line 183, ../sass/main.scss */
-  div.etusivu article h2:nth-of-type(2), div.rajoite > p {
+  div.etusivu article h2:nth-of-type(2), div.rajoite > p, input.button {
     background: #e56c69 url(../img/nuoli3.png) no-repeat 40px;
     text-align: right;
     padding: 14px 28px 0 0;
@@ -297,7 +297,7 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p {
 }
 @media screen and (max-width: 980px) {
   /* line 183, ../sass/main.scss */
-  div.etusivu article h2:nth-of-type(2), div.rajoite > p {
+  div.etusivu article h2:nth-of-type(2), div.rajoite > p, input.button {
     text-align: center;
     padding: 14px 0 0 0;
     -webkit-transition: background, 0.5s ease-in;
@@ -309,13 +309,13 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p {
 
 @media screen and (min-width: 980px) {
   /* line 201, ../sass/main.scss */
-  div.etusivu article h2:nth-of-type(2):hover, div.rajoite > p:hover {
+  div.etusivu article h2:nth-of-type(2):hover, div.rajoite > p:hover, input.button:hover {
     background: #dd413e url(../img/nuoli3.png) no-repeat 45px;
   }
 }
 @media screen and (max-width: 980px) {
   /* line 201, ../sass/main.scss */
-  div.etusivu article h2:nth-of-type(2):hover, div.rajoite > p:hover {
+  div.etusivu article h2:nth-of-type(2):hover, div.rajoite > p:hover, input.button:hover {
     background: #dd413e;
   }
 }
@@ -468,7 +468,7 @@ div.rajoite > p {
 @media screen and (max-width: 980px) {
   /* line 293, ../sass/main.scss */
   .rajoitenavi {
-    height: 50px;
+    height: 75px;
   }
 }
 
@@ -573,14 +573,64 @@ div.rajoite > p {
   background-color: #e56c69;
 }
 
-/* FOOTER TYYLIT */
+/* TEE RAJOITE TYYLIT */
 /* line 373, ../sass/main.scss */
+div.teerajoite {
+  padding: 20px 0 20px 0;
+}
+
+/* line 376, ../sass/main.scss */
+form {
+  position: relative;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+/* line 381, ../sass/main.scss */
+form p {
+  margin: 20px 0 4px 0;
+}
+
+/* line 384, ../sass/main.scss */
+input {
+  width: 50%;
+  display: block;
+  border: 1px solid #999999;
+  height: 25px;
+}
+
+/* line 390, ../sass/main.scss */
+textarea {
+  width: 100%;
+  height: 200px;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* line 396, ../sass/main.scss */
+textarea:focus, input:focus {
+  border: 1px solid #e56c69;
+  outline: none;
+}
+
+/* line 400, ../sass/main.scss */
+input.button {
+  font-family: "Merriweather Sans", sans-serif;
+  margin: 20px auto;
+  border: none;
+  width: 410px;
+  height: 40px;
+  padding: 0 20px;
+}
+
+/* FOOTER TYYLIT */
+/* line 409, ../sass/main.scss */
 footer {
   color: #666;
   padding: 40px 0 200px 0;
 }
 
-/* line 377, ../sass/main.scss */
+/* line 413, ../sass/main.scss */
 footer a {
   color: #e56c69;
   -webkit-transition: all, 0.5s ease-in;
@@ -589,12 +639,12 @@ footer a {
   transition: all, 0.5s ease-in;
 }
 
-/* line 381, ../sass/main.scss */
+/* line 417, ../sass/main.scss */
 footer a:hover {
   color: #dd413e;
 }
 
-/* line 384, ../sass/main.scss */
+/* line 420, ../sass/main.scss */
 footer p, footer ul {
   font-size: 13px;
   width: 220px;
@@ -603,22 +653,22 @@ footer p, footer ul {
   padding: 0 0 0 70px;
 }
 
-/* line 391, ../sass/main.scss */
+/* line 427, ../sass/main.scss */
 footer p a:after {
   content: " " url(../img/nuoli4.png);
 }
 
-/* line 394, ../sass/main.scss */
+/* line 430, ../sass/main.scss */
 footer p:nth-of-type(1) {
   background: url(../img/raksi.png) no-repeat;
 }
 
-/* line 397, ../sass/main.scss */
+/* line 433, ../sass/main.scss */
 footer p:nth-of-type(2) {
   background: url(../img/affa.png) no-repeat;
 }
 
-/* line 400, ../sass/main.scss */
+/* line 436, ../sass/main.scss */
 footer ul li {
   margin: 0 0 5px 0;
 }
