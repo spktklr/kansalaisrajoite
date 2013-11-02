@@ -459,23 +459,24 @@ div.rajoite > p {
 
 /* line 294, ../sass/main.scss */
 .rajoitteet article {
+  text-align: left;
   background: url(../img/harviiva.gif) bottom repeat-x;
   height: 80px;
   margin: 8px 0 0 0;
 }
 
-/* line 299, ../sass/main.scss */
+/* line 300, ../sass/main.scss */
 .rajoitteet article:nth-of-type(2n-1) {
   background: url(../img/harviiva.gif) bottom repeat-x white;
 }
 
-/* line 303, ../sass/main.scss */
+/* line 304, ../sass/main.scss */
 .rajoitteet h4, .rajoitteet p:nth-of-type(1) {
   float: left;
   margin: 30px 0 0 30px;
 }
 
-/* line 307, ../sass/main.scss */
+/* line 308, ../sass/main.scss */
 .rajoitteet p:nth-of-type(2), .rajoitteet p:nth-of-type(3) {
   text-align: center;
   font-size: 12px;
@@ -484,12 +485,12 @@ div.rajoite > p {
   margin: 28px 0 0 0px;
 }
 
-/* line 314, ../sass/main.scss */
+/* line 315, ../sass/main.scss */
 .rajoitteet p:nth-of-type(3) {
   margin: 34px 0 0 0px;
 }
 
-/* line 317, ../sass/main.scss */
+/* line 318, ../sass/main.scss */
 .rajoitteet h4 {
   color: #e56c69;
   font-style: italic;
@@ -498,14 +499,36 @@ div.rajoite > p {
   width: 140px;
 }
 
-/* FOOTER TYYLIT */
 /* line 327, ../sass/main.scss */
+.rajoitteet a {
+  -webkit-transition: all, 0.5s ease-in;
+  -moz-transition: all, 0.5s ease-in;
+  -o-transition: all, 0.5s ease-in;
+  transition: all, 0.5s ease-in;
+}
+
+/* line 330, ../sass/main.scss */
+.rajoitteet a:hover {
+  color: #e56c69;
+}
+
+/* line 333, ../sass/main.scss */
+.bar {
+  margin: 0;
+  position: relative;
+  top: 76px;
+  height: 4px;
+  background-color: #e56c69;
+}
+
+/* FOOTER TYYLIT */
+/* line 341, ../sass/main.scss */
 footer {
   color: #666;
   padding: 40px 0 200px 0;
 }
 
-/* line 331, ../sass/main.scss */
+/* line 345, ../sass/main.scss */
 footer a {
   color: #e56c69;
   -webkit-transition: all, 0.5s ease-in;
@@ -514,12 +537,12 @@ footer a {
   transition: all, 0.5s ease-in;
 }
 
-/* line 335, ../sass/main.scss */
+/* line 349, ../sass/main.scss */
 footer a:hover {
   color: #dd413e;
 }
 
-/* line 338, ../sass/main.scss */
+/* line 352, ../sass/main.scss */
 footer p, footer ul {
   font-size: 13px;
   width: 220px;
@@ -528,22 +551,22 @@ footer p, footer ul {
   padding: 0 0 0 70px;
 }
 
-/* line 345, ../sass/main.scss */
+/* line 359, ../sass/main.scss */
 footer p a:after {
   content: " " url(../img/nuoli4.png);
 }
 
-/* line 348, ../sass/main.scss */
+/* line 362, ../sass/main.scss */
 footer p:nth-of-type(1) {
   background: url(../img/raksi.png) no-repeat;
 }
 
-/* line 351, ../sass/main.scss */
+/* line 365, ../sass/main.scss */
 footer p:nth-of-type(2) {
   background: url(../img/affa.png) no-repeat;
 }
 
-/* line 354, ../sass/main.scss */
+/* line 368, ../sass/main.scss */
 footer ul li {
   margin: 0 0 5px 0;
 }

@@ -292,6 +292,7 @@ div.rajoite > p {
 	padding:12px 0 0 0;
 }
 .rajoitteet article {
+	text-align:left;
 	background:url(../img/harviiva.gif) bottom repeat-x;
 	height:80px;
 	margin:8px 0 0 0;
@@ -322,6 +323,19 @@ div.rajoite > p {
 	width:140px;
 }
 .rajoitteet p {
+}
+.rajoitteet a {
+	@include transition(all, 0.5s ease-in)
+}
+.rajoitteet a:hover {
+	color:$themecolor;
+}
+.bar {
+	margin:0;
+	position:relative;
+	top:76px;
+	height:4px;
+	background-color:$themecolor;
 }
 /* FOOTER TYYLIT */
 footer {
