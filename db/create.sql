@@ -1,0 +1,31 @@
+BEGIN TRANSACTION;
+
+DROP TABLE IF EXISTS kannatus;
+DROP TABLE IF EXISTS rajoite;
+DROP TABLE IF EXISTS kayttaja;
+
+CREATE TABLE kayttaja (
+	id serial PRIMARY KEY,
+	email VARCHAR(128) NOT NULL UNIQUE,
+	nimi VARCHAR(128) NOT NULL,
+	salasana CHAR(60) NOT NULL,
+	rekisteroitymisaika TIMESTAMP NOT NULL DEFAULT(NOW())
+);
+
+CREATE TABLE rajoite (
+	id SERIAL PRIMARY KEY,
+	luontiaika TIMESTAMP NOT NULL DEFAULT(NOW()),
+	muokkausaika TIMESTAMP NOT NULL DEFAULT(NOW()),
+	otsikko TEXT NOT NULL,
+	sisalto TEXT NOT NULL,
+	perustelut TEXT NOT NULL,
+	kayttaja_id INTEGER REFERENCES kayttaja(id) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+CREATE TABLE kannatus (
+	rajoite_id INTEGER REFERENCES rajoite(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	kayttaja_id INTEGER REFERENCES kayttaja(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	PRIMARY KEY (rajoite_id, kayttaja_id)
+);
+
+COMMIT;
