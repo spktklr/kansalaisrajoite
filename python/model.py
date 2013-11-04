@@ -1,6 +1,6 @@
 # coding=utf-8
 from bottle.ext import sqlalchemy
-from sqlalchemy import create_engine, MetaData, Table, Column, ForeignKey, Integer, String, DateTime
+from sqlalchemy import create_engine, MetaData, Table, Column, ForeignKey, Integer, String, DateTime, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.sql import func
@@ -43,7 +43,7 @@ class Rajoite(Base):
 			ret['muokkausaika'] = self.muokkausaika.strftime('%s')
 			ret['sisalto'] = self.sisalto
 			ret['perustelut'] = self.perustelut
-			ret['vireillepanija'] = self.kayttaja.nimi
+			ret['vireillepanija'] = self.kayttaja.toDict()
 		return ret
 
 class Kayttaja(Base):
@@ -53,10 +53,18 @@ class Kayttaja(Base):
 	email = Column(String)
 	nimi = Column(String)
 	salasana = Column(String)
+	kaupunki = Column(String)
+	yllapitaja = Column(Boolean, server_default='FALSE')
 	rekisteroitymisaika = Column(DateTime, server_default=func.current_timestamp())
 	
 	def __repr__(self):
-		return '<Käyttäjä: %s>' % self.nimi
+		return '<Käyttäjä: %s>' % self.email
 	
-	def toDict(self):
-		return {'email': self.email, 'nimi': self.nimi}
+	def toDict(self, full=False):
+		ret = {}
+		ret['nimi'] = self.nimi
+		ret['kaupunki'] = self.kaupunki
+		if full:
+			ret['yllapitaja'] = self.yllapitaja
+			ret['email'] = self.email
+		return ret

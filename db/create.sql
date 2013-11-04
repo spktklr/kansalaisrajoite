@@ -7,8 +7,10 @@ DROP TABLE IF EXISTS kayttaja;
 CREATE TABLE kayttaja (
 	id serial PRIMARY KEY,
 	email VARCHAR(128) NOT NULL UNIQUE,
-	nimi VARCHAR(128) NOT NULL,
+	nimi VARCHAR(128),
 	salasana CHAR(60) NOT NULL,
+	kaupunki VARCHAR(32),
+	yllapitaja BOOL NOT NULL DEFAULT(FALSE),
 	rekisteroitymisaika TIMESTAMP NOT NULL DEFAULT(NOW())
 );
 
