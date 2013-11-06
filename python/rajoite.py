@@ -1,10 +1,11 @@
 # coding=utf-8
 from bottle import Bottle, HTTPError, request
 import model
-from utils import session_user
+from utils import session_user, jsonplugin
 
 app = Bottle()
 app.install(model.plugin)
+app.install(jsonplugin)
 
 @app.get('/<id:int>')
 def read_one(db, id):

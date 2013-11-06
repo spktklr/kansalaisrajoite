@@ -3,10 +3,11 @@ from bottle import Bottle, HTTPError, request
 import model
 import bcrypt
 import datetime
-from utils import session_user
+from utils import session_user, jsonplugin
 
 app = Bottle()
 app.install(model.plugin)
+app.install(jsonplugin)
 
 @app.post('/rekisteroidy')
 def create(db):
