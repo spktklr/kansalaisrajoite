@@ -21,6 +21,8 @@ CREATE TABLE rajoite (
 	otsikko TEXT NOT NULL,
 	sisalto TEXT NOT NULL,
 	perustelut TEXT NOT NULL,
+	vahvistettu BOOL NOT NULL DEFAULT(FALSE),
+	vahvistaja_id INTEGER REFERENCES kayttaja(id) ON DELETE SET NULL ON UPDATE CASCADE,
 	kayttaja_id INTEGER REFERENCES kayttaja(id) ON DELETE SET NULL ON UPDATE CASCADE
 );
 

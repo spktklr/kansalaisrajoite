@@ -24,9 +24,13 @@ class Rajoite(Base):
 	otsikko = Column(String)
 	sisalto = Column(String)
 	perustelut = Column(String)
+	vahvistettu = Column(Boolean, server_default='FALSE')
+	
+	vahvistaja_id = Column(Integer, ForeignKey('kayttaja.id'))
+	vahvistaja = relationship('Kayttaja', foreign_keys=vahvistaja_id)
 	
 	kayttaja_id = Column(Integer, ForeignKey('kayttaja.id'))
-	kayttaja = relationship('Kayttaja')
+	kayttaja = relationship('Kayttaja', foreign_keys=kayttaja_id)
 	
 	kannattajat = relationship('Kayttaja', secondary=kannatustaulu, backref='rajoitteet')
 	
@@ -36,14 +40,16 @@ class Rajoite(Base):
 	def toDict(self, full=False):
 		ret = {}
 		ret['id'] = self.id
-		ret['luontiaika'] = self.luontiaika.strftime('%s')
+		ret['luontiaika'] = self.luontiaika
 		ret['otsikko'] = self.otsikko
-		ret['kannatusmaara'] = len(self.kannattajat)
+		ret['kannattajamaara'] = len(self.kannattajat)
+		ret['sisalto'] = self.sisalto
+		ret['perustelut'] = self.perustelut
+		ret['vireillepanija'] = self.kayttaja.toDict()
+		ret['vahvistettu'] = self.vahvistettu
 		if full:
-			ret['muokkausaika'] = self.muokkausaika.strftime('%s')
-			ret['sisalto'] = self.sisalto
-			ret['perustelut'] = self.perustelut
-			ret['vireillepanija'] = self.kayttaja.toDict()
+			ret['vahvistaja'] = self.vahvistaja.toDict()
+			ret['muokkausaika'] = self.muokkausaika
 		return ret
 
 class Kayttaja(Base):
@@ -65,6 +71,8 @@ class Kayttaja(Base):
 		ret['nimi'] = self.nimi
 		ret['kaupunki'] = self.kaupunki
 		if full:
-			ret['yllapitaja'] = self.yllapitaja
+			ret['id'] = self.id
 			ret['email'] = self.email
+			ret['rekisteroitymisaika'] = self.rekisteroitymisaika
+			ret['yllapitaja'] = self.yllapitaja
 		return ret
