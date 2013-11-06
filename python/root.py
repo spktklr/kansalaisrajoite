@@ -1,14 +1,14 @@
 # coding=utf-8
 from bottle import Bottle, HTTPError, static_file, redirect, hook, request
-import rajoite
-import kannatus
-import kayttaja
+import restriction
+import vote
+import user
 import beaker.middleware
 
 app = Bottle()
-app.mount('/rajoite', rajoite.app)
-app.mount('/kannatus', kannatus.app)
-app.mount('/kayttaja', kayttaja.app)
+app.mount('/rajoite', restriction.app)
+app.mount('/kannatus', vote.app)
+app.mount('/kayttaja', user.app)
 
 @app.get('/')
 def index():
