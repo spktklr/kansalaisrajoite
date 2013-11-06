@@ -47,7 +47,7 @@ def login(db):
 	if kayttaja and bcrypt.hashpw(salasana, kayttaja.salasana.encode('utf-8')) == kayttaja.salasana:
 		session = request.environ['beaker.session']
 		session['user_id'] = kayttaja.id
-		return kayttaja.toDict(True)
+		return kayttaja.toDict()
 	else:
 		return HTTPError(401)
 
@@ -65,6 +65,22 @@ def read(db):
 	user = session_user(request, db)
 	
 	if user:
-		return user.toDict(True)
+		return user.toDict()
+	else:
+		return HTTPError(401, 'Unauthorized')
+
+
+@app.get('/<id:int>')
+def read(db, id):
+	user = session_user(request, db)
+	is_admin = user and user.yllapitaja
+	
+	if is_admin:
+		item = db.query(model.Kayttaja).filter_by(id=id).first()
+		
+		if not item:
+			return HTTPError(404, 'Not found')
+		else:
+			return item.toDict(True)
 	else:
 		return HTTPError(401, 'Unauthorized')
