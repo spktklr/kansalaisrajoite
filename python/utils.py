@@ -15,7 +15,7 @@ def session_user(request, db):
 	if not user_id:
 		return None
 	
-	return db.query(model.Kayttaja).filter_by(id=user_id).first()
+	return db.query(model.User).filter_by(id=user_id).first()
 
 
 class JsonEncoder(json.JSONEncoder):

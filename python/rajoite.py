@@ -9,7 +9,7 @@ app.install(jsonplugin)
 
 @app.get('/<id:int>')
 def read_one(db, id):
-	item = db.query(model.Rajoite).filter_by(id=id).first()
+	item = db.query(model.Restriction).filter_by(id=id).first()
 	
 	if item:
 		return item.toDict(True)
@@ -19,19 +19,19 @@ def read_one(db, id):
 @app.get('/')
 def read_all(db):
 	user = session_user(request, db)
-	is_admin = user and user.yllapitaja
+	is_admin = user and user.admin
 	
-	items = db.query(model.Rajoite).filter_by(vahvistettu=True)
-	return { 'rajoitteet': [ i.toDict(is_admin) for i in items ] }
+	items = db.query(model.Restriction).filter_by(approved=True)
+	return { 'restrictions': [ i.toDict(is_admin) for i in items ] }
 
 @app.get('/jono')
-def read_waiting(db):
+def read_queue(db):
 	user = session_user(request, db)
-	is_admin = user and user.yllapitaja
+	is_admin = user and user.admin
 	
 	if is_admin:
-		items = db.query(model.Rajoite).filter_by(vahvistettu=False)
-		return { 'rajoitteet': [ i.toDict(is_admin) for i in items ] }
+		items = db.query(model.Restriction).filter_by(approved=False)
+		return { 'restrictions': [ i.toDict(is_admin) for i in items ] }
 	else:
 		return HTTPError(401, 'Unauthorized')
 
@@ -42,21 +42,21 @@ def create(db):
 	if not user:
 		return HTTPError(401, 'Unauthorized')
 	
-	rajoite = model.Rajoite()
+	item = model.Restriction()
 	
-	rajoite.otsikko = request.forms.get('otsikko')
-	rajoite.sisalto = request.forms.get('sisalto')
-	rajoite.perustelut = request.forms.get('perustelut')
-	rajoite.kayttaja = user
+	item.title = request.forms.get('title')
+	item.contents = request.forms.get('contents')
+	item.arguments = request.forms.get('arguments')
+	item.user = user
 	
-	db.add(rajoite)
+	db.add(item)
 
 @app.delete('/<id:int>')
 def delete(db, id):
 	user = session_user(request, db)
-	is_admin = user and user.yllapitaja
+	is_admin = user and user.admin
 	
-	item = db.query(model.Rajoite).filter_by(id=id).first()
+	item = db.query(model.Restriction).filter_by(id=id).first()
 	
 	if not item:
 		return HTTPError(404, 'Not found')
@@ -64,7 +64,7 @@ def delete(db, id):
 	if not user:
 		return HTTPError(401, 'Unauthorized')
 	
-	if user != item.kayttaja and not is_admin:
+	if user != item.user and not is_admin:
 		return HTTPError(403, 'Forbidden')
 	
 	db.delete(item)
@@ -72,15 +72,15 @@ def delete(db, id):
 @app.post('/<id:int>/vahvista')
 def approve(db, id):
 	user = session_user(request, db)
-	is_admin = user and user.yllapitaja
+	is_admin = user and user.admin
 	
 	if is_admin:
-		item = db.query(model.Rajoite).filter_by(id=id).first()
+		item = db.query(model.Restriction).filter_by(id=id).first()
 		
 		if not item:
 			return HTTPError(404, 'Not found')
 		
-		item.vahvistettu = not item.vahvistettu
-		item.vahvistaja = user
+		item.approved = not item.approved
+		item.approver = user
 	else:
 		return HTTPError(401, 'Unauthorized')

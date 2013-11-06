@@ -10,69 +10,69 @@ engine = create_engine('postgresql+psycopg2:///kansalaisrajoite', echo=False)
 plugin = sqlalchemy.Plugin(engine, None, keyword='db')
 
 
-kannatustaulu = Table('kannatus', Base.metadata,
-	Column('rajoite_id', Integer, ForeignKey('rajoite.id')),
-	Column('kayttaja_id', Integer, ForeignKey('kayttaja.id'))
+vote_table = Table('vote', Base.metadata,
+	Column('restriction_id', Integer, ForeignKey('restriction.id')),
+	Column('user_id', Integer, ForeignKey('user.id'))
 )
 
-class Rajoite(Base):
-	__tablename__ = 'rajoite'
+class Restriction(Base):
+	__tablename__ = 'restriction'
 	
 	id = Column(Integer, primary_key=True)
-	luontiaika = Column(DateTime, server_default=func.current_timestamp())
-	muokkausaika = Column(DateTime, server_default=func.current_timestamp())
-	otsikko = Column(String)
-	sisalto = Column(String)
-	perustelut = Column(String)
-	vahvistettu = Column(Boolean, server_default='FALSE')
+	created = Column(DateTime, server_default=func.current_timestamp())
+	modified = Column(DateTime, server_default=func.current_timestamp())
+	title = Column(String)
+	contents = Column(String)
+	arguments = Column(String)
+	approved = Column(Boolean, server_default='FALSE')
 	
-	vahvistaja_id = Column(Integer, ForeignKey('kayttaja.id'))
-	vahvistaja = relationship('Kayttaja', foreign_keys=vahvistaja_id)
+	approver_id = Column(Integer, ForeignKey('user.id'))
+	approver = relationship('User', foreign_keys=approver_id)
 	
-	kayttaja_id = Column(Integer, ForeignKey('kayttaja.id'))
-	kayttaja = relationship('Kayttaja', foreign_keys=kayttaja_id)
+	user_id = Column(Integer, ForeignKey('user.id'))
+	user = relationship('User', foreign_keys=user_id)
 	
-	kannattajat = relationship('Kayttaja', secondary=kannatustaulu, backref='rajoitteet')
+	voters = relationship('User', secondary=vote_table, backref='restrictions')
 	
 	def __repr__(self):
-		return '<Rajoite: %s>' % self.otsikko
+		return '<Restriction: %s>' % self.otsikko
 	
 	def toDict(self, full=False):
 		ret = {}
 		ret['id'] = self.id
-		ret['luontiaika'] = self.luontiaika
-		ret['otsikko'] = self.otsikko
-		ret['kannattajamaara'] = len(self.kannattajat)
-		ret['sisalto'] = self.sisalto
-		ret['perustelut'] = self.perustelut
-		ret['vireillepanija'] = self.kayttaja.toDict()
-		ret['vahvistettu'] = self.vahvistettu
+		ret['created'] = self.created
+		ret['votes'] = len(self.voters)
+		ret['title'] = self.title
+		ret['contents'] = self.contents
+		ret['arguments'] = self.arguments
+		ret['user'] = self.user.toDict()
+		ret['approved'] = self.approved
 		if full:
-			ret['vahvistaja'] = self.vahvistaja.toDict()
-			ret['muokkausaika'] = self.muokkausaika
+			ret['approver'] = self.approver.toDict()
+			ret['modified'] = self.modified
 		return ret
 
-class Kayttaja(Base):
-	__tablename__ = 'kayttaja'
+class User(Base):
+	__tablename__ = 'user'
 	
 	id = Column(Integer, primary_key=True)
 	email = Column(String)
-	nimi = Column(String)
-	salasana = Column(String)
-	kaupunki = Column(String)
-	yllapitaja = Column(Boolean, server_default='FALSE')
-	rekisteroitymisaika = Column(DateTime, server_default=func.current_timestamp())
+	name = Column(String)
+	password = Column(String)
+	city = Column(String)
+	admin = Column(Boolean, server_default='FALSE')
+	registered = Column(DateTime, server_default=func.current_timestamp())
 	
 	def __repr__(self):
-		return '<Käyttäjä: %s>' % self.email
+		return '<User: %s>' % self.email
 	
 	def toDict(self, full=False):
 		ret = {}
-		ret['nimi'] = self.nimi
-		ret['kaupunki'] = self.kaupunki
+		ret['name'] = self.name
+		ret['city'] = self.city
 		if full:
 			ret['id'] = self.id
 			ret['email'] = self.email
-			ret['rekisteroitymisaika'] = self.rekisteroitymisaika
-			ret['yllapitaja'] = self.yllapitaja
+			ret['registered'] = self.registered
+			ret['admin'] = self.admin
 		return ret

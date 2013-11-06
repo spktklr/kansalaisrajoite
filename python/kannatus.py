@@ -14,15 +14,13 @@ def read_one(db, id):
 	if not user:
 		return HTTPError(401, 'Unauthorized')
 	
-	item = db.query(model.Rajoite).filter_by(id=id).first()
+	item = db.query(model.Restriction).filter_by(id=id).first()
 	
 	if not item:
 		return HTTPError(404, 'Not found')
 	
-	if user in item.kannattajat:
-		return {'kannatettu': True}
-	else:
-		return {'kannatettu': False}
+	return {'voted': user in item.voters}
+
 
 @app.post('/<id:int>')
 def create(db, id):
@@ -31,12 +29,12 @@ def create(db, id):
 	if not user:
 		return HTTPError(401, 'Unauthorized')
 	
-	item = db.query(model.Rajoite).filter_by(id=id).first()
+	item = db.query(model.Restriction).filter_by(id=id).first()
 	
 	if not item:
 		return HTTPError(404, 'Not found')
 	
-	item.kannattajat.append(user)
+	item.voters.append(user)
 
 @app.delete('/<id:int>')
 def delete(db, id):
@@ -45,9 +43,9 @@ def delete(db, id):
 	if not user:
 		return HTTPError(401, 'Unauthorized')
 	
-	item = db.query(model.Rajoite).filter_by(id=id).first()
+	item = db.query(model.Restriction).filter_by(id=id).first()
 	
 	if not item:
 		return HTTPError(404, 'Not found')
 	
-	item.kannattajat.remove(user)
+	item.voters.remove(user)

@@ -10,44 +10,44 @@ app.install(model.plugin)
 app.install(jsonplugin)
 
 @app.post('/rekisteroidy')
-def create(db):
+def register(db):
 	email = request.forms.get('email')
-	nimi = request.forms.get('nimi')
-	salasana = request.forms.get('salasana')
-	kaupunki = request.forms.get('kaupunki')
+	name = request.forms.get('name')
+	password = request.forms.get('password')
+	city = request.forms.get('city')
 	
-	if not salasana or len(salasana) < 8:
-		return HTTPError(400, 'Bad request (salasana)')
+	if not password or len(password) < 8:
+		return HTTPError(400, 'Bad request (password)')
 	
 	if not email or len(email) == 0:
 		return HTTPError(400, 'Bad request (email)')
 	
-	if db.query(model.Kayttaja).filter_by(email=email).first():
+	if db.query(model.User).filter_by(email=email).first():
 		return HTTPError(409, 'Conflict')
 	
-	kayttaja = model.Kayttaja()
-	kayttaja.email = email
+	user = model.User()
+	user.email = email
 	
-	if nimi and len(nimi) > 0:
-		kayttaja.nimi = nimi
+	if name and len(name) > 0:
+		user.name = name
 	
-	if kaupunki and len(kaupunki) > 0:
-		kayttaja.kaupunki = kaupunki
+	if city and len(city) > 0:
+		user.city = city
 	
-	kayttaja.salasana = bcrypt.hashpw(salasana, bcrypt.gensalt())
-	db.add(kayttaja)
+	user.password = bcrypt.hashpw(password, bcrypt.gensalt())
+	db.add(user)
 
 @app.post('/login')
 def login(db):
 	email = request.forms.get('email')
-	salasana = request.forms.get('salasana')
+	password = request.forms.get('password')
 	
-	kayttaja = db.query(model.Kayttaja).filter_by(email=email).first()
+	user = db.query(model.User).filter_by(email=email).first()
 	
-	if kayttaja and bcrypt.hashpw(salasana, kayttaja.salasana.encode('utf-8')) == kayttaja.salasana:
+	if user and bcrypt.hashpw(password, user.password.encode('utf-8')) == user.password:
 		session = request.environ['beaker.session']
-		session['user_id'] = kayttaja.id
-		return kayttaja.toDict()
+		session['user_id'] = user.id
+		return user.toDict()
 	else:
 		return HTTPError(401)
 
@@ -61,7 +61,7 @@ def logout(db):
 		return HTTPError(401, 'Unauthorized')
 
 @app.get('/')
-def read(db):
+def my_data(db):
 	user = session_user(request, db)
 	
 	if user:
@@ -71,12 +71,12 @@ def read(db):
 
 
 @app.get('/<id:int>')
-def read(db, id):
+def read_user(db, id):
 	user = session_user(request, db)
-	is_admin = user and user.yllapitaja
+	is_admin = user and user.admin
 	
 	if is_admin:
-		item = db.query(model.Kayttaja).filter_by(id=id).first()
+		item = db.query(model.User).filter_by(id=id).first()
 		
 		if not item:
 			return HTTPError(404, 'Not found')
