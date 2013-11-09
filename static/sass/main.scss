@@ -424,7 +424,7 @@ div.rajoite > p {
 	background-color:$themecolor;
 }
 /* TEE RAJOITE TYYLIT */
-div.teerajoite {
+div.teerajoite, div.tiedotteet {
 	padding:20px 0 20px 0;
 }
 form.teerajoite    {
@@ -447,7 +447,7 @@ form.teerajoite textarea {
 	display:block;
 	box-sizing:border-box;
 }
-form.teerajoite textarea:focus, form.teerajoite input:focus {
+form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen textarea:focus, form.kirjautuminen input:focus {
 	border: 1px solid $themecolor;
 	outline: none;
 }
@@ -460,6 +460,15 @@ form.teerajoite textarea:focus, form.teerajoite input:focus {
 	max-width:410px;
 	height:40px;
 	padding:0 20px;
+}
+/* TIEDOTTEET TYYLIT */
+.tiedotteet h1, .tiedotteet p {
+	margin:20px 0 20px 0;
+}
+.tiedotteet article {
+	background:white;
+	margin:0 0 30px 0;
+	padding:30px;
 }
 /* FOOTER TYYLIT */
 footer {
