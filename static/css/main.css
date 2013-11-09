@@ -342,11 +342,12 @@ div.rajoite > p {
 
 .kirjaudu article {
   margin: 20px 0 0 0;
+  padding: 30px 40px;
   background: white;
 }
 
-.kirjaudu form {
-  padding: 30px;
+.kirjaudu article:nth-of-type(3) {
+  padding: 0;
 }
 
 .kirjaudu input {
@@ -357,22 +358,30 @@ div.rajoite > p {
   margin-top: 24px;
 }
 
-.kirjaudu article {
-  width: 49%;
+@media screen and (min-width: 980px) {
+  .kirjaudu article {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 980px) {
+  .kirjaudu article {
+    width: 410px;
+  }
 }
 
-.kirjaudu article:nth-of-type(1) {
-  float: left;
-}
+@media screen and (min-width: 980px) {
+  .kirjaudu article:nth-of-type(1) {
+    float: left;
+  }
 
-.kirjaudu article:nth-of-type(2) {
-  float: right;
-}
+  .kirjaudu article:nth-of-type(2) {
+    float: right;
+  }
 
-.kirjaudu article:nth-of-type(3) {
-  clear: both;
+  .kirjaudu article:nth-of-type(3) {
+    clear: both;
+  }
 }
-
 .kirjaudukentta {
   width: 100%;
   display: block;
@@ -382,10 +391,17 @@ div.rajoite > p {
 
 .kirjaudu article:nth-of-type(2) p {
   color: white;
-  background: url(../img/affa.png) no-repeat 40px 8px #3b5998;
-  margin: 40px;
-  padding: 20px;
-  text-align: center;
+  background: url(../img/fblogo.png) no-repeat 40px 6px #3b5998;
+  padding: 13px;
+  text-align: right;
+  -webkit-transition: background, 0.2s ease-in;
+  -moz-transition: background, 0.2s ease-in;
+  -o-transition: background, 0.2s ease-in;
+  transition: background, 0.2s ease-in;
+}
+
+.kirjaudu article:nth-of-type(2) p:hover {
+  background: #344e86 url(../img/fblogo.png) no-repeat 43px;
 }
 
 /* RAJOITTEET TYYLIT */
@@ -579,7 +595,8 @@ form.teerajoite textarea:focus, form.teerajoite input:focus {
   font-family: "Merriweather Sans", sans-serif;
   margin: 30px auto;
   border: none;
-  width: 410px;
+  width: 100%;
+  max-width: 410px;
   height: 40px;
   padding: 0 20px;
 }
