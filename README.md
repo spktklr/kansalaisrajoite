@@ -7,7 +7,6 @@ Mitä kieltäisimme seuraavaksi?
 - Identiteetinhallinta
 - SoMe-jakonapit ja toiminnallisuus
 - Tietokanta ym.
-
 - Tee kansalaisrajoite
 - Ohjeet
 - Tiedotteet

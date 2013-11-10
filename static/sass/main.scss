@@ -1,42 +1,4 @@
-@charset "UTF-8";
-@import url(http://fonts.googleapis.com/css?family=Merriweather+Sans:400,500,600,700,300);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic);
-@import "compass";
-$themecolor: #e56c69;
-$headergray: #dcdcdc;
-$semigray: #f9f9f9;
-$break: 980px;
-$anitime: 0.2s;
-
-@mixin transition($transition...) {
-  -webkit-transition: $transition;
-  -moz-transition: $transition;
-  -o-transition: $transition;
-  transition: $transition; 
-}
-@mixin columns($column-count, $column-width, $column-gap) {
-  -webkit-column-count: $column-count;
-  -moz-column-count: $column-count;
-  -o-column-count: $column-count;
-  column-count: $column-count;
-  -webkit-column-width: $column-width;
-  -moz-column-width: $column-width;
-  -o-column-width: $column-width;
-  column-width: $column-width;
-  -webkit-column-gap: $column-gap;
-  -moz-column-gap: $column-gap;
-  -o-column-gap: $column-gap;
-  column-gap: $column-gap;
-}
-@mixin border-radius($border-radius) {
-	-webkit-border-radius: $border-radius;
-	-moz-border-radius: $border-radius;
-	-o-border-radius: $border-radius;
-	border-radius: $border-radius;
-}
-
-/* Eric Meyer: Reset CSS v2.0 via http://cssreset.com */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h7,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+@import "base";
 
 /* Kansalaisrajoite */
 
@@ -75,19 +37,20 @@ span {
 	font-size:37px;
 }
 nav,div,footer {
-	@media screen and (min-width:$break){
+	margin:0 auto;
+	@include wide {
 			width:960px;
 	}
-	@media screen and (max-width:$break){
+	@include narrow{
 			min-width:410px;
 			width:80%;
 	}
-	margin:0 auto;
 }
 /* HEADER TYYLIT */
+
 header {
 	background:url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
-	@media screen and (min-width:$break) {
+	@include wide {
 		height:240px;
 		background:url(../img/headerbg.jpg) bottom center no-repeat, url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
 	}
@@ -95,60 +58,62 @@ header {
 nav {
 	padding:134px 0 0 0;
 	background:url(../img/logo.png) no-repeat 0 94px;
-	@media screen and (min-width:$break) {
+	@include wide {
 		text-align:right;
 	}
 	font-weight:bold;
 	color:white;
-}
-nav h1 {
-	@media screen and (min-width:$break) {
-		float:left;
-	}
-	margin:-12px 0 0 100px;
-	font-size:36px;
-}
 
-nav ul {
-	@media screen and (min-width:$break) {
-		margin-bottom:30px;
+	h1 {
+		@include wide {
+			float:left;
+		}
+		margin:-12px 0 0 100px;
+		font-size:36px;
 	}
-	font-size:14px;
-	@media screen and (max-width:$break) {
-		margin:44px 0 0 0;
-		padding:0 0 24px 0;
+
+	ul {
+		font-size:14px;
+		@include wide {
+			margin-bottom:30px;
+		}
+		@include narrow {
+			margin:44px 0 0 0;
+			padding:0 0 24px 0;
+		}
+
+		&:nth-of-type(1) {
+			li {
+				&:before {content:url(../img/nuoli12.gif) " ";}
+			}
+		}
+
+		&:nth-of-type(2) {
+			@include narrow {
+				display:none;
+			}
+			li {
+				font-size:12px;
+				color:white;
+				@include narrow {
+					display:none;
+					&:before {content:url(../img/nuoli22.gif) " ";}
+				}
+			}
+		}
+
+		li {
+			@include wide {
+				display:inline;
+			}
+			margin-left:0px;
+			padding:5px;
+			@include transition(all, $anitime ease-in);
+			@include border-radius(4px);
+			color:$themecolor;
+			&:hover {background:lighten($headergray, 3%);}
+		}
 	}
-}
-nav ul li {
-	@media screen and (min-width:$break) {
-		display:inline;
-	}
-	margin-left:0px;
-	padding:5px;
-	@include transition(all, $anitime ease-in);
-	@include border-radius(4px);
-	color:$themecolor;
-}
-nav ul li:hover {
-	background:lighten($headergray, 3%);
-}
-nav ul:nth-of-type(2) {
-	@media screen and (max-width:$break) {
-		display:none;
-	}
-}
-nav ul:nth-of-type(2) li {
-	@media screen and (max-width:$break) {
-		display:none;
-	}
-	font-size:12px;
-	color:white;
-}
-nav ul:nth-of-type(1) li:before {
-	content:url(../img/nuoli12.gif) " ";
-}
-nav ul:nth-of-type(2) li:before {
-	content:url(../img/nuoli22.gif) " ";
 }
 /* GLOBAALIT CONTENT TYYLIT */
 section {
@@ -159,127 +124,124 @@ div.etusivu, div.rajoite, div.rajoitteet {
 }
 /* ETUSIVU TYYLIT */
 div.etusivu {
-	@media screen and (min-width:$break){
+	@include wide{
 			background:url(../img/mainbg.png) no-repeat;
 	}
-}
-div.etusivu article {
-	background-color:white;
-	opacity:0.9;
-	@media screen and (min-width:$break){
-			margin:0 0 40px 410px;
+	article {
+		background-color:white;
+		opacity:0.9;
+		@include wide{
+				margin:0 0 40px 410px;
+		}
+		@include narrow{
+				margin:0 0 40px 0;
+		}
+		padding:50px 50px 50px 50px;
+
+		h1 {margin:0 0 30px 0;}
+
+		h2:nth-of-type(1) {
+			font-size:18px;
+			line-height:125%;
+		}
 	}
-	@media screen and (max-width:$break){
-			margin:0 0 40px 0;
-	}
-	padding:50px 50px 50px 50px;
-}
-div.etusivu article h1 {
-	margin:0 0 30px 0;
-}
-div.etusivu article h2:nth-of-type(1) {
-	font-size:18px;
-	line-height:125%;
 }
 div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
 	color:white;
 	background-color:$themecolor;
-	@media screen and (min-width:$break){
+	height:30px;
+	margin-top:30px;
+	@include wide{
 			background:$themecolor url(../img/nuoli3.png) no-repeat 30px;
 			text-align:right;
 			padding:14px 28px 0 0;
 			@include transition(background, $anitime ease-in);
 	}
-	@media screen and (max-width:$break){
+	@include narrow{
 			text-align:center;
 			padding:14px 0 0 0;
 			@include transition(background, $anitime ease-in);
 	}	
-	height:30px;
-	margin:30px 0 0 0;
 	@include transition(background, $anitime ease-in);
-}
-div.etusivu article h2:nth-of-type(2):hover, div.rajoite > p:hover, .painike:hover {
-	@media screen and (min-width:$break){
+	&:hover {
+		@include wide{
 		background:darken($themecolor, 5%) url(../img/nuoli3.png) no-repeat 33px;
-	}
-	@media screen and (max-width:$break){
+		}
+	@include narrow{
 		background:darken($themecolor, 5%);
+		}
 	}
 }
 /* RAJOITE TYYLIT */
-.rajoite h1 {
-	margin:0 0 30px 0;
-}
-.rajoite p {
-	font-size:14px;
-}
-.rajoite article {
-	@media screen and (min-width:$break) {
-		padding:60px 40px 60px 160px;
+.rajoite {
+	h1 {
+		margin:0 0 30px 0;
 	}
-	@media screen and (max-width:$break) {
-		padding:60px 40px 60px 40px;
+	p {
+		font-size:14px;
 	}
-	margin:0 0 30px 0;
-}
-.rajoite article:nth-of-type(1) {
-	@media screen and (min-width:$break) {
-		background:url(../img/punviiva.gif) top repeat-x, url(../img/kielto.png) 40px 32px no-repeat white;
+	article {
+		margin:0 0 30px 0;
+		@include wide {
+			padding:60px 40px 60px 160px;
+		}
+		@include narrow {
+			padding:60px 40px 60px 40px;
+		}
+		&:nth-of-type(1) {
+			@include rajoitteentausta("../img/punviiva.gif", "../img/kielto.png")
+		}
+		&:nth-of-type(2) {
+			@include rajoitteentausta("../img/harviiva.gif", "../img/info.png")
+		}
+		&:nth-of-type(3) {
+			@include rajoitteentausta("../img/punviiva.gif", "../img/hlo.png")
+		}
 	}
-	@media screen and (max-width:$break) {
-		background:url(../img/punviiva.gif) top repeat-x white;
-	}
-}
-.rajoite article:nth-of-type(2) {
-	@media screen and (min-width:$break) {
-		background:url(../img/harviiva.gif) top repeat-x, url(../img/info.png) 40px 32px no-repeat white;
-	}
-	@media screen and (max-width:$break) {
-		background:url(../img/harviiva.gif) top repeat-x white;
-	}
-}
-.rajoite article:nth-of-type(3) {
-	@media screen and (min-width:$break) {
-		background:url(../img/punviiva.gif) top repeat-x, url(../img/hlo.png) 40px 32px no-repeat white;
-	}
-	@media screen and (max-width:$break) {
-		background:url(../img/punviiva.gif) top repeat-x white;
-	}
-}
-div.rajoite > p {
-	max-width:410px;
-	margin:0 auto;
-	margin-top:60px;
-	margin-bottom:40px;
+	> p {
+		display: block;
+		max-width:410px;
+		margin:0 auto;
+		margin-bottom:40px;
+	}	
 }
 /* KIRJAUDU TYYLIT */
 .kirjaudu {
 	padding:30px 0 30px 0;
-}
-.kirjaudu article {
-	margin:20px 0 0 0;
-	padding:30px 40px;
-	background:white;
-}
-.kirjaudu article:nth-of-type(3) {
-	padding:0;
-}
-.kirjaudu input {
-	margin:4px 0 10px 0;
-}
+	article {
+		margin:20px 0 0 0;
+		padding:30px 40px;
+		background:white;
+		&:nth-of-type(2) {
+			p {
+				color:white;
+				background:url(../img/fblogo.png) no-repeat 40px 6px #3B5998;
+				padding:13px;
+				text-align:right;
+				@include transition(background, $anitime ease-in);
+				&:hover {
+					background:darken(#3B5998, 5%) url(../img/fblogo.png) no-repeat 43px;
+				}
+			}
+		}
+		&:nth-of-type(3) {
+			padding:0;
+		}
+		@include wide {
+			width:40%;
+		}
+		@include narrow {
+			width:410px;
+		}
+	}
+	input {
+		margin:4px 0 10px 0;
+	}
+} 
 #alemma {
 	margin-top:24px;
 }
-.kirjaudu article {
-	@media screen and (min-width:$break) {
-		width:40%;
-	}
-	@media screen and (max-width:$break) {
-		width:410px;
-	}
-}
-@media screen and (min-width:$break) {
+@include wide {
 	.kirjaudu article:nth-of-type(1) {
 		float:left;
 	}
@@ -296,42 +258,53 @@ div.rajoite > p {
 	border: 1px solid #999;
 	height: 25px;
 }
-.kirjaudu article:nth-of-type(2) p {
-	color:white;
-	background:url(../img/fblogo.png) no-repeat 40px 6px #3B5998;
-	padding:13px;
-	text-align:right;
-	@include transition(background, $anitime ease-in);
-}
-.kirjaudu article:nth-of-type(2) p:hover {
-	background:darken(#3B5998, 5%) url(../img/fblogo.png) no-repeat 43px;
-}
 /* RAJOITTEET TYYLIT */
-.rajoitteet h1 {
-	margin:0 0 30px 0;
-}
-.rajoitteet ul {
-	font-size:12px;
-}
-.rajoitenavi ul:nth-of-type(1) {
-	float:left;
-	@media screen and (max-width:$break) {
-		float:none;
-		margin:0 auto;
+.rajoitteet {
+	h1 {
+		margin:0 0 30px 0;
 	}
-}
-.rajoitenavi ul:nth-of-type(2), .alarajoitenavi ul {
+	ul {
+		font-size:12px;
+		&:nth-of-type(1) {
+			@include narrow {
+				float:none;
+				margin:0 auto;
+			}
+		}
+		li {
+			position:relative;
+			padding:5px;
+			margin:0 5px 0 0;
+			display:inline;
+		}
+	}
+	article {
+		text-align:left;
+		background:url(../img/harviiva.gif) bottom repeat-x;
+		height:80px;
+		margin:8px 0 0 0;
+		&:nth-of-type(2n-1) {
+			background:url(../img/harviiva.gif) bottom repeat-x white;
+		}
+	}
+} 
+%rajoitenavit-oikealle {
 	float:right;
-	@media screen and (max-width:$break) {
+	@include narrow {
 		float:none;
 		margin:20px 0 0 0;
+	}	
+}
+.rajoitenavi {
+	ul {
+		float: left;
+		&:nth-of-type(2) {
+			@extend %rajoitenavit-oikealle;
+		}
 	}
 }
-.rajoitteet ul li {
-	position:relative;
-	padding:5px;
-	margin:0 5px 0 0;
-	display:inline;
+.alarajoitenavi ul {
+	@extend %rajoitenavit-oikealle;
 }
 .rajoitteet ul:nth-of-type(2) li:nth-of-type(1):before, .alarajoitenavi li:nth-of-type(1):before {
 	content:url(../img/harnuolivas.gif) " ";
@@ -349,7 +322,7 @@ div.rajoite > p {
 	width:100%;
 	background:url(../img/dot.gif) bottom repeat-x;
 	height:25px;
-	@media screen and (max-width:$break) {
+	@include narrow {
 		height:75px;
 	}
 }
@@ -360,16 +333,6 @@ div.rajoite > p {
 	margin:8px 0 0 0;
 	padding:12px 0 0 0;
 }
-.rajoitteet article {
-	text-align:left;
-	background:url(../img/harviiva.gif) bottom repeat-x;
-	height:80px;
-	margin:8px 0 0 0;
-}
-.rajoitteet article:nth-of-type(2n-1) {
-	background:url(../img/harviiva.gif) bottom repeat-x white;
-}
-
 .rajoitteet h4, .rajoitteet p:nth-of-type(1) {
 	float:left;
 	margin:30px 0 0 30px;
@@ -385,7 +348,7 @@ div.rajoite > p {
 	margin:34px 0 0 0px;
 }
 .rajoitteet h4 {
-	@media screen and (max-width:$break) {
+	@include narrow {
 		display:none;
 	}
 	color:$themecolor;
@@ -395,12 +358,12 @@ div.rajoite > p {
 	width:140px;
 }
 .rajoitteet article p:nth-of-type(2) {
-	@media screen and (max-width:$break) {
+	@include narrow {
 		display:none;
 	}
 }
 .rajoitteet article p:first-of-type {
-	@media screen and (max-width:$break) {
+	@include narrow {
 		display:block;
 	}
 }
@@ -410,10 +373,10 @@ div.rajoite > p {
 	}
 }
 .rajoitteet a {
-	@include transition(all, $anitime ease-in)
-}
-.rajoitteet a:hover {
-	color:$themecolor;
+	@include transition(all, $anitime ease-in);
+	&:hover {
+		color:$themecolor;
+	}
 }
 .bar {
 	margin:0;
