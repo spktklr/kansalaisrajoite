@@ -41,7 +41,7 @@ nav,div,footer {
 	@include wide {
 			width:960px;
 	}
-	@include narrow{
+	@include narrow {
 			min-width:410px;
 			width:80%;
 	}
