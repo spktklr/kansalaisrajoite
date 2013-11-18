@@ -13,7 +13,7 @@ $ vagrant up \[port_guest\] \[port_host\]
 $ vagrant ssh
     $ cd /vagrant/kansalaisrajoite/python
     $ python main.py --host "0.0.0.0" --debug [--port <port_guest>]
-
+~~~
 
 # To do
 
