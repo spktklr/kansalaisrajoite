@@ -62,7 +62,7 @@
 		<article>
 			<h4>Kielletään</h4>
 			<p><a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">{{title}}</a></p>
-			<p>Kieltäminen alkoi {{created}}</p>
+			<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}}</p>
 			<p>{{votes}} kieltäjää</p>
 			<div class="bar" style="width:50%;"></div>
 		</article>
@@ -81,7 +81,7 @@
 	<div class="rajoite">
 		<h1>{{title}}</h1>
 		<article>
-			<p>Kieltäminen alkoi {{created}} ja on saavuttanut <em>{{votes}}</em> kannattajaa.</p>
+			<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}} ja on saavuttanut <em>{{votes}}</em> kannattajaa.</p>
 		</article>
 		<article>
 			<h3>Rajoitteen sisältö ja perustelut</h3>
