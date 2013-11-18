@@ -1,4 +1,11 @@
 (function ($) {
+	var convertToSlug = function(text, render) {
+		return render(text)
+		.toLowerCase()
+		.replace(/[^\w ]+/g, '')
+		.replace(/ +/g, '-');
+	}
+	
 	$.Mustache.load('templates.html')
 		.done(function() {
 			routie({
@@ -7,10 +14,11 @@
 				},
 				'/rajoitteet': function() {
 					$.getJSON('rajoite', function(data) {
+						data.slug = function() { return convertToSlug; };
 						$('section').mustache('rajoitteet', data, { method: 'html' });
 					});
 				},
-				'/rajoite/:id': function(id) {
+				'/rajoite/:id/*': function(id) {
 					$.getJSON('rajoite/' + id, function(data) {
 						$('section').mustache('rajoite', data, { method: 'html' });
 					});
