@@ -4,6 +4,7 @@ import restriction
 import vote
 import user
 import beaker.middleware
+from model import dburl
 
 app = Bottle()
 app.mount('/rajoite', restriction.app)
@@ -19,9 +20,10 @@ def getfile(path):
 	return static_file(path, root='../static/')
 
 session_opts = {
-	'session.type': 'file',
-	'session.data_dir': './session/',
-	'session.auto': True
+	'session.type': 'ext:database',
+	'session.url': dburl,
+	'session.auto': True,
+	'session.lock_dir': '/var/lock'
 }
 
 middleware_app = beaker.middleware.SessionMiddleware(app, session_opts)

@@ -5,8 +5,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.sql import func
 
+dburl = 'postgresql+psycopg2:///kansalaisrajoite'
+
 Base = declarative_base()
-engine = create_engine('postgresql+psycopg2:///kansalaisrajoite', echo=False)
+engine = create_engine(dburl, echo=False)
 plugin = sqlalchemy.Plugin(engine, None, keyword='db')
 
 

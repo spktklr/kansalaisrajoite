@@ -1,4 +1,3 @@
 *.py[cod]
-session/
 static/.sass-cache
 python/build/*
