@@ -3,6 +3,7 @@ from bottle import Bottle, HTTPError, static_file, redirect, hook, request
 import restriction
 import vote
 import user
+import news
 import beaker.middleware
 from model import dburl
 
@@ -10,6 +11,7 @@ app = Bottle()
 app.mount('/rajoite', restriction.app)
 app.mount('/kannatus', vote.app)
 app.mount('/kayttaja', user.app)
+app.mount('/tiedote', news.app)
 
 @app.get('/')
 def index():

@@ -101,13 +101,18 @@
 <script id="tiedotteet" type="text/html">
 	<div class="tiedotteet">
 		<h1>Tiedotteet</h1>
+		{{#hasNews}}
 		{{#news}}
 		<article>
 			<h2>{{title}}</h2>
-			<h3>{{date}}</h3>
+			<h3>{{#date}}{{created}}{{/date}}</h3>
 			{{body}}
 		</article>
 		{{/news}}
+		{{/hasNews}}
+		{{^hasNews}}
+		<p>Ei tiedotteita.</p>
+		{{/hasNews}}
 	</div>
 </script>
 

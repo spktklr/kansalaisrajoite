@@ -37,7 +37,7 @@ class Restriction(Base):
 	voters = relationship('User', secondary=vote_table, backref='restrictions')
 	
 	def __repr__(self):
-		return '<Restriction: %s>' % self.otsikko
+		return '<Restriction: %s>' % self.title
 	
 	def toDict(self, full=False):
 		ret = {}
@@ -77,4 +77,30 @@ class User(Base):
 			ret['email'] = self.email
 			ret['registered'] = self.registered
 			ret['admin'] = self.admin
+		return ret
+
+class News(Base):
+	__tablename__ = 'news'
+	
+	id = Column(Integer, primary_key=True)
+	title = Column(String)
+	body = Column(String)
+	created = Column(DateTime, server_default=func.current_timestamp())
+	modified = Column(DateTime, server_default=func.current_timestamp())
+	
+	user_id = Column(Integer, ForeignKey('user.id'))
+	user = relationship('User', foreign_keys=user_id)
+	
+	def __repr__(self):
+		return '<News: %s>' % self.title
+	
+	def toDict(self, full=False):
+		ret = {}
+		ret['title'] = self.title
+		ret['body'] = self.body
+		ret['created'] = self.created
+		if full:
+			ret['id'] = self.id
+			ret['user'] = self.user.toDict()
+			ret['modified'] = self.modified
 		return ret

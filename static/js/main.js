@@ -40,6 +40,13 @@
 				'/rajoita': function() {
 					$('section').mustache('teerajoite', null, { method: 'html' });
 				},
+				'/tiedotteet': function() {
+					$.getJSON('tiedote', function(data) {
+						data.hasNews = (data.news.length > 0);
+						data.date = function() { return convertToDateStr; };
+						$('section').mustache('tiedotteet', data, { method: 'html' });
+					});
+				},
 				'/pasvenska': function() {
 					$('section').mustache('pasvenska', null, { method: 'html' });
 				},
