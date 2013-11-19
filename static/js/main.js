@@ -46,9 +46,9 @@
 					$('section').mustache('404', null, { method: 'html' });
 				},
 				'*': function() {
-					routie('/404');
-				// VIRHEEN REITITYS PUUTTUU
+					routie('/etusivu');
 				}
+				// VIRHEEN REITITYS PUUTTUU
 			});
 		});
 })(jQuery);
