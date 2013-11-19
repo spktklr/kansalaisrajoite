@@ -36,6 +36,12 @@
 				'/rajoita': function() {
 					$('section').mustache('teerajoite', null, { method: 'html' });
 				},
+				'/pasvenska': function() {
+					$('section').mustache('pasvenska', null, { method: 'html' });
+				},
+				'/inenglish': function() {
+					$('section').mustache('inenglish', null, { method: 'html' });
+				},
 				'*': function() {
 					routie('/etusivu');
 				}
