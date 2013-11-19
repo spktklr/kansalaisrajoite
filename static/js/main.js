@@ -42,8 +42,12 @@
 				'/inenglish': function() {
 					$('section').mustache('inenglish', null, { method: 'html' });
 				},
+				'/404': function() {
+					$('section').mustache('404', null, { method: 'html' });
+				},
 				'*': function() {
-					routie('/etusivu');
+					routie('/404');
+				// VIRHEEN REITITYS PUUTTUU
 				}
 			});
 		});
