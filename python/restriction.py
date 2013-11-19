@@ -2,6 +2,7 @@
 from bottle import Bottle, HTTPError, request
 import model
 from utils import session_user, jsonplugin
+from sqlalchemy.orm.exc import NoResultFound
 
 app = Bottle()
 app.install(model.plugin)
@@ -9,12 +10,14 @@ app.install(jsonplugin)
 
 @app.get('/<id:int>')
 def read_one(db, id):
-	item = db.query(model.Restriction).filter_by(id=id).first()
-	
-	if item:
-		return item.toDict(True)
-	
-	raise HTTPError(404)
+	try:
+		user = session_user(request, db)
+		is_admin = user and user.admin
+		
+		item = db.query(model.Restriction).filter_by(id=id).one()
+		return item.toDict(is_admin)
+	except NoResultFound:
+		return HTTPError(404, 'Not found')
 
 @app.get('/')
 def read_all(db):
@@ -29,11 +32,11 @@ def read_queue(db):
 	user = session_user(request, db)
 	is_admin = user and user.admin
 	
-	if is_admin:
-		items = db.query(model.Restriction).filter_by(approved=False)
-		return { 'restrictions': [ i.toDict(is_admin) for i in items ] }
-	else:
+	if not is_admin:
 		return HTTPError(401, 'Unauthorized')
+	
+	items = db.query(model.Restriction).filter_by(approved=False)
+	return { 'restrictions': [ i.toDict(is_admin) for i in items ] }
 
 @app.post('/')
 def create(db):
@@ -43,7 +46,6 @@ def create(db):
 		return HTTPError(401, 'Unauthorized')
 	
 	item = model.Restriction()
-	
 	item.title = request.forms.get('title')
 	item.contents = request.forms.get('contents')
 	item.arguments = request.forms.get('arguments')
@@ -53,34 +55,34 @@ def create(db):
 
 @app.delete('/<id:int>')
 def delete(db, id):
-	user = session_user(request, db)
-	is_admin = user and user.admin
-	
-	item = db.query(model.Restriction).filter_by(id=id).first()
-	
-	if not item:
+	try:
+		user = session_user(request, db)
+		is_admin = user and user.admin
+		
+		if not user:
+			return HTTPError(401, 'Unauthorized')
+		
+		item = db.query(model.Restriction).filter_by(id=id).one()
+		
+		if user != item.user and not is_admin:
+			return HTTPError(403, 'Forbidden')
+		
+		db.delete(item)
+	except NoResultFound:
 		return HTTPError(404, 'Not found')
-	
-	if not user:
-		return HTTPError(401, 'Unauthorized')
-	
-	if user != item.user and not is_admin:
-		return HTTPError(403, 'Forbidden')
-	
-	db.delete(item)
 
 @app.post('/<id:int>/vahvista')
 def approve(db, id):
-	user = session_user(request, db)
-	is_admin = user and user.admin
-	
-	if is_admin:
-		item = db.query(model.Restriction).filter_by(id=id).first()
+	try:
+		user = session_user(request, db)
+		is_admin = user and user.admin
 		
-		if not item:
-			return HTTPError(404, 'Not found')
+		if not is_admin:
+			return HTTPError(401, 'Unauthorized')
 		
+		item = db.query(model.Restriction).filter_by(id=id).one()
 		item.approved = not item.approved
 		item.approver = user
-	else:
-		return HTTPError(401, 'Unauthorized')
+	except NoResultFound:
+		return HTTPError(404, 'Not found')
+

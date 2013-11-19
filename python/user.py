@@ -4,6 +4,7 @@ import model
 import bcrypt
 import datetime
 from utils import session_user, jsonplugin
+from sqlalchemy.orm.exc import NoResultFound
 
 app = Bottle()
 app.install(model.plugin)
@@ -17,10 +18,10 @@ def register(db):
 	city = request.forms.get('city')
 	
 	if not password or len(password) < 8:
-		return HTTPError(400, 'Bad request (password)')
+		return HTTPError(400, 'Bad request')
 	
 	if not email or len(email) == 0:
-		return HTTPError(400, 'Bad request (email)')
+		return HTTPError(400, 'Bad request')
 	
 	if db.query(model.User).filter_by(email=email).first():
 		return HTTPError(409, 'Conflict')
@@ -42,6 +43,9 @@ def login(db):
 	email = request.forms.get('email')
 	password = request.forms.get('password')
 	
+	if not email or not password:
+		return HTTPError(400, 'Bad request')
+	
 	user = db.query(model.User).filter_by(email=email).first()
 	
 	if user and bcrypt.hashpw(password, user.password.encode('utf-8')) == user.password:
@@ -49,7 +53,7 @@ def login(db):
 		session['user_id'] = user.id
 		return user.toDict()
 	else:
-		return HTTPError(401)
+		return HTTPError(401, 'Unauthorized')
 
 @app.post('/logout')
 def logout(db):
@@ -69,18 +73,16 @@ def my_data(db):
 	else:
 		return HTTPError(401, 'Unauthorized')
 
-
 @app.get('/<id:int>')
 def read_user(db, id):
-	user = session_user(request, db)
-	is_admin = user and user.admin
-	
-	if is_admin:
-		item = db.query(model.User).filter_by(id=id).first()
+	try:
+		user = session_user(request, db)
+		is_admin = user and user.admin
 		
-		if not item:
-			return HTTPError(404, 'Not found')
-		else:
-			return item.toDict(True)
-	else:
-		return HTTPError(401, 'Unauthorized')
+		if not is_admin:
+			return HTTPError(401, 'Unauthorized')
+		
+		item = db.query(model.User).filter_by(id=id).one()
+		return item.toDict(True)
+	except NoResultFound:
+		return HTTPError(404, 'Not found')
