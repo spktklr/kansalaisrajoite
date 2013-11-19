@@ -14,6 +14,10 @@
 	$.Mustache.load('templates.html')
 		.done(function() {
 			routie({
+				'': function() {
+					// default to the front page
+					$('section').mustache('etusivu', null, { method: 'html' });
+				},
 				'/etusivu': function() {
 					$('section').mustache('etusivu', null, { method: 'html' });
 				},
@@ -42,13 +46,15 @@
 				'/inenglish': function() {
 					$('section').mustache('inenglish', null, { method: 'html' });
 				},
-				'/404': function() {
-					$('section').mustache('404', null, { method: 'html' });
-				},
 				'*': function() {
-					routie('/etusivu');
+					// show 404 page for other urls
+					$('section').mustache('404', null, { method: 'html' });
 				}
-				// VIRHEEN REITITYS PUUTTUU
+			});
+			
+			// catch all ajax errors and show error page
+			$(document).ajaxError(function() {
+				$('section').mustache('virhe', null, { method: 'html' });
 			});
 		});
 })(jQuery);
