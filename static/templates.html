@@ -40,7 +40,7 @@
 			<p><a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">{{title}}</a></p>
 			<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}}</p>
 			<p>{{votes}} kieltäjää</p>
-			<div class="bar" style="width:50%;"></div>
+			<div class="bar" style="width:{{#percentCompleted}}{{votes}}{{/percentCompleted}}%;"></div>
 		</article>
 		{{/restrictions}}
 		<div class="alarajoitenavi">

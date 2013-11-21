@@ -11,6 +11,11 @@
 		return new Date(timestamp).toLocaleDateString();
 	}
 	
+	var percentCompleted = function(text, render) {
+		var threshold = 5;
+		return ((parseInt(render(text)) / threshold) * 100);
+	}
+	
 	$.Mustache.load('templates.html')
 		.done(function() {
 			routie({
@@ -25,6 +30,7 @@
 					$.getJSON('rajoite', function(data) {
 						data.slug = function() { return convertToSlug; };
 						data.date = function() { return convertToDateStr; };
+						data.percentCompleted = function() { return percentCompleted; };
 						$('section').mustache('rajoitteet', data, { method: 'html' });
 					});
 				},
