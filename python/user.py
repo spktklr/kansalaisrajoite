@@ -57,9 +57,9 @@ def login(db):
 
 @app.post('/logout')
 def logout(db):
-	user = session_user(request, db)
+	session = request.environ.get('beaker.session')
 	
-	if user:
+	if session:
 		session.delete()
 	else:
 		return HTTPError(401, 'Unauthorized')
@@ -71,7 +71,7 @@ def my_data(db):
 	if user:
 		return user.toDict()
 	else:
-		return HTTPError(401, 'Unauthorized')
+		return {}
 
 @app.get('/<id:int>')
 def read_user(db, id):

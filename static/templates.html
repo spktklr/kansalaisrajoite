@@ -61,8 +61,8 @@
 		</article>
 		<article>
 			<h3>Rajoitteen sisältö ja perustelut</h3>
-			{{contents}}
-			{{arguments}}
+			<p>{{contents}}</p>
+			<p>{{arguments}}</p>
 		</article>
 		<article>
 			<h3>Rajoitteen ehdottaja</h3>
@@ -106,7 +106,7 @@
 		<article>
 			<h2>{{title}}</h2>
 			<h3>{{#date}}{{created}}{{/date}}</h3>
-			{{body}}
+			<p>{{body}}</p>
 		</article>
 		{{/news}}
 		{{/hasNews}}
@@ -125,10 +125,10 @@
 			<p>Sähköpostiosoite</p><input class="kirjaudukentta" id="email" type="text" name="email" />
 			</label>
 			<label>
-			<p>Salasana</p><input class="kirjaudukentta" type="password" size="25">
+			<p>Salasana</p><input class="kirjaudukentta" type="password" name="password" size="25" />
 			</label>
 			<label>
-			<input id="alemma" class="painike" type="button" value="Kirjaudu sisään" />
+			<input id="alemma" class="painike" type="submit" value="Kirjaudu sisään" />
 			</label>
 		</form>
 		</article>
@@ -137,6 +137,17 @@
 		</article>
 		<article>
 		</article>
+	</div>
+</script>
+
+<script id="kirjautumislaatikko" type="text/html">
+	<div>
+		{{#isLogged}}
+		Hei {{name}}! <a href="#" class="ulos">Kirjaudu ulos</a>
+		{{/isLogged}}
+		{{^isLogged}}
+		<a href="#/kirjaudu">Kirjaudu sisään</a>
+		{{/isLogged}}
 	</div>
 </script>
 

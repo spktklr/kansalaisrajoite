@@ -69,6 +69,49 @@
 				}
 			});
 			
+			// load login box
+			$.getJSON('kayttaja', function(data) {
+				data.isLogged = (data.name !== undefined);
+				show('nav div', 'kirjautumislaatikko', data);
+				
+				// login form submit handler
+				$(document).on('submit', 'form.kirjautuminen', function(e) {
+					e.preventDefault();
+					
+					$.ajax({
+						url: 'kayttaja/login',
+						global: false,
+						data: {
+							email: $('form.kirjautuminen input[name=email]').val(),
+							password: $('form.kirjautuminen input[name=password]').val()
+						},
+						type: 'POST',
+						statusCode: {
+							200: function(data) {
+								data.isLogged = (data.name !== undefined);
+								show('nav div', 'kirjautumislaatikko', data);
+							},
+							401: function() {
+								// todo: tell user about invalid input
+							}
+						}
+					});
+				});
+				
+				// logout button click handler
+				$(document).on('click', 'a.ulos', function() {
+					$.ajax({
+						url: 'kayttaja/logout',
+						type: 'POST',
+						success: function() {
+							location.reload();
+						}
+					});
+					
+					return false;
+				});
+			});
+			
 			// catch all ajax errors and show error page
 			$(document).ajaxError(function(event, request, settings) {
 				if (request.status === 401) {
