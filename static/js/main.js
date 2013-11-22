@@ -13,7 +13,11 @@
 	
 	var percentCompleted = function(text, render) {
 		var threshold = 5;
-		return ((parseInt(render(text)) / threshold) * 100);
+		return ((Math.min(parseInt(render(text)), threshold) / threshold) * 100);
+	}
+	
+	var show = function(element, template, data) {
+		$(element).mustache(template, (data === undefined ? null : data), { method: 'html' });
 	}
 	
 	$.Mustache.load('templates.html')
@@ -21,53 +25,57 @@
 			routie({
 				'': function() {
 					// default to the front page
-					$('section').mustache('etusivu', null, { method: 'html' });
+					show('section', 'etusivu');
 				},
 				'/etusivu': function() {
-					$('section').mustache('etusivu', null, { method: 'html' });
+					show('section', 'etusivu');
 				},
 				'/rajoitteet': function() {
 					$.getJSON('rajoite', function(data) {
 						data.slug = function() { return convertToSlug; };
 						data.date = function() { return convertToDateStr; };
 						data.percentCompleted = function() { return percentCompleted; };
-						$('section').mustache('rajoitteet', data, { method: 'html' });
+						show('section', 'rajoitteet', data);
 					});
 				},
 				'/rajoite/:id/*': function(id) {
 					$.getJSON('rajoite/' + id, function(data) {
 						data.date = function() { return convertToDateStr; };
-						$('section').mustache('rajoite', data, { method: 'html' });
+						show('section', 'rajoite', data);
 					});
 				},
 				'/kirjaudu': function() {
-					$('section').mustache('kirjaudu', null, { method: 'html' });
+					show('section', 'kirjaudu');
 				},
 				'/rajoita': function() {
-					$('section').mustache('teerajoite', null, { method: 'html' });
+					show('section', 'teerajoite');
 				},
 				'/tiedotteet': function() {
 					$.getJSON('tiedote', function(data) {
 						data.hasNews = (data.news.length > 0);
 						data.date = function() { return convertToDateStr; };
-						$('section').mustache('tiedotteet', data, { method: 'html' });
+						show('section', 'tiedotteet', data);
 					});
 				},
 				'/pasvenska': function() {
-					$('section').mustache('pasvenska', null, { method: 'html' });
+					show('section', 'pasvenska');
 				},
 				'/inenglish': function() {
-					$('section').mustache('inenglish', null, { method: 'html' });
+					show('section', 'inenglish');
 				},
 				'*': function() {
 					// show 404 page for other urls
-					$('section').mustache('404', null, { method: 'html' });
+					show('section', '404');
 				}
 			});
 			
 			// catch all ajax errors and show error page
-			$(document).ajaxError(function() {
-				$('section').mustache('virhe', null, { method: 'html' });
+			$(document).ajaxError(function(event, request, settings) {
+				if (request.status === 401) {
+					show('section', 'kirjaudu');
+				} else {
+					show('section', 'virhe');
+				}
 			});
 		});
 })(jQuery);
