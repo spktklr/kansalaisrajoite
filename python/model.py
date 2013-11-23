@@ -50,7 +50,10 @@ class Restriction(Base):
 		ret['user'] = self.user.toDict()
 		ret['approved'] = self.approved
 		if full:
-			ret['approver'] = self.approver.toDict()
+			if self.approver:
+				ret['approver'] = self.approver.toDict()
+			else:
+				ret['approver'] = None
 			ret['modified'] = self.modified
 		return ret
 

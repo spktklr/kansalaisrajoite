@@ -35,13 +35,22 @@
 			</ul>
 		</div>
 		{{#restrictions}}
-		<article>
-			<h4>Kielletään</h4>
-			<p><a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">{{title}}</a></p>
-			<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}}</p>
-			<p>{{votes}} kieltäjää</p>
-			<div class="bar" style="width:{{#percentCompleted}}{{votes}}{{/percentCompleted}}%;"></div>
-		</article>
+			{{#approved}}
+				<article>
+					<h4>Kielletään</h4>
+					<p><a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">{{title}}</a></p>
+					<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}}</p>
+					<p>{{votes}} kieltäjää</p>
+					<div class="bar" style="width:{{#percentCompleted}}{{votes}}{{/percentCompleted}}%;"></div>
+				</article>
+			{{/approved}}
+			{{^approved}}
+				<article>
+					<h4>Jonossa</h4>
+					<p><a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">{{title}}</a></p>
+					<p>Luotu {{#date}}{{created}}{{/date}}</p>
+				</article>
+			{{/approved}}
 		{{/restrictions}}
 		<div class="alarajoitenavi">
 			<ul>
@@ -57,7 +66,15 @@
 	<div class="rajoite">
 		<h1>{{title}}</h1>
 		<article>
-			<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}} ja on saavuttanut <em>{{votes}}</em> kannattajaa.</p>
+			{{#approved}}
+				<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}} ja on saavuttanut <em>{{votes}}</em> kannattajaa.</p>
+				{{#approver}}
+					<p>Rajoitteen vahvisti {{approver.name}}.</p>
+				{{/approver}}
+			{{/approved}}
+			{{^approved}}
+				<p>Rajoite odottaa vahvistusta. Luotu {{#date}}{{created}}{{/date}}.</p>
+			{{/approved}}
 		</article>
 		<article>
 			<h3>Rajoitteen sisältö ja perustelut</h3>
@@ -66,9 +83,21 @@
 		</article>
 		<article>
 			<h3>Rajoitteen ehdottaja</h3>
-			<p>{{user.name}}, {{user.city}}</p>
+			<p>
+			{{#user.name}}
+				{{user.name}}{{#user.city}}, {{user.city}}{{/user.city}}
+			{{/user.name}}
+			{{^user.name}}
+				Anonyymi käyttäjä{{#user.city}}, {{user.city}}{{/user.city}}
+			{{/user.name}}
+			</p>
 		</article>
-		<p class="painike" id="kannata">Kannata rajoitetta</p>
+		{{#approved}}
+			<p class="painike" id="kannata">Kannata rajoitetta</p>
+		{{/approved}}
+		{{^approved}}
+			<p class="painike" id="vahvista">Vahvista rajoite</p>
+		{{/approved}}
 	</div>
 </script>
 

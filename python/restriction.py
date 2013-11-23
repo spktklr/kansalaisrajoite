@@ -15,6 +15,10 @@ def read_one(db, id):
 		is_admin = user and user.admin
 		
 		item = db.query(model.Restriction).filter_by(id=id).one()
+		
+		if not item.approved and user != item.user and not is_admin:
+			return HTTPError(403, 'Forbidden')
+		
 		return item.toDict(is_admin)
 	except NoResultFound:
 		return HTTPError(404, 'Not found')
@@ -24,18 +28,11 @@ def read_all(db):
 	user = session_user(request, db)
 	is_admin = user and user.admin
 	
-	items = db.query(model.Restriction).filter_by(approved=True)
-	return { 'restrictions': [ i.toDict(is_admin) for i in items ] }
-
-@app.get('/jono')
-def read_queue(db):
-	user = session_user(request, db)
-	is_admin = user and user.admin
+	if is_admin:
+		items = db.query(model.Restriction)
+	else:
+		items = db.query(model.Restriction).filter_by(approved=True)
 	
-	if not is_admin:
-		return HTTPError(401, 'Unauthorized')
-	
-	items = db.query(model.Restriction).filter_by(approved=False)
 	return { 'restrictions': [ i.toDict(is_admin) for i in items ] }
 
 @app.post('/')
