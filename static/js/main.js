@@ -127,7 +127,7 @@
 				},
 				'*': function() {
 					// show 404 page for other urls
-					show('section', '404');
+					show('section', 'error-notfound');
 				}
 			});
 			
@@ -139,10 +139,19 @@
 			
 			// catch all ajax errors and show error page
 			$(document).ajaxError(function(event, request, settings) {
-				if (request.status === 401) {
-					show('section', 'kirjaudu');
-				} else {
-					show('section', 'virhe');
+				switch (request.status) {
+				case 401:
+					show('section', 'error-login');
+					break;
+				case 403:
+					show('section', 'error-unauthorized');
+					break;
+				case 404:
+					show('section', 'error-notfound');
+					break;
+				default:
+					show('section', 'error-generic');
+					break;
 				}
 			});
 		});
