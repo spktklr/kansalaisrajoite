@@ -403,16 +403,28 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
 }
 
 /* KIRJAUDU TYYLIT */
-.kirjaudu {
-  padding: 30px 0 30px 0;
-}
-.kirjaudu article {
+.reglog article {
+  padding: 20px;
+  width: 400px;
   margin-top: 20px;
   margin: 0 auto;
-  padding: 30px 40px;
   background: white;
 }
-.kirjaudu article:nth-of-type(2) p {
+.reglog article p {
+  font-size: 12px;
+}
+.reglog article .regtip {
+  text-align: center;
+  margin: 20px 0 0 0;
+}
+.reglog article .regtip a {
+  color: #e56c69;
+}
+.reglog article .regtip:nth-of-type(1) {
+  font-weight: bold;
+  margin: 10px 0 20px 0;
+}
+.reglog article:nth-of-type(2) p {
   color: white;
   background: url(../img/fblogo.png) no-repeat 40px 6px #3b5998;
   padding: 13px;
@@ -422,23 +434,13 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
   -o-transition: background, 0.2s ease-in;
   transition: background, 0.2s ease-in;
 }
-.kirjaudu article:nth-of-type(2) p:hover {
+.reglog article:nth-of-type(2) p:hover {
   background: #344e86 url(../img/fblogo.png) no-repeat 43px;
 }
-.kirjaudu article:nth-of-type(3) {
+.reglog article:nth-of-type(3) {
   padding: 0;
 }
-@media screen and (min-width: 980px) {
-  .kirjaudu article {
-    width: 40%;
-  }
-}
-@media screen and (max-width: 980px) {
-  .kirjaudu article {
-    width: 410px;
-  }
-}
-.kirjaudu input {
+.reglog input {
   margin: 4px 0 10px 0;
 }
 
@@ -446,19 +448,6 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
   margin-top: 24px;
 }
 
-/*
-@include wide {
-	.kirjaudu article:nth-of-type(1) {
-		float:left;
-	}
-	.kirjaudu article:nth-of-type(2) {
-		float:right;
-	}
-	.kirjaudu article:nth-of-type(3) {
-		clear:both;
-	}
-}
-*/
 .kirjaudukentta {
   width: 100%;
   display: block;

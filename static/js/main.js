@@ -18,11 +18,19 @@
 
 	/* modal event handlers start */
 	$(document).on('click', '#kirjaudu', function() {
-			jQuery.facebox('<h1>PANIC</h1>'); 
+		jQuery.facebox({ ajax: 'kirjaudu.html' });
 	});
 
 	$(document).on('click', '#rekisteroidy', function() {
-			jQuery.facebox('<h1>MAYHEM</h1>'); 
+		jQuery.facebox({ ajax: 'rekisteroidy.html' });
+	});
+
+	$(document).on('click', '#loginregister', function() {
+		jQuery.facebox({ ajax: 'rekisteroidy.html' });
+	});
+
+	$(document).on('click', '#registerlogin', function() {
+		jQuery.facebox({ ajax: 'kirjaudu.html' });
 	});
 	/* modal event handlers end */
 
@@ -70,6 +78,8 @@
 				'/inenglish': function() {
 					show('section', 'inenglish');
 				},
+				'#': function() {
+				},
 				'*': function() {
 					// show 404 page for other urls
 					show('section', '404');
@@ -97,6 +107,7 @@
 							200: function(data) {
 								data.isLogged = (data.name !== undefined);
 								show('header div', 'kirjautumislaatikko', data);
+								jQuery(document).trigger('close.facebox');
 							},
 							401: function() {
 								// todo: tell user about invalid input
