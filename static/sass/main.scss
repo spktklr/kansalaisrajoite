@@ -42,10 +42,10 @@ nav,footer {
 /* HEADER STYLES */
 
 header {
-	background:url(../img/topheader2.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
+	background:url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
 	@include wide {
 		height:240px;
-		background:url(../img/headerbg.jpg) bottom center no-repeat, url(../img/topheader2.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
+		background:url(../img/headerbg.jpg) bottom center no-repeat, url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
 	}
 	div {
 		@include scale();
@@ -61,7 +61,7 @@ header {
 				padding: 4px 4px 4px 10px;
 				@include border-radius(2px);
 				@include transition(all, $anitime ease-in);
-				&:hover {background:lighten($themecolor, 3%);}
+				&:hover {background:lighten(#222222, 3%);}
 				&:after {content:" " url(../img/nuoli4b.png);}
 			}
 		}

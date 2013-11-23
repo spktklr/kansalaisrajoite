@@ -116,12 +116,12 @@ nav, footer {
 
 /* HEADER STYLES */
 header {
-  background: url(../img/topheader2.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, gainsboro;
+  background: url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, gainsboro;
 }
 @media screen and (min-width: 980px) {
   header {
     height: 240px;
-    background: url(../img/headerbg.jpg) bottom center no-repeat, url(../img/topheader2.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, gainsboro;
+    background: url(../img/headerbg.jpg) bottom center no-repeat, url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, gainsboro;
   }
 }
 header div {
@@ -157,7 +157,7 @@ header div p span {
   transition: all, 0.2s ease-in;
 }
 header div p span:hover {
-  background: #e77976;
+  background: #2a2a2a;
 }
 header div p span:after {
   content: " " url(../img/nuoli4b.png);
