@@ -167,15 +167,30 @@
 	</div>
 </script>
 
-<script id="kirjautumislaatikko" type="text/html">
-	<div>
+<script id="headerbox" type="text/html">
+	<div><div>
 		{{#isLogged}}
 		<p>Kirjautuneena: {{name}}  <span><a href="#" class="ulos">Kirjaudu ulos</a></span></p>
 		{{/isLogged}}
 		{{^isLogged}}
 		<p><span><a id="rekisteroidy" href="#">Rekisteröidy käyttäjäksi</a></span><span><a id="kirjaudu" href="#">Kirjaudu sisään</a></span></p>
 		{{/isLogged}}
-	</div>
+	</div></div>
+	<nav>
+		<h1><a href="#/etusivu">Kansalais<span>rajoite<em>.</em>fi</span></a></h1>
+		<ul>
+			<li><a href="#/rajoitteet">Selaa kansalaisrajoitteita</a></li>
+			{{#isLogged}}
+			<li><a href="#/rajoita">Tee kansalaisrajoite</a></li>
+			{{/isLogged}}
+			<li><a href="#/ohjeet">Ohjeet</a></li>
+			<li><a href="#/tiedotteet">Tiedotteet</a></li>
+		</ul>
+		<ul>
+			<li><a href="#/pasvenska">På svenska</a></li>
+			<li><a href="#/inenglish">In English</a></li>
+		</ul>
+	</nav>
 </script>
 
 <script id="pasvenska" type="text/html">

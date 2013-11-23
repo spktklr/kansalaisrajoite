@@ -57,7 +57,7 @@
 			statusCode: {
 				200: function(data) {
 					data.isLogged = (data.name !== undefined);
-					show('header div', 'kirjautumislaatikko', data);
+					show('header', 'headerbox', data);
 					jQuery(document).trigger('close.facebox');
 				},
 				401: function() {
@@ -134,7 +134,7 @@
 			// load and display login status
 			$.getJSON('kayttaja', function(data) {
 				data.isLogged = (data.name !== undefined);
-				show('header div', 'kirjautumislaatikko', data);
+				show('header', 'headerbox', data);
 			});
 			
 			// catch all ajax errors and show error page
