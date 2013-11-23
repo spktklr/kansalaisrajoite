@@ -238,6 +238,7 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
 			}
 			&:nth-of-type(1) {
 				font-weight: bold;
+				font-size: 14px;
 				margin: 10px 0 20px 0;
 			}
 		}
@@ -259,6 +260,7 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
 	}
 	input {
 		margin:4px 0 10px 0;
+		padding-left:6px;
 	}
 } 
 #alemma {
