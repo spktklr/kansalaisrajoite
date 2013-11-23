@@ -132,21 +132,16 @@
 			</label>
 		</form>
 		</article>
-		<article>
-			<a href="#"><p>Kirjaudu Facebook-tunnuksillasi</p></a>
-		</article>
-		<article>
-		</article>
 	</div>
 </script>
 
 <script id="kirjautumislaatikko" type="text/html">
 	<div>
 		{{#isLogged}}
-		Hei {{name}}! <a href="#" class="ulos">Kirjaudu ulos</a>
+		<p>Kirjautuneena: {{name}}  <span><a href="#" class="ulos">Kirjaudu ulos</a></span></p>
 		{{/isLogged}}
 		{{^isLogged}}
-		<a href="#/kirjaudu">Kirjaudu sisään</a>
+		<p><span><a href="#/rekisteroidy">Rekisteröidy käyttäjäksi</a></span><span><a href="#/kirjaudu">Kirjaudu sisään</a></span></p>
 		{{/isLogged}}
 	</div>
 </script>

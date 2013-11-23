@@ -72,7 +72,7 @@
 			// load login box
 			$.getJSON('kayttaja', function(data) {
 				data.isLogged = (data.name !== undefined);
-				show('nav div', 'kirjautumislaatikko', data);
+				show('header div', 'kirjautumislaatikko', data);
 				
 				// login form submit handler
 				$(document).on('submit', 'form.kirjautuminen', function(e) {
@@ -89,7 +89,7 @@
 						statusCode: {
 							200: function(data) {
 								data.isLogged = (data.name !== undefined);
-								show('nav div', 'kirjautumislaatikko', data);
+								show('header div', 'kirjautumislaatikko', data);
 							},
 							401: function() {
 								// todo: tell user about invalid input

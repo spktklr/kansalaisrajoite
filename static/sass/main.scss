@@ -49,15 +49,33 @@ nav,div,footer {
 /* HEADER TYYLIT */
 
 header {
-	background:url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
+	background:url(../img/topheader2.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
 	@include wide {
 		height:240px;
-		background:url(../img/headerbg.jpg) bottom center no-repeat, url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
+		background:url(../img/headerbg.jpg) bottom center no-repeat, url(../img/topheader2.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
+	}
+	div {
+		color: white;
+		font-size: 12px;
+		margin: 0 auto;
+		padding: 7px 0 0 0;
+		text-align: right;
+		p {
+			span {
+				font-size: 12px;
+				font-weight: bold;
+				padding: 4px 4px 4px 10px;
+				@include border-radius(2px);
+				@include transition(all, $anitime ease-in);
+				&:hover {background:lighten($themecolor, 3%);}
+				&:after {content:" " url(../img/nuoli4b.png);}
+			}
+		}
 	}
 }
 nav {
-	padding:134px 0 0 0;
-	background:url(../img/logo.png) no-repeat 0 94px;
+	padding:106px 0 0 0;
+	background:url(../img/logo.png) no-repeat 0 66px;
 	@include wide {
 		text-align:right;
 	}
@@ -209,7 +227,8 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
 .kirjaudu {
 	padding:30px 0 30px 0;
 	article {
-		margin:20px 0 0 0;
+		margin-top:20px;
+		margin: 0 auto;
 		padding:30px 40px;
 		background:white;
 		&:nth-of-type(2) {
@@ -241,6 +260,7 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
 #alemma {
 	margin-top:24px;
 }
+/*
 @include wide {
 	.kirjaudu article:nth-of-type(1) {
 		float:left;
@@ -252,6 +272,7 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
 		clear:both;
 	}
 }
+*/
 .kirjaudukentta {
 	width:100%;
 	display:block;

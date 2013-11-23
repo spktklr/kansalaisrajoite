@@ -116,18 +116,44 @@ nav, div, footer {
 
 /* HEADER TYYLIT */
 header {
-  background: url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, gainsboro;
+  background: url(../img/topheader2.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, gainsboro;
 }
 @media screen and (min-width: 980px) {
   header {
     height: 240px;
-    background: url(../img/headerbg.jpg) bottom center no-repeat, url(../img/topheader.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, gainsboro;
+    background: url(../img/headerbg.jpg) bottom center no-repeat, url(../img/topheader2.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, gainsboro;
   }
+}
+header div {
+  color: white;
+  font-size: 12px;
+  margin: 0 auto;
+  padding: 7px 0 0 0;
+  text-align: right;
+}
+header div p span {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 4px 4px 10px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-transition: all, 0.2s ease-in;
+  -moz-transition: all, 0.2s ease-in;
+  -o-transition: all, 0.2s ease-in;
+  transition: all, 0.2s ease-in;
+}
+header div p span:hover {
+  background: #e77976;
+}
+header div p span:after {
+  content: " " url(../img/nuoli4b.png);
 }
 
 nav {
-  padding: 134px 0 0 0;
-  background: url(../img/logo.png) no-repeat 0 94px;
+  padding: 106px 0 0 0;
+  background: url(../img/logo.png) no-repeat 0 66px;
   font-weight: bold;
   color: white;
 }
@@ -343,7 +369,8 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
   padding: 30px 0 30px 0;
 }
 .kirjaudu article {
-  margin: 20px 0 0 0;
+  margin-top: 20px;
+  margin: 0 auto;
   padding: 30px 40px;
   background: white;
 }
@@ -381,19 +408,19 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
   margin-top: 24px;
 }
 
-@media screen and (min-width: 980px) {
-  .kirjaudu article:nth-of-type(1) {
-    float: left;
-  }
-
-  .kirjaudu article:nth-of-type(2) {
-    float: right;
-  }
-
-  .kirjaudu article:nth-of-type(3) {
-    clear: both;
-  }
+/*
+@include wide {
+	.kirjaudu article:nth-of-type(1) {
+		float:left;
+	}
+	.kirjaudu article:nth-of-type(2) {
+		float:right;
+	}
+	.kirjaudu article:nth-of-type(3) {
+		clear:both;
+	}
 }
+*/
 .kirjaudukentta {
   width: 100%;
   display: block;
