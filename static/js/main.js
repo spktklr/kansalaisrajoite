@@ -15,31 +15,75 @@
 		var threshold = 5;
 		return ((Math.min(parseInt(render(text)), threshold) / threshold) * 100);
 	}
-
-	/* modal event handlers start */
-	$(document).on('click', '#kirjaudu', function() {
-		jQuery.facebox({ ajax: 'kirjaudu.html' });
-	});
-
-	$(document).on('click', '#rekisteroidy', function() {
-		jQuery.facebox({ ajax: 'rekisteroidy.html' });
-	});
-
-	$(document).on('click', '#loginregister', function() {
-		jQuery.facebox({ ajax: 'rekisteroidy.html' });
-	});
-
-	$(document).on('click', '#registerlogin', function() {
-		jQuery.facebox({ ajax: 'kirjaudu.html' });
-	});
-	/* modal event handlers end */
-
+	
 	var show = function(element, template, data) {
 		$(element).mustache(template, (data === undefined ? null : data), { method: 'html' });
 	}
 	
+	/* modal event handlers start */
+	$(document).on('click', '#kirjaudu', function() {
+		jQuery.facebox({ ajax: 'kirjaudu.html' });
+		return false;
+	});
+
+	$(document).on('click', '#rekisteroidy', function() {
+		jQuery.facebox({ ajax: 'rekisteroidy.html' });
+		return false;
+	});
+
+	$(document).on('click', '#loginregister', function() {
+		jQuery.facebox({ ajax: 'rekisteroidy.html' });
+		return false;
+	});
+
+	$(document).on('click', '#registerlogin', function() {
+		jQuery.facebox({ ajax: 'kirjaudu.html' });
+		return false;
+	});
+	/* modal event handlers end */
+
+	/* login event handlers */
+	$(document).on('submit', 'form.kirjautuminen', function(e) {
+		e.preventDefault();
+		
+		$.ajax({
+			url: 'kayttaja/login',
+			global: false,
+			data: {
+				email: $('form.kirjautuminen input[name=email]').val(),
+				password: $('form.kirjautuminen input[name=password]').val()
+			},
+			type: 'POST',
+			statusCode: {
+				200: function(data) {
+					data.isLogged = (data.name !== undefined);
+					show('header div', 'kirjautumislaatikko', data);
+					jQuery(document).trigger('close.facebox');
+				},
+				401: function() {
+					// todo: tell user about invalid input
+				}
+			}
+		});
+	});
+	
+	$(document).on('click', 'a.ulos', function() {
+		$.ajax({
+			url: 'kayttaja/logout',
+			type: 'POST',
+			success: function() {
+				location.reload();
+			}
+		});
+		
+		return false;
+	});
+	/* login event handlers end */
+	
+	// load templates
 	$.Mustache.load('templates.html')
 		.done(function() {
+			// setup routing
 			routie({
 				'': function() {
 					// default to the front page
@@ -78,56 +122,16 @@
 				'/inenglish': function() {
 					show('section', 'inenglish');
 				},
-				'#': function() {
-				},
 				'*': function() {
 					// show 404 page for other urls
 					show('section', '404');
 				}
 			});
 			
-			// load login box
+			// load and display login status
 			$.getJSON('kayttaja', function(data) {
 				data.isLogged = (data.name !== undefined);
 				show('header div', 'kirjautumislaatikko', data);
-				
-				// login form submit handler
-				$(document).on('submit', 'form.kirjautuminen', function(e) {
-					e.preventDefault();
-					
-					$.ajax({
-						url: 'kayttaja/login',
-						global: false,
-						data: {
-							email: $('form.kirjautuminen input[name=email]').val(),
-							password: $('form.kirjautuminen input[name=password]').val()
-						},
-						type: 'POST',
-						statusCode: {
-							200: function(data) {
-								data.isLogged = (data.name !== undefined);
-								show('header div', 'kirjautumislaatikko', data);
-								jQuery(document).trigger('close.facebox');
-							},
-							401: function() {
-								// todo: tell user about invalid input
-							}
-						}
-					});
-				});
-				
-				// logout button click handler
-				$(document).on('click', 'a.ulos', function() {
-					$.ajax({
-						url: 'kayttaja/logout',
-						type: 'POST',
-						success: function() {
-							location.reload();
-						}
-					});
-					
-					return false;
-				});
 			});
 			
 			// catch all ajax errors and show error page
