@@ -473,6 +473,29 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
 	margin:0 0 30px 0;
 	padding:30px;
 }
+/* OHJEET STYLES */
+.ohjeet {
+	padding:30px 0 30px 0;
+	@include scale;
+	aside {
+		@include wide {
+		float: left;
+		width: 30%;
+		}
+		ul li {
+			display: block;
+		}
+	}
+	.content {
+		@include wide {
+		float: right;
+		width: 68%;
+		}
+	}
+	.clear {
+		clear: both;
+	}
+}
 /* FOOTER STYLES */
 footer {
 	color:#666;

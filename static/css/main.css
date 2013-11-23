@@ -709,6 +709,41 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
   padding: 30px;
 }
 
+/* OHJEET STYLES */
+.ohjeet {
+  padding: 30px 0 30px 0;
+  margin: 0 auto;
+}
+@media screen and (min-width: 980px) {
+  .ohjeet {
+    width: 960px;
+  }
+}
+@media screen and (max-width: 980px) {
+  .ohjeet {
+    min-width: 410px;
+    width: 80%;
+  }
+}
+@media screen and (min-width: 980px) {
+  .ohjeet aside {
+    float: left;
+    width: 30%;
+  }
+}
+.ohjeet aside ul li {
+  display: block;
+}
+@media screen and (min-width: 980px) {
+  .ohjeet .content {
+    float: right;
+    width: 68%;
+  }
+}
+.ohjeet .clear {
+  clear: both;
+}
+
 /* FOOTER STYLES */
 footer {
   color: #666;

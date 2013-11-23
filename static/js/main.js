@@ -109,6 +109,9 @@
 				'/rajoita': function() {
 					show('section', 'teerajoite');
 				},
+				'/ohjeet': function() {
+					show('section', 'ohjeet');
+				},
 				'/tiedotteet': function() {
 					$.getJSON('tiedote', function(data) {
 						data.hasNews = (data.news.length > 0);
