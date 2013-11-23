@@ -2,7 +2,7 @@
 
 /* Kansalaisrajoite */
 
-/* YLEISET TYYLIT */
+/* COMMON TYY */
 body {
 	font-family: 'Merriweather Sans', sans-serif;
 	background:white;
@@ -39,7 +39,7 @@ span {
 nav,footer {
 	@include scale();
 }
-/* HEADER TYYLIT */
+/* HEADER STYLES */
 
 header {
 	background:url(../img/topheader2.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, $headergray;
@@ -127,7 +127,7 @@ nav {
 		}
 	}
 }
-/* GLOBAALIT CONTENT TYYLIT */
+/* GLOBAL CONTENT STYLES */
 section {
 	background:url(../img/dot2.gif) bottom repeat-x $semigray;
 }
@@ -135,7 +135,7 @@ div.etusivu, div.rajoite, div.rajoitteet {
 	padding:30px 0 30px 0;
 		@include scale();
 }
-/* ETUSIVU TYYLIT */
+/* ETUSIVU STYLES */
 div.etusivu {
 	@include scale();
 	@include wide{
@@ -160,7 +160,7 @@ div.etusivu {
 		}
 	}
 }
-div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
+div.etusivu article h2:nth-of-type(2), .painike {
 	color:white;
 	background-color:$themecolor;
 	height:30px;
@@ -173,7 +173,7 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
 	}
 	@include narrow{
 			text-align:center;
-			padding:14px 0 0 0;
+			padding:14px 28px 0 0;
 			@include transition(background, $anitime ease-in);
 	}	
 	@include transition(background, $anitime ease-in);
@@ -186,13 +186,12 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
 		}
 	}
 }
-/* RAJOITE TYYLIT */
+/* RAJOITE STYLES */
 .rajoite {
 	h1 {
 		margin:0 0 30px 0;
 	}
 	p {
-		font-size:14px;
 	}
 	article {
 		margin:0 0 30px 0;
@@ -212,14 +211,9 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
 			@include rajoitteentausta("../img/punviiva.gif", "../img/hlo.png")
 		}
 	}
-	> p {
-		display: block;
-		max-width:410px;
-		margin:0 auto;
-		margin-bottom:40px;
-	}	
 }
-/* KIRJAUDU TYYLIT */
+
+/* KIRJAUDU STYLES */
 .reglog {
 	article {
 		padding:20px;
@@ -229,18 +223,6 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
 		background:white;
 		p {
 			font-size: 12px;
-		}
-		.regtip {
-			text-align: center;
-			margin: 20px 0 0 0;
-			a {
-				color:$themecolor;
-			}
-			&:nth-of-type(1) {
-				font-weight: bold;
-				font-size: 14px;
-				margin: 10px 0 20px 0;
-			}
 		}
 		&:nth-of-type(2) {
 			p {
@@ -262,7 +244,23 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
 		margin:4px 0 10px 0;
 		padding-left:6px;
 	}
-} 
+}
+.regtip {
+
+	a {
+		color:$themecolor;
+	}
+	&:nth-of-type(1) {
+		font-weight: bold;
+		font-size: 14px;
+		margin: 10px 0 20px 0;
+	}
+}
+.tip {
+	text-align: center;
+	margin: 20px 0 0 0;
+	font-size: 14px;
+}
 #alemma {
 	margin-top:24px;
 }
@@ -271,8 +269,9 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
 	display:block;
 	border: 1px solid #999;
 	height: 25px;
+	@include border-box;
 }
-/* RAJOITTEET TYYLIT */
+/* RAJOITTEET STYLES */
 .rajoitteet {
 	h1 {
 		margin:0 0 30px 0;
@@ -400,7 +399,7 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
 	height:4px;
 	background-color:$themecolor;
 }
-/* TEE RAJOITE TYYLIT */
+/* TEE RAJOITE STYLES */
 div.teerajoite, div.tiedotteet {
 	@include scale();
 	padding:20px 0 20px 0;
@@ -409,15 +408,35 @@ form.teerajoite    {
 	position:relative;
 	text-decoration: none;
 	border-radius: 10px;
+	span {
+		margin: 0 10px 0 0;
+		font-size: 16px;
+		font-weight: bold;
+		color: $themecolor;
+	}
 }
 form.teerajoite p {
 	margin:20px 0 4px 0;
 }
-.teerajoitekentta   {
+.kielletaantable {
+	width:100%;
+	table-layout:fixed;
+}
+.kielletaantablekielletaan {
+	width:90px;
+}
+.teerajoitekentta {
 	width:50%;
+	padding-left:6px;
 	display:block;
 	border: 1px solid #999;
 	height: 25px;
+	@include border-box;
+}
+.teerajoitekentta2 {
+	@extend .teerajoitekentta;
+	display:inline;
+	width:100%;
 }
 form.teerajoite textarea {
 	width:100%;
@@ -439,7 +458,12 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
 	height:40px;
 	padding:0 20px;
 }
-/* TIEDOTTEET TYYLIT */
+#kannata {
+	max-width:370px;
+	height:26px;
+	padding:11px 20px 0 20px;
+}
+/* TIEDOTTEET STYLES */
 .tiedotteet h1, .tiedotteet p {
 	margin:20px 0 20px 0;
 }
@@ -448,7 +472,7 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
 	margin:0 0 30px 0;
 	padding:30px;
 }
-/* FOOTER TYYLIT */
+/* FOOTER STYLES */
 footer {
 	color:#666;
 	padding:40px 0 200px 0;

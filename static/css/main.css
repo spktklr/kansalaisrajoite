@@ -57,7 +57,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* Kansalaisrajoite */
-/* YLEISET TYYLIT */
+/* COMMON TYY */
 body {
   font-family: 'Merriweather Sans', sans-serif;
   background: white;
@@ -114,7 +114,7 @@ nav, footer {
   }
 }
 
-/* HEADER TYYLIT */
+/* HEADER STYLES */
 header {
   background: url(../img/topheader2.gif) top repeat-x, url(../img/dot.gif) bottom repeat-x, gainsboro;
 }
@@ -239,7 +239,7 @@ nav ul li:hover {
   background: #e4e4e4;
 }
 
-/* GLOBAALIT CONTENT TYYLIT */
+/* GLOBAL CONTENT STYLES */
 section {
   background: url(../img/dot2.gif) bottom repeat-x #f9f9f9;
 }
@@ -260,7 +260,7 @@ div.etusivu, div.rajoite, div.rajoitteet {
   }
 }
 
-/* ETUSIVU TYYLIT */
+/* ETUSIVU STYLES */
 div.etusivu {
   margin: 0 auto;
 }
@@ -303,7 +303,7 @@ div.etusivu article h2:nth-of-type(1) {
   line-height: 125%;
 }
 
-div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
+div.etusivu article h2:nth-of-type(2), .painike {
   color: white;
   background-color: #e56c69;
   height: 30px;
@@ -314,7 +314,7 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
   transition: background, 0.2s ease-in;
 }
 @media screen and (min-width: 980px) {
-  div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
+  div.etusivu article h2:nth-of-type(2), .painike {
     background: #e56c69 url(../img/nuoli3.png) no-repeat 30px;
     text-align: right;
     padding: 14px 28px 0 0;
@@ -325,9 +325,9 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
   }
 }
 @media screen and (max-width: 980px) {
-  div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
+  div.etusivu article h2:nth-of-type(2), .painike {
     text-align: center;
-    padding: 14px 0 0 0;
+    padding: 14px 28px 0 0;
     -webkit-transition: background, 0.2s ease-in;
     -moz-transition: background, 0.2s ease-in;
     -o-transition: background, 0.2s ease-in;
@@ -335,22 +335,19 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
   }
 }
 @media screen and (min-width: 980px) {
-  div.etusivu article h2:nth-of-type(2):hover, div.rajoite > p:hover, .painike:hover {
+  div.etusivu article h2:nth-of-type(2):hover, .painike:hover {
     background: #e15753 url(../img/nuoli3.png) no-repeat 33px;
   }
 }
 @media screen and (max-width: 980px) {
-  div.etusivu article h2:nth-of-type(2):hover, div.rajoite > p:hover, .painike:hover {
+  div.etusivu article h2:nth-of-type(2):hover, .painike:hover {
     background: #e15753;
   }
 }
 
-/* RAJOITE TYYLIT */
+/* RAJOITE STYLES */
 .rajoite h1 {
   margin: 0 0 30px 0;
-}
-.rajoite p {
-  font-size: 14px;
 }
 .rajoite article {
   margin: 0 0 30px 0;
@@ -395,14 +392,8 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
     background: url("../img/punviiva.gif") top repeat-x white;
   }
 }
-.rajoite > p {
-  display: block;
-  max-width: 410px;
-  margin: 0 auto;
-  margin-bottom: 40px;
-}
 
-/* KIRJAUDU TYYLIT */
+/* KIRJAUDU STYLES */
 .reglog article {
   padding: 20px;
   width: 400px;
@@ -412,18 +403,6 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
 }
 .reglog article p {
   font-size: 12px;
-}
-.reglog article .regtip {
-  text-align: center;
-  margin: 20px 0 0 0;
-}
-.reglog article .regtip a {
-  color: #e56c69;
-}
-.reglog article .regtip:nth-of-type(1) {
-  font-weight: bold;
-  font-size: 14px;
-  margin: 10px 0 20px 0;
 }
 .reglog article:nth-of-type(2) p {
   color: white;
@@ -446,6 +425,21 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
   padding-left: 6px;
 }
 
+.regtip a {
+  color: #e56c69;
+}
+.regtip:nth-of-type(1) {
+  font-weight: bold;
+  font-size: 14px;
+  margin: 10px 0 20px 0;
+}
+
+.tip {
+  text-align: center;
+  margin: 20px 0 0 0;
+  font-size: 14px;
+}
+
 #alemma {
   margin-top: 24px;
 }
@@ -455,9 +449,15 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
   display: block;
   border: 1px solid #999;
   height: 25px;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
 }
 
-/* RAJOITTEET TYYLIT */
+/* RAJOITTEET STYLES */
 .rajoitteet h1 {
   margin: 0 0 30px 0;
 }
@@ -604,7 +604,7 @@ div.etusivu article h2:nth-of-type(2), div.rajoite > p, .painike {
   background-color: #e56c69;
 }
 
-/* TEE RAJOITE TYYLIT */
+/* TEE RAJOITE STYLES */
 div.teerajoite, div.tiedotteet {
   margin: 0 auto;
   padding: 20px 0 20px 0;
@@ -626,16 +626,43 @@ form.teerajoite {
   text-decoration: none;
   border-radius: 10px;
 }
+form.teerajoite span {
+  margin: 0 10px 0 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #e56c69;
+}
 
 form.teerajoite p {
   margin: 20px 0 4px 0;
 }
 
-.teerajoitekentta {
+.kielletaantable {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.kielletaantablekielletaan {
+  width: 90px;
+}
+
+.teerajoitekentta, .teerajoitekentta2 {
   width: 50%;
+  padding-left: 6px;
   display: block;
   border: 1px solid #999;
   height: 25px;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+}
+
+.teerajoitekentta2 {
+  display: inline;
+  width: 100%;
 }
 
 form.teerajoite textarea {
@@ -661,7 +688,13 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
   padding: 0 20px;
 }
 
-/* TIEDOTTEET TYYLIT */
+#kannata {
+  max-width: 370px;
+  height: 26px;
+  padding: 11px 20px 0 20px;
+}
+
+/* TIEDOTTEET STYLES */
 .tiedotteet h1, .tiedotteet p {
   margin: 20px 0 20px 0;
 }
@@ -672,7 +705,7 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
   padding: 30px;
 }
 
-/* FOOTER TYYLIT */
+/* FOOTER STYLES */
 footer {
   color: #666;
   padding: 40px 0 200px 0;

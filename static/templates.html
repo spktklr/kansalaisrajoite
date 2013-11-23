@@ -68,33 +68,53 @@
 			<h3>Rajoitteen ehdottaja</h3>
 			<p>{{user.name}}, {{user.city}}</p>
 		</article>
-		<p>Kannata rajoitetta</p>
+		<p class="painike" id="kannata">Kannata rajoitetta</p>
 	</div>
 </script>
 
 <script id="teerajoite" type="text/html">
-	<div class="teerajoite">
+	<div class="rajoite">
+		<h1>Tee kansalaisrajoite</h1>
 		<form class="teerajoite">
-			<h1>Tee kansalaisrajoite</h1>
-			<p>Kansalaisrajoite-ehdotukset tarkastetaan ennen sivustolle lisäämistä.</p>
-			<label>
-			<p>Etu- ja sukunimesi</p><input class="teerajoitekentta" id="name" type="text" name="name" />
-			</label>
-			
-			<label>
-			<p>Sähköpostisi</p><input class="teerajoitekentta" id="email" type="text" name="email" />
-			</label>
-			
-			<label>
-			<p>Kansalaisrajoitteen otsikko</p><input class="teerajoitekentta" id="subject" type="text" name="subject" />
-			</label>
-			
-			<label>
-			<p>Perustelut</p><textarea id="feedback" name="feedback"></textarea>
+			<article>
+				<label>
+					<table class="kielletaantable">
+						<tr>
+							<td class="kielletaantablekielletaan">
+								<span>Kielletään</span>
+							</td>
+							<td>
+								<input class="teerajoitekentta2" id="subject" type="text" name="subject" />
+							</td>
+						</tr>
+					</table>
+				</label>
+			</article>
+			<article>
+				<h3>Rajoitteen sisältö ja perustelut</h3>
+				<label>
+					<textarea id="feedback" name="feedback"></textarea>
+				</label>
+			</article>
+			<p class="tip">Kansalaisrajoite-ehdotukset tarkastetaan ennen sivustolle lisäämistä.</p>
 			<input class="painike" type="button" value="Lähetä rajoite tarkastettavaksi" />
+		</form>
+	</div>
+</script>
+
+<script id="teerajoite_OLD_DELETE" type="text/html">
+	<div class="teerajoite">
+		<h1>Tee kansalaisrajoite</h1>
+		<form class="teerajoite">
+			<p>Kansalaisrajoite-ehdotukset tarkastetaan ennen sivustolle lisäämistä.</p>
+			<article>
+			<label>
+			<p>Kansalaisrajoitteen otsikko</p><span>Kielletään</span><input class="teerajoitekentta2" id="subject" type="text" name="subject" />
 			</label>
+			
 			
 		</form>
+	</article>
 	</div>
 </script>
 
