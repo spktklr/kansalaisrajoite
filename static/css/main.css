@@ -425,6 +425,10 @@ div.etusivu article h2:nth-of-type(2), .painike {
   padding-left: 6px;
 }
 
+.regtip {
+  text-align: center;
+  margin-top: 20px;
+}
 .regtip a {
   color: #e56c69;
 }
