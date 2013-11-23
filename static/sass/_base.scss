@@ -5,6 +5,7 @@
 $themecolor: #e56c69;
 $headergray: #dcdcdc;
 $semigray: #f9f9f9;
+$pagewidth: 960px;
 $break: 980px;
 $anitime: 0.2s;
 @include global-reset; // ERIC MAYER TYYLIT
@@ -16,6 +17,16 @@ $anitime: 0.2s;
 @mixin narrow {
   @media screen and (max-width:$break) {
     @content
+  }
+}
+@mixin scale {
+  margin:0 auto;
+  @include wide {
+      width:$pagewidth;
+  }
+  @include narrow {
+      min-width:410px;
+      width:80%;
   }
 }
 @mixin transition($transition...) {

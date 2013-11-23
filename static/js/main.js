@@ -15,7 +15,17 @@
 		var threshold = 5;
 		return ((Math.min(parseInt(render(text)), threshold) / threshold) * 100);
 	}
-	
+
+	/* modal event handlers start */
+	$(document).on('click', '#kirjaudu', function() {
+			jQuery.facebox('<h1>PANIC</h1>'); 
+	});
+
+	$(document).on('click', '#rekisteroidy', function() {
+			jQuery.facebox('<h1>MAYHEM</h1>'); 
+	});
+	/* modal event handlers end */
+
 	var show = function(element, template, data) {
 		$(element).mustache(template, (data === undefined ? null : data), { method: 'html' });
 	}
@@ -43,9 +53,6 @@
 						data.date = function() { return convertToDateStr; };
 						show('section', 'rajoite', data);
 					});
-				},
-				'/kirjaudu': function() {
-					show('section', 'kirjaudu');
 				},
 				'/rajoita': function() {
 					show('section', 'teerajoite');
