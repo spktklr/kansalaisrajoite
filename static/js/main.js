@@ -125,6 +125,15 @@
 				'/inenglish': function() {
 					show('section', 'inenglish');
 				},
+				'/ota-yhteytta': function() {
+					show('section', 'ota-yhteytta');
+				},
+				'/rekisteriseloste': function() {
+					show('section', 'rekisteriseloste');
+				},
+				'/henkilosuoja': function() {
+					show('section', 'henkilosuoja');
+				},
 				'*': function() {
 					// show 404 page for other urls
 					show('section', 'error-notfound');

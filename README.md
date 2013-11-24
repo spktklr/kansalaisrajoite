@@ -15,12 +15,14 @@ $ vagrant ssh
     $ python main.py --host "0.0.0.0" --debug [--port <port_guest>]
 ~~~
 
-# To do
+# TO DO
+# toiminnallisuuksia
+- SoMe-jakonapit yksittäisille rajoitteille
+- Kansalaisrajoitteen submit, kierrättäminen tarkastuksessa ja show
+- Rajoitteiden lajittelu ja sivutus
 
-- Identiteetinhallinta
-- SoMe-jakonapit ja toiminnallisuus
-- Tietokanta ym.
-- Tee kansalaisrajoite
+# tekstiä
+- FB-sivu
 - Ohjeet
 - Tiedotteet
 - Ota yhteyttä

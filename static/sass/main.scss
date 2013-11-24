@@ -266,6 +266,7 @@ div.etusivu article h2:nth-of-type(2), .painike {
 	margin-top:24px;
 }
 .kirjaudukentta {
+	background:$semigray;
 	width:100%;
 	display:block;
 	border: 1px solid #999;
@@ -405,10 +406,20 @@ div.teerajoite, div.tiedotteet {
 	@include scale();
 	padding:20px 0 20px 0;
 }
+div.rajoite > p {
+	margin-bottom: 30px;
+	line-height:20px;
+	a {color:$themecolor}
+}
+
 form.teerajoite    {
 	position:relative;
 	text-decoration: none;
 	border-radius: 10px;
+
+	h2 {
+		margin-bottom: 10px;
+	}
 	span {
 		margin: 0 10px 0 0;
 		font-size: 16px;
@@ -427,6 +438,7 @@ form.teerajoite p {
 	width:90px;
 }
 .teerajoitekentta {
+	background:$semigray;
 	width:50%;
 	padding-left:6px;
 	display:block;
@@ -461,8 +473,9 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
 }
 #kannata {
 	max-width:370px;
-	height:26px;
-	padding:11px 20px 0 20px;
+	height:30px;
+	padding:10px 20px 0 20px;
+	font-weight:400;
 }
 /* TIEDOTTEET STYLES */
 .tiedotteet h1, .tiedotteet p {
@@ -476,26 +489,43 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
 /* OHJEET STYLES */
 .ohjeet {
 	padding:30px 0 30px 0;
+	h1 {
+		margin-bottom: 30px; 
+	}
+	a {
+		color:$themecolor;
+	}
 	@include scale;
 	aside {
 		@include wide {
 		float: left;
-		width: 30%;
+		width: 25%;
 		}
 		ul li {
 			display: block;
+			margin-bottom: 10px; 
 		}
 	}
 	.content {
 		@include wide {
-		float: right;
-		width: 68%;
+			float: right;
+			width: 65%;
+		}
+		article {
+			padding: 30px;
+			background:white;
+			margin-bottom: 30px;
+			> * {
+				line-height: 18px;
+				margin-bottom: 30px;
+			}
 		}
 	}
-	.clear {
-		clear: both;
-	}
 }
+.clear {
+	clear: both;
+}
+
 /* FOOTER STYLES */
 footer {
 	color:#666;

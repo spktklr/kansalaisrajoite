@@ -449,6 +449,7 @@ div.etusivu article h2:nth-of-type(2), .painike {
 }
 
 .kirjaudukentta {
+  background: #f9f9f9;
   width: 100%;
   display: block;
   border: 1px solid #999;
@@ -625,10 +626,21 @@ div.teerajoite, div.tiedotteet {
   }
 }
 
+div.rajoite > p {
+  margin-bottom: 30px;
+  line-height: 20px;
+}
+div.rajoite > p a {
+  color: #e56c69;
+}
+
 form.teerajoite {
   position: relative;
   text-decoration: none;
   border-radius: 10px;
+}
+form.teerajoite h2 {
+  margin-bottom: 10px;
 }
 form.teerajoite span {
   margin: 0 10px 0 0;
@@ -651,6 +663,7 @@ form.teerajoite p {
 }
 
 .teerajoitekentta, .teerajoitekentta2 {
+  background: #f9f9f9;
   width: 50%;
   padding-left: 6px;
   display: block;
@@ -694,8 +707,9 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
 
 #kannata {
   max-width: 370px;
-  height: 26px;
-  padding: 11px 20px 0 20px;
+  height: 30px;
+  padding: 10px 20px 0 20px;
+  font-weight: 400;
 }
 
 /* TIEDOTTEET STYLES */
@@ -714,6 +728,12 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
   padding: 30px 0 30px 0;
   margin: 0 auto;
 }
+.ohjeet h1 {
+  margin-bottom: 30px;
+}
+.ohjeet a {
+  color: #e56c69;
+}
 @media screen and (min-width: 980px) {
   .ohjeet {
     width: 960px;
@@ -728,19 +748,30 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
 @media screen and (min-width: 980px) {
   .ohjeet aside {
     float: left;
-    width: 30%;
+    width: 25%;
   }
 }
 .ohjeet aside ul li {
   display: block;
+  margin-bottom: 10px;
 }
 @media screen and (min-width: 980px) {
   .ohjeet .content {
     float: right;
-    width: 68%;
+    width: 65%;
   }
 }
-.ohjeet .clear {
+.ohjeet .content article {
+  padding: 30px;
+  background: white;
+  margin-bottom: 30px;
+}
+.ohjeet .content article > * {
+  line-height: 18px;
+  margin-bottom: 30px;
+}
+
+.clear {
   clear: both;
 }
 
