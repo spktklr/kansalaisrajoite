@@ -1,4 +1,18 @@
 (function ($) {
+	// user information
+	var user = {
+		isLogged: false,
+		info: null,
+		setLoggedIn: function(info) {
+			this.isLogged = true;
+			this.info = info;
+		},
+		setLoggedOut: function() {
+			this.isLogged = false;
+			this.info = null;
+		}
+	};
+	
 	var convertToSlug = function(text, render) {
 		return render(text)
 		.toLowerCase()
@@ -12,7 +26,7 @@
 	}
 	
 	var percentCompleted = function(text, render) {
-		var threshold = 5;
+		var threshold = 101;
 		return ((Math.min(parseInt(render(text)), threshold) / threshold) * 100);
 	}
 	
@@ -56,9 +70,10 @@
 			type: 'POST',
 			statusCode: {
 				200: function(data) {
-					data.isLogged = (data.name !== undefined);
-					show('header', 'headerbox', data);
+					user.setLoggedIn(data);
+					show('header', 'headerbox', user);
 					jQuery(document).trigger('close.facebox');
+					routie.reload();
 				},
 				401: function() {
 					// todo: tell user about invalid input
@@ -72,7 +87,9 @@
 			url: 'kayttaja/logout',
 			type: 'POST',
 			success: function() {
-				location.reload();
+				user.setLoggedOut();
+				show('header', 'headerbox', user);
+				routie.reload();
 			}
 		});
 		
@@ -83,69 +100,6 @@
 	// load templates
 	$.Mustache.load('templates.html')
 		.done(function() {
-			// setup routing
-			routie({
-				'': function() {
-					// default to the front page
-					show('section', 'etusivu');
-				},
-				'/etusivu': function() {
-					show('section', 'etusivu');
-				},
-				'/rajoitteet': function() {
-					$.getJSON('rajoite', function(data) {
-						data.slug = function() { return convertToSlug; };
-						data.date = function() { return convertToDateStr; };
-						data.percentCompleted = function() { return percentCompleted; };
-						show('section', 'rajoitteet', data);
-					});
-				},
-				'/rajoite/:id/*': function(id) {
-					$.getJSON('rajoite/' + id, function(data) {
-						data.date = function() { return convertToDateStr; };
-						show('section', 'rajoite', data);
-					});
-				},
-				'/rajoita': function() {
-					show('section', 'teerajoite');
-				},
-				'/ohjeet': function() {
-					show('section', 'ohjeet');
-				},
-				'/tiedotteet': function() {
-					$.getJSON('tiedote', function(data) {
-						data.hasNews = (data.news.length > 0);
-						data.date = function() { return convertToDateStr; };
-						show('section', 'tiedotteet', data);
-					});
-				},
-				'/pasvenska': function() {
-					show('section', 'pasvenska');
-				},
-				'/inenglish': function() {
-					show('section', 'inenglish');
-				},
-				'/ota-yhteytta': function() {
-					show('section', 'ota-yhteytta');
-				},
-				'/rekisteriseloste': function() {
-					show('section', 'rekisteriseloste');
-				},
-				'/henkilosuoja': function() {
-					show('section', 'henkilosuoja');
-				},
-				'*': function() {
-					// show 404 page for other urls
-					show('section', 'error-notfound');
-				}
-			});
-			
-			// load and display login status
-			$.getJSON('kayttaja', function(data) {
-				data.isLogged = (data.name !== undefined);
-				show('header', 'headerbox', data);
-			});
-			
 			// catch all ajax errors and show error page
 			$(document).ajaxError(function(event, request, settings) {
 				switch (request.status) {
@@ -162,6 +116,78 @@
 					show('section', 'error-generic');
 					break;
 				}
+			});
+			
+			// load and display login status
+			$.getJSON('kayttaja', function(data) {
+				if (data.name !== undefined) {
+					user.setLoggedIn(data);
+				} else {
+					user.setLoggedOut();
+				}
+				
+				show('header', 'headerbox', user);
+				
+				// setup routing
+				routie({
+					'': function() {
+						// default to the front page
+						show('section', 'etusivu');
+					},
+					'/etusivu': function() {
+						show('section', 'etusivu');
+					},
+					'/rajoitteet': function() {
+						$.getJSON('rajoite', function(data) {
+							data.slug = function() { return convertToSlug; };
+							data.date = function() { return convertToDateStr; };
+							data.percentCompleted = function() { return percentCompleted; };
+							show('section', 'rajoitteet', data);
+						});
+					},
+					'/rajoite/:id/*': function(id) {
+						$.getJSON('rajoite/' + id, function(data) {
+							data.date = function() { return convertToDateStr; };
+							show('section', 'rajoite', data);
+						});
+					},
+					'/rajoita': function() {
+						if (user.isLogged) {
+							show('section', 'teerajoite');
+						} else {
+							show('section', 'error-login');
+						}
+					},
+					'/ohjeet': function() {
+						show('section', 'ohjeet');
+					},
+					'/tiedotteet': function() {
+						$.getJSON('tiedote', function(data) {
+							data.hasNews = (data.news.length > 0);
+							data.date = function() { return convertToDateStr; };
+							show('section', 'tiedotteet', data);
+						});
+					},
+					'/pasvenska': function() {
+						show('section', 'pasvenska');
+					},
+					'/inenglish': function() {
+						show('section', 'inenglish');
+					},
+					'/ota-yhteytta': function() {
+						show('section', 'ota-yhteytta');
+					},
+					'/rekisteriseloste': function() {
+						show('section', 'rekisteriseloste');
+					},
+					'/henkilosuoja': function() {
+						show('section', 'henkilosuoja');
+					},
+					'*': function() {
+						// show 404 page for other urls
+						show('section', 'error-notfound');
+					}
+				});
 			});
 		});
 })(jQuery);
