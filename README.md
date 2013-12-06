@@ -20,12 +20,8 @@ $ vagrant ssh
 - SoMe-jakonapit yksittäisille rajoitteille
 - Kansalaisrajoitteen submit, kierrättäminen tarkastuksessa ja show
 - Rajoitteiden lajittelu ja sivutus
+- Ota yhteyttä contactform
 
 # tekstiä
 - FB-sivu
-- Ohjeet
 - Tiedotteet
-- Ota yhteyttä
-- Henkilörekisteriseloste
-- Henkilösuoja ja tietoturva
-- På svenska & In English kevyet infosivut

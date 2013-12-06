@@ -54,6 +54,11 @@
 		jQuery.facebox({ ajax: 'kirjaudu.html' });
 		return false;
 	});
+
+	$(document).on('click', '#ota-yhteytta', function() {
+		jQuery.facebox({ ajax: 'otayhteytta.html' });
+		return false;
+	});	
 	/* modal event handlers end */
 
 	/* login event handlers */

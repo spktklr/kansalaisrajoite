@@ -99,6 +99,11 @@ span {
   font-size: 37px;
 }
 
+ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
 nav, footer {
   margin: 0 auto;
 }
@@ -424,6 +429,9 @@ div.etusivu article h2:nth-of-type(2), .painike {
   margin: 4px 0 10px 0;
   padding-left: 6px;
 }
+.reglog textarea {
+  resize: vertical;
+}
 
 .regtip {
   text-align: center;
@@ -687,6 +695,7 @@ form.teerajoite textarea {
   height: 200px;
   display: block;
   box-sizing: border-box;
+  resize: vertical;
 }
 
 form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen textarea:focus, form.kirjautuminen input:focus {
@@ -721,6 +730,7 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
   background: white;
   margin: 0 0 30px 0;
   padding: 30px;
+  line-height: 18px;
 }
 
 /* OHJEET STYLES */
@@ -730,6 +740,10 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
 }
 .ohjeet h1 {
   margin-bottom: 30px;
+}
+.ohjeet .anchor {
+  color: black !important;
+  margin-bottom: 8px;
 }
 .ohjeet a {
   color: #e56c69;
