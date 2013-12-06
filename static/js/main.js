@@ -34,6 +34,10 @@
 		$(element).mustache(template, (data === undefined ? null : data), { method: 'html' });
 	}
 	
+	var scrollTo = function(element) {
+		$(element)[0].scrollIntoView();
+	}
+	
 	/* modal event handlers start */
 	$(document).on('click', '#kirjaudu', function() {
 		jQuery.facebox({ ajax: 'kirjaudu.html' });
@@ -165,6 +169,10 @@
 					},
 					'/ohjeet': function() {
 						show('section', 'ohjeet');
+					},
+					'/ohjeet/:fragment': function(fragment) {
+						show('section', 'ohjeet');
+						scrollTo('#' + fragment);
 					},
 					'/tiedotteet': function() {
 						$.getJSON('tiedote', function(data) {
