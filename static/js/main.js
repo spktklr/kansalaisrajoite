@@ -118,13 +118,11 @@
 		
 		switch(order) {
 		case 'aika':
-			console.log('aika');
 			data.restrictions.sort(sort.byAge);
 			data.sortedByAge = true;
 			break;
 		case 'aanet':
 		default:
-			console.log('aanet');
 			data.restrictions.sort(sort.byVotes);
 			data.sortedByVotes = true;
 			break;
