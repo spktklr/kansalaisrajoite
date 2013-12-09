@@ -23,10 +23,8 @@
 		<h1>Selaa kansalaisrajoitteita</h1>
 		<div class="rajoitenavi">
 			<ul>
-				<li><a href="#">Uusin ensin</a></li>
-				<li class="valittu"><a href="#">Vanhin ensin</a></li>
-				<li><a href="#">Eniten kieltoja ensin</a></li>
-				<li><a href="#">Vähiten kieltoja ensin</a></li>
+				<li{{#sortedByAge}} class="valittu"{{/sortedByAge}}><a href="#/rajoitteet/aika">Luomisaika</a></li>
+				<li{{#sortedByVotes}} class="valittu"{{/sortedByVotes}}><a href="#/rajoitteet/aanet">Kieltäjiä</a></li>
 			</ul>
 			<ul>
 				<li><a href="#">Edellinen</a></li>

@@ -108,6 +108,36 @@
 	});
 	/* login event handlers end */
 	
+	/* content functions */
+	var showRestrictions = function(data, order) {
+		// sort functions
+		var sort = {
+			byAge: function(a, b) { return a.created > b.created },
+			byVotes: function(a, b) { return a.votes < b.votes }
+		}
+		
+		switch(order) {
+		case 'aika':
+			console.log('aika');
+			data.restrictions.sort(sort.byAge);
+			data.sortedByAge = true;
+			break;
+		case 'aanet':
+		default:
+			console.log('aanet');
+			data.restrictions.sort(sort.byVotes);
+			data.sortedByVotes = true;
+			break;
+		}
+		
+		data.slug = function() { return convertToSlug; };
+		data.date = function() { return convertToDateStr; };
+		data.percentCompleted = function() { return percentCompleted; };
+		
+		show('section', 'rajoitteet', data);
+	}
+	/* content functions end */
+	
 	// load templates
 	$.Mustache.load('templates.html')
 		.done(function() {
@@ -148,12 +178,9 @@
 					'/etusivu': function() {
 						show('section', 'etusivu');
 					},
-					'/rajoitteet': function() {
+					'/rajoitteet/:order?': function(order) {
 						$.getJSON('rajoite', function(data) {
-							data.slug = function() { return convertToSlug; };
-							data.date = function() { return convertToDateStr; };
-							data.percentCompleted = function() { return percentCompleted; };
-							show('section', 'rajoitteet', data);
+							showRestrictions(data, order);
 						});
 					},
 					'/rajoite/:id/:slug?': function(id, slug) {
