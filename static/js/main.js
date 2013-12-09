@@ -23,7 +23,7 @@
 	
 	var convertToDateStr = function(text, render) {
 		var timestamp = parseInt(render(text))*1000;
-		return new Date(timestamp).toLocaleDateString();
+		return new Date(timestamp).toLocaleDateString('fi-FI');
 	}
 	
 	var percentCompleted = function(text, render) {
