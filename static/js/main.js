@@ -14,9 +14,10 @@
 	};
 	
 	var convertToSlug = function(text, render) {
+		// \u00E4 = ä
+		// \u00F6 = ö
 		return render(text)
 		.toLowerCase()
-		// \u00E4 = ä, \u00F6 = ö
 		.replace(/[^\w\u00E4\u00F6 ]+/g, '')
 		.replace(/ +/g, '-');
 	}
@@ -155,7 +156,7 @@
 							show('section', 'rajoitteet', data);
 						});
 					},
-					'/rajoite/:id/*': function(id) {
+					'/rajoite/:id/:slug?': function(id, slug) {
 						$.getJSON('rajoite/' + id, function(data) {
 							data.date = function() { return convertToDateStr; };
 							show('section', 'rajoite', data);
@@ -168,12 +169,11 @@
 							show('section', 'error-login');
 						}
 					},
-					'/ohjeet': function() {
+					'/ohjeet/:fragment?': function(fragment) {
 						show('section', 'ohjeet');
-					},
-					'/ohjeet/:fragment': function(fragment) {
-						show('section', 'ohjeet');
-						scrollTo('#' + fragment);
+						if (fragment) {
+							scrollTo('#' + fragment);
+						}
 					},
 					'/tiedotteet': function() {
 						$.getJSON('tiedote', function(data) {
