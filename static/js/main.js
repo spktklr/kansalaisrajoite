@@ -16,7 +16,8 @@
 	var convertToSlug = function(text, render) {
 		return render(text)
 		.toLowerCase()
-		.replace(/[^\w ]+/g, '')
+		// \u00E4 = ä, \u00F6 = ö
+		.replace(/[^\w\u00E4\u00F6 ]+/g, '')
 		.replace(/ +/g, '-');
 	}
 	
