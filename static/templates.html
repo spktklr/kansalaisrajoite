@@ -90,10 +90,15 @@
 			</p>
 		</article>
 		{{#approved}}
-			<p class="painike" id="kannata">Kannata rajoitetta</p>
+			{{#voted}}
+				<input id="alemma" class="painike" type="submit" name="peruuta" data-restriction-id="{{id}}" value="Peruuta kannatus" />
+			{{/voted}}
+			{{^voted}}
+				<input id="alemma" class="painike" type="submit" name="kannata" data-restriction-id="{{id}}" value="Kannata rajoitetta" />
+			{{/voted}}
 		{{/approved}}
 		{{^approved}}
-			<p class="painike" id="vahvista">Vahvista rajoite</p>
+			<input id="alemma" class="painike" type="submit" name="vahvista" data-restriction-id="{{id}}" value="Vahvista rajoite" />
 		{{/approved}}
 	</div>
 </script>

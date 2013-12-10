@@ -108,6 +108,38 @@
 	});
 	/* login event handlers end */
 	
+	/* restriction view click handlers */
+	$(document).on('click', 'input[name="kannata"]', function() {
+		$.ajax({
+			url: 'kannatus/' + $(this).data('restriction-id'),
+			type: 'POST',
+			success: function() {
+				routie.reload();
+			}
+		});
+	});
+	
+	$(document).on('click', 'input[name="peruuta"]', function() {
+		$.ajax({
+			url: 'kannatus/' + $(this).data('restriction-id'),
+			type: 'DELETE',
+			success: function() {
+				routie.reload();
+			}
+		});
+	});
+	
+	$(document).on('click', 'input[name="vahvista"]', function() {
+		$.ajax({
+			url: 'rajoite/' + $(this).data('restriction-id') + '/vahvista',
+			type: 'POST',
+			success: function() {
+				routie.reload();
+			}
+		});
+	});
+	/* restriction view click handlers end */
+	
 	/* content functions */
 	var showRestrictions = function(data, order) {
 		// sort functions

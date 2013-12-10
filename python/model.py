@@ -38,7 +38,7 @@ class Restriction(Base):
 	def __repr__(self):
 		return '<Restriction: %s>' % self.title
 	
-	def toDict(self, full=False):
+	def toDict(self, full=False, user=None):
 		ret = {}
 		ret['id'] = self.id
 		ret['created'] = self.created
@@ -53,6 +53,8 @@ class Restriction(Base):
 			else:
 				ret['approver'] = None
 			ret['modified'] = self.modified
+		if user:
+			ret['voted'] = user in self.voters
 		return ret
 
 class User(Base):
