@@ -2,7 +2,6 @@
 from bottle import Bottle, HTTPError, request
 import model
 import bcrypt
-import datetime
 from utils import session_user, jsonplugin
 from sqlalchemy.orm.exc import NoResultFound
 

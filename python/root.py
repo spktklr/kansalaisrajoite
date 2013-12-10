@@ -1,5 +1,5 @@
 # coding=utf-8
-from bottle import Bottle, HTTPError, static_file, redirect, hook, request
+from bottle import Bottle, static_file
 import restriction
 import vote
 import user

@@ -1,8 +1,8 @@
 # coding=utf-8
 from bottle.ext import sqlalchemy
-from sqlalchemy import create_engine, MetaData, Table, Column, ForeignKey, Integer, String, DateTime, Boolean
+from sqlalchemy import create_engine, Table, Column, ForeignKey, Integer, String, DateTime, Boolean
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
 dburl = 'postgresql+psycopg2:///kansalaisrajoite'
