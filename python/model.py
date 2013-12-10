@@ -24,8 +24,7 @@ class Restriction(Base):
 	created = Column(DateTime, server_default=func.current_timestamp())
 	modified = Column(DateTime, server_default=func.current_timestamp())
 	title = Column(String)
-	contents = Column(String)
-	arguments = Column(String)
+	body = Column(String)
 	approved = Column(Boolean, server_default='FALSE')
 	
 	approver_id = Column(Integer, ForeignKey('user.id'))
@@ -45,8 +44,7 @@ class Restriction(Base):
 		ret['created'] = self.created
 		ret['votes'] = len(self.voters)
 		ret['title'] = self.title
-		ret['contents'] = self.contents
-		ret['arguments'] = self.arguments
+		ret['body'] = self.body
 		ret['user'] = self.user.toDict()
 		ret['approved'] = self.approved
 		if full:

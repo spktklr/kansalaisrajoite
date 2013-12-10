@@ -44,8 +44,7 @@ def create(db):
 	
 	item = model.Restriction()
 	item.title = request.forms.get('title')
-	item.contents = request.forms.get('contents')
-	item.arguments = request.forms.get('arguments')
+	item.body = request.forms.get('body')
 	item.user = user
 	
 	db.add(item)
