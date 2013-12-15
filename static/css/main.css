@@ -304,11 +304,13 @@ div.etusivu article h1 {
   margin: 0 0 30px 0;
 }
 div.etusivu article h2:nth-of-type(1) {
+  padding-top: 11px;
+  margin: 2px 0 2px 0;
   font-size: 18px;
-  line-height: 125%;
+  line-height: 100%;
 }
 
-div.etusivu article h2:nth-of-type(2), .painike {
+.painike {
   color: white;
   background-color: #e56c69;
   height: 30px;
@@ -319,7 +321,7 @@ div.etusivu article h2:nth-of-type(2), .painike {
   transition: background, 0.2s ease-in;
 }
 @media screen and (min-width: 980px) {
-  div.etusivu article h2:nth-of-type(2), .painike {
+  .painike {
     background: #e56c69 url(../img/nuoli3.png) no-repeat 30px;
     text-align: right;
     padding: 14px 28px 0 0;
@@ -330,7 +332,7 @@ div.etusivu article h2:nth-of-type(2), .painike {
   }
 }
 @media screen and (max-width: 980px) {
-  div.etusivu article h2:nth-of-type(2), .painike {
+  .painike {
     text-align: center;
     padding: 14px 28px 0 0;
     -webkit-transition: background, 0.2s ease-in;
@@ -340,12 +342,12 @@ div.etusivu article h2:nth-of-type(2), .painike {
   }
 }
 @media screen and (min-width: 980px) {
-  div.etusivu article h2:nth-of-type(2):hover, .painike:hover {
+  .painike:hover {
     background: #e15753 url(../img/nuoli3.png) no-repeat 33px;
   }
 }
 @media screen and (max-width: 980px) {
-  div.etusivu article h2:nth-of-type(2):hover, .painike:hover {
+  .painike:hover {
     background: #e15753;
   }
 }
