@@ -50,7 +50,7 @@ def login(db):
 	if user and bcrypt.hashpw(password, user.password.encode('utf-8')) == user.password:
 		session = request.environ['beaker.session']
 		session['user_id'] = user.id
-		return user.toDict()
+		return user.toDict(True)
 	else:
 		return HTTPError(401, 'Unauthorized')
 
@@ -68,7 +68,7 @@ def my_data(db):
 	user = session_user(request, db)
 	
 	if user:
-		return user.toDict()
+		return user.toDict(True)
 	else:
 		return {}
 
