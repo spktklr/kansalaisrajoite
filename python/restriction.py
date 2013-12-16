@@ -30,6 +30,8 @@ def read_all(db):
 	
 	if is_admin:
 		items = db.query(model.Restriction)
+	elif user:
+		items = db.query(model.Restriction).filter((model.Restriction.approved == True) | (model.Restriction.user == user))
 	else:
 		items = db.query(model.Restriction).filter_by(approved=True)
 	
@@ -48,6 +50,9 @@ def create(db):
 	item.user = user
 	
 	db.add(item)
+	db.flush()
+	
+	return { 'id': item.id, 'title': item.title }
 
 @app.delete('/<id:int>')
 def delete(db, id):
@@ -74,7 +79,7 @@ def approve(db, id):
 		is_admin = user and user.admin
 		
 		if not is_admin:
-			return HTTPError(401, 'Unauthorized')
+			return HTTPError(403, 'Forbidden')
 		
 		item = db.query(model.Restriction).filter_by(id=id).one()
 		item.approved = not item.approved

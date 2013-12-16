@@ -13,13 +13,17 @@
 		}
 	};
 	
-	var convertToSlug = function(text, render) {
+	var slugFunc = function(text) {
 		// \u00E4 = ä
 		// \u00F6 = ö
-		return render(text)
+		return text
 		.toLowerCase()
 		.replace(/[^\w\u00E4\u00F6 ]+/g, '')
 		.replace(/ +/g, '-');
+	}
+	
+	var convertToSlug = function(text, render) {
+		return slugFunc(render(text));
 	}
 	
 	var convertToDateStr = function(text, render) {
@@ -138,7 +142,40 @@
 			}
 		});
 	});
+	
+	$(document).on('click', 'input[name="poista"]', function() {
+		$.ajax({
+			url: 'rajoite/' + $(this).data('restriction-id'),
+			type: 'DELETE',
+			success: function() {
+				routie('/rajoitteet');
+			}
+		});
+	});
 	/* restriction view click handlers end */
+	
+	// new restriction submit button click handler
+	$(document).on('submit', 'form.teerajoite', function(e) {
+		e.preventDefault();
+		
+		$.ajax({
+			url: 'rajoite',
+			global: false,
+			data: {
+				title: $('form.teerajoite input[name=title]').val(),
+				body: $('form.teerajoite textarea[name=body]').val()
+			},
+			type: 'POST',
+			statusCode: {
+				200: function(data) {
+					routie('/rajoite/' + data.id + '/' + slugFunc(data.title));
+				},
+				401: function() {
+					// todo: tell user about invalid input
+				}
+			}
+		});
+	});
 	
 	/* content functions */
 	var showRestrictions = function(data, order) {
@@ -216,6 +253,7 @@
 					'/rajoite/:id/:slug?': function(id, slug) {
 						$.getJSON('rajoite/' + id, function(data) {
 							data.date = function() { return convertToDateStr; };
+							data.isAdmin = (user.info ? user.info.admin : false);
 							show('section', 'rajoite', data);
 						});
 					},

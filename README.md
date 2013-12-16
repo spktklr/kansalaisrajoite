@@ -18,9 +18,10 @@ $ vagrant ssh
 # TO DO
 # toiminnallisuuksia
 - SoMe-jakonapit yksittäisille rajoitteille
-- Kansalaisrajoitteen submit, kierrättäminen tarkastuksessa ja show
 - Rajoitteiden lajittelu ja sivutus
 - Ota yhteyttä contactform
+- Email-varmistus rekisteröitymiselle
+- Lost password -linkki
 
 # tekstiä
 - FB-sivu

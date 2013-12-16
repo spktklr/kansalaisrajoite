@@ -102,7 +102,10 @@
 			{{/voted}}
 		{{/approved}}
 		{{^approved}}
-			<input id="alemma" class="painike" type="submit" name="vahvista" data-restriction-id="{{id}}" value="Vahvista rajoite" />
+			{{#isAdmin}}
+				<input id="alemma" class="painike" type="submit" name="vahvista" data-restriction-id="{{id}}" value="Vahvista rajoite" />
+			{{/isAdmin}}
+			<input id="alemma" class="painike" type="submit" name="poista" data-restriction-id="{{id}}" value="Poista rajoite" />
 		{{/approved}}
 	</div>
 </script>
@@ -120,7 +123,7 @@
 								<span>Kielletään</span>
 							</td>
 							<td>
-								<input class="teerajoitekentta2" id="subject" type="text" name="subject" />
+								<input class="teerajoitekentta2" id="subject" type="text" name="title" />
 							</td>
 						</tr>
 					</table>
@@ -129,11 +132,11 @@
 			<article>
 				<h2>Rajoitteen sisältö ja perustelut</h2>
 				<label>
-					<textarea class="teerajoitekentta" id="feedback" name="feedback"></textarea>
+					<textarea class="teerajoitekentta" id="feedback" name="body"></textarea>
 				</label>
 			</article>
 			<p class="tip">Kansalaisrajoite-ehdotukset tarkastetaan ennen sivustolle lisäämistä.</p>
-			<input class="painike" type="button" value="Lähetä rajoite tarkastettavaksi" />
+			<input class="painike" type="submit" value="Lähetä rajoite tarkastettavaksi" />
 		</form>
 	</div>
 </script>
