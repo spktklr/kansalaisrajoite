@@ -121,6 +121,61 @@
 	});
 	/* login event handlers end */
 	
+	// registration event handlers
+	$(document).on('submit', 'form.rekisteroityminen', function(e) {
+		var name = $('form.rekisteroityminen input[name=name]').val(),
+			city = $('form.rekisteroityminen input[name=city]').val(),
+			email = $('form.rekisteroityminen input[name=email]').val(),
+			pass1 = $('form.rekisteroityminen input[name=password1]').val(),
+			pass2 = $('form.rekisteroityminen input[name=password2]').val();
+		
+		e.preventDefault();
+		$('div.reglog p.alert').hide();
+		
+		// quick form validation
+		if (pass1 !== pass2) {
+			$('div.reglog p.alert.error-pwmismatch').show('fast');
+			return;
+		}
+		
+		if (pass1.length < 8) {
+			$('div.reglog p.alert.error-pwlength').show('fast');
+			return;
+		}
+		
+		// bwhahahahahaha
+		if (pass1 === 'kansalaisrajoite' || pass1 === 'salasana' || pass1 === 'password') {
+			$('div.reglog p.alert.error-pwsimple').show('fast');
+			return;
+		}
+		
+		$.ajax({
+			url: 'kayttaja/rekisteroidy',
+			global: false,
+			data: {
+				email: email,
+				password: pass1,
+				name: name,
+				city: city,
+			},
+			type: 'POST',
+			statusCode: {
+				200: function(data) {
+					user.setLoggedIn(data);
+					show('header', 'headerbox', user);
+					jQuery(document).trigger('close.facebox');
+					routie.reload();
+				},
+				400: function() {
+					$('div.reglog p.alert.error-badrequest').show('fast');
+				},
+				409: function() {
+					$('div.reglog p.alert.error-conflict').show('fast');
+				}
+			}
+		});
+	});
+	
 	/* restriction view click handlers */
 	$(document).on('click', 'input[name="kannata"]', function() {
 		$.ajax({

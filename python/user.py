@@ -36,6 +36,8 @@ def register(db):
 	
 	user.password = bcrypt.hashpw(password, bcrypt.gensalt())
 	db.add(user)
+	
+	return user.toDict(True)
 
 @app.post('/login')
 def login(db):

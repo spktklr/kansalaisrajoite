@@ -1,25 +1,29 @@
 <div class="reglog">
 	<article>
 		<p class="regtip">Rekisteröityminen käyttäjäksi</p>
-		<p class="alert hidden">Sähköpostiosoite ja salasana vaaditaan.</p>
-		<form class="kirjautuminen">
+		<p class="alert hidden error-pwmismatch">Salasanat eivät täsmää.</p>
+		<p class="alert hidden error-pwlength">Salasanan tulee olla vähintään 8 merkkiä pitkä.</p>
+		<p class="alert hidden error-pwsimple">Salasanasi on liian helppo.</p>
+		<p class="alert hidden error-badrequest">Sähköpostiosoite ja salasana vaaditaan.</p>
+		<p class="alert hidden error-conflict">Sähköpostiosoite on jo rekisteröity.</p>
+		<form class="rekisteroityminen">
 			<label>
-			<p>Etunimi</p><input class="kirjaudukentta" id="etunimi" type="text" name="etunimi" />
+				<p>Nimi</p><input class="kirjaudukentta" type="text" name="name" />
 			</label>
 			<label>
-			<p>Sukunimi</p><input class="kirjaudukentta" id="sukunimi" type="text" name="sukunimi" />
+				<p>Paikkakunta</p><input class="kirjaudukentta" type="text" name="city" />
 			</label>
 			<label>
-			<label>
-			<p>Paikkakunta</p><input class="kirjaudukentta" id="paikkakunta" type="text" name="paikkakunta" />
-			</label>
-			<p>Sähköpostiosoite</p><input class="kirjaudukentta" id="email" type="text" name="email" />
+				<p>Sähköpostiosoite *</p><input class="kirjaudukentta" id="email" type="text" name="email" />
 			</label>
 			<label>
-			<p>Salasana</p><input class="kirjaudukentta" type="password" name="password" size="25" />
+				<p>Salasana *</p><input class="kirjaudukentta" type="password" name="password1" size="25" />
 			</label>
 			<label>
-			<input id="alemma" class="painike" type="submit" value="Rekisteröidy käyttäjäksi" />
+				<p>Salasana (uudelleen) *</p><input class="kirjaudukentta" type="password" name="password2" size="25" />
+			</label>
+			<label>
+				<input id="alemma" class="painike" type="submit" value="Rekisteröidy käyttäjäksi" />
 			</label>
 		</form>
 		<p id="registerlogin" class="regtip">Onko sinulla jo käyttäjätunnukset? <a href="#">Kirjaudu sisään</a>.</p>
