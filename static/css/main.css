@@ -472,16 +472,26 @@ div.etusivu article h2:nth-of-type(1) {
   /* Opera/IE 8+ */
 }
 
-.alert {
-  margin: 10px 0 20px 0;
-  padding: 15px 10px 3px 50px;
-  background: url(../img/alert2.png) no-repeat 0 0;
-  height: 48px;
-  width: 400px;
-  border: solid 4px #e56c69;
+.infoboksi, .alert, .info {
   box-sizing: border-box;
   font-size: 20px;
   text-align: center;
+  border: solid 4px #e56c69;
+  margin: 10px 0 20px 0;
+  height: 48px;
+  width: 400px;
+}
+
+.alert {
+  background: url(../img/alert2.png) no-repeat 0 0;
+  padding: 15px 10px 3px 50px;
+}
+
+.info {
+  margin: 0 auto;
+  padding: 11px 10px 3px 50px;
+  background: url(../img/done.png) no-repeat 0 0 white;
+  font-size: 18px;
 }
 
 /* RAJOITTEET STYLES */
@@ -744,7 +754,12 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
   background: white;
   margin: 0 0 30px 0;
   padding: 30px;
-  line-height: 18px;
+}
+.tiedotteet article a {
+  color: #e56c69;
+}
+.tiedotteet article p {
+  line-height: 22px;
 }
 
 /* OHJEET STYLES */

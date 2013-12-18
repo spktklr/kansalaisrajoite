@@ -70,6 +70,7 @@
 		<article>
 			{{#approved}}
 				<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}} ja on saavuttanut <em>{{votes}}</em> kannattajaa.</p>
+
 				{{#approver}}
 					<p>Rajoitteen vahvisti {{approver.name}}.</p>
 				{{/approver}}
@@ -95,7 +96,10 @@
 		</article>
 		{{#approved}}
 			{{#voted}}
+				<!--
 				<input id="alemma" class="painike" type="submit" name="peruuta" data-restriction-id="{{id}}" value="Peruuta kannatus" />
+				-->
+				<p class="info">Olet kannattanut rajoitetta</p>
 			{{/voted}}
 			{{^voted}}
 				<input id="alemma" class="painike" type="submit" name="kannata" data-restriction-id="{{id}}" value="Kannata rajoitetta" />
@@ -283,7 +287,7 @@
 	<div class="tiedotteet">
 		<h1>Toiminto vaatii kirjautumisen</h1>
 		<article>
-		<p>Tämä toiminto on sallittu vain kirjautuneille käyttäjille. Jos et vielä omista käyttäjätunnuksia, rekisteröidy ensin.</p>
+		<p>Tämä toiminto on mahdollinen vain palveluun kirjautuneille käyttäjille. Jos sinulla on jo käyttäjätunnukset, <a id="registerlogin" href="#">kirjaudu sisään</a>. Jos ei, <a id="loginregister" href="#">rekisteröidy kansalaisrajoite.fi-palvelun käyttäjäksi</a>.</p>
 		</article>
 	</div>
 </script>
