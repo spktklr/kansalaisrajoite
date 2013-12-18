@@ -4,6 +4,8 @@ import root
 import bottle
 import argparse
 
+application = root.middleware_app
+
 def main():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--debug', help='enable debug mode and autoreload', action='store_true')
@@ -12,7 +14,7 @@ def main():
 	args = parser.parse_args()
 
 	bottle.debug(args.debug)
-	bottle.run(app=root.middleware_app, reloader=args.debug, host=args.host, port=args.port)
+	bottle.run(app=application, reloader=args.debug, host=args.host, port=args.port)
 
 if __name__ == "__main__":
 	main()
