@@ -282,6 +282,19 @@ div.etusivu {
 	height: 25px;
 	@include border-box;
 }
+
+.alert {
+	margin: 10px 0 20px 0;
+	padding: 15px 10px 3px 50px;
+	background: url(../img/alert2.png) no-repeat 0 0;
+	height: 48px;
+	width: 400px;
+	border: solid 4px $themecolor;
+	box-sizing: border-box;
+	font-size: 20px;
+	text-align:center;
+}
+
 /* RAJOITTEET STYLES */
 .rajoitteet {
 	h1 {
