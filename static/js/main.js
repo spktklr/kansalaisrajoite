@@ -79,6 +79,7 @@
 	/* login event handlers */
 	$(document).on('submit', 'form.kirjautuminen', function(e) {
 		e.preventDefault();
+		$('div.reglog p.alert').hide();
 		
 		$.ajax({
 			url: 'kayttaja/login',
@@ -95,8 +96,11 @@
 					jQuery(document).trigger('close.facebox');
 					routie.reload();
 				},
+				400: function() {
+					$('div.reglog p.alert').show('fast');
+				},
 				401: function() {
-					// todo: tell user about invalid input
+					$('div.reglog p.alert').show('fast');
 				}
 			}
 		});
