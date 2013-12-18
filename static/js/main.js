@@ -69,6 +69,11 @@
 		jQuery.facebox({ ajax: 'otayhteytta.html' });
 		return false;
 	});	
+
+	$(document).on('click', '#forgotpassword', function() {
+		jQuery.facebox({ ajax: 'salasana_unohtui.html' });
+		return false;
+	});	
 	/* modal event handlers end */
 
 	/* login event handlers */
