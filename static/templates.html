@@ -38,7 +38,7 @@
 			{{#approved}}
 				<article>
 					<h4>Kielletään</h4>
-					<p><a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">{{title}}</a></p>
+					<p{{#voted}} class="voted"{{/voted}}><a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">{{title}}</a></p>
 					<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}}</p>
 					<p>{{votes}} kieltäjää</p>
 					<div class="bar" style="width:{{#percentCompleted}}{{votes}}{{/percentCompleted}}%;"></div>

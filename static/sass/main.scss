@@ -435,6 +435,9 @@ div.etusivu {
 	height:4px;
 	background-color:$themecolor;
 }
+.voted {
+	&:after {content:url(../img/voted.png) " ";}
+}
 /* TEE RAJOITE STYLES */
 div.teerajoite, div.tiedotteet {
 	@include scale();

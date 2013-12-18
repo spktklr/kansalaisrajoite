@@ -641,6 +641,10 @@ div.etusivu article h2:nth-of-type(1) {
   background-color: #e56c69;
 }
 
+.voted:after {
+  content: url(../img/voted.png) " ";
+}
+
 /* TEE RAJOITE STYLES */
 div.teerajoite, div.tiedotteet {
   margin: 0 auto;
