@@ -1,4 +1,6 @@
 (function ($) {
+	var defaultLocale = 'fi-Fi';
+	
 	// user information
 	var user = {
 		isLogged: false,
@@ -28,7 +30,7 @@
 	
 	var convertToDateStr = function(text, render) {
 		var timestamp = parseInt(render(text))*1000;
-		return new Date(timestamp).toLocaleDateString('fi-FI');
+		return new Date(timestamp).toLocaleDateString(defaultLocale);
 	}
 	
 	var percentCompleted = function(text, render) {
@@ -245,19 +247,51 @@
 	var showRestrictions = function(data, order) {
 		// sort functions
 		var sort = {
-			byAge: function(a, b) { return a.created > b.created },
-			byVotes: function(a, b) { return a.votes < b.votes }
+			byAge: function(a, b) { return a.created < b.created },
+			byVotes: function(a, b) { return a.votes < b.votes },
+			byTitle: function(a, b) { return a.title.localeCompare(b.title, defaultLocale); }
 		}
 		
 		switch(order) {
 		case 'aika':
+		default:
 			data.restrictions.sort(sort.byAge);
-			data.sortedByAge = true;
+			data.sort = {
+				byAge: true,
+				byAgeDesc: true
+			}
+			break;
+		case '-aika':
+			data.restrictions.sort(sort.byAge).reverse();
+			data.sort = {
+				byAge: true
+			}
 			break;
 		case 'aanet':
-		default:
 			data.restrictions.sort(sort.byVotes);
-			data.sortedByVotes = true;
+			data.sort = {
+				byVotes: true,
+				byVotesDesc: true
+			}
+			break;
+		case '-aanet':
+			data.restrictions.sort(sort.byVotes).reverse();
+			data.sort = {
+				byVotes: true
+			}
+			break;
+		case 'otsikko':
+			data.restrictions.sort(sort.byTitle);
+			data.sort = {
+				byTitle: true,
+				byTitleDesc: true
+			}
+			break;
+		case '-otsikko':
+			data.restrictions.sort(sort.byTitle).reverse();
+			data.sort = {
+				byTitle: true
+			}
 			break;
 		}
 		

@@ -23,8 +23,17 @@
 		<h1>Selaa kansalaisrajoitteita</h1>
 		<div class="rajoitenavi">
 			<ul>
-				<li{{#sortedByAge}} class="valittu"{{/sortedByAge}}><a href="#/rajoitteet/aika">Luomisaika</a></li>
-				<li{{#sortedByVotes}} class="valittu"{{/sortedByVotes}}><a href="#/rajoitteet/aanet">Kieltäjiä</a></li>
+				{{#sort}}
+				<li{{#byAge}} class="valittu"{{/byAge}}>
+					<a href="#/rajoitteet/{{#byAgeDesc}}-{{/byAgeDesc}}aika">Luomisaika{{#byAge}} {{#byAgeDesc}}▾{{/byAgeDesc}}{{^byAgeDesc}}▴{{/byAgeDesc}}{{/byAge}}</a>
+				</li>
+				<li{{#byVotes}} class="valittu"{{/byVotes}}>
+					<a href="#/rajoitteet/{{#byVotesDesc}}-{{/byVotesDesc}}aanet">Äänet{{#byVotes}} {{#byVotesDesc}}▾{{/byVotesDesc}}{{^byVotesDesc}}▴{{/byVotesDesc}}{{/byVotes}}</a>
+				</li>
+				<li{{#byTitle}} class="valittu"{{/byTitle}}>
+					<a href="#/rajoitteet/{{#byTitleDesc}}-{{/byTitleDesc}}otsikko">Otsikko{{#byTitle}} {{#byTitleDesc}}▾{{/byTitleDesc}}{{^byTitleDesc}}▴{{/byTitleDesc}}{{/byTitle}}</a>
+				</li>
+				{{/sort}}
 			</ul>
 			<!--
 			<ul>
