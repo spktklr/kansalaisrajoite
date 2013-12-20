@@ -328,10 +328,10 @@
 							show('section', 'error-login');
 						}
 					},
-					'/ohjeet/:fragment?': function(fragment) {
+					'/ohjeet/:anchor?': function(anchor) {
 						show('section', 'ohjeet');
-						if (fragment) {
-							scrollTo('#' + fragment);
+						if (anchor) {
+							scrollTo('#' + anchor);
 						}
 					},
 					'/tiedotteet': function() {
