@@ -314,7 +314,7 @@ div.etusivu article h2:nth-of-type(1) {
   line-height: 100%;
 }
 
-.painike {
+.painike, .fbpainike, .twpainike {
   color: white;
   background-color: #e56c69;
   height: 30px;
@@ -325,7 +325,7 @@ div.etusivu article h2:nth-of-type(1) {
   transition: background, 0.2s ease-in;
 }
 @media screen and (min-width: 980px) {
-  .painike {
+  .painike, .fbpainike, .twpainike {
     background: #e56c69 url(../img/nuoli3.png) no-repeat 30px;
     text-align: right;
     padding: 14px 28px 0 0;
@@ -336,7 +336,7 @@ div.etusivu article h2:nth-of-type(1) {
   }
 }
 @media screen and (max-width: 980px) {
-  .painike {
+  .painike, .fbpainike, .twpainike {
     text-align: center;
     padding: 14px 28px 0 0;
     -webkit-transition: background, 0.2s ease-in;
@@ -346,13 +346,41 @@ div.etusivu article h2:nth-of-type(1) {
   }
 }
 @media screen and (min-width: 980px) {
-  .painike:hover {
+  .painike:hover, .fbpainike:hover, .twpainike:hover {
     background: #e15753 url(../img/nuoli3.png) no-repeat 33px;
   }
 }
 @media screen and (max-width: 980px) {
-  .painike:hover {
+  .painike:hover, .fbpainike:hover, .twpainike:hover {
     background: #e15753;
+  }
+}
+
+.fbpainike {
+  background-color: gainsboro;
+}
+@media screen and (min-width: 980px) {
+  .fbpainike:hover {
+    background: #3b5998 url(../img/fbnuoli3.png) no-repeat 33px;
+  }
+}
+@media screen and (max-width: 980px) {
+  .fbpainike:hover {
+    background: #3B5998;
+  }
+}
+
+.twpainike {
+  background-color: gainsboro;
+}
+@media screen and (min-width: 980px) {
+  .twpainike:hover {
+    background: #4099ff url(../img/twnuoli3.png) no-repeat 33px;
+  }
+}
+@media screen and (max-width: 980px) {
+  .twpainike:hover {
+    background: #4099FF;
   }
 }
 
@@ -735,7 +763,7 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
   outline: none;
 }
 
-.painike {
+.painike, .fbpainike, .twpainike {
   display: block;
   font-family: 'Merriweather Sans', sans-serif;
   margin: 30px auto;

@@ -195,6 +195,30 @@ div.etusivu {
 		}
 	}
 }
+.fbpainike {
+	@extend .painike;
+	background-color:$headergray;
+	&:hover {
+		@include wide{
+		background:#3B5998 url(../img/fbnuoli3.png) no-repeat 33px;
+		}
+		@include narrow{
+			background:#3B5998;
+		}
+	}
+}
+.twpainike {
+	@extend .painike;
+	background-color:$headergray;
+	&:hover {
+		@include wide{
+		background:#4099FF url(../img/twnuoli3.png) no-repeat 33px;
+		}
+		@include narrow{
+			background:#4099FF;
+		}
+	}
+}
 /* RAJOITE STYLES */
 .rajoite {
 	h1 {
