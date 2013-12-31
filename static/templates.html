@@ -119,8 +119,12 @@
 			{{/isAdmin}}
 			<input id="alemma" class="painike" type="submit" name="poista" data-restriction-id="{{id}}" value="Poista rajoite" />
 		{{/approved}}
-			<input id="alemma" class="fbpainike" type="submit" name="kannata" data-restriction-id="{{id}}" value="Jaa rajoite Facebookissa" />
-			<input id="alemma" class="twpainike" type="submit" name="kannata" data-restriction-id="{{id}}" value="Jaa rajoite Twitterissa" />
+			<a target='_blank' href="https://www.facebook.com/sharer.php?u=https%3A//www.kansalaisrajoite.fi/#/rajoite/{{id}}/&t=Ymp%C3%A4rivuorokautisessa%20hoidossa%20oleville%20on%20saatava%20lakis%C3%A4%C3%A4teinen%20oikeus%20ulkoiluun">
+				<input id="alemma" class="fbpainike" type="submit" name="kannata" data-restriction-id="{{id}}" value="Jaa rajoite Facebookissa" />
+			</a>
+			<a target="_blank" href="https://twitter.com/home?status=Ymp%C3%A4rivuorokautisessa%20hoidossa%20oleville%20on%20saatava%20lakis%C3%A4%C3%A4teinen%20oikeus%20ulkoiluun:%20https%3A//www.kansalaisrajoite.fi/#/rajoite/625" >
+				<input id="alemma" class="twpainike" type="submit" name="kannata" data-restriction-id="{{id}}" value="Jaa rajoite Twitterissa" />
+			</a>
 	</div>
 </script>
 
