@@ -1,6 +1,6 @@
-(function ($) {
+$(function () {
 	var defaultLocale = 'fi-Fi';
-	
+
 	// user information
 	var user = {
 		isLogged: false,
@@ -14,75 +14,75 @@
 			this.info = null;
 		}
 	};
-	
+
 	var slugFunc = function(text) {
 		// \u00E4 = ä
 		// \u00F6 = ö
 		return text
-		.toLowerCase()
-		.replace(/[^\w\u00E4\u00F6 ]+/g, '')
-		.replace(/ +/g, '-');
+			.toLowerCase()
+			.replace(/[^\w\u00E4\u00F6 ]+/g, '')
+			.replace(/ +/g, '-');
 	}
-	
+
 	var convertToSlug = function(text, render) {
 		return slugFunc(render(text));
 	}
-	
+
 	var convertToDateStr = function(text, render) {
 		var timestamp = parseInt(render(text))*1000;
 		return new Date(timestamp).toLocaleDateString(defaultLocale);
 	}
-	
+
 	var percentCompleted = function(text, render) {
 		var threshold = 101;
 		return ((Math.min(parseInt(render(text)), threshold) / threshold) * 100);
 	}
-	
+
 	var show = function(element, template, data) {
 		$(element).mustache(template, (data === undefined ? null : data), { method: 'html' });
 	}
-	
+
 	var scrollTo = function(element) {
 		$(element)[0].scrollIntoView();
 	}
-	
+
 	/* modal event handlers start */
-	$(document).on('click', '#kirjaudu', function() {
+	$(document).on('click', '#kirjaudu', function () {
 		jQuery.facebox({ ajax: 'kirjaudu.html' });
 		return false;
 	});
 
-	$(document).on('click', '#rekisteroidy', function() {
+	$(document).on('click', '#rekisteroidy', function () {
 		jQuery.facebox({ ajax: 'rekisteroidy.html' });
 		return false;
 	});
 
-	$(document).on('click', '#loginregister', function() {
+	$(document).on('click', '#loginregister', function () {
 		jQuery.facebox({ ajax: 'rekisteroidy.html' });
 		return false;
 	});
 
-	$(document).on('click', '#registerlogin', function() {
+	$(document).on('click', '#registerlogin', function () {
 		jQuery.facebox({ ajax: 'kirjaudu.html' });
 		return false;
 	});
 
-	$(document).on('click', '#ota-yhteytta', function() {
+	$(document).on('click', '#ota-yhteytta', function () {
 		jQuery.facebox({ ajax: 'otayhteytta.html' });
 		return false;
-	});	
+	});
 
-	$(document).on('click', '#forgotpassword', function() {
+	$(document).on('click', '#forgotpassword', function () {
 		jQuery.facebox({ ajax: 'salasana_unohtui.html' });
 		return false;
-	});	
+	});
 	/* modal event handlers end */
 
 	/* login event handlers */
-	$(document).on('submit', 'form.kirjautuminen', function(e) {
+	$(document).on('submit', 'form.kirjautuminen', function (e) {
 		e.preventDefault();
 		$('div.reglog p.alert').hide();
-		
+
 		$.ajax({
 			url: 'kayttaja/login',
 			global: false,
@@ -107,8 +107,8 @@
 			}
 		});
 	});
-	
-	$(document).on('click', 'a.ulos', function() {
+
+	$(document).on('click', 'a.ulos', function () {
 		$.ajax({
 			url: 'kayttaja/logout',
 			type: 'POST',
@@ -118,39 +118,39 @@
 				routie.reload();
 			}
 		});
-		
+
 		return false;
 	});
 	/* login event handlers end */
-	
+
 	// registration event handlers
-	$(document).on('submit', 'form.rekisteroityminen', function(e) {
+	$(document).on('submit', 'form.rekisteroityminen', function (e) {
 		var name = $('form.rekisteroityminen input[name=name]').val(),
 			city = $('form.rekisteroityminen input[name=city]').val(),
 			email = $('form.rekisteroityminen input[name=email]').val(),
 			pass1 = $('form.rekisteroityminen input[name=password1]').val(),
 			pass2 = $('form.rekisteroityminen input[name=password2]').val();
-		
+
 		e.preventDefault();
 		$('div.reglog p.alert').hide();
-		
+
 		// quick form validation
 		if (pass1 !== pass2) {
 			$('div.reglog p.alert.error-pwmismatch').show('fast');
 			return;
 		}
-		
+
 		if (pass1.length < 8) {
 			$('div.reglog p.alert.error-pwlength').show('fast');
 			return;
 		}
-		
+
 		// bwhahahahahaha
 		if (pass1 === 'kansalaisrajoite' || pass1 === 'salasana' || pass1 === 'password') {
 			$('div.reglog p.alert.error-pwsimple').show('fast');
 			return;
 		}
-		
+
 		$.ajax({
 			url: 'kayttaja/rekisteroidy',
 			global: false,
@@ -177,9 +177,9 @@
 			}
 		});
 	});
-	
+
 	/* restriction view click handlers */
-	$(document).on('click', 'input[name="kannata"]', function() {
+	$(document).on('click', 'input[name="kannata"]', function () {
 		$.ajax({
 			url: 'kannatus/' + $(this).data('restriction-id'),
 			type: 'POST',
@@ -188,8 +188,8 @@
 			}
 		});
 	});
-	
-	$(document).on('click', 'input[name="peruuta"]', function() {
+
+	$(document).on('click', 'input[name="peruuta"]', function () {
 		$.ajax({
 			url: 'kannatus/' + $(this).data('restriction-id'),
 			type: 'DELETE',
@@ -198,8 +198,8 @@
 			}
 		});
 	});
-	
-	$(document).on('click', 'input[name="vahvista"]', function() {
+
+	$(document).on('click', 'input[name="vahvista"]', function () {
 		$.ajax({
 			url: 'rajoite/' + $(this).data('restriction-id') + '/vahvista',
 			type: 'POST',
@@ -208,8 +208,8 @@
 			}
 		});
 	});
-	
-	$(document).on('click', 'input[name="poista"]', function() {
+
+	$(document).on('click', 'input[name="poista"]', function () {
 		$.ajax({
 			url: 'rajoite/' + $(this).data('restriction-id'),
 			type: 'DELETE',
@@ -219,11 +219,11 @@
 		});
 	});
 	/* restriction view click handlers end */
-	
+
 	// new restriction submit button click handler
-	$(document).on('submit', 'form.teerajoite', function(e) {
+	$(document).on('submit', 'form.teerajoite', function (e) {
 		e.preventDefault();
-		
+
 		$.ajax({
 			url: 'rajoite',
 			global: false,
@@ -242,7 +242,7 @@
 			}
 		});
 	});
-	
+
 	/* content functions */
 	var showRestrictions = function(data, order) {
 		// sort functions
@@ -251,7 +251,7 @@
 			byVotes: function(a, b) { return a.votes < b.votes },
 			byTitle: function(a, b) { return a.title.localeCompare(b.title, defaultLocale); }
 		}
-		
+
 		switch(order) {
 		case 'aika':
 		default:
@@ -294,20 +294,20 @@
 			}
 			break;
 		}
-		
+
 		data.slug = function() { return convertToSlug; };
 		data.date = function() { return convertToDateStr; };
 		data.percentCompleted = function() { return percentCompleted; };
-		
+
 		show('section', 'rajoitteet', data);
 	}
 	/* content functions end */
-	
+
 	// load templates
 	$.Mustache.load('templates.html')
-		.done(function() {
+		.done(function () {
 			// catch all ajax errors and show error page
-			$(document).ajaxError(function(event, request, settings) {
+			$(document).ajaxError(function (event, request, settings) {
 				switch (request.status) {
 				case 401:
 					show('section', 'error-login');
@@ -323,39 +323,39 @@
 					break;
 				}
 			});
-			
+
 			// load and display login status
-			$.getJSON('kayttaja', function(data) {
+			$.getJSON('kayttaja', function (data) {
 				if (data.name !== undefined) {
 					user.setLoggedIn(data);
 				} else {
 					user.setLoggedOut();
 				}
-				
+
 				show('header', 'headerbox', user);
-				
+
 				// setup routing
 				routie({
-					'': function() {
+					'': function () {
 						// default to the front page
 						show('section', 'etusivu');
 					},
-					'/etusivu': function() {
+					'/etusivu': function () {
 						show('section', 'etusivu');
 					},
 					'/rajoitteet/:order?': function(order) {
-						$.getJSON('rajoite', function(data) {
+						$.getJSON('rajoite', function (data) {
 							showRestrictions(data, order);
 						});
 					},
 					'/rajoite/:id/:slug?': function(id, slug) {
-						$.getJSON('rajoite/' + id, function(data) {
+						$.getJSON('rajoite/' + id, function (data) {
 							data.date = function() { return convertToDateStr; };
 							data.isAdmin = (user.info ? user.info.admin : false);
 							show('section', 'rajoite', data);
 						});
 					},
-					'/rajoita': function() {
+					'/rajoita': function () {
 						if (user.isLogged) {
 							show('section', 'teerajoite');
 						} else {
@@ -368,27 +368,27 @@
 							scrollTo('#' + anchor);
 						}
 					},
-					'/tiedotteet': function() {
-						$.getJSON('tiedote', function(data) {
+					'/tiedotteet': function () {
+						$.getJSON('tiedote', function (data) {
 							data.hasNews = (data.news.length > 0);
 							data.date = function() { return convertToDateStr; };
 							show('section', 'tiedotteet', data);
 						});
 					},
-					'/pasvenska': function() {
+					'/pasvenska': function () {
 						show('section', 'pasvenska');
 					},
-					'/inenglish': function() {
+					'/inenglish': function () {
 						show('section', 'inenglish');
 					},
-					'/ota-yhteytta': function() {
+					'/ota-yhteytta': function () {
 						show('section', 'ota-yhteytta');
 					},
-					'*': function() {
+					'*': function () {
 						// show 404 page for other urls
 						show('section', 'error-notfound');
 					}
 				});
 			});
 		});
-})(jQuery);
+});
