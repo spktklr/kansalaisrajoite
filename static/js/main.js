@@ -306,6 +306,15 @@ $(function () {
 	// load templates
 	$.Mustache.load('templates.html')
 		.done(function () {
+
+			/* 
+			WHERE TO PUT O_o ?
+			$('.tooltip').tooltipster();
+			as in
+			$(document).ready(function(){$('.tooltip').tooltipster();});
+			*/
+
+
 			// catch all ajax errors and show error page
 			$(document).ajaxError(function (event, request, settings) {
 				switch (request.status) {

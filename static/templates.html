@@ -76,6 +76,9 @@
 <script id="rajoite" type="text/html">
 	<div class="rajoite">
 		<h1>{{title}}</h1>
+		<a href="#TWITTER"><div id="tw" class="tooltip" title="Jaa Twitterissa"></div></a>
+		<a href="#FACEBOOK"><div id="fb" class="tooltip" title="Jaa Facebookissa"></div></a>
+		<div class="clear"></div>
 		<article>
 			{{#approved}}
 				<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}} ja on saavuttanut <em>{{votes}}</em> kannattajaa.</p>
@@ -119,12 +122,6 @@
 			{{/isAdmin}}
 			<input id="alemma" class="painike" type="submit" name="poista" data-restriction-id="{{id}}" value="Poista rajoite" />
 		{{/approved}}
-			<a target='_blank' href="https://www.facebook.com/sharer.php?u=https%3A//www.kansalaisrajoite.fi/#/rajoite/{{id}}/&t=Ymp%C3%A4rivuorokautisessa%20hoidossa%20oleville%20on%20saatava%20lakis%C3%A4%C3%A4teinen%20oikeus%20ulkoiluun">
-				<input id="alemma" class="fbpainike" type="submit" name="kannata" data-restriction-id="{{id}}" value="Jaa rajoite Facebookissa" />
-			</a>
-			<a target="_blank" href="https://twitter.com/home?status=Ymp%C3%A4rivuorokautisessa%20hoidossa%20oleville%20on%20saatava%20lakis%C3%A4%C3%A4teinen%20oikeus%20ulkoiluun:%20https%3A//www.kansalaisrajoite.fi/#/rajoite/625" >
-				<input id="alemma" class="twpainike" type="submit" name="kannata" data-restriction-id="{{id}}" value="Jaa rajoite Twitterissa" />
-			</a>
 	</div>
 </script>
 
