@@ -190,16 +190,6 @@ $(function () {
 		});
 	});
 
-	$(document).on('click', 'input[name="peruuta"]', function () {
-		$.ajax({
-			url: 'kannatus/' + $(this).data('restriction-id'),
-			type: 'DELETE',
-			success: function() {
-				routie.reload();
-			}
-		});
-	});
-
 	$(document).on('click', 'input[name="vahvista"]', function () {
 		$.ajax({
 			url: 'rajoite/' + $(this).data('restriction-id') + '/vahvista',

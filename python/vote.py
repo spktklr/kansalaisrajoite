@@ -34,7 +34,8 @@ def create(db, id):
 	except NoResultFound:
 		return HTTPError(404, 'Not found')
 
-@app.delete('/<id:int>')
+# Disabled
+# @app.delete('/<id:int>')
 def delete(db, id):
 	try:
 		user = session_user(request, db)
