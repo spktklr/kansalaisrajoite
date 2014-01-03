@@ -40,6 +40,7 @@ $(function () {
 
 	var show = function(element, template, data) {
 		$(element).mustache(template, (data === undefined ? null : data), { method: 'html' });
+		$('.tooltip').tooltipster();
 	}
 
 	var scrollTo = function(element) {
@@ -306,14 +307,6 @@ $(function () {
 	// load templates
 	$.Mustache.load('templates.html')
 		.done(function () {
-
-			/* 
-			WHERE TO PUT O_o ?
-			$('.tooltip').tooltipster();
-			as in
-			$(document).ready(function(){$('.tooltip').tooltipster();});
-			*/
-
 
 			// catch all ajax errors and show error page
 			$(document).ajaxError(function (event, request, settings) {
