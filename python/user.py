@@ -36,6 +36,10 @@ def register(db):
 	
 	user.password = bcrypt.hashpw(password, bcrypt.gensalt())
 	db.add(user)
+	db.flush()
+	
+	session = request.environ['beaker.session']
+	session['user_id'] = user.id
 	
 	return user.toDict(True)
 
