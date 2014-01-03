@@ -29,7 +29,7 @@ $(function () {
 	}
 
 	var convertToDateStr = function(text, render) {
-		var timestamp = parseInt(render(text))*1000;
+		var timestamp = parseInt(render(text)) * 1000;
 		return new Date(timestamp).toLocaleDateString(defaultLocale);
 	}
 
