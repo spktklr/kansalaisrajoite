@@ -215,7 +215,16 @@ $(function () {
 			+ '&p[url]=' + encodeURIComponent(location.href)
 			+ '&p[images][0]=' + encodeURIComponent(location.origin + '/img/logo.png')
 			+ '&p[title]=' + encodeURIComponent('Kielletään ' + $(this).data('title'))
-			+ '&p[summary]=' + encodeURIComponent('Kieltoja ei ole koskaan liikaa.');
+			+ '&p[summary]=' + encodeURIComponent('Kansalaisrajoite.fi - mitä kieltäisimme seuraavaksi?');
+		window.open(url, '_blank');
+		return false;
+	});
+
+	$(document).on('click', 'a.sharetw', function () {
+		var url = 'https://twitter.com/home?status='
+			+ encodeURIComponent('Kielletään ' + $(this).data('title')) + ': ')
+			+ encodeURIComponent(location.href)
+			+ encodeURIComponent(' #kansalaisrajoite');
 		window.open(url, '_blank');
 		return false;
 	});

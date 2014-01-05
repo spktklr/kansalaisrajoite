@@ -46,7 +46,7 @@ ol {
 nav,footer {
 	@include scale();
 }
-.hidden, {
+.hidden {
 	display:none;
 }
 /* HEADER STYLES */
@@ -441,7 +441,7 @@ div.etusivu {
 	background:url(../img/dot.gif) bottom repeat-x;
 	height:25px;
 	@include narrow {
-		height:75px;
+		height:55px;
 	}
 }
 .alarajoitenavi {
