@@ -222,7 +222,7 @@ $(function () {
 
 	$(document).on('click', 'a.sharetw', function () {
 		var url = 'https://twitter.com/home?status='
-			+ encodeURIComponent('Kielletään ' + $(this).data('title')) + ': ')
+			+ encodeURIComponent('Kielletään ' + $(this).data('title')) + ': '
 			+ encodeURIComponent(location.href)
 			+ encodeURIComponent(' #kansalaisrajoite');
 		window.open(url, '_blank');
