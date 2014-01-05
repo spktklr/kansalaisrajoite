@@ -257,8 +257,8 @@ $(function () {
 	var showRestrictions = function(data, order) {
 		// sort functions
 		var sort = {
-			byAge: function(a, b) { return a.created < b.created },
-			byVotes: function(a, b) { return a.votes < b.votes },
+			byAge: function(a, b) { return b.created - a.created },
+			byVotes: function(a, b) { return b.votes - a.votes },
 			byTitle: function(a, b) { return a.title.localeCompare(b.title, defaultLocale); }
 		}
 
