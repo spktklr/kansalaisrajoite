@@ -953,11 +953,6 @@ em {
   color: #e56c69;
 }
 
-span {
-  font-weight: 300;
-  font-size: 37px;
-}
-
 ol {
   list-style-type: decimal;
   list-style-position: inside;
@@ -1056,6 +1051,10 @@ header div p span:after {
     margin: -12px 0 0 100px;
     font-size: 36px;
   }
+}
+nav span {
+  font-weight: 300;
+  font-size: 37px;
 }
 nav ul {
   font-size: 14px;
@@ -1466,18 +1465,32 @@ div.etusivu article h2:nth-of-type(1) {
   color: #e56c69;
 }
 
-.rajoitenavi ul:nth-of-type(2), .alarajoitenavi ul {
-  float: right;
+.pagi, .botpagi {
+  font-size: 12px;
+  padding: 0 0 12px 0;
+  height: 12px;
 }
-@media screen and (max-width: 980px) {
-  .rajoitenavi ul:nth-of-type(2), .alarajoitenavi ul {
-    float: none;
-    margin: 20px 0 0 0;
+@media screen and (min-width: 980px) {
+  .pagi, .botpagi {
+    float: right;
   }
 }
+@media screen and (max-width: 980px) {
+  .pagi, .botpagi {
+    text-align: center;
+  }
+}
+.pagi *, .botpagi * {
+  margin-left: 5px;
+}
 
-.rajoitenavi ul {
+.botpagi {
+  padding: 12px 0 12px 0;
+}
+
+.rajoitenavi {
   float: left;
+  padding: 0 0 12px 0;
 }
 
 .rajoitteet ul:nth-of-type(2) li:nth-of-type(1):before, .alarajoitenavi li:nth-of-type(1):before {
@@ -1498,26 +1511,6 @@ div.etusivu article h2:nth-of-type(1) {
 }
 .valittu a:hover {
   color: white;
-}
-
-.rajoitenavi {
-  text-align: center;
-  width: 100%;
-  background: url(../img/dot.gif) bottom repeat-x;
-  height: 25px;
-}
-@media screen and (max-width: 980px) {
-  .rajoitenavi {
-    height: 55px;
-  }
-}
-
-.alarajoitenavi {
-  text-align: center;
-  width: 100%;
-  background: url(../img/dot.gif) top repeat-x;
-  margin: 8px 0 0 0;
-  padding: 12px 0 0 0;
 }
 
 .rajoitteet h4, .rajoitteet p:nth-of-type(1) {
@@ -1756,6 +1749,11 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
 
 .clear {
   clear: both;
+}
+
+.line {
+  width: 100%;
+  border-bottom: 1px solid gainsboro;
 }
 
 /* FOOTER STYLES */

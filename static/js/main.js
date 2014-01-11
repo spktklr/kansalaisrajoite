@@ -41,6 +41,7 @@ $(function () {
 	var show = function(element, template, data) {
 		$(element).mustache(template, (data === undefined ? null : data), { method: 'html' });
 		$('.tooltip').tooltipster();
+		$('.rajoitteet').pajinate();
 	}
 
 	var scrollTo = function(element) {
