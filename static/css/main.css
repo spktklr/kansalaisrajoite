@@ -1465,32 +1465,50 @@ div.etusivu article h2:nth-of-type(1) {
   color: #e56c69;
 }
 
-.pagi, .botpagi {
-  font-size: 12px;
-  padding: 0 0 12px 0;
-  height: 12px;
-}
-@media screen and (min-width: 980px) {
-  .pagi, .botpagi {
-    float: right;
-  }
-}
-@media screen and (max-width: 980px) {
-  .pagi, .botpagi {
-    text-align: center;
-  }
-}
-.pagi *, .botpagi * {
-  margin-left: 5px;
-}
-
-.botpagi {
-  padding: 12px 0 12px 0;
-}
-
 .rajoitenavi {
   float: left;
   padding: 0 0 12px 0;
+}
+
+.pagination, .info_text {
+  font-size: 12px;
+  padding: 12px 0 12px 0;
+  height: 12px;
+}
+.pagination *, .info_text * {
+  margin-left: 5px;
+}
+@media screen and (min-width: 980px) {
+  .pagination, .info_text {
+    text-align: right;
+  }
+}
+@media screen and (max-width: 980px) {
+  .pagination, .info_text {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 980px) {
+  .info_text {
+    float: left;
+  }
+}
+@media screen and (max-width: 980px) {
+  .info_text {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .narrowclear {
+    clear: both;
+  }
+}
+@media screen and (min-width: 980px) {
+  .narrowclear {
+    display: hidden;
+  }
 }
 
 .rajoitteet ul:nth-of-type(2) li:nth-of-type(1):before, .alarajoitenavi li:nth-of-type(1):before {
@@ -1511,6 +1529,11 @@ div.etusivu article h2:nth-of-type(1) {
 }
 .valittu a:hover {
   color: white;
+}
+
+.active_page {
+  color: #e56c69;
+  font-weight: bold;
 }
 
 .rajoitteet h4, .rajoitteet p:nth-of-type(1) {

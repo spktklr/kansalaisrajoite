@@ -49,8 +49,8 @@
                 // Setup default option values
                 var defaults = {
                         item_container_id: '.rajoitelista',
-                        items_per_page: 3,
-                        nav_panel_id: '.pagi',
+                        items_per_page: 20,
+                        nav_panel_id: '.pagination',
                         nav_info_id: '.info_text',
                         num_page_links_to_display: 3,
                         start_page: 0,
@@ -60,7 +60,7 @@
                         nav_label_next: 'Seuraava',
                         nav_label_last: 'Viimeinen',
                         nav_order: ["first", "prev", "num", "next", "last"],
-                        nav_label_info: 'Showing {0}-{1} of {2} results',
+                        nav_label_info: 'Esillä {0}-{1} yhteensä {2} rajoitteesta',
                         show_first_last: true,
                         abort_on_small_lists: false,
                         jquery_ui: false,

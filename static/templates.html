@@ -36,31 +36,32 @@
 				{{/sort}}
 			</ul>
 		</div>
-		<div class="pagi toppagi">
-		</div>
+		<div class="narrowclear"></div>
+		<div class="pagination"></div>
 		<div class="clear line"></div>
 		<div class="rajoitelista">
-		{{#restrictions}}
-			{{#approved}}
-				<article>
-					<h4>Kielletään</h4>
-					<p{{#voted}} class="voted"{{/voted}}><a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">{{title}}</a></p>
-					<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}}</p>
-					<p>{{votes}} kieltäjää</p>
-					<div class="bar" style="width:{{#percentCompleted}}{{votes}}{{/percentCompleted}}%;"></div>
-				</article>
-			{{/approved}}
-			{{^approved}}
-				<article>
-					<h4>Jonossa</h4>
-					<p><a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">{{title}}</a></p>
-					<p>Luotu {{#date}}{{created}}{{/date}}</p>
-				</article>
-			{{/approved}}
-		{{/restrictions}}
+			{{#restrictions}}
+				{{#approved}}
+					<article>
+						<h4>Kielletään</h4>
+						<p{{#voted}} class="voted"{{/voted}}><a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">{{title}}</a></p>
+						<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}}</p>
+						<p>{{votes}} kieltäjää</p>
+						<div class="bar" style="width:{{#percentCompleted}}{{votes}}{{/percentCompleted}}%;"></div>
+					</article>
+				{{/approved}}
+				{{^approved}}
+					<article>
+						<h4>Jonossa</h4>
+						<p><a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">{{title}}</a></p>
+						<p>Luotu {{#date}}{{created}}{{/date}}</p>
+					</article>
+				{{/approved}}
+			{{/restrictions}}
 		</div>
 		<div class="clear line" style="margin-top: 8px;"></div>
-		<div class="pagi botpagi"></div>
+		<div class="info_text"></div>
+		<div class="pagination"></div>
 	</div>
 </script>
 

@@ -401,31 +401,39 @@ div.etusivu {
 		}
 	}
 } 
-.pagi {
-	font-size: 12px;
+.rajoitenavi {
+	float: left;
 	padding: 0 0 12px 0;
+}
+.pagination {
+	font-size: 12px;
+	padding: 12px 0 12px 0;
 	height: 12px;
+	* {
+		margin-left: 5px;
+	}
 	@include wide {
-		float: right;
+		text-align: right;
 	}
 	@include narrow {
 		text-align: center;
 	}
-	* {
-		margin-left: 5px;
+}
+.info_text {
+	@extend .pagination;
+	@include wide {
+		float: left;
+	}
+	@include narrow {
+		text-align: center;
 	}
 }
-.toppagi {
-}
-.botpagi {
-	@extend .pagi;
-	padding: 12px 0 12px 0;
-}
-.rajoitenavi {
-	float: left;
-	padding: 0 0 12px 0;
+.narrowclear {
 	@include narrow {
-
+		clear: both;
+	}
+	@include wide {
+		display: hidden;
 	}
 }
 .rajoitteet ul:nth-of-type(2) li:nth-of-type(1):before, .alarajoitenavi li:nth-of-type(1):before {
@@ -443,6 +451,10 @@ div.etusivu {
 			color: white;
 		}
 	}
+}
+.active_page {
+	color: $themecolor;
+	font-weight: bold;
 }
 .rajoitteet h4, .rajoitteet p:nth-of-type(1) {
 	float:left;
