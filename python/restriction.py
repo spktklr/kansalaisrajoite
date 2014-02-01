@@ -33,7 +33,7 @@ def read_all(db):
 	elif user:
 		items = db.query(model.Restriction).filter((model.Restriction.approved == True) | (model.Restriction.user == user))
 	else:
-		items = db.query(model.Restriction).filter_by(approved=True)
+		items = db.query(model.Restriction).filter(model.Restriction.approved == True)
 	
 	return { 'restrictions': [ i.toDict(is_admin, user) for i in items ] }
 
