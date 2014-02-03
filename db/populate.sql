@@ -5,12 +5,13 @@ DELETE FROM restriction;
 DELETE FROM vote;
 DELETE FROM news;
 
-INSERT INTO "user" (email, name, password, city, admin) VALUES ('aatu@example.com', 'Aatu Admin', '$2a$12$OCm372a0jVx3aiyVFF/20ebBPYDuiNbF68trrjXnS.JCdeRaeMkNq', 'Kittilä', true);
-INSERT INTO "user" (email, name, password, city, admin) VALUES ('yrjo@example.com', 'Yrjö Ylläpitäjä', '$2a$12$SWAvjbRh7R1Zj/vupR1xouP.Vand9t7UhqQjuun4tmbUlFdRirCtO', 'Pori', true);
-INSERT INTO "user" (email, name, password, city) VALUES ('matti@example.com', 'Matti Meikäläinen', '$2a$12$IRm8gu.pzPZ/PW1ygJryleLNvUmiEaP7hKhgia/xbB5fDa6j1.GmO', 'Espoo');
-INSERT INTO "user" (email, password) VALUES ('erkki@example.com', '$2a$12$MPNlgEYiL8E642/aoifUI.zFjZ.tZqn6z6M9Q9d4LESLbj6/fOcs6');
-INSERT INTO "user" (email, password, city) VALUES ('tiina@example.com', '$2a$12$35UNCdILjFVkrtQ6EZxQI.iP657igOG9afCWIGIFiA2yX4vw5V7n6', 'Lempäälä');
-INSERT INTO "user" (email, name, password) VALUES ('ville@example.com', 'Ville Virtanen', '$2a$12$PQ./SqmlDBN82Zk5.LjgyORD1Au4TVh3AE93YBH0IagQRJaQpmbcK');
+INSERT INTO "user" (email, name, verified, password, city, admin) VALUES ('aatu@example.com', 'Aatu Admin', TRUE, '$2a$12$OCm372a0jVx3aiyVFF/20ebBPYDuiNbF68trrjXnS.JCdeRaeMkNq', 'Kittilä', true);
+INSERT INTO "user" (email, name, verified, password, city, admin) VALUES ('yrjo@example.com', 'Yrjö Ylläpitäjä', TRUE, '$2a$12$SWAvjbRh7R1Zj/vupR1xouP.Vand9t7UhqQjuun4tmbUlFdRirCtO', 'Pori', true);
+INSERT INTO "user" (email, name, verified, password, city) VALUES ('matti@example.com', 'Matti Meikäläinen', TRUE, '$2a$12$IRm8gu.pzPZ/PW1ygJryleLNvUmiEaP7hKhgia/xbB5fDa6j1.GmO', 'Espoo');
+INSERT INTO "user" (email, verified, password) VALUES ('erkki@example.com', TRUE, '$2a$12$MPNlgEYiL8E642/aoifUI.zFjZ.tZqn6z6M9Q9d4LESLbj6/fOcs6');
+INSERT INTO "user" (email, verified, password, city) VALUES ('tiina@example.com', TRUE, '$2a$12$35UNCdILjFVkrtQ6EZxQI.iP657igOG9afCWIGIFiA2yX4vw5V7n6', 'Lempäälä');
+INSERT INTO "user" (email, name, verified, password) VALUES ('ville@example.com', 'Ville Virtanen', TRUE, '$2a$12$PQ./SqmlDBN82Zk5.LjgyORD1Au4TVh3AE93YBH0IagQRJaQpmbcK');
+INSERT INTO "user" (email, verified, password) VALUES ('teppo@example.com', FALSE, '$2a$12$S..1SMTuQnjgXEEu8gWqN.4hwlaLsEVqaxXPIfW/8oZNkknzdtVvK');
 
 INSERT INTO restriction (title, body, approved, approver_id, user_id, created) VALUES ('Kännykkään puhuminen julkisissa kulkuvälineissä', 'Rajoitteen kuvaus ja perustelut.', true, 1, 3, NOW() - INTERVAL '6 days');
 INSERT INTO restriction (title, body, approved, approver_id, user_id, created) VALUES ('Asioiden kieltäminen', 'Rajoitteen kuvaus ja perustelut.', true, 2, 4, NOW() - INTERVAL '1 day');
