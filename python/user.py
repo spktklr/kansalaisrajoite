@@ -41,6 +41,8 @@ def register(db):
 	user.verification_token = gen_token()
 	
 	db.add(user)
+	
+	# todo: send email with verification link: https://kansalaisrajoite.fi/#/vahvista/<email>/<token>
 
 @app.post('/vahvista')
 def verify(db):
@@ -76,7 +78,7 @@ def send_reset_email(db):
 		user.password_reset_initiated = datetime.now()
 		user.password_reset_token = gen_token()
 		
-		# todo: send email
+		# todo: send email with pw reset link: https://kansalaisrajoite.fi/#/nollaa-salasana/<email>/<token>
 	
 	# to keep emails private we don't want to tell the user if the email exists
 
