@@ -2,6 +2,7 @@
 from bottle import Bottle, HTTPError, request
 import model
 import bcrypt
+from datetime import datetime, timedelta
 from utils import session_user, jsonplugin, gen_token
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -62,8 +63,42 @@ def verify(db):
 	else:
 		return HTTPError(401, 'Unauthorized')
 
+@app.post('/nollaa-salasana-1')
+def send_reset_email(db):
+	email = request.forms.get('email')
 	
-	return user.toDict(True)
+	if not email:
+		return HTTPError(400, 'Bad request')
+	
+	user = db.query(model.User).filter_by(email=email).first()
+	
+	if user:
+		user.password_reset_initiated = datetime.now()
+		user.password_reset_token = gen_token()
+		
+		# todo: send email
+	
+	# to keep emails private we don't want to tell the user if the email exists
+
+@app.post('/nollaa-salasana-2')
+def reset_password(db):
+	email = request.forms.get('email')
+	token = request.forms.get('token')
+	password = request.forms.get('password')
+	
+	if not email or not token or not password or len(password) < 8:
+		return HTTPError(400, 'Bad request')
+	
+	user = db.query(model.User).filter_by(email=email).first()
+	
+	# pw reset token is valid for 1 hour
+	if user and user.password_reset_initiated and user.password_reset_initiated + timedelta(hours=1) >= datetime.now() and user.password_reset_token == token:
+		user.password = bcrypt.hashpw(password, bcrypt.gensalt())
+		
+		user.password_reset_initiated = None
+		user.password_reset_token = None
+	else:
+		return HTTPError(401, 'Unauthorized')
 
 @app.post('/login')
 def login(db):

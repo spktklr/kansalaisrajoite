@@ -66,6 +66,8 @@ class User(Base):
 	verified = Column(Boolean, server_default='FALSE')
 	verification_token = Column(String)
 	password = Column(String)
+	password_reset_initiated = Column(DateTime)
+	password_reset_token = Column(String)
 	city = Column(String)
 	admin = Column(Boolean, server_default='FALSE')
 	registered = Column(DateTime, server_default=func.current_timestamp())
