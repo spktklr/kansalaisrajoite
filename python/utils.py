@@ -2,6 +2,8 @@
 import model
 import json
 import datetime
+import random
+import string
 from bottle import JSONPlugin
 
 def session_user(request, db):
@@ -17,6 +19,8 @@ def session_user(request, db):
 	
 	return db.query(model.User).filter_by(id=user_id).first()
 
+def gen_token():
+	return ''.join(random.choice(string.ascii_letters + string.digits) for x in range(32))
 
 class JsonEncoder(json.JSONEncoder):
 	def default(self, obj):

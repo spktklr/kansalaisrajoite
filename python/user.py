@@ -2,7 +2,7 @@
 from bottle import Bottle, HTTPError, request
 import model
 import bcrypt
-from utils import session_user, jsonplugin
+from utils import session_user, jsonplugin, gen_token
 from sqlalchemy.orm.exc import NoResultFound
 
 app = Bottle()
@@ -35,11 +35,33 @@ def register(db):
 		user.city = city
 	
 	user.password = bcrypt.hashpw(password, bcrypt.gensalt())
-	db.add(user)
-	db.flush()
 	
-	session = request.environ['beaker.session']
-	session['user_id'] = user.id
+	user.verified = False
+	user.verification_token = gen_token()
+	
+	db.add(user)
+
+@app.post('/vahvista')
+def verify(db):
+	email = request.forms.get('email')
+	token = request.forms.get('token')
+	
+	if not email or not token:
+		return HTTPError(400, 'Bad request')
+	
+	user = db.query(model.User).filter_by(email=email).first()
+	
+	if user and not user.verified and user.verification_token == token:
+		user.verified = True
+		user.verification_token = None
+		
+		session = request.environ['beaker.session']
+		session['user_id'] = user.id
+		
+		return user.toDict(True)
+	else:
+		return HTTPError(401, 'Unauthorized')
+
 	
 	return user.toDict(True)
 
@@ -53,7 +75,9 @@ def login(db):
 	
 	user = db.query(model.User).filter_by(email=email).first()
 	
-	if user and bcrypt.hashpw(password, user.password.encode('utf-8')) == user.password:
+	if user and not user.verified:
+		return HTTPError(412, 'Precondition failed')
+	if user and user.verified and bcrypt.hashpw(password, user.password.encode('utf-8')) == user.password:
 		session = request.environ['beaker.session']
 		session['user_id'] = user.id
 		return user.toDict(True)

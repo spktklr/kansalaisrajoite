@@ -63,6 +63,8 @@ class User(Base):
 	id = Column(Integer, primary_key=True)
 	email = Column(String)
 	name = Column(String)
+	verified = Column(Boolean, server_default='FALSE')
+	verification_token = Column(String)
 	password = Column(String)
 	city = Column(String)
 	admin = Column(Boolean, server_default='FALSE')

@@ -9,6 +9,8 @@ CREATE TABLE "user" (
 	id serial PRIMARY KEY,
 	email VARCHAR(128) NOT NULL UNIQUE,
 	name VARCHAR(128),
+	verified BOOL NOT NULL DEFAULT(FALSE),
+	verification_token CHAR(32),
 	password CHAR(60) NOT NULL,
 	city VARCHAR(32),
 	admin BOOL NOT NULL DEFAULT(FALSE),
