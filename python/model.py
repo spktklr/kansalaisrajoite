@@ -4,11 +4,10 @@ from sqlalchemy import create_engine, Table, Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-
-dburl = 'postgresql+psycopg2:///kansalaisrajoite'
+import config
 
 Base = declarative_base()
-engine = create_engine(dburl, echo=False)
+engine = create_engine(config.db_url, echo=False)
 plugin = sqlalchemy.Plugin(engine, None, keyword='db')
 
 

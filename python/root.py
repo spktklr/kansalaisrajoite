@@ -5,7 +5,7 @@ import vote
 import user
 import news
 import beaker.middleware
-from model import dburl
+import config
 
 app = Bottle()
 app.mount('/rajoite', restriction.app)
@@ -23,7 +23,7 @@ def getfile(path):
 
 session_opts = {
 	'session.type': 'ext:database',
-	'session.url': dburl,
+	'session.url': config.db_url,
 	'session.auto': True,
 	'session.lock_dir': '/var/lock'
 }

@@ -1,9 +1,12 @@
 # coding=utf-8
+import config
 import model
 import json
 import datetime
 import random
 import string
+import smtplib
+from email.mime.text import MIMEText
 from bottle import JSONPlugin
 
 def session_user(request, db):
@@ -21,6 +24,16 @@ def session_user(request, db):
 
 def gen_token():
 	return ''.join(random.choice(string.ascii_letters + string.digits) for x in range(32))
+
+def send_email(address, subject, body):
+	message = MIMEText(body)
+	message['Subject'] = subject
+	message['From'] = '%s <%s>' %(config.site_name, config.site_email)
+	message['To'] = address
+	
+	smtp = smtplib.SMTP('localhost')
+	smtp.sendmail(config.site_email, [address], message.as_string())
+
 
 class JsonEncoder(json.JSONEncoder):
 	def default(self, obj):

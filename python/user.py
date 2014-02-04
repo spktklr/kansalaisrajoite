@@ -2,8 +2,9 @@
 from bottle import Bottle, HTTPError, request
 import model
 import bcrypt
+import config
 from datetime import datetime, timedelta
-from utils import session_user, jsonplugin, gen_token
+from utils import session_user, jsonplugin, gen_token, send_email
 from sqlalchemy.orm.exc import NoResultFound
 
 app = Bottle()
@@ -42,7 +43,15 @@ def register(db):
 	
 	db.add(user)
 	
-	# todo: send email with verification link: https://kansalaisrajoite.fi/#/vahvista/<email>/<token>
+	subject = config.verification_email_subject
+	body = config.verification_email_body.format(
+		email=user.email,
+		site_name=config.site_name,
+		site_url=config.site_url,
+		token=user.verification_token
+	)
+	
+	send_email(email, subject, body)
 
 @app.post('/vahvista')
 def verify(db):
@@ -78,7 +87,15 @@ def send_reset_email(db):
 		user.password_reset_initiated = datetime.now()
 		user.password_reset_token = gen_token()
 		
-		# todo: send email with pw reset link: https://kansalaisrajoite.fi/#/nollaa-salasana/<email>/<token>
+		subject = config.pw_reset_email_subject
+		body = config.pw_reset_email_body.format(
+			email=user.email,
+			site_name=config.site_name,
+			site_url=config.site_url,
+			token=user.password_reset_token
+		)
+		
+		send_email(email, subject, body)
 	
 	# to keep emails private we don't want to tell the user if the email exists
 
