@@ -181,9 +181,33 @@ $(function () {
 
 	// forgotten password event handlers
 	$(document).on('submit', 'form.unohtunutsalasana', function (e) {
+		var email = $('form.unohtunutsalasana input[name=email]').val();
+
 		e.preventDefault();
 		$('div.reglog p.alert').hide();
-	}
+
+		$.ajax({
+			url: 'kayttaja/nollaa-salasana-1',
+			global: false,
+			data: {
+				email: email
+			},
+			type: 'POST',
+			complete: function (jqXHR, textStatus) {
+				switch (jqXHR.status) {
+					case 200:
+						$('div.reglog p.alert.emailsent').show('fast');
+						break;
+					case 400:
+						$('div.reglog p.alert.error-badrequest').show('fast');
+						break;
+					default:
+						$('div.reglog p.alert.error-generic').show('fast');
+						break;
+				}
+			}
+		});
+	});
 
 	// TO DO paljon käsittelyä. Phishingin estämiseksi voi aina kertoa, että säpo lähetettiin.
 
