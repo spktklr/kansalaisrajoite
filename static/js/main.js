@@ -179,6 +179,16 @@ $(function () {
 		});
 	});
 
+	// forgotten password event handlers
+	$(document).on('submit', 'form.unohtunutsalasana', function (e) {
+		e.preventDefault();
+		$('div.reglog p.alert').hide();
+	}
+
+	// TO DO paljon käsittelyä. Phishingin estämiseksi voi aina kertoa, että säpo lähetettiin.
+
+	/* forgotten password event handlers end */
+
 	/* restriction view click handlers */
 	$(document).on('click', 'input[name="kannata"]', function () {
 		$.ajax({
