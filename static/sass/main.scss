@@ -237,7 +237,8 @@ div.etusivu {
 		margin:0 0 30px 0;
 		max-width: 80%;
 	}
-	p {
+	p.alert, p.info {
+		font-size: 12px;
 	}
 	article {
 		margin:0 0 30px 0;
@@ -357,21 +358,22 @@ div.etusivu {
 	text-align:center;
 	border: solid 4px $themecolor;
 	margin: 10px 0 20px 0;
-	height: 48px;
+	min-height: 48px;
 	width: 400px;
 }
 
 .alert {
 	@extend .infoboksi;
-	background: url(../img/alert2.png) no-repeat 0 0;
-	padding: 15px 10px 3px 50px;
+	margin: 0 auto 20px;
+	background: url(../img/alert2.png) no-repeat 0 0, url(../img/alertbg.gif) repeat-y 0 0;
+	padding: 15px 10px 15px 50px;
 }
 
 .info {
 	@extend .infoboksi;
 	margin: 0 auto;
-	padding: 11px 10px 3px 50px;
-	background: url(../img/done.png) no-repeat 0 0 white;
+	padding: 11px 10px 15px 50px;
+	background: url(../img/done.png) no-repeat 0 0, url(../img/alertbg.gif) repeat-y 0 0;
 	font-size: 18px;
 }
 

@@ -1268,6 +1268,9 @@ div.etusivu article h2:nth-of-type(1) {
   margin: 0 0 30px 0;
   max-width: 80%;
 }
+.rajoite p.alert, .rajoite p.info {
+  font-size: 12px;
+}
 .rajoite article {
   margin: 0 0 30px 0;
 }
@@ -1426,19 +1429,20 @@ div.etusivu article h2:nth-of-type(1) {
   text-align: center;
   border: solid 4px #e56c69;
   margin: 10px 0 20px 0;
-  height: 48px;
+  min-height: 48px;
   width: 400px;
 }
 
 .alert {
-  background: url(../img/alert2.png) no-repeat 0 0;
-  padding: 15px 10px 3px 50px;
+  margin: 0 auto 20px;
+  background: url(../img/alert2.png) no-repeat 0 0, url(../img/alertbg.gif) repeat-y 0 0;
+  padding: 15px 10px 15px 50px;
 }
 
 .info {
   margin: 0 auto;
-  padding: 11px 10px 3px 50px;
-  background: url(../img/done.png) no-repeat 0 0 white;
+  padding: 11px 10px 15px 50px;
+  background: url(../img/done.png) no-repeat 0 0, url(../img/alertbg.gif) repeat-y 0 0;
   font-size: 18px;
 }
 
