@@ -429,6 +429,9 @@ $(function () {
 					'/ota-yhteytta': function () {
 						show('section', 'ota-yhteytta');
 					},
+					'/uusi-salasana': function () {
+						show('section', 'annasalasana');
+					},					
 					'*': function () {
 						// show 404 page for other urls
 						show('section', 'error-notfound');

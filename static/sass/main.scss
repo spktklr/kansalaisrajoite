@@ -255,9 +255,19 @@ div.etusivu {
 		}
 		&:nth-of-type(3) {
 			@include rajoitteentausta("../img/punviiva.gif", "../img/hlo.png")
-		}
+		}	
 	}
 }
+.salasana {
+	@include wide {
+		padding:60px 40px 60px 40px;
+	}
+	@include narrow {
+		padding:60px 40px 60px 40px;
+	}
+	background:url("../img/punviiva.gif") top repeat-x white;
+}
+
 #tw {
 	float: right;
 	height: 32px;

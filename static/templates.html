@@ -116,7 +116,7 @@
 
 <script id="teerajoite" type="text/html">
 	<div class="rajoite">
-		<h1>Tee kansalaisrajoite</h1>
+		<h1 style="float:none;">Tee kansalaisrajoite</h1>
 		<p>Voit luoda kansalaisrajoite-ehdotuksen antamalla sille otsikon ja perustelut. Huomaa, että otsikon alkuun lisätään automaattisesti Kielletään-sana. Voit halutessasi tutustua <a href="#/ohjeet">ohjeisiin</a> ennen ehdotuksen tekoa.</p>
 		<form class="teerajoite">
 			<article>
@@ -280,6 +280,29 @@
 		<h2>Kansalaisrajoite.fi</h2>
 		<p>Och samma på svenska.</p>
 		</article>
+	</div>
+</script>
+
+<script id="annasalasana" type="text/html">
+	<div class="rajoite">
+		<h1 style="float:none;">Anna uusi salasana</h1>
+		<form class="annasalasana">
+			<div class="salasana">
+				<label>
+					<table class="kielletaantable">
+						<tr>
+							<td class="kielletaantablekielletaan">
+								<p>Uusi salasana:</p>
+							</td>
+							<td>
+								<input class="kirjaudukentta" type="password" name="password1" size="25" />
+							</td>
+						</tr>
+					</table>
+				</label>
+			</div>
+			<input class="painike" type="submit" value="Vaihda salasana" />
+		</form>
 	</div>
 </script>
 
