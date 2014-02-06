@@ -116,6 +116,10 @@ def reset_password(db):
 		
 		user.password_reset_initiated = None
 		user.password_reset_token = None
+		
+		# pw reset can also be used in activating the account
+		user.verified = True
+		user.verification_token = None
 	else:
 		return HTTPError(401, 'Unauthorized')
 

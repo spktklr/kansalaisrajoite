@@ -26,7 +26,7 @@ Pyysit salasanasi palauttamista {site_name}-palvelussa. Jos et lähettänyt
 pyyntöä voit ohittaa tämän viestin. Muussa tapauksessa vahvista salasanan
 palautus klikkaamalla alla olevaa linkkiä:
 
-{site_url}/#/nollaa-salasana/{email}/{token}
+{site_url}/#/uusi-salasana/{email}/{token}
 
 Linkki on voimassa tunnin ajan.
 

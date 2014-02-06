@@ -285,7 +285,10 @@
 
 <script id="annasalasana" type="text/html">
 	<div class="rajoite">
-		<p class="info hidden">Salasana vaihdettu</p>
+		<p class="alert hidden error-pwlength">Salasanan tulee olla vähintään 8 merkkiä pitkä.</p>
+		<p class="alert hidden error-pwsimple">Salasanasi on liian helppo.</p>
+		<p class="alert hidden error-generic">Tapahtui virhe salasanaa asetettaessa.</p>
+		<p class="info hidden info-pwreset">Salasana vaihdettu. Voit nyt kirjautua sisään antamallasi salasanalla.</p>
 		<h1 style="float:none;">Anna uusi salasana</h1>
 		<form class="annasalasana">
 			<div class="salasana">
@@ -296,7 +299,9 @@
 								<p>Uusi salasana:</p>
 							</td>
 							<td>
-								<input class="kirjaudukentta" type="password" name="password1" size="25" />
+								<input class="kirjaudukentta" type="password" name="password" size="25" />
+								<input type="hidden" name="email" value="{{email}}" />
+								<input type="hidden" name="token" value="{{token}}" />
 							</td>
 						</tr>
 					</table>

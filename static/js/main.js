@@ -209,8 +209,47 @@ $(function () {
 		});
 	});
 
-	// TO DO paljon käsittelyä. Phishingin estämiseksi voi aina kertoa, että säpo lähetettiin.
+	$(document).on('submit', 'form.annasalasana', function (e) {
+		var pass = $('form.annasalasana input[name=password]').val()
+			email = $('form.annasalasana input[name=email]').val(),
+			token = $('form.annasalasana input[name=token]').val();
 
+		e.preventDefault();
+		$('p.alert').hide();
+		$('p.info').hide();
+
+		if (pass.length < 8) {
+			$('p.alert.error-pwlength').show('fast');
+			return;
+		}
+
+		// bwhahahahahaha
+		if (pass === 'kansalaisrajoite' || pass === 'salasana' || pass === 'password') {
+			$('p.alert.error-pwsimple').show('fast');
+			return;
+		}
+
+		$.ajax({
+			url: 'kayttaja/nollaa-salasana-2',
+			global: false,
+			data: {
+				password: pass,
+				email: email,
+				token: token
+			},
+			type: 'POST',
+			complete: function (jqXHR, textStatus) {
+				switch (jqXHR.status) {
+					case 200:
+						$('p.info.info-pwreset').show('fast');
+						break;
+					default:
+						$('p.alert.error-generic').show('fast');
+						break;
+				}
+			}
+		});
+	});
 	/* forgotten password event handlers end */
 
 	/* restriction view click handlers */
@@ -429,8 +468,12 @@ $(function () {
 					'/ota-yhteytta': function () {
 						show('section', 'ota-yhteytta');
 					},
-					'/uusi-salasana': function () {
-						show('section', 'annasalasana');
+					'/uusi-salasana/:email/:token': function (email, token) {
+						var data = {
+							email: email,
+							token: token
+						};
+						show('section', 'annasalasana', data);
 					},					
 					'*': function () {
 						// show 404 page for other urls
