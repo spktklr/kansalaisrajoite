@@ -82,7 +82,7 @@ $(function () {
 	/* login event handlers */
 	$(document).on('submit', 'form.kirjautuminen', function (e) {
 		e.preventDefault();
-		$('div.reglog p.alert').hide();
+		$('p.alert').hide();
 
 		$.ajax({
 			url: 'kayttaja/login',
@@ -92,19 +92,18 @@ $(function () {
 				password: $('form.kirjautuminen input[name=password]').val()
 			},
 			type: 'POST',
-			statusCode: {
-				200: function(data) {
-					user.setLoggedIn(data);
-					show('header', 'headerbox', user);
-					jQuery(document).trigger('close.facebox');
-					routie.reload();
-				},
-				400: function() {
-					$('div.reglog p.alert').show('fast');
-				},
-				401: function() {
-					$('div.reglog p.alert').show('fast');
-				}
+			complete: function (jqXHR, textStatus) {
+				switch (jqXHR.status) {
+					case 200:
+						user.setLoggedIn(data);
+						show('header', 'headerbox', user);
+						jQuery(document).trigger('close.facebox');
+						routie.reload();
+						break;
+					default:
+						$('p.alert.wrongpw').show('fast');
+						break;
+				};
 			}
 		});
 	});
@@ -133,22 +132,22 @@ $(function () {
 			pass2 = $('form.rekisteroityminen input[name=password2]').val();
 
 		e.preventDefault();
-		$('div.reglog p.alert').hide();
+		$('p.alert').hide();
 
 		// quick form validation
 		if (pass1 !== pass2) {
-			$('div.reglog p.alert.error-pwmismatch').show('fast');
+			$('p.alert.pwmismatch').show('fast');
 			return;
 		}
 
 		if (pass1.length < 8) {
-			$('div.reglog p.alert.error-pwlength').show('fast');
+			$('p.alert.pwlength').show('fast');
 			return;
 		}
 
 		// bwhahahahahaha
 		if (pass1 === 'kansalaisrajoite' || pass1 === 'salasana' || pass1 === 'password') {
-			$('div.reglog p.alert.error-pwsimple').show('fast');
+			$('p.alert.pwsimple').show('fast');
 			return;
 		}
 
@@ -170,10 +169,10 @@ $(function () {
 					routie.reload();
 				},
 				400: function() {
-					$('div.reglog p.alert.error-badrequest').show('fast');
+					$('p.alert.badrequest').show('fast');
 				},
 				409: function() {
-					$('div.reglog p.alert.error-conflict').show('fast');
+					$('p.alert.conflict').show('fast');
 				}
 			}
 		});
@@ -184,7 +183,8 @@ $(function () {
 		var email = $('form.unohtunutsalasana input[name=email]').val();
 
 		e.preventDefault();
-		$('div.reglog p.alert').hide();
+		$('p.alert').hide();
+		$('p.info').hide();
 
 		$.ajax({
 			url: 'kayttaja/nollaa-salasana-1',
@@ -196,13 +196,13 @@ $(function () {
 			complete: function (jqXHR, textStatus) {
 				switch (jqXHR.status) {
 					case 200:
-						$('div.reglog p.alert.emailsent').show('fast');
+						$('p.info.emailsent').show('fast');
 						break;
 					case 400:
-						$('div.reglog p.alert.error-badrequest').show('fast');
+						$('p.alert.badrequest').show('fast');
 						break;
 					default:
-						$('div.reglog p.alert.error-generic').show('fast');
+						$('p.alert.generic').show('fast');
 						break;
 				}
 			}
@@ -219,13 +219,13 @@ $(function () {
 		$('p.info').hide();
 
 		if (pass.length < 8) {
-			$('p.alert.error-pwlength').show('fast');
+			$('p.alert.pwlength').show('fast');
 			return;
 		}
 
 		// bwhahahahahaha
 		if (pass === 'kansalaisrajoite' || pass === 'salasana' || pass === 'password') {
-			$('p.alert.error-pwsimple').show('fast');
+			$('p.alert.pwsimple').show('fast');
 			return;
 		}
 
@@ -241,10 +241,10 @@ $(function () {
 			complete: function (jqXHR, textStatus) {
 				switch (jqXHR.status) {
 					case 200:
-						$('p.info.info-pwreset').show('fast');
+						$('p.info.done').show('fast');
 						break;
 					default:
-						$('p.alert.error-generic').show('fast');
+						$('p.alert.generic').show('fast');
 						break;
 				}
 			}
