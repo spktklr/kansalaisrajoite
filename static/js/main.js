@@ -92,18 +92,19 @@ $(function () {
 				password: $('form.kirjautuminen input[name=password]').val()
 			},
 			type: 'POST',
-			complete: function (jqXHR, textStatus) {
-				switch (jqXHR.status) {
-					case 200:
-						user.setLoggedIn(data);
-						show('header', 'headerbox', user);
-						jQuery(document).trigger('close.facebox');
-						routie.reload();
-						break;
-					default:
-						$('p.alert.wrongpw').show('fast');
-						break;
-				};
+			statusCode: {
+				200: function(data) {
+					user.setLoggedIn(data);
+					show('header', 'headerbox', user);
+					jQuery(document).trigger('close.facebox');
+					routie.reload();
+				},
+				400: function() {
+					$('p.alert.wrongpw').show('fast');
+				},
+				401: function() {
+					$('p.alert.wrongpw').show('fast');
+				}
 			}
 		});
 	});
