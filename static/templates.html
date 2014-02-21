@@ -117,7 +117,7 @@
 <script id="teerajoite" type="text/html">
 	<div class="rajoite">
 		<h1 style="float:none;">Tee kansalaisrajoite</h1>
-		<p>Voit luoda kansalaisrajoite-ehdotuksen antamalla sille otsikon ja perustelut. Huomaa, että otsikon alkuun lisätään automaattisesti Kielletään-sana. Voit halutessasi tutustua <a href="#/ohjeet">ohjeisiin</a> ennen ehdotuksen tekoa.</p>
+		<p>Voit luoda kansalaisrajoite-ehdotuksen antamalla sille otsikon ja perustelut. Huomaa, että sinut merkitään rajoitteen ehdottajaksi. Lisäksi otsikon alkuun lisätään automaattisesti Kielletään-sana. Voit halutessasi tutustua <a href="#/ohjeet">ohjeisiin</a> ennen ehdotuksen tekoa.</p>
 		<form class="teerajoite">
 			<article>
 				<label>
@@ -251,7 +251,7 @@
 <script id="headerbox" type="text/html">
 	<div><div>
 		{{#isLogged}}
-		<p>Kirjautuneena: {{#info.name}}{{info.name}}{{/info.name}}{{^info.name}}{{info.email}}{{/info.name}} <span><a href="#" class="ulos">Kirjaudu ulos</a></span></p>
+		<p>Kirjautuneena: {{#info.name}}{{info.name}}{{/info.name}}{{^info.name}}{{info.email}}{{/info.name}} <span><a href="#/muuta-tietoja">Muuta tietojasi</a></span><span><a href="#" class="ulos">Kirjaudu ulos</a></span></p>
 		{{/isLogged}}
 		{{^isLogged}}
 		<p><span><a id="rekisteroidy" href="#">Rekisteröidy käyttäjäksi</a></span><span><a id="kirjaudu" href="#">Kirjaudu sisään</a></span></p>
@@ -284,7 +284,7 @@
 </script>
 
 <script id="annasalasana" type="text/html">
-	<div class="rajoite">
+	<div class="contentform">
 		<p class="alert hidden pwlength">Salasanan tulee olla vähintään 8 merkkiä pitkä.</p>
 		<p class="alert hidden pwsimple">Salasanasi on liian helppo.</p>
 		<p class="alert hidden generic">Tapahtui virhe salasanaa asetettaessa.</p>
@@ -308,6 +308,65 @@
 				</label>
 			</div>
 			<input class="painike" type="submit" value="Vaihda salasana" />
+		</form>
+	</div>
+</script>
+
+<script id="muuta-tietoja" type="text/html">
+	<div class="contentform">
+		<p class="alert hidden pwlength">Salasanan tulee olla vähintään 8 merkkiä pitkä.</p>
+		<p class="alert hidden pwsimple">Salasanasi on liian helppo.</p>
+		<p class="alert hidden generic">Tapahtui virhe salasanaa asetettaessa.</p>
+		<p class="info hidden done">Salasana vaihdettu. Voit nyt kirjautua sisään antamallasi salasanalla.</p>
+		<h1 style="float:none;">Muuta tietojasi</h1>
+		<form class="annasalasana">
+			<div class="salasana">
+				<table class="kielletaantable">
+					<tr>
+						<td class="kielletaantablekielletaan">
+							<p>Nimi</p>
+						</td>
+						<td>
+						<label>
+							<input class="kirjaudukentta" type="text" name="name" />
+						</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="kielletaantablekielletaan">
+							<p>Paikkakunta</p>
+						</td>
+						<td>
+						<label>
+							<input class="kirjaudukentta" type="text" name="city" />
+						</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="kielletaantablekielletaan">
+							<p>sähköpostiosoite</p>
+						</td>
+						<td>
+						<label>
+							<input class="kirjaudukentta" id="email" type="text" name="email" />
+						</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="kielletaantablekielletaan">
+							<p>Uusi salasana</p>
+						</td>
+						<td>
+						<label>
+							<input class="kirjaudukentta" type="password" name="password" size="25" />
+							<input type="hidden" name="email" value="{{email}}" />
+							<input type="hidden" name="token" value="{{token}}" />
+						</label>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<input class="painike" type="submit" value="Muuta tiedot" />
 		</form>
 	</div>
 </script>

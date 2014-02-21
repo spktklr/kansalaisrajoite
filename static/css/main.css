@@ -1131,17 +1131,17 @@ section {
   background: url(../img/dot2.gif) bottom repeat-x #f9f9f9;
 }
 
-div.etusivu, div.rajoite, div.rajoitteet {
+div.etusivu, div.rajoite, div.contentform, div.rajoitteet {
   padding: 30px 0 30px 0;
   margin: 0 auto;
 }
 @media screen and (min-width: 980px) {
-  div.etusivu, div.rajoite, div.rajoitteet {
+  div.etusivu, div.rajoite, div.contentform, div.rajoitteet {
     width: 960px;
   }
 }
 @media screen and (max-width: 980px) {
-  div.etusivu, div.rajoite, div.rajoitteet {
+  div.etusivu, div.rajoite, div.contentform, div.rajoitteet {
     min-width: 410px;
     width: 80%;
   }
@@ -1263,54 +1263,54 @@ div.etusivu article h2:nth-of-type(1) {
 }
 
 /* RAJOITE STYLES */
-.rajoite h1 {
+.rajoite h1, .contentform h1 {
   float: left;
   margin: 0 0 30px 0;
   max-width: 80%;
 }
-.rajoite p.alert, .rajoite p.info {
+.rajoite p.alert, .contentform p.alert, .rajoite p.info, .contentform p.info {
   font-size: 12px;
 }
-.rajoite article {
+.rajoite article, .contentform article {
   margin: 0 0 30px 0;
 }
 @media screen and (min-width: 980px) {
-  .rajoite article {
+  .rajoite article, .contentform article {
     padding: 60px 40px 60px 160px;
   }
 }
 @media screen and (max-width: 980px) {
-  .rajoite article {
+  .rajoite article, .contentform article {
     padding: 60px 40px 60px 40px;
   }
 }
 @media screen and (min-width: 980px) {
-  .rajoite article:nth-of-type(1) {
+  .rajoite article:nth-of-type(1), .contentform article:nth-of-type(1) {
     background: url("../img/punviiva.gif") top repeat-x, url("../img/kielto.png") 40px 32px no-repeat white;
   }
 }
 @media screen and (max-width: 980px) {
-  .rajoite article:nth-of-type(1) {
+  .rajoite article:nth-of-type(1), .contentform article:nth-of-type(1) {
     background: url("../img/punviiva.gif") top repeat-x white;
   }
 }
 @media screen and (min-width: 980px) {
-  .rajoite article:nth-of-type(2) {
+  .rajoite article:nth-of-type(2), .contentform article:nth-of-type(2) {
     background: url("../img/harviiva.gif") top repeat-x, url("../img/info.png") 40px 32px no-repeat white;
   }
 }
 @media screen and (max-width: 980px) {
-  .rajoite article:nth-of-type(2) {
+  .rajoite article:nth-of-type(2), .contentform article:nth-of-type(2) {
     background: url("../img/harviiva.gif") top repeat-x white;
   }
 }
 @media screen and (min-width: 980px) {
-  .rajoite article:nth-of-type(3) {
+  .rajoite article:nth-of-type(3), .contentform article:nth-of-type(3) {
     background: url("../img/punviiva.gif") top repeat-x, url("../img/hlo.png") 40px 32px no-repeat white;
   }
 }
 @media screen and (max-width: 980px) {
-  .rajoite article:nth-of-type(3) {
+  .rajoite article:nth-of-type(3), .contentform article:nth-of-type(3) {
     background: url("../img/punviiva.gif") top repeat-x white;
   }
 }
@@ -1444,6 +1444,11 @@ div.etusivu article h2:nth-of-type(1) {
   padding: 11px 10px 15px 50px;
   background: url(../img/done.png) no-repeat 0 0, url(../img/alertbg.gif) repeat-y 0 0;
   font-size: 18px;
+}
+
+/* NON MODAL CONTENT AREA FORM STYLES */
+.contentform {
+  max-width: 50%;
 }
 
 /* RAJOITTEET STYLES */
@@ -1616,11 +1621,11 @@ div.teerajoite, div.tiedotteet {
   }
 }
 
-div.rajoite > p {
+div.rajoite > p, div.contentform > p {
   margin-bottom: 30px;
   line-height: 20px;
 }
-div.rajoite > p a {
+div.rajoite > p a, div.contentform > p a {
   color: #e56c69;
 }
 
@@ -1647,9 +1652,12 @@ form.teerajoite p {
   width: 100%;
   table-layout: fixed;
 }
+.kielletaantable td {
+  padding: 0 0 10px 0;
+}
 
 .kielletaantablekielletaan {
-  width: 90px;
+  width: 180px;
 }
 
 .teerajoitekentta, .teerajoitekentta2 {
