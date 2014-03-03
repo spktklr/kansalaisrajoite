@@ -94,7 +94,7 @@ $(function() {
 	/* modal event handlers end */
 
 	/* login event handlers */
-	$(document).on('submit', 'form.kirjautuminen', function(e) {
+	$(document).on('submit', '#login', function(e) {
 		e.preventDefault();
 		$('p.alert').hide();
 
@@ -102,8 +102,8 @@ $(function() {
 			url: 'kayttaja/login',
 			global: false,
 			data: {
-				email: $('form.kirjautuminen input[name=email]').val(),
-				password: $('form.kirjautuminen input[name=password]').val()
+				email: $('#login input[name=email]').val(),
+				password: $('#login input[name=password]').val()
 			},
 			type: 'POST',
 			statusCode: {
@@ -139,12 +139,12 @@ $(function() {
 	/* login event handlers end */
 
 	// registration event handlers
-	$(document).on('submit', 'form.rekisteroityminen', function(e) {
-		var name = $('form.rekisteroityminen input[name=name]').val(),
-			city = $('form.rekisteroityminen input[name=city]').val(),
-			email = $('form.rekisteroityminen input[name=email]').val(),
-			pass1 = $('form.rekisteroityminen input[name=password1]').val(),
-			pass2 = $('form.rekisteroityminen input[name=password2]').val();
+	$(document).on('submit', '#register', function(e) {
+		var name = $('#register input[name=name]').val(),
+			city = $('#register input[name=city]').val(),
+			email = $('#register input[name=email]').val(),
+			pass1 = $('#register input[name=password1]').val(),
+			pass2 = $('#register input[name=password2]').val();
 
 		e.preventDefault();
 		$('p.alert').hide();
@@ -193,9 +193,54 @@ $(function() {
 		});
 	});
 
+	// account infomation modify handler
+	$(document).on('submit', '#changeinfo', function(e) {
+		var name = $('#changeinfo input[name=name]').val(),
+			city = $('#changeinfo input[name=city]').val(),
+			pass = $('#changeinfo input[name=password]').val();
+
+		e.preventDefault();
+		$('p.alert').hide();
+
+		if (pass.length > 0 && pass.length < 8) {
+			$('p.alert.pwlength').show('fast');
+			return;
+		}
+
+		// bwhahahahahaha
+		if (pass === 'kansalaisrajoite' || pass === 'salasana' || pass === 'password') {
+			$('p.alert.pwsimple').show('fast');
+			return;
+		}
+
+		$.ajax({
+			url: 'kayttaja',
+			global: false,
+			data: {
+				password: pass,
+				name: name,
+				city: city,
+			},
+			type: 'POST',
+			statusCode: {
+				200: function(data) {
+					user.setLoggedIn(data);
+					show('header', 'headerbox', user);
+					$('p.info.done').show('fast');
+				},
+				400: function() {
+					$('p.alert.badrequest').show('fast');
+				},
+				409: function() {
+					$('p.alert.conflict').show('fast');
+				}
+			}
+		});
+	});
+
 	// forgotten password event handlers
-	$(document).on('submit', 'form.unohtunutsalasana', function(e) {
-		var email = $('form.unohtunutsalasana input[name=email]').val();
+	$(document).on('submit', '#forgotpass', function(e) {
+		var email = $('#forgotpass input[name=email]').val();
 
 		e.preventDefault();
 		$('p.alert').hide();
@@ -224,10 +269,10 @@ $(function() {
 		});
 	});
 
-	$(document).on('submit', 'form.annasalasana', function(e) {
-		var pass = $('form.annasalasana input[name=password]').val()
-		email = $('form.annasalasana input[name=email]').val(),
-			token = $('form.annasalasana input[name=token]').val();
+	$(document).on('submit', '#newpass', function(e) {
+		var pass = $('#newpass input[name=password]').val()
+			email = $('#newpass input[name=email]').val(),
+			token = $('#newpass input[name=token]').val();
 
 		e.preventDefault();
 		$('p.alert').hide();
@@ -319,15 +364,15 @@ $(function() {
 	/* restriction view click handlers end */
 
 	// new restriction submit button click handler
-	$(document).on('submit', 'form.teerajoite', function(e) {
+	$(document).on('submit', '#newrestriction', function(e) {
 		e.preventDefault();
 
 		$.ajax({
 			url: 'rajoite',
 			global: false,
 			data: {
-				title: $('form.teerajoite input[name=title]').val(),
-				body: $('form.teerajoite textarea[name=body]').val()
+				title: $('#newrestriction input[name=title]').val(),
+				body: $('#newrestriction textarea[name=body]').val()
 			},
 			type: 'POST',
 			statusCode: {
@@ -500,7 +545,9 @@ $(function() {
 						show('section', 'ota-yhteytta');
 					},
 					'/muuta-tietoja': function() {
-						show('section', 'muuta-tietoja');
+						$.getJSON('kayttaja', function(data) {
+							show('section', 'muuta-tietoja', data);
+						});
 					},
 					'/uusi-salasana/:email/:token': function(email, token) {
 						var data = {

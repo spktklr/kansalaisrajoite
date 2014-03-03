@@ -118,7 +118,7 @@
 	<div class="rajoite">
 		<h1 style="float:none;">Tee kansalaisrajoite</h1>
 		<p>Voit luoda kansalaisrajoite-ehdotuksen antamalla sille otsikon ja perustelut. Huomaa, että sinut merkitään rajoitteen ehdottajaksi. Lisäksi otsikon alkuun lisätään automaattisesti Kielletään-sana. Voit halutessasi tutustua <a href="#/ohjeet">ohjeisiin</a> ennen ehdotuksen tekoa.</p>
-		<form id="teerajoite" class="teerajoite">
+		<form id="newrestriction" class="teerajoite">
 			<article>
 				<label>
 					<table class="kielletaantable">
@@ -317,7 +317,7 @@
 		<p class="alert hidden pwlength">Salasanan tulee olla vähintään 8 merkkiä pitkä.</p>
 		<p class="alert hidden pwsimple">Salasanasi on liian helppo.</p>
 		<p class="alert hidden generic">Tapahtui virhe salasanaa asetettaessa.</p>
-		<p class="info hidden done">Salasana vaihdettu. Voit nyt kirjautua sisään antamallasi salasanalla.</p>
+		<p class="info hidden done">Tiedot muutettu.</p>
 		<h1 style="float:none;">Muuta tietojasi</h1>
 		<form id="changeinfo" class="annasalasana">
 			<div class="salasana">
@@ -328,7 +328,7 @@
 						</td>
 						<td>
 						<label>
-							<input class="kirjaudukentta" type="text" name="name" />
+							<input class="kirjaudukentta" type="text" name="name" value="{{name}}" />
 						</label>
 						</td>
 					</tr>
@@ -338,17 +338,7 @@
 						</td>
 						<td>
 						<label>
-							<input class="kirjaudukentta" type="text" name="city" />
-						</label>
-						</td>
-					</tr>
-					<tr>
-						<td class="kielletaantablekielletaan">
-							<p>sähköpostiosoite</p>
-						</td>
-						<td>
-						<label>
-							<input class="kirjaudukentta" id="email" type="text" name="email" />
+							<input class="kirjaudukentta" type="text" name="city" value="{{city}}" />
 						</label>
 						</td>
 					</tr>
@@ -359,8 +349,6 @@
 						<td>
 						<label>
 							<input class="kirjaudukentta" type="password" name="password" size="25" />
-							<input type="hidden" name="email" value="{{email}}" />
-							<input type="hidden" name="token" value="{{token}}" />
 						</label>
 						</td>
 					</tr>

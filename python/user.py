@@ -53,6 +53,35 @@ def register(db):
 	
 	send_email(email, subject, body)
 
+@app.post('/')
+def modify(db):
+	user = session_user(request, db)
+	
+	if not user:
+		return HTTPError(401, 'Unauthorized')
+	
+	name = request.forms.get('name')
+	password = request.forms.get('password')
+	city = request.forms.get('city')
+	
+	if password:
+		if len(password) < 8:
+			return HTTPError(400, 'Bad request')
+		else:
+			user.password = bcrypt.hashpw(password, bcrypt.gensalt())
+	
+	if name:
+		user.name = name
+	else:
+		user.name = None
+	
+	if city:
+		user.city = city
+	else:
+		user.city = None
+	
+	return user.toDict(True)
+
 @app.post('/vahvista')
 def verify(db):
 	email = request.forms.get('email')
