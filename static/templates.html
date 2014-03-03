@@ -312,6 +312,30 @@
 	</div>
 </script>
 
+<script id="verification-sent" type="text/html">
+	<div class="tiedotteet">
+		<article>
+			<h2>Vahvistuspyyntö lähetetty</h2>
+			<p>Lähetimme sähköpostilla antamaasi osoitteeseen linkin, jota klikkaamalla voit vahvistaa rekisteröinnin.</p>
+		</article>
+	</div>
+</script>
+
+<script id="verification" type="text/html">
+	<div class="tiedotteet">
+		<article>
+			{{#info}}
+			<h2>Rekisteröityminen vahvistettu</h2>
+			<p>Voit nyt kannattaa olemassa olevia rajoituksia, tai keksiä uutta rajoitettavaa.</p>
+			{{/info}}
+			{{^info}}
+			<h2>Vahvistus epäonnistui</h2>
+			<p>Tapahtui virhe.</p>
+			{{/info}}
+		</article>
+	</div>
+</script>
+
 <script id="muuta-tietoja" type="text/html">
 	<div class="contentform">
 		<p class="alert hidden pwlength">Salasanan tulee olla vähintään 8 merkkiä pitkä.</p>

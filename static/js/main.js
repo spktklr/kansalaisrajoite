@@ -178,10 +178,8 @@ $(function() {
 			type: 'POST',
 			statusCode: {
 				200: function(data) {
-					user.setLoggedIn(data);
-					show('header', 'headerbox', user);
 					jQuery(document).trigger('close.facebox');
-					routie.reload();
+					show('section', 'verification-sent');
 				},
 				400: function() {
 					$('p.alert.badrequest').show('fast');
@@ -547,6 +545,27 @@ $(function() {
 					'/muuta-tietoja': function() {
 						$.getJSON('kayttaja', function(data) {
 							show('section', 'muuta-tietoja', data);
+						});
+					},
+					'/vahvista/:email/:token': function(email, token) {
+						$.ajax({
+							url: 'kayttaja/vahvista',
+							global: false,
+							data: {
+								email: email,
+								token: token
+							},
+							type: 'POST',
+							statusCode: {
+								200: function(data) {
+									user.setLoggedIn(data);
+									show('header', 'headerbox', user);
+									show('section', 'verification', user);
+								},
+								401: function(data) {
+									show('section', 'verification', null);
+								}
+							}
 						});
 					},
 					'/uusi-salasana/:email/:token': function(email, token) {
