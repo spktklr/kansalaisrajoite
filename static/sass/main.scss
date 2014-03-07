@@ -343,7 +343,7 @@ div.etusivu {
 #alemma {
 	margin-top:24px;
 }
-.kirjaudukentta {
+.formfield {
 	background:$semigray;
 	width:100%;
 	display:block;
@@ -548,17 +548,17 @@ form.teerajoite    {
 form.teerajoite p {
 	margin:20px 0 4px 0;
 }
-.kielletaantable {
+.formtable {
 	width:100%;
 	table-layout:fixed;
 	td {
 		padding: 0 0 10px 0;
 	}
 }
-.kielletaantablekielletaan {
+.formlabel {
 	width: 180px;
 }
-.teerajoitekentta {
+.restrictiontext {
 	background:$semigray;
 	width:50%;
 	padding-left:6px;
@@ -567,8 +567,8 @@ form.teerajoite p {
 	height: 25px;
 	@include border-box;
 }
-.teerajoitekentta2 {
-	@extend .teerajoitekentta;
+.restrictionlabel {
+	@extend .restrictiontext;
 	display:inline;
 	width:100%;
 }

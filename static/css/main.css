@@ -1409,7 +1409,7 @@ div.etusivu article h2:nth-of-type(1) {
   margin-top: 24px;
 }
 
-.kirjaudukentta {
+.formfield {
   background: #f9f9f9;
   width: 100%;
   display: block;
@@ -1648,19 +1648,19 @@ form.teerajoite p {
   margin: 20px 0 4px 0;
 }
 
-.kielletaantable {
+.formtable {
   width: 100%;
   table-layout: fixed;
 }
-.kielletaantable td {
+.formtable td {
   padding: 0 0 10px 0;
 }
 
-.kielletaantablekielletaan {
+.formlabel {
   width: 180px;
 }
 
-.teerajoitekentta, .teerajoitekentta2 {
+.restrictiontext, .restrictionlabel {
   background: #f9f9f9;
   width: 50%;
   padding-left: 6px;
@@ -1675,7 +1675,7 @@ form.teerajoite p {
   /* Opera/IE 8+ */
 }
 
-.teerajoitekentta2 {
+.restrictionlabel {
   display: inline;
   width: 100%;
 }
