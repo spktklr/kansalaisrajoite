@@ -56,6 +56,8 @@ def create(db):
     item.title = request.forms.get('title')
     item.body = request.forms.get('body')
     item.user = user
+    item.user_name = user.name
+    item.user_city = user.city
 
     db.add(item)
     db.flush()

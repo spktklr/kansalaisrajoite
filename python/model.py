@@ -37,6 +37,9 @@ class Restriction(Base):
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship('User', foreign_keys=user_id)
 
+    user_name = Column(String)
+    user_city = Column(String)
+
     voters = relationship('User', secondary=vote_table, backref='restrictions')
 
     def __repr__(self):
@@ -49,7 +52,8 @@ class Restriction(Base):
         ret['votes'] = len(self.voters)
         ret['title'] = self.title
         ret['body'] = self.body
-        ret['user'] = self.user.toDict()
+        ret['user_name'] = self.user_name,
+        ret['user_city'] = self.user_city,
         ret['approved'] = self.approved
         if full:
             if self.approver:

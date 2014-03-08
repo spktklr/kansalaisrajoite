@@ -13,13 +13,13 @@ INSERT INTO "user" (email, verified, password, city) VALUES ('tiina@example.com'
 INSERT INTO "user" (email, name, verified, password) VALUES ('ville@example.com', 'Ville Virtanen', TRUE, '$2a$12$PQ./SqmlDBN82Zk5.LjgyORD1Au4TVh3AE93YBH0IagQRJaQpmbcK');
 INSERT INTO "user" (email, verified, password) VALUES ('teppo@example.com', FALSE, '$2a$12$S..1SMTuQnjgXEEu8gWqN.4hwlaLsEVqaxXPIfW/8oZNkknzdtVvK');
 
-INSERT INTO restriction (title, body, approved, approver_id, user_id, created) VALUES ('Kännykkään puhuminen julkisissa kulkuvälineissä', 'Rajoitteen kuvaus ja perustelut.', TRUE, 1, 3, NOW() - INTERVAL '6 days');
-INSERT INTO restriction (title, body, approved, approver_id, user_id, created) VALUES ('Asioiden kieltäminen', 'Rajoitteen kuvaus ja perustelut.', TRUE, 2, 4, NOW() - INTERVAL '1 day');
-INSERT INTO restriction (title, body, approved, approver_id, user_id, created) VALUES ('Aamuun asti valvominen', 'Rajoitteen kuvaus ja perustelut.', TRUE, 1, 5, NOW() - INTERVAL '121 days');
-INSERT INTO restriction (title, body, approved, approver_id, user_id, created) VALUES ('Alasti uiminen', 'Rajoitteen kuvaus ja perustelut.', FALSE, NULL, 3, NOW() - INTERVAL '15 days');
-INSERT INTO restriction (title, body, approved, approver_id, user_id, created) VALUES ('Yksin autoilu', 'Rajoitteen kuvaus ja perustelut.', FALSE, NULL, 5, NOW() - INTERVAL '95 days');
-INSERT INTO restriction (title, body, approved, approver_id, user_id, created) VALUES ('Sorsien ruokinta', 'Rajoitteen kuvaus ja perustelut.', TRUE, 1, 6, NOW() - INTERVAL '7 hours');
-INSERT INTO restriction (title, body, approved, approver_id, user_id, created) VALUES ('Äänekäs hengittäminen', 'Rajoitteen kuvaus ja perustelut.', TRUE, 2, 1, NOW() - INTERVAL '5 minutes');
+INSERT INTO restriction (title, body, approved, approver_id, user_id, user_name, user_city, created) VALUES ('Kännykkään puhuminen julkisissa kulkuvälineissä', 'Rajoitteen kuvaus ja perustelut.', TRUE, 1, 3, 'Matti Meikäläinen', 'Espoo', NOW() - INTERVAL '6 days');
+INSERT INTO restriction (title, body, approved, approver_id, user_id, user_name, user_city, created) VALUES ('Asioiden kieltäminen', 'Rajoitteen kuvaus ja perustelut.', TRUE, 2, 4, 'Erkki Esimerkki', 'Viitasaari', NOW() - INTERVAL '1 day');
+INSERT INTO restriction (title, body, approved, approver_id, user_id, user_name, user_city, created) VALUES ('Aamuun asti valvominen', 'Rajoitteen kuvaus ja perustelut.', TRUE, 1, 5, 'Tiina Terävä', 'Sipoo', NOW() - INTERVAL '121 days');
+INSERT INTO restriction (title, body, approved, approver_id, user_id, user_name, user_city, created) VALUES ('Alasti uiminen', 'Rajoitteen kuvaus ja perustelut.', FALSE, NULL, 3, 'Matti Meikäläinen', 'Espoo', NOW() - INTERVAL '15 days');
+INSERT INTO restriction (title, body, approved, approver_id, user_id, user_name, user_city, created) VALUES ('Yksin autoilu', 'Rajoitteen kuvaus ja perustelut.', FALSE, NULL, 5, 'Tiina Terävä', 'Sipoo', NOW() - INTERVAL '95 days');
+INSERT INTO restriction (title, body, approved, approver_id, user_id, user_name, user_city, created) VALUES ('Sorsien ruokinta', 'Rajoitteen kuvaus ja perustelut.', TRUE, 1, 6, 'Ville Virtanen', 'Turku', NOW() - INTERVAL '7 hours');
+INSERT INTO restriction (title, body, approved, approver_id, user_id, user_name, user_city, created) VALUES ('Äänekäs hengittäminen', 'Rajoitteen kuvaus ja perustelut.', TRUE, 2, 1, 'Aatu Admin', 'Kittilä', NOW() - INTERVAL '5 minutes');
 
 INSERT INTO vote (restriction_id, user_id) VALUES (1, 3);
 INSERT INTO vote (restriction_id, user_id) VALUES (1, 2);

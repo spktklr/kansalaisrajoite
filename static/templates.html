@@ -41,22 +41,20 @@
 		<div class="clear line"></div>
 		<div class="rajoitelista">
 			{{#restrictions}}
-				{{#approved}}
-					<article>
+				<article>
+					{{#approved}}
 						<h4>Kielletään</h4>
 						<p{{#voted}} class="voted"{{/voted}}><a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">{{title}}</a></p>
 						<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}}</p>
 						<p>{{votes}} kieltäjää</p>
 						<div class="bar" style="width:{{#percentCompleted}}{{votes}}{{/percentCompleted}}%;"></div>
-					</article>
-				{{/approved}}
-				{{^approved}}
-					<article>
+					{{/approved}}
+					{{^approved}}
 						<h4>Jonossa</h4>
 						<p><a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">{{title}}</a></p>
 						<p>Luotu {{#date}}{{created}}{{/date}}</p>
-					</article>
-				{{/approved}}
+					{{/approved}}
+				</article>
 			{{/restrictions}}
 		</div>
 		<div class="clear line" style="margin-top: 8px;"></div>
@@ -88,14 +86,7 @@
 		</article>
 		<article>
 			<h3>Rajoitteen ehdottaja</h3>
-			<p>
-			{{#user.name}}
-				{{user.name}}{{#user.city}}, {{user.city}}{{/user.city}}
-			{{/user.name}}
-			{{^user.name}}
-				Anonyymi käyttäjä{{#user.city}}, {{user.city}}{{/user.city}}
-			{{/user.name}}
-			</p>
+			<p>{{user_name}}, {{user_city}}</p>
 		</article>
 		{{#approved}}
 			{{#voted}}
