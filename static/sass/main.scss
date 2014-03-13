@@ -20,6 +20,7 @@ h1 {
 	font-weight:700;
 	@include narrow {
 		font-size: 1.25em;
+		padding-left: 20px;
 	}
 }
 h2 {
@@ -204,7 +205,6 @@ div.etusivu {
 	}
 	@include narrow {
 			text-align:center;
-			font-size: 0.5rem;
 			@include transition(background, $anitime ease-in);
 	}
 	&:hover {
@@ -308,7 +308,9 @@ div.etusivu {
 .reglog {
 	article {
 		padding:20px;
-		width:400px;
+		@include wide {
+			width:400px;
+		}
 		margin-top:20px;
 		margin: 0 auto;
 		background:white;
@@ -356,8 +358,8 @@ div.etusivu {
 	margin: 20px 0 0 0;
 	font-size: 0.875rem;
 }
-#alemma {
-	margin-top:24px;
+.lower {
+	margin-top:+24px;
 }
 .formfield {
 	background:$semigray;
@@ -643,6 +645,9 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
 		ul li {
 			display: block;
 			margin-bottom: 10px;
+			@include narrow {
+				padding-left: 20px;
+			}
 		}
 	}
 	.content {

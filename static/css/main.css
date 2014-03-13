@@ -856,9 +856,13 @@ html {
 
 #facebox .content {
   display: table;
-  width: 400px;
   padding: 0;
   background: #fff;
+}
+@media screen and (min-width: 980px) {
+  #facebox .content {
+    width: 400px;
+  }
 }
 
 #facebox .content > p:first-child {
@@ -935,6 +939,7 @@ h1 {
 @media screen and (max-width: 980px) {
   h1 {
     font-size: 1.25em;
+    padding-left: 20px;
   }
 }
 
@@ -1230,7 +1235,6 @@ div.etusivu article h1 {
 @media screen and (max-width: 980px) {
   .painike, .fbpainike, .twpainike {
     text-align: center;
-    font-size: 0.5rem;
     -webkit-transition: background, 0.2s ease-in;
     -moz-transition: background, 0.2s ease-in;
     -o-transition: background, 0.2s ease-in;
@@ -1382,10 +1386,14 @@ div.etusivu article h1 {
 /* KIRJAUDU STYLES */
 .reglog article {
   padding: 20px;
-  width: 400px;
   margin-top: 20px;
   margin: 0 auto;
   background: white;
+}
+@media screen and (min-width: 980px) {
+  .reglog article {
+    width: 400px;
+  }
 }
 .reglog article p {
   font-size: 0.75rem;
@@ -1433,8 +1441,8 @@ div.etusivu article h1 {
   font-size: 0.875rem;
 }
 
-#alemma {
-  margin-top: 24px;
+.lower {
+  margin-top: +24px;
 }
 
 .formfield {
@@ -1780,6 +1788,11 @@ form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen 
 .ohjeet aside ul li {
   display: block;
   margin-bottom: 10px;
+}
+@media screen and (max-width: 980px) {
+  .ohjeet aside ul li {
+    padding-left: 20px;
+  }
 }
 @media screen and (min-width: 980px) {
   .ohjeet .content {

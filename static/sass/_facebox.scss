@@ -20,7 +20,9 @@
 
 #facebox .content {
   display: table;
-  width: 400px;
+  @include wide {
+    width: 400px;
+  }
   padding: 0;
   background: #fff;
 }

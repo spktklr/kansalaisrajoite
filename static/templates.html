@@ -93,14 +93,14 @@
 				<p class="info">Olet kannattanut rajoitetta</p>
 			{{/voted}}
 			{{^voted}}
-				<input id="alemma" class="painike" type="submit" name="kannata" data-restriction-id="{{id}}" value="Kannata rajoitetta" />
+				<input class="painike lower" type="submit" name="kannata" data-restriction-id="{{id}}" value="Kannata rajoitetta" />
 			{{/voted}}
 		{{/approved}}
 		{{^approved}}
 			{{#isAdmin}}
-				<input id="alemma" class="painike" type="submit" name="vahvista" data-restriction-id="{{id}}" value="Vahvista rajoite" />
+				<input class="painike lower" type="submit" name="vahvista" data-restriction-id="{{id}}" value="Vahvista rajoite" />
 			{{/isAdmin}}
-			<input id="alemma" class="painike" type="submit" name="poista" data-restriction-id="{{id}}" value="Poista rajoite" />
+			<input class="painike lower" type="submit" name="poista" data-restriction-id="{{id}}" value="Poista rajoite" />
 		{{/approved}}
 	</div>
 </script>
@@ -202,8 +202,8 @@
 				</p>
 				<p>
 					2. Rekisteriasioista vastaava henkilö ja/tai yhteyshenkilö<br />
-					Niko Myllynen<br />
-					email etunimi.sukunimi@kansalaisrajoite.fi</p>
+					Kansalaisrajoite ylläpito<br />
+					palvelu@kansalaisrajoite.fi</p>
 				<p>
 					3. Rekisterin nimi<br />
 					Kansalaisrajoite.fi rekisteri</p>
