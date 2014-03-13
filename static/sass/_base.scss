@@ -6,8 +6,10 @@ $themecolor: #e56c69;
 $headergray: #dcdcdc;
 $semigray: #f9f9f9;
 $pagewidth: 960px;
+$minwidth: 320px;
 $break: 980px;
 $anitime: 0.2s;
+$basefontsize: 16px;
 @include global-reset; // ERIC MAYER STYLES
 @mixin wide {
   @media screen and (min-width:$break) {
@@ -25,7 +27,7 @@ $anitime: 0.2s;
       width:$pagewidth;
   }
   @include narrow {
-      min-width:410px;
+      min-width:$minwidth;
       width:80%;
   }
 }
@@ -33,7 +35,7 @@ $anitime: 0.2s;
   -webkit-transition: $transition;
   -moz-transition: $transition;
   -o-transition: $transition;
-  transition: $transition; 
+  transition: $transition;
 }
 @mixin columns($column-count, $column-width, $column-gap) {
   -webkit-column-count: $column-count;
@@ -67,4 +69,11 @@ $anitime: 0.2s;
   @media screen and (max-width:$break) {
     background:url($bg-line-url) top repeat-x white;
   }
+}
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }

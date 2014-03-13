@@ -6,6 +6,9 @@
 /* Kansalaisrajoite */
 
 /* COMMON TYY */
+html {
+	font-size: $basefontsize;
+}
 body {
 	font-family: 'Merriweather Sans', sans-serif;
 	background:white;
@@ -13,15 +16,21 @@ body {
 }
 h1 {
 	font-family: 'Open Sans Condensed', sans-serif;
-	font-size:28px;
+	font-size:1.75em;
 	font-weight:700;
+	@include narrow {
+		font-size: 1.25em;
+	}
 }
 h2 {
-	font-size:16px;
+	font-size:1em;
 	font-weight:400;
+	@include narrow {
+		font-size: 0.75rem;
+	}
 }
 h3 {
-	font-size:14px;
+	font-size:1.143em;
 	font-weight:700;
 	margin:0 0 5px 0;
 }
@@ -35,7 +44,7 @@ a {
 em {
 	color:$themecolor;
 }
-span {
+.highlight {
 	font-weight:300;
 	font-size:37px;
 }
@@ -60,14 +69,14 @@ header {
 	div {
 		@include scale();
 		color: white;
-		font-size: 12px;
+		font-size: 1rem;
 		margin: 0 auto;
 		padding: 7px 0 0 0;
 		text-align: right;
 		p {
 			@include narrow {text-align:center;}
 			span {
-				font-size: 12px;
+				font-size: 0.75rem;
 				font-weight: bold;
 				padding: 4px 4px 4px 10px;
 				@include border-radius(2px);
@@ -91,11 +100,11 @@ nav {
 		@include wide {
 			float:left;
 			margin:-12px 0 0 100px;
-			font-size:36px;
+			font-size:2.25em;
 		}
 	}
 	ul {
-		font-size:14px;
+		font-size:0.85rem;
 		@include wide {
 			margin-bottom:30px;
 		}
@@ -114,7 +123,7 @@ nav {
 				@include wide {
 					&:before {content:url(../img/nuoli12.gif) " ";}
 				}
-				@include narrow {text-align: center; font-size: 16px; line-height:30px;}
+				@include narrow {text-align: center; font-size: 1rem; line-height:30px;}
 			}
 		}
 		&:nth-of-type(2) {
@@ -122,7 +131,7 @@ nav {
 				display:none;
 			}
 			li a {
-				font-size:12px;
+				font-size:0.75rem;
 				color:white;
 				@include narrow {
 					&:before {content:url(../img/nuoli22.gif) " ";}
@@ -156,64 +165,71 @@ div.etusivu, div.rajoite, div.rajoitteet {
 /* ETUSIVU STYLES */
 div.etusivu {
 	@include scale();
-	@include wide{
+	@include wide {
 		background:url(../img/mainbg.png) no-repeat;
 	}
 	article {
 		background-color:white;
 		opacity:0.9;
-		@include wide{
-				margin:0 0 40px 410px;
+		@include wide {
+			margin:0 0 40px 410px;
+			padding:50px 50px 50px 50px;
 		}
-		@include narrow{
-				margin:0 0 40px 0;
+		@include narrow {
+			margin:0 0 20px 0;
+			padding:25px 25px 25px 25px;
 		}
-		padding:50px 50px 50px 50px;
 
-		h1 {margin:0 0 30px 0;}
-
-		h2:nth-of-type(1) {
-			padding-top: 11px;
-			margin: 2px 0 2px 0;
-			font-size:18px;
-			line-height:100%;
+		h1 {
+			margin:0 0 30px 0;
 		}
 	}
 }
 .painike {
+	display:block;
+	margin:30px auto;
+	border:none;
+	width:100%;
+	max-width:410px;
+	height:40px;
 	color:white;
+	font-family: Merriweather Sans;
 	background-color:$themecolor;
-	height:30px;
-	margin-top:30px;
-	@include wide{
+	@include transition(background, $anitime ease-in);
+	@include wide {
 			background:$themecolor url(../img/nuoli3.png) no-repeat 30px;
 			text-align:right;
-			padding:14px 28px 0 0;
+			padding:0 28px 0 0;
 			@include transition(background, $anitime ease-in);
 	}
-	@include narrow{
+	@include narrow {
 			text-align:center;
-			padding:14px 28px 0 0;
+			font-size: 0.5rem;
 			@include transition(background, $anitime ease-in);
 	}
-	@include transition(background, $anitime ease-in);
 	&:hover {
-		@include wide{
+		@include wide {
 		background:darken($themecolor, 5%) url(../img/nuoli3.png) no-repeat 33px;
 		}
-	@include narrow{
+	@include narrow {
 		background:darken($themecolor, 5%);
 		}
+	}
+	a {
+		@include vertical-align;
+	}
+	h2 {
+		@include vertical-align;
 	}
 }
 .fbpainike {
 	@extend .painike;
 	background-color:$headergray;
 	&:hover {
-		@include wide{
+		@include wide {
 		background:#3B5998 url(../img/fbnuoli3.png) no-repeat 33px;
 		}
-		@include narrow{
+		@include narrow {
 			background:#3B5998;
 		}
 	}
@@ -222,10 +238,10 @@ div.etusivu {
 	@extend .painike;
 	background-color:$headergray;
 	&:hover {
-		@include wide{
+		@include wide {
 		background:#4099FF url(../img/twnuoli3.png) no-repeat 33px;
 		}
-		@include narrow{
+		@include narrow {
 			background:#4099FF;
 		}
 	}
@@ -238,7 +254,7 @@ div.etusivu {
 		max-width: 80%;
 	}
 	p.alert, p.info {
-		font-size: 12px;
+		font-size: 0.75rem;
 	}
 	article {
 		margin:0 0 30px 0;
@@ -297,7 +313,7 @@ div.etusivu {
 		margin: 0 auto;
 		background:white;
 		p {
-			font-size: 12px;
+			font-size: 0.75rem;
 		}
 		&:nth-of-type(2) {
 			p {
@@ -331,14 +347,14 @@ div.etusivu {
 	}
 	&:nth-of-type(1) {
 		font-weight: bold;
-		font-size: 14px;
+		font-size: 0.875rem;
 		margin: 10px 0 20px 0;
 	}
 }
 .tip {
 	text-align: center;
 	margin: 20px 0 0 0;
-	font-size: 14px;
+	font-size: 0.875rem;
 }
 #alemma {
 	margin-top:24px;
@@ -354,7 +370,7 @@ div.etusivu {
 
 .infoboksi {
 	box-sizing: border-box;
-	font-size: 20px;
+	font-size: 1.25rem;
 	text-align:center;
 	border: solid 4px $themecolor;
 	margin: 10px 0 20px 0;
@@ -374,7 +390,7 @@ div.etusivu {
 	margin: 0 auto;
 	padding: 11px 10px 15px 50px;
 	background: url(../img/done.png) no-repeat 0 0, url(../img/alertbg.gif) repeat-y 0 0;
-	font-size: 18px;
+	font-size: 1.125rem;
 }
 /* NON MODAL CONTENT AREA FORM STYLES */
 
@@ -389,7 +405,7 @@ div.etusivu {
 		margin:0 0 30px 0;
 	}
 	ul {
-		font-size:12px;
+		font-size:0.75rem;
 		&:nth-of-type(1) {
 			@include narrow {
 				float:none;
@@ -540,7 +556,7 @@ form.teerajoite    {
 	}
 	span {
 		margin: 0 10px 0 0;
-		font-size: 16px;
+		font-size: 1rem;
 		font-weight: bold;
 		color: $themecolor;
 	}
@@ -582,16 +598,6 @@ form.teerajoite textarea {
 form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen textarea:focus, form.kirjautuminen input:focus {
 	border: 1px solid $themecolor;
 	outline: none;
-}
-.painike {
-	display:block;
-	font-family: 'Merriweather Sans', sans-serif;
-	margin:30px auto;
-	border:none;
-	width:100%;
-	max-width:410px;
-	height:40px;
-	padding:0 20px;
 }
 #kannata {
 	max-width:370px;
@@ -672,7 +678,7 @@ footer a:hover {
 	color:darken($themecolor, 10%);
 }
 footer p, footer ul {
-	font-size:13px;
+	font-size:0.8125rem;
 	width:220px;
 	float:left;
 	margin:0 0 40px 20px;
