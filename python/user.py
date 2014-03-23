@@ -1,12 +1,12 @@
 # coding=utf-8
-from datetime import datetime, timedelta
+import hmac
+import json
 
 from bottle import Bottle, HTTPError, request
 from sqlalchemy.orm.exc import NoResultFound
 import bcrypt
-import hmac
 
-from utils import session_user, jsonplugin, gen_token, send_email
+from utils import session_user, jsonplugin, gen_pw_reset_payload, send_email
 import model
 import config
 
@@ -97,7 +97,7 @@ def verify(db):
     if not email or not token:
         return HTTPError(400, 'Bad request')
 
-    if not token == hmac.new(config.site_secret, email).hexdigest():
+    if token != hmac.new(config.site_secret, email).hexdigest():
         return HTTPError(401, 'Unauthorized')
 
     user = db.query(model.User).filter_by(email=email).first()
@@ -123,15 +123,16 @@ def send_reset_email(db):
     user = db.query(model.User).filter_by(email=email).first()
 
     if user:
-        user.password_reset_initiated = datetime.now()
-        user.password_reset_token = gen_token()
+        json_payload = json.dumps(gen_pw_reset_payload(user))
+
+        token = hmac.new(config.site_secret, json_payload).hexdigest()
 
         subject = config.pw_reset_email_subject
         body = config.pw_reset_email_body.format(
             email=user.email,
             site_name=config.site_name,
             site_url=config.site_url,
-            token=user.password_reset_token
+            token=token
         )
 
         send_email(email, subject, body)
@@ -150,18 +151,19 @@ def reset_password(db):
 
     user = db.query(model.User).filter_by(email=email).first()
 
-    # pw reset token is valid for 1 hour
-    if (user and user.password_reset_initiated and
-            user.password_reset_initiated + timedelta(hours=1)
-            >= datetime.now() and user.password_reset_token == token):
-        user.password = bcrypt.hashpw(password, bcrypt.gensalt())
+    if user:
+        # validate hmac token
+        json_payload = json.dumps(gen_pw_reset_payload(user))
+        new_token = hmac.new(config.site_secret, json_payload).hexdigest()
 
-        user.password_reset_initiated = None
-        user.password_reset_token = None
+        if token != new_token:
+            return HTTPError(401, 'Unauthorized')
+
+        # change password
+        user.password = bcrypt.hashpw(password, bcrypt.gensalt())
 
         # pw reset can also be used in activating the account
         user.verified = True
-        user.verification_token = None
     else:
         return HTTPError(401, 'Unauthorized')
 

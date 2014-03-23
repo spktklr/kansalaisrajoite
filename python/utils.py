@@ -1,8 +1,6 @@
 # coding=utf-8
 import json
 import datetime
-import random
-import string
 import smtplib
 from email.mime.text import MIMEText
 
@@ -26,11 +24,6 @@ def session_user(request, db):
     return db.query(model.User).filter_by(id=user_id).first()
 
 
-def gen_token():
-    charset = string.ascii_letters + string.digits
-    return ''.join(random.choice(charset) for x in range(32))
-
-
 def send_email(address, subject, body):
     message = MIMEText(body)
     message['Subject'] = subject
@@ -39,6 +32,15 @@ def send_email(address, subject, body):
 
     smtp = smtplib.SMTP('localhost')
     smtp.sendmail(config.site_email, [address], message.as_string())
+
+
+def gen_pw_reset_payload(user):
+    # bundle old pw into hmac code to make this reset valid only
+    # for the current pw
+    return {
+        'email': user.email,
+        'password': user.password
+    }
 
 
 class JsonEncoder(json.JSONEncoder):

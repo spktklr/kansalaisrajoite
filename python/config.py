@@ -30,8 +30,6 @@ palautus klikkaamalla alla olevaa linkkiä:
 
 {site_url}/#/uusi-salasana/{email}/{token}
 
-Linkki on voimassa tunnin ajan.
-
 
 Terveisin,
 

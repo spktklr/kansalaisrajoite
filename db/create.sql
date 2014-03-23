@@ -11,8 +11,6 @@ CREATE TABLE "user" (
 	name VARCHAR(128),
 	verified BOOL NOT NULL DEFAULT(FALSE),
 	password CHAR(60) NOT NULL,
-	password_reset_initiated TIMESTAMP,
-	password_reset_token CHAR(32),
 	city VARCHAR(32),
 	admin BOOL NOT NULL DEFAULT(FALSE),
 	registered TIMESTAMP NOT NULL DEFAULT(NOW())
