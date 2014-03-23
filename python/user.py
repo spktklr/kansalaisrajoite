@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from bottle import Bottle, HTTPError, request
 from sqlalchemy.orm.exc import NoResultFound
 import bcrypt
+import hmac
 
 from utils import session_user, jsonplugin, gen_token, send_email
 import model
@@ -42,17 +43,17 @@ def register(db):
 
     user.password = bcrypt.hashpw(password, bcrypt.gensalt())
 
-    user.verified = False
-    user.verification_token = gen_token()
-
     db.add(user)
+
+    # create hmac verification token
+    token = hmac.new(config.site_secret, user.email).hexdigest()
 
     subject = config.verification_email_subject
     body = config.verification_email_body.format(
         email=user.email,
         site_name=config.site_name,
         site_url=config.site_url,
-        token=user.verification_token
+        token=token
     )
 
     send_email(email, subject, body)
@@ -96,18 +97,20 @@ def verify(db):
     if not email or not token:
         return HTTPError(400, 'Bad request')
 
+    if not token == hmac.new(config.site_secret, email).hexdigest():
+        return HTTPError(401, 'Unauthorized')
+
     user = db.query(model.User).filter_by(email=email).first()
 
-    if user and not user.verified and user.verification_token == token:
+    if user:
         user.verified = True
-        user.verification_token = None
 
         session = request.environ['beaker.session']
         session['user_id'] = user.id
 
         return user.toDict(True)
     else:
-        return HTTPError(401, 'Unauthorized')
+        return HTTPError(404, 'Not found')
 
 
 @app.post('/nollaa-salasana-1')

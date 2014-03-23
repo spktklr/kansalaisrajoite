@@ -10,7 +10,6 @@ CREATE TABLE "user" (
 	email VARCHAR(128) NOT NULL UNIQUE,
 	name VARCHAR(128),
 	verified BOOL NOT NULL DEFAULT(FALSE),
-	verification_token CHAR(32),
 	password CHAR(60) NOT NULL,
 	password_reset_initiated TIMESTAMP,
 	password_reset_token CHAR(32),

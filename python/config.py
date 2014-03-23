@@ -6,10 +6,12 @@ site_email = 'yllapito@kansalaisrajoite.fi'
 
 db_url = 'postgresql+psycopg2:///kansalaisrajoite'
 
+site_secret = 'changeme'
+
 verification_email_subject = 'Rekisteröityminen'
 verification_email_body = """Hei!
 
-Rekisteröidyit {site_name}-palveluun käyttäen sähköpostiosoitetta {email}.
+Rekisteröidyit {site_name}-palveluun.
 Vahvista rekisteröitymisesi klikkaamalla alla olevaa linkkiä:
 
 {site_url}/#/vahvista/{email}/{token}

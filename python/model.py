@@ -73,7 +73,6 @@ class User(Base):
     email = Column(String)
     name = Column(String)
     verified = Column(Boolean, server_default='FALSE')
-    verification_token = Column(String)
     password = Column(String)
     password_reset_initiated = Column(DateTime)
     password_reset_token = Column(String)
