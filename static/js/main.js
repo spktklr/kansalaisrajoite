@@ -523,6 +523,10 @@ $(function() {
 						if (anchor) {
 							scrollTo('#' + anchor);
 						}
+						else
+						{
+							scrollTo('body');
+						}
 					},
 					'/tiedotteet': function() {
 						$.getJSON('tiedote', function(data) {
