@@ -539,9 +539,13 @@ $(function() {
 						show('section', 'inenglish');
 					},
 					'/muuta-tietoja': function() {
-						$.getJSON('kayttaja', function(data) {
-							show('section', 'muuta-tietoja', data);
-						});
+						if (user.isLogged) {
+							$.getJSON('kayttaja', function(data) {
+								show('section', 'muuta-tietoja', data);
+							});
+						} else {
+							show('section', 'error-login');
+						}
 					},
 					'/vahvista/:email/:token': function(email, token) {
 						$.ajax({
