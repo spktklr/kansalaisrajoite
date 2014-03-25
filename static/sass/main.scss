@@ -75,7 +75,11 @@ header {
 		padding: 7px 0 0 0;
 		text-align: right;
 		p {
+			strong {
+				@include narrow {display:none;}
+			}
 			@include narrow {text-align:center;}
+			font-size: 0.75rem;
 			span {
 				font-size: 0.75rem;
 				font-weight: bold;
@@ -180,9 +184,9 @@ div.etusivu {
 			margin:0 0 20px 0;
 			padding:25px 25px 25px 25px;
 		}
-
 		h1 {
 			margin:0 0 30px 0;
+			@include narrow { margin-left: -20px; }
 		}
 	}
 }
@@ -253,6 +257,9 @@ div.etusivu {
 		margin:0 0 30px 0;
 		max-width: 80%;
 	}
+	p {
+		@include narrow {margin:0 20px 0 20px;}
+	}
 	p.alert, p.info {
 		font-size: 0.75rem;
 	}
@@ -289,6 +296,7 @@ div.etusivu {
 	float: right;
 	height: 32px;
 	width: 32px;
+	margin-right: 20px;
 	background: url("../img/graytw.png") no-repeat;
 	@include transition(background, $anitime ease-in);
 	&:hover {
@@ -296,9 +304,12 @@ div.etusivu {
 	}
 }
 #fb {
-	@extend #tw;
+	float: right;
+	height: 32px;
+	width: 32px;
 	padding: 0 10px 0 0;
 	background: url("../img/grayfb.png") no-repeat;
+	@include transition(background, $anitime ease-in);
 	&:hover {
 		background: url("../img/bluefb.png") no-repeat;
 	}
@@ -575,6 +586,7 @@ form.teerajoite p {
 }
 .formlabel {
 	width: 180px;
+	@include narrow {width:100px;}
 }
 .restrictiontext {
 	background:$semigray;

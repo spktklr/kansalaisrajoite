@@ -1030,6 +1030,14 @@ header div {
     width: 80%;
   }
 }
+header div p {
+  font-size: 0.75rem;
+}
+@media screen and (max-width: 980px) {
+  header div p strong {
+    display: none;
+  }
+}
 @media screen and (max-width: 980px) {
   header div p {
     text-align: center;
@@ -1205,6 +1213,11 @@ div.etusivu article {
 div.etusivu article h1 {
   margin: 0 0 30px 0;
 }
+@media screen and (max-width: 980px) {
+  div.etusivu article h1 {
+    margin-left: -20px;
+  }
+}
 
 .painike, .fbpainike, .twpainike {
   display: block;
@@ -1300,6 +1313,11 @@ div.etusivu article h1 {
   margin: 0 0 30px 0;
   max-width: 80%;
 }
+@media screen and (max-width: 980px) {
+  .rajoite p, .contentform p {
+    margin: 0 20px 0 20px;
+  }
+}
 .rajoite p.alert, .contentform p.alert, .rajoite p.info, .contentform p.info {
   font-size: 0.75rem;
 }
@@ -1361,23 +1379,31 @@ div.etusivu article h1 {
   }
 }
 
-#tw, #fb {
+#tw {
   float: right;
   height: 32px;
   width: 32px;
+  margin-right: 20px;
   background: url("../img/graytw.png") no-repeat;
   -webkit-transition: background, 0.2s ease-in;
   -moz-transition: background, 0.2s ease-in;
   -o-transition: background, 0.2s ease-in;
   transition: background, 0.2s ease-in;
 }
-#tw:hover, #fb:hover {
+#tw:hover {
   background: url("../img/bluetw.png") no-repeat;
 }
 
 #fb {
+  float: right;
+  height: 32px;
+  width: 32px;
   padding: 0 10px 0 0;
   background: url("../img/grayfb.png") no-repeat;
+  -webkit-transition: background, 0.2s ease-in;
+  -moz-transition: background, 0.2s ease-in;
+  -o-transition: background, 0.2s ease-in;
+  transition: background, 0.2s ease-in;
 }
 #fb:hover {
   background: url("../img/bluefb.png") no-repeat;
@@ -1694,6 +1720,11 @@ form.teerajoite p {
 
 .formlabel {
   width: 180px;
+}
+@media screen and (max-width: 980px) {
+  .formlabel {
+    width: 100px;
+  }
 }
 
 .restrictiontext, .restrictionlabel {
