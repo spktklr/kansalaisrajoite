@@ -78,13 +78,6 @@ $(function() {
 		return false;
 	});
 
-	$(document).on('click', '#ota-yhteytta', function() {
-		jQuery.facebox({
-			ajax: 'otayhteytta.html'
-		});
-		return false;
-	});
-
 	$(document).on('click', '#forgotpassword', function() {
 		jQuery.facebox({
 			ajax: 'salasana_unohtui.html'
@@ -542,9 +535,6 @@ $(function() {
 					},
 					'/inenglish': function() {
 						show('section', 'inenglish');
-					},
-					'/ota-yhteytta': function() {
-						show('section', 'ota-yhteytta');
 					},
 					'/muuta-tietoja': function() {
 						$.getJSON('kayttaja', function(data) {
