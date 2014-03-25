@@ -49,6 +49,19 @@ $(function() {
 		$(element)[0].scrollIntoView();
 	}
 
+	var validatePassword = function(password) {
+		if (password.length < 8) {
+			return 1;
+		}
+		if (password == 'kansalaisrajoite' ||
+			password == 'salasana' ||
+			password == 'password') {
+			return 2;
+		}
+
+		return 0;
+	}
+
 	/* modal event handlers start */
 	$(document).on('click', '#kirjaudu', function() {
 		jQuery.facebox({
@@ -136,27 +149,18 @@ $(function() {
 		var name = $('#register input[name=name]').val(),
 			city = $('#register input[name=city]').val(),
 			email = $('#register input[name=email]').val(),
-			pass1 = $('#register input[name=password1]').val(),
-			pass2 = $('#register input[name=password2]').val();
+			pass = $('#register input[name=password]').val();
 
 		e.preventDefault();
 		$('p.alert').hide();
 
-		// quick form validation
-		if (pass1 !== pass2) {
-			$('p.alert.pwmismatch').show('fast');
-			return;
-		}
-
-		if (pass1.length < 8) {
-			$('p.alert.pwlength').show('fast');
-			return;
-		}
-
-		// bwhahahahahaha
-		if (pass1 === 'kansalaisrajoite' || pass1 === 'salasana' || pass1 === 'password') {
-			$('p.alert.pwsimple').show('fast');
-			return;
+		switch (validatePassword(pass)) {
+			case 1:
+				$('p.alert.pwlength').show('fast');
+				return;
+			case 2:
+				$('p.alert.pwsimple').show('fast');
+				return;
 		}
 
 		$.ajax({
@@ -164,7 +168,7 @@ $(function() {
 			global: false,
 			data: {
 				email: email,
-				password: pass1,
+				password: pass,
 				name: name,
 				city: city,
 			},
@@ -193,15 +197,15 @@ $(function() {
 		e.preventDefault();
 		$('p.alert').hide();
 
-		if (pass.length > 0 && pass.length < 8) {
-			$('p.alert.pwlength').show('fast');
-			return;
-		}
-
-		// bwhahahahahaha
-		if (pass === 'kansalaisrajoite' || pass === 'salasana' || pass === 'password') {
-			$('p.alert.pwsimple').show('fast');
-			return;
+		if (pass.length > 0) {
+			switch (validatePassword(pass)) {
+				case 1:
+					$('p.alert.pwlength').show('fast');
+					return;
+				case 2:
+					$('p.alert.pwsimple').show('fast');
+					return;
+			}
 		}
 
 		$.ajax({
@@ -269,15 +273,13 @@ $(function() {
 		$('p.alert').hide();
 		$('p.info').hide();
 
-		if (pass.length < 8) {
-			$('p.alert.pwlength').show('fast');
-			return;
-		}
-
-		// bwhahahahahaha
-		if (pass === 'kansalaisrajoite' || pass === 'salasana' || pass === 'password') {
-			$('p.alert.pwsimple').show('fast');
-			return;
+		switch (validatePassword(pass)) {
+			case 1:
+				$('p.alert.pwlength').show('fast');
+				return;
+			case 2:
+				$('p.alert.pwsimple').show('fast');
+				return;
 		}
 
 		$.ajax({
