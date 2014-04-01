@@ -2,7 +2,7 @@
 import hmac
 import json
 
-from bottle import Bottle, HTTPError, request
+from bottle import Bottle, HTTPError, request, template
 from sqlalchemy.orm.exc import NoResultFound
 import bcrypt
 
@@ -49,7 +49,8 @@ def register(db):
     token = hmac.new(config.site_secret, user.email).hexdigest()
 
     subject = config.verification_email_subject
-    body = config.verification_email_body.format(
+    body = template(
+        'mail_verification',
         email=user.email,
         site_name=config.site_name,
         site_url=config.site_url,
@@ -128,7 +129,8 @@ def send_reset_email(db):
         token = hmac.new(config.site_secret, json_payload).hexdigest()
 
         subject = config.pw_reset_email_subject
-        body = config.pw_reset_email_body.format(
+        body = template(
+            'mail_pw_reset',
             email=user.email,
             site_name=config.site_name,
             site_url=config.site_url,

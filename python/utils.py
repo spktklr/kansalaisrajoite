@@ -25,7 +25,7 @@ def session_user(request, db):
 
 
 def send_email(address, subject, body):
-    message = MIMEText(body)
+    message = MIMEText(body.encode('ISO-8859-1'))
     message['Subject'] = subject
     message['From'] = '%s <%s>' % (config.site_name, config.site_email)
     message['To'] = address
