@@ -65,35 +65,35 @@ $(function() {
 	/* modal event handlers start */
 	$(document).on('click', '#kirjaudu', function() {
 		jQuery.facebox({
-			ajax: 'kirjaudu.html'
+			ajax: 'login.html'
 		});
 		return false;
 	});
 
 	$(document).on('click', '#rekisteroidy', function() {
 		jQuery.facebox({
-			ajax: 'rekisteroidy.html'
+			ajax: 'register.html'
 		});
 		return false;
 	});
 
 	$(document).on('click', '#loginregister', function() {
 		jQuery.facebox({
-			ajax: 'rekisteroidy.html'
+			ajax: 'register.html'
 		});
 		return false;
 	});
 
 	$(document).on('click', '#registerlogin', function() {
 		jQuery.facebox({
-			ajax: 'kirjaudu.html'
+			ajax: 'login.html'
 		});
 		return false;
 	});
 
 	$(document).on('click', '#forgotpassword', function() {
 		jQuery.facebox({
-			ajax: 'salasana_unohtui.html'
+			ajax: 'lost_password.html'
 		});
 		return false;
 	});
@@ -105,7 +105,7 @@ $(function() {
 		$('p.alert').hide();
 
 		$.ajax({
-			url: 'kayttaja/login',
+			url: 'user/login',
 			global: false,
 			data: {
 				email: $('#login input[name=email]').val(),
@@ -131,7 +131,7 @@ $(function() {
 
 	$(document).on('click', 'a.ulos', function() {
 		$.ajax({
-			url: 'kayttaja/logout',
+			url: 'user/logout',
 			type: 'POST',
 			success: function() {
 				user.setLoggedOut();
@@ -164,7 +164,7 @@ $(function() {
 		}
 
 		$.ajax({
-			url: 'kayttaja/rekisteroidy',
+			url: 'user/register',
 			global: false,
 			data: {
 				email: email,
@@ -209,7 +209,7 @@ $(function() {
 		}
 
 		$.ajax({
-			url: 'kayttaja',
+			url: 'user',
 			global: false,
 			data: {
 				password: pass,
@@ -242,7 +242,7 @@ $(function() {
 		$('p.info').hide();
 
 		$.ajax({
-			url: 'kayttaja/nollaa-salasana-1',
+			url: 'user/reset-password-1',
 			global: false,
 			data: {
 				email: email
@@ -283,7 +283,7 @@ $(function() {
 		}
 
 		$.ajax({
-			url: 'kayttaja/nollaa-salasana-2',
+			url: 'user/reset-password-2',
 			global: false,
 			data: {
 				password: pass,
@@ -306,9 +306,9 @@ $(function() {
 	/* forgotten password event handlers end */
 
 	/* restriction view click handlers */
-	$(document).on('click', 'input[name="kannata"]', function() {
+	$(document).on('click', 'input[name="vote"]', function() {
 		$.ajax({
-			url: 'kannatus/' + $(this).data('restriction-id'),
+			url: 'restriction/' + $(this).data('restriction-id'),
 			type: 'POST',
 			success: function() {
 				routie.reload();
@@ -316,9 +316,9 @@ $(function() {
 		});
 	});
 
-	$(document).on('click', 'input[name="vahvista"]', function() {
+	$(document).on('click', 'input[name="approve"]', function() {
 		$.ajax({
-			url: 'rajoite/' + $(this).data('restriction-id') + '/vahvista',
+			url: 'restriction/' + $(this).data('restriction-id') + '/approve',
 			type: 'POST',
 			success: function() {
 				routie.reload();
@@ -326,9 +326,9 @@ $(function() {
 		});
 	});
 
-	$(document).on('click', 'input[name="poista"]', function() {
+	$(document).on('click', 'input[name="delete"]', function() {
 		$.ajax({
-			url: 'rajoite/' + $(this).data('restriction-id'),
+			url: 'restriction/' + $(this).data('restriction-id'),
 			type: 'DELETE',
 			success: function() {
 				routie('/rajoitteet');
@@ -361,7 +361,7 @@ $(function() {
 		e.preventDefault();
 
 		$.ajax({
-			url: 'rajoite',
+			url: 'restriction',
 			global: false,
 			data: {
 				title: $('#newrestriction input[name=title]').val(),
@@ -447,7 +447,7 @@ $(function() {
 			return percentCompleted;
 		};
 
-		show('section', 'rajoitteet', data);
+		show('section', 'restrictions', data);
 	}
 	/* content functions end */
 
@@ -474,7 +474,7 @@ $(function() {
 			});
 
 			// load and display login status
-			$.getJSON('kayttaja', function(data) {
+			$.getJSON('user', function(data) {
 				if (data.name !== undefined) {
 					user.setLoggedIn(data);
 				} else {
@@ -487,34 +487,34 @@ $(function() {
 				routie({
 					'': function() {
 						// default to the front page
-						show('section', 'etusivu');
+						show('section', 'frontpage');
 					},
 					'/etusivu': function() {
-						show('section', 'etusivu');
+						show('section', 'frontpage');
 					},
 					'/rajoitteet/:order?': function(order) {
-						$.getJSON('rajoite', function(data) {
+						$.getJSON('restriction', function(data) {
 							showRestrictions(data, order);
 						});
 					},
 					'/rajoite/:id/:slug?': function(id, slug) {
-						$.getJSON('rajoite/' + id, function(data) {
+						$.getJSON('restriction/' + id, function(data) {
 							data.date = function() {
 								return convertToDateStr;
 							};
 							data.isAdmin = (user.info ? user.info.admin : false);
-							show('section', 'rajoite', data);
+							show('section', 'restriction', data);
 						});
 					},
 					'/rajoita': function() {
 						if (user.isLogged) {
-							show('section', 'teerajoite');
+							show('section', 'restrict');
 						} else {
 							show('section', 'error-login');
 						}
 					},
 					'/ohjeet/:anchor?': function(anchor) {
-						show('section', 'ohjeet');
+						show('section', 'guide');
 						if (anchor) {
 							scrollTo('#' + anchor);
 						}
@@ -524,12 +524,12 @@ $(function() {
 						}
 					},
 					'/tiedotteet': function() {
-						$.getJSON('tiedote', function(data) {
+						$.getJSON('news', function(data) {
 							data.hasNews = (data.news.length > 0);
 							data.date = function() {
 								return convertToDateStr;
 							};
-							show('section', 'tiedotteet', data);
+							show('section', 'news', data);
 						});
 					},
 					'/pasvenska': function() {
@@ -540,8 +540,8 @@ $(function() {
 					},
 					'/muuta-tietoja': function() {
 						if (user.isLogged) {
-							$.getJSON('kayttaja', function(data) {
-								show('section', 'muuta-tietoja', data);
+							$.getJSON('user', function(data) {
+								show('section', 'account-edit', data);
 							});
 						} else {
 							show('section', 'error-login');
@@ -549,7 +549,7 @@ $(function() {
 					},
 					'/vahvista/:email/:token': function(email, token) {
 						$.ajax({
-							url: 'kayttaja/vahvista',
+							url: 'user/verify',
 							global: false,
 							data: {
 								email: email,
@@ -573,7 +573,7 @@ $(function() {
 							email: email,
 							token: token
 						};
-						show('section', 'annasalasana', data);
+						show('section', 'new-password', data);
 					},
 					'*': function() {
 						// show 404 page for other urls

@@ -84,7 +84,7 @@ def delete(db, id):
         return HTTPError(404, 'Not found')
 
 
-@app.post('/<id:int>/vahvista')
+@app.post('/<id:int>/approve')
 def approve(db, id):
     try:
         user = session_user(request, db)

@@ -16,7 +16,7 @@ app.install(model.plugin)
 app.install(jsonplugin)
 
 
-@app.post('/rekisteroidy')
+@app.post('/register')
 def register(db):
     email = request.forms.get('email')
     name = request.forms.get('name')
@@ -90,7 +90,7 @@ def modify(db):
     return user.toDict(True)
 
 
-@app.post('/vahvista')
+@app.post('/verify')
 def verify(db):
     email = request.forms.get('email')
     token = request.forms.get('token')
@@ -114,7 +114,7 @@ def verify(db):
         return HTTPError(404, 'Not found')
 
 
-@app.post('/nollaa-salasana-1')
+@app.post('/reset-password-1')
 def send_reset_email(db):
     email = request.forms.get('email')
 
@@ -142,7 +142,7 @@ def send_reset_email(db):
     # to keep emails private we don't want to tell the user if the email exists
 
 
-@app.post('/nollaa-salasana-2')
+@app.post('/reset-password-2')
 def reset_password(db):
     email = request.forms.get('email')
     token = request.forms.get('token')

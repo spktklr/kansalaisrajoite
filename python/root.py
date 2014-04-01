@@ -10,10 +10,10 @@ import config
 
 
 app = Bottle()
-app.mount('/rajoite', restriction.app)
-app.mount('/kannatus', vote.app)
-app.mount('/kayttaja', user.app)
-app.mount('/tiedote', news.app)
+app.mount('/restriction', restriction.app)
+app.mount('/vote', vote.app)
+app.mount('/user', user.app)
+app.mount('/news', news.app)
 
 
 @app.get('/')
