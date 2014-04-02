@@ -64,37 +64,27 @@ $(function() {
 
 	/* modal event handlers start */
 	$(document).on('click', '.link-login', function() {
-		jQuery.facebox({
-			ajax: 'login.html'
-		});
+		jQuery.facebox($.Mustache.render('dialog-login'));
 		return false;
 	});
 
 	$(document).on('click', '.link-register', function() {
-		jQuery.facebox({
-			ajax: 'register.html'
-		});
+		jQuery.facebox($.Mustache.render('dialog-register'));
 		return false;
 	});
 
 	$(document).on('click', '.link-loginregister', function() {
-		jQuery.facebox({
-			ajax: 'register.html'
-		});
+		jQuery.facebox($.Mustache.render('dialog-register'));
 		return false;
 	});
 
 	$(document).on('click', '.link-registerlogin', function() {
-		jQuery.facebox({
-			ajax: 'login.html'
-		});
+		jQuery.facebox($.Mustache.render('dialog-login'));
 		return false;
 	});
 
 	$(document).on('click', '.link-forgotpassword', function() {
-		jQuery.facebox({
-			ajax: 'lost_password.html'
-		});
+		jQuery.facebox($.Mustache.render('dialog-lostpassword'));
 		return false;
 	});
 	/* modal event handlers end */

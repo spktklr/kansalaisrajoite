@@ -374,6 +374,77 @@
 	</div>
 </script>
 
+<script id="dialog-login" type="text/html">
+	<div class="reglog">
+		<article>
+			<p class="regtip">Sisäänkirjautuminen</p>
+			<p class="alert hidden wrongpw">Virheellinen käyttäjätunnus tai salasana.</p>
+			<form id="login" class="kirjautuminen">
+				<label>
+				<p>Sähköpostiosoite</p><input class="formfield" id="email" type="text" name="email" />
+				</label>
+				<label>
+				<p>Salasana</p><input class="formfield" type="password" name="password" size="25" />
+				</label>
+				<label>
+				<input class="painike lower" type="submit" value="Kirjaudu sisään" />
+				</label>
+			</form>
+			<p class="regtip">Ei käyttäjätunnuksia? <a class="link-loginregister" href="#">Rekisteröidy käyttäjäksi</a>.</p>
+			<p class="regtip"><a class="link-forgotpassword" href="#">Unohtuiko salasana</a>?</p>
+		</article>
+	</div>
+</script>
+
+<script id="dialog-register" type="text/html">
+	<div class="reglog">
+		<article>
+			<p class="regtip">Rekisteröityminen käyttäjäksi</p>
+			<p class="alert hidden pwlength">Salasanan tulee olla vähintään 8 merkkiä pitkä.</p>
+			<p class="alert hidden pwsimple">Salasanasi on liian helppo.</p>
+			<p class="alert hidden badrequest">Sähköpostiosoite ja salasana vaaditaan.</p>
+			<p class="alert hidden conflict">Sähköpostiosoite on jo rekisteröity.</p>
+			<form id="register" class="rekisteroityminen">
+				<label>
+					<p>Nimi</p><input class="formfield" type="text" name="name" />
+				</label>
+				<label>
+					<p>Paikkakunta</p><input class="formfield" type="text" name="city" />
+				</label>
+				<label>
+					<p>Sähköpostiosoite *</p><input class="formfield" id="email" type="text" name="email" />
+				</label>
+				<label>
+					<p>Salasana *</p><input class="formfield" type="password" name="password" size="25" />
+				</label>
+				<label>
+					<input class="painike lower" type="submit" value="Rekisteröidy käyttäjäksi" />
+				</label>
+			</form>
+			<p class="regtip">Onko sinulla jo käyttäjätunnukset? <a class="link-registerlogin" href="#">Kirjaudu sisään</a>.</p>
+		</article>
+	</div>
+</script>
+
+<script id="dialog-lostpassword" type="text/html">
+	<div class="reglog">
+		<article>
+			<p class="regtip">Unohtunut salasana</p>
+			<p class="alert hidden badrequest">Virheellinen sähköpostiosoite.</p>
+			<p class="alert hidden generic">Virhe sähköpostia lähetettäessä.</p>
+			<p class="info hidden emailsent">Sähköposti lähetetty antamaasi osoitteeseen.</p>
+			<form id="forgotpass" class="unohtunutsalasana">
+				</label>
+					<p>Sähköpostiosoite, jolla rekisteröidyit</p><input class="formfield" id="email" type="text" name="email" />
+				</label>
+				<label>
+					<input class="painike lower" type="submit" value="Lähetä" />
+				</label>
+			</form>
+		</article>
+	</div>
+</script>
+
 <script id="error-login" type="text/html">
 	<div class="tiedotteet">
 		<h1>Toiminto vaatii kirjautumisen</h1>
