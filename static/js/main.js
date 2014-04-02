@@ -63,35 +63,35 @@ $(function() {
 	}
 
 	/* modal event handlers start */
-	$(document).on('click', '#kirjaudu', function() {
+	$(document).on('click', '.link-login', function() {
 		jQuery.facebox({
 			ajax: 'login.html'
 		});
 		return false;
 	});
 
-	$(document).on('click', '#rekisteroidy', function() {
+	$(document).on('click', '.link-register', function() {
 		jQuery.facebox({
 			ajax: 'register.html'
 		});
 		return false;
 	});
 
-	$(document).on('click', '#loginregister', function() {
+	$(document).on('click', '.link-loginregister', function() {
 		jQuery.facebox({
 			ajax: 'register.html'
 		});
 		return false;
 	});
 
-	$(document).on('click', '#registerlogin', function() {
+	$(document).on('click', '.link-registerlogin', function() {
 		jQuery.facebox({
 			ajax: 'login.html'
 		});
 		return false;
 	});
 
-	$(document).on('click', '#forgotpassword', function() {
+	$(document).on('click', '.link-forgotpassword', function() {
 		jQuery.facebox({
 			ajax: 'lost_password.html'
 		});
@@ -129,7 +129,7 @@ $(function() {
 		});
 	});
 
-	$(document).on('click', 'a.ulos', function() {
+	$(document).on('click', '.link-logout', function() {
 		$.ajax({
 			url: 'user/logout',
 			type: 'POST',

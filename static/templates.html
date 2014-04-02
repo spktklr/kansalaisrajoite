@@ -242,10 +242,10 @@
 <script id="headerbox" type="text/html">
 	<div><div>
 		{{#isLogged}}
-		<p><strong>Kirjautuneena: {{#info.name}}{{info.name}}{{/info.name}}{{^info.name}}{{info.email}}{{/info.name}} </strong><span><a href="#/muuta-tietoja">Muuta tietojasi</a></span><span><a href="#" class="ulos">Kirjaudu ulos</a></span></p>
+		<p><strong>Kirjautuneena: {{#info.name}}{{info.name}}{{/info.name}}{{^info.name}}{{info.email}}{{/info.name}} </strong><span><a href="#/muuta-tietoja">Muuta tietojasi</a></span><span><a href="#" class="link-logout">Kirjaudu ulos</a></span></p>
 		{{/isLogged}}
 		{{^isLogged}}
-		<p><span><a id="rekisteroidy" href="#">Rekisteröidy käyttäjäksi</a></span><span><a id="kirjaudu" href="#">Kirjaudu sisään</a></span></p>
+		<p><span><a class="link-register" href="#">Rekisteröidy käyttäjäksi</a></span><span><a class="link-login" href="#">Kirjaudu sisään</a></span></p>
 		{{/isLogged}}
 	</div></div>
 	<nav>
@@ -378,7 +378,7 @@
 	<div class="tiedotteet">
 		<h1>Toiminto vaatii kirjautumisen</h1>
 		<article>
-		<p>Tämä toiminto on mahdollinen vain palveluun kirjautuneille käyttäjille. Jos sinulla on jo käyttäjätunnukset, <a id="registerlogin" href="#">kirjaudu sisään</a>. Jos ei, <a id="loginregister" href="#">rekisteröidy kansalaisrajoite.fi-palvelun käyttäjäksi</a>.</p>
+		<p>Tämä toiminto on mahdollinen vain palveluun kirjautuneille käyttäjille. Jos sinulla on jo käyttäjätunnukset, <a class="link-registerlogin" href="#">kirjaudu sisään</a>. Jos ei, <a class="link-loginregister" href="#">rekisteröidy kansalaisrajoite.fi-palvelun käyttäjäksi</a>.</p>
 		</article>
 	</div>
 </script>
