@@ -308,7 +308,7 @@ $(function() {
 	/* restriction view click handlers */
 	$(document).on('click', 'input[name="vote"]', function() {
 		$.ajax({
-			url: 'restriction/' + $(this).data('restriction-id'),
+			url: 'vote/' + $(this).data('restriction-id'),
 			type: 'POST',
 			success: function() {
 				routie.reload();
