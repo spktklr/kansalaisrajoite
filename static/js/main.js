@@ -317,13 +317,15 @@ $(function() {
 	});
 
 	$(document).on('click', 'input[name="delete"]', function() {
-		$.ajax({
-			url: 'restriction/' + $(this).data('restriction-id'),
-			type: 'DELETE',
-			success: function() {
-				routie('/rajoitteet');
-			}
-		});
+		if (window.confirm('Oletko varma että haluat poistaa rajoitteen?')) {
+			$.ajax({
+				url: 'restriction/' + $(this).data('restriction-id'),
+				type: 'DELETE',
+				success: function() {
+					routie('/rajoitteet');
+				}
+			});
+		}
 	});
 
 	$(document).on('click', 'a.sharefb', function() {
