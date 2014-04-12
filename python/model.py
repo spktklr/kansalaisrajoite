@@ -52,8 +52,8 @@ class Restriction(Base):
         ret['votes'] = len(self.voters)
         ret['title'] = self.title
         ret['body'] = self.body
-        ret['user_name'] = self.user_name,
-        ret['user_city'] = self.user_city,
+        ret['user_name'] = self.user_name
+        ret['user_city'] = self.user_city
         ret['approved'] = self.approved
         if full:
             if self.approver:
