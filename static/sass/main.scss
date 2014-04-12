@@ -612,7 +612,7 @@ form.teerajoite textarea {
 	box-sizing:border-box;
 	resize:vertical;
 }
-form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen textarea:focus, form.kirjautuminen input:focus {
+form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen textarea:focus, form.kirjautuminen input:focus, form.rekisteroityminen input:focus {
 	border: 1px solid $themecolor;
 	outline: none;
 }
