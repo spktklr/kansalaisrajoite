@@ -65,26 +65,31 @@ $(function() {
 	/* modal event handlers start */
 	$(document).on('click', '.link-login', function() {
 		jQuery.facebox($.Mustache.render('dialog-login'));
+		$('input:first').focus();
 		return false;
 	});
 
 	$(document).on('click', '.link-register', function() {
 		jQuery.facebox($.Mustache.render('dialog-register'));
+		$('input:first').focus();
 		return false;
 	});
 
 	$(document).on('click', '.link-loginregister', function() {
 		jQuery.facebox($.Mustache.render('dialog-register'));
+		$('input:first').focus();
 		return false;
 	});
 
 	$(document).on('click', '.link-registerlogin', function() {
 		jQuery.facebox($.Mustache.render('dialog-login'));
+		$('input:first').focus();
 		return false;
 	});
 
 	$(document).on('click', '.link-forgotpassword', function() {
 		jQuery.facebox($.Mustache.render('dialog-lostpassword'));
+		$('input:first').focus();
 		return false;
 	});
 	/* modal event handlers end */
