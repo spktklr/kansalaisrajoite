@@ -259,6 +259,7 @@ div.etusivu {
 	}
 	p {
 		@include narrow {margin:0 20px 0 20px;}
+		white-space: pre-wrap;
 	}
 	p.alert, p.info {
 		font-size: 0.75rem;

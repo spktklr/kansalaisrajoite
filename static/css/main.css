@@ -1313,6 +1313,9 @@ div.etusivu article h1 {
   margin: 0 0 30px 0;
   max-width: 80%;
 }
+.rajoite p, .contentform p {
+  white-space: pre-wrap;
+}
 @media screen and (max-width: 980px) {
   .rajoite p, .contentform p {
     margin: 0 20px 0 20px;

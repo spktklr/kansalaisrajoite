@@ -242,10 +242,10 @@
 <script id="headerbox" type="text/html">
 	<div><div>
 		{{#isLogged}}
-		<p><strong>Kirjautuneena: {{#info.name}}{{info.name}}{{/info.name}}{{^info.name}}{{info.email}}{{/info.name}} </strong><span><a href="#/muuta-tietoja">Muuta tietojasi</a></span><span><a href="#" class="link-logout">Kirjaudu ulos</a></span></p>
+		<p><strong>Kirjautuneena: {{#info.name}}{{info.name}}{{/info.name}}{{^info.name}}{{info.email}}{{/info.name}} </strong><a href="#/muuta-tietoja"><span>Muuta tietojasi</span></a><a href="#" class="link-logout"><span>Kirjaudu ulos</span></a></p>
 		{{/isLogged}}
 		{{^isLogged}}
-		<p><span><a class="link-register" href="#">Rekisteröidy käyttäjäksi</a></span><span><a class="link-login" href="#">Kirjaudu sisään</a></span></p>
+		<p><a class="link-register" href="#"><span>Rekisteröidy käyttäjäksi</span></a><a class="link-login" href="#"><span>Kirjaudu sisään</span></a></p>
 		{{/isLogged}}
 	</div></div>
 	<nav>
