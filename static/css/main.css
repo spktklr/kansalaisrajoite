@@ -1375,7 +1375,7 @@ div.etusivu article h1 {
 }
 @media screen and (max-width: 980px) {
   .salasana {
-    padding: 60px 40px 60px 40px;
+    padding: 60px 20px 60px 20px;
   }
 }
 
@@ -1490,9 +1490,13 @@ div.etusivu article h1 {
   font-size: 1.25rem;
   text-align: center;
   border: solid 4px #e74c3c;
-  margin: 10px 0 20px 0;
   min-height: 48px;
-  width: 400px;
+  max-width: 400px;
+}
+@media screen and (min-width: 980px) {
+  .infoboksi, .alert, .info {
+    margin: 10px 0 20px 0;
+  }
 }
 
 .alert {
@@ -1723,7 +1727,7 @@ form.teerajoite p {
 }
 @media screen and (max-width: 980px) {
   .formlabel {
-    width: 100px;
+    width: 50%;
   }
 }
 
