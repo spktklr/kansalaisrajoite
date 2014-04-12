@@ -126,7 +126,7 @@ $(function() {
 			success: function() {
 				user.setLoggedOut();
 				show('header', 'headerbox', user);
-				routie.reload();
+				routie('/logout');
 			}
 		});
 
@@ -527,6 +527,9 @@ $(function() {
 					},
 					'/inenglish': function() {
 						show('section', 'inenglish');
+					},
+					'/logout': function() {
+						show('section', 'logout');
 					},
 					'/muuta-tietoja': function() {
 						if (user.isLogged) {
