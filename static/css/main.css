@@ -1762,7 +1762,7 @@ form.teerajoite textarea {
   resize: vertical;
 }
 
-form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen textarea:focus, form.kirjautuminen input:focus, form.rekisteroityminen input:focus {
+form.teerajoite textarea:focus, form.teerajoite input:focus, form.kirjautuminen textarea:focus, form.kirjautuminen input:focus, form.rekisteroityminen input:focus, form.annasalasana input:focus {
   border: 1px solid #e74c3c;
   outline: none;
 }
