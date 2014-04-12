@@ -8,7 +8,7 @@ $semigray: #f2f2f2;
 $pagewidth: 960px;
 $minwidth: 320px;
 $break: 980px;
-$anitime: 0.2s;
+$anitime: 0.1s;
 $basefontsize: 16px;
 @include global-reset; // ERIC MAYER STYLES
 @mixin wide {

@@ -1051,10 +1051,10 @@ header div p span {
   -moz-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
-  -webkit-transition: all, 0.2s ease-in;
-  -moz-transition: all, 0.2s ease-in;
-  -o-transition: all, 0.2s ease-in;
-  transition: all, 0.2s ease-in;
+  -webkit-transition: all, 0.1s ease-in;
+  -moz-transition: all, 0.1s ease-in;
+  -o-transition: all, 0.1s ease-in;
+  transition: all, 0.1s ease-in;
 }
 header div p span:hover {
   background: #2a2a2a;
@@ -1139,10 +1139,10 @@ nav ul li {
 }
 nav ul li a {
   padding: 5px;
-  -webkit-transition: all, 0.2s ease-in;
-  -moz-transition: all, 0.2s ease-in;
-  -o-transition: all, 0.2s ease-in;
-  transition: all, 0.2s ease-in;
+  -webkit-transition: all, 0.1s ease-in;
+  -moz-transition: all, 0.1s ease-in;
+  -o-transition: all, 0.1s ease-in;
+  transition: all, 0.1s ease-in;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -o-border-radius: 4px;
@@ -1229,29 +1229,29 @@ div.etusivu article h1 {
   color: white;
   font-family: Merriweather Sans;
   background-color: #e74c3c;
-  -webkit-transition: background, 0.2s ease-in;
-  -moz-transition: background, 0.2s ease-in;
-  -o-transition: background, 0.2s ease-in;
-  transition: background, 0.2s ease-in;
+  -webkit-transition: background, 0.1s ease-in;
+  -moz-transition: background, 0.1s ease-in;
+  -o-transition: background, 0.1s ease-in;
+  transition: background, 0.1s ease-in;
 }
 @media screen and (min-width: 980px) {
   .painike, .fbpainike, .twpainike {
     background: #e74c3c url(../img/nuoli3.png) no-repeat 30px;
     text-align: right;
     padding: 0 28px 0 0;
-    -webkit-transition: background, 0.2s ease-in;
-    -moz-transition: background, 0.2s ease-in;
-    -o-transition: background, 0.2s ease-in;
-    transition: background, 0.2s ease-in;
+    -webkit-transition: background, 0.1s ease-in;
+    -moz-transition: background, 0.1s ease-in;
+    -o-transition: background, 0.1s ease-in;
+    transition: background, 0.1s ease-in;
   }
 }
 @media screen and (max-width: 980px) {
   .painike, .fbpainike, .twpainike {
     text-align: center;
-    -webkit-transition: background, 0.2s ease-in;
-    -moz-transition: background, 0.2s ease-in;
-    -o-transition: background, 0.2s ease-in;
-    transition: background, 0.2s ease-in;
+    -webkit-transition: background, 0.1s ease-in;
+    -moz-transition: background, 0.1s ease-in;
+    -o-transition: background, 0.1s ease-in;
+    transition: background, 0.1s ease-in;
   }
 }
 @media screen and (min-width: 980px) {
@@ -1385,10 +1385,10 @@ div.etusivu article h1 {
   width: 32px;
   margin-right: 20px;
   background: url("../img/graytw.png") no-repeat;
-  -webkit-transition: background, 0.2s ease-in;
-  -moz-transition: background, 0.2s ease-in;
-  -o-transition: background, 0.2s ease-in;
-  transition: background, 0.2s ease-in;
+  -webkit-transition: background, 0.1s ease-in;
+  -moz-transition: background, 0.1s ease-in;
+  -o-transition: background, 0.1s ease-in;
+  transition: background, 0.1s ease-in;
 }
 #tw:hover {
   background: url("../img/bluetw.png") no-repeat;
@@ -1400,10 +1400,10 @@ div.etusivu article h1 {
   width: 32px;
   padding: 0 10px 0 0;
   background: url("../img/grayfb.png") no-repeat;
-  -webkit-transition: background, 0.2s ease-in;
-  -moz-transition: background, 0.2s ease-in;
-  -o-transition: background, 0.2s ease-in;
-  transition: background, 0.2s ease-in;
+  -webkit-transition: background, 0.1s ease-in;
+  -moz-transition: background, 0.1s ease-in;
+  -o-transition: background, 0.1s ease-in;
+  transition: background, 0.1s ease-in;
 }
 #fb:hover {
   background: url("../img/bluefb.png") no-repeat;
@@ -1429,10 +1429,10 @@ div.etusivu article h1 {
   background: url(../img/fblogo.png) no-repeat 40px 6px #3b5998;
   padding: 13px;
   text-align: right;
-  -webkit-transition: background, 0.2s ease-in;
-  -moz-transition: background, 0.2s ease-in;
-  -o-transition: background, 0.2s ease-in;
-  transition: background, 0.2s ease-in;
+  -webkit-transition: background, 0.1s ease-in;
+  -moz-transition: background, 0.1s ease-in;
+  -o-transition: background, 0.1s ease-in;
+  transition: background, 0.1s ease-in;
 }
 .reglog article:nth-of-type(2) p:hover {
   background: #344e86 url(../img/fblogo.png) no-repeat 43px;
@@ -1542,10 +1542,10 @@ div.etusivu article h1 {
   background: url(../img/harviiva.gif) bottom repeat-x white;
 }
 .rajoitteet a {
-  -webkit-transition: all, 0.2s ease-in;
-  -moz-transition: all, 0.2s ease-in;
-  -o-transition: all, 0.2s ease-in;
-  transition: all, 0.2s ease-in;
+  -webkit-transition: all, 0.1s ease-in;
+  -moz-transition: all, 0.1s ease-in;
+  -o-transition: all, 0.1s ease-in;
+  transition: all, 0.1s ease-in;
 }
 .rajoitteet a:hover {
   color: #e74c3c;
@@ -1853,10 +1853,10 @@ footer {
 
 footer a {
   color: #e74c3c;
-  -webkit-transition: all, 0.2s ease-in;
-  -moz-transition: all, 0.2s ease-in;
-  -o-transition: all, 0.2s ease-in;
-  transition: all, 0.2s ease-in;
+  -webkit-transition: all, 0.1s ease-in;
+  -moz-transition: all, 0.1s ease-in;
+  -o-transition: all, 0.1s ease-in;
+  transition: all, 0.1s ease-in;
 }
 
 footer a:hover {
