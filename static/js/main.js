@@ -322,7 +322,7 @@ $(function() {
 	});
 
 	$(document).on('click', 'input[name="delete"]', function() {
-		if (window.confirm('Oletko varma että haluat poistaa rajoitteen?')) {
+		if (window.confirm('Oletko varma, että haluat poistaa rajoitteen?')) {
 			$.ajax({
 				url: 'restriction/' + $(this).data('restriction-id'),
 				type: 'DELETE',
