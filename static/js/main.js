@@ -157,7 +157,8 @@ $(function() {
 			success: function() {
 				user.setLoggedOut();
 				show('header', 'headerbox', user);
-				routie('/logout');
+				notification.setInfo('Kirjauduit ulos');
+				routie('');
 			}
 		});
 
