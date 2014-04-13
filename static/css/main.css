@@ -5,8 +5,8 @@
 /**
  * Correct `block` display not defined in IE 6/7/8/9 and Firefox 3.
  */
-@import url(http://fonts.googleapis.com/css?family=Merriweather+Sans:400,500,600,700,300);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic);
+@import url(//fonts.googleapis.com/css?family=Merriweather+Sans:400,500,600,700,300);
+@import url(//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic);
 article,
 aside,
 details,
@@ -551,7 +551,7 @@ a img {
   border: none;
 }
 
-article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
 
@@ -844,7 +844,7 @@ html {
 
 #facebox .popup {
   position: relative;
-  border: 2px solid transparent;
+  border: 2px solid rgba(0, 0, 0, 0);
   -webkit-box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
@@ -1130,7 +1130,7 @@ nav ul:nth-of-type(2) li a {
   }
 }
 nav ul li {
-  margin-left: 0px;
+  margin-left: 0;
 }
 @media screen and (min-width: 980px) {
   nav ul li {
@@ -1159,7 +1159,7 @@ section {
 }
 
 div.etusivu, div.rajoite, div.contentform, div.rajoitteet {
-  padding: 30px 0 30px 0;
+  padding: 30px 0;
   margin: 0 auto;
 }
 @media screen and (min-width: 980px) {
@@ -1201,13 +1201,13 @@ div.etusivu article {
 @media screen and (min-width: 980px) {
   div.etusivu article {
     margin: 0 0 40px 410px;
-    padding: 50px 50px 50px 50px;
+    padding: 50px;
   }
 }
 @media screen and (max-width: 980px) {
   div.etusivu article {
     margin: 0 0 20px 0;
-    padding: 25px 25px 25px 25px;
+    padding: 25px;
   }
 }
 div.etusivu article h1 {
@@ -1318,7 +1318,7 @@ div.etusivu article h1 {
 }
 @media screen and (max-width: 980px) {
   .rajoite p, .contentform p {
-    margin: 0 20px 0 20px;
+    margin: 0 20px;
   }
 }
 .rajoite p.alert, .contentform p.alert, .rajoite p.info, .contentform p.info {
@@ -1334,7 +1334,7 @@ div.etusivu article h1 {
 }
 @media screen and (max-width: 980px) {
   .rajoite article, .contentform article {
-    padding: 60px 40px 60px 40px;
+    padding: 60px 40px;
   }
 }
 @media screen and (min-width: 980px) {
@@ -1373,12 +1373,12 @@ div.etusivu article h1 {
 }
 @media screen and (min-width: 980px) {
   .salasana {
-    padding: 60px 40px 60px 40px;
+    padding: 60px 40px;
   }
 }
 @media screen and (max-width: 980px) {
   .salasana {
-    padding: 60px 20px 60px 20px;
+    padding: 60px 20px;
   }
 }
 
@@ -1633,7 +1633,7 @@ div.etusivu article h1 {
   color: #e74c3c;
   font-style: italic;
   text-align: center;
-  margin: 30px 0 0 0px;
+  margin: 30px 0 0 0;
   width: 140px;
 }
 @media screen and (max-width: 980px) {
@@ -1676,7 +1676,7 @@ div.etusivu article h1 {
 /* TEE RAJOITE STYLES */
 div.teerajoite, div.tiedotteet {
   margin: 0 auto;
-  padding: 20px 0 20px 0;
+  padding: 20px 0;
 }
 @media screen and (min-width: 980px) {
   div.teerajoite, div.tiedotteet {
@@ -1776,7 +1776,7 @@ textarea:focus, input:focus {
 
 /* TIEDOTTEET STYLES */
 .tiedotteet h1, .tiedotteet p {
-  margin: 20px 0 20px 0;
+  margin: 20px 0;
 }
 
 .tiedotteet article {
@@ -1793,7 +1793,7 @@ textarea:focus, input:focus {
 
 /* OHJEET STYLES */
 .ohjeet {
-  padding: 30px 0 30px 0;
+  padding: 30px 0;
   margin: 0 auto;
 }
 .ohjeet h1 {

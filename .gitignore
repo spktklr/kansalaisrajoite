@@ -1,5 +1,5 @@
 *.py[cod]
-static/.sass-cache
+*.sass-cache
 python/build/*
 python/session
 *Thumbs.db
