@@ -354,6 +354,7 @@ $(function() {
 				url: 'restriction/' + $(this).data('restriction-id'),
 				type: 'DELETE',
 				success: function() {
+					notification.setInfo('Rajoite poistettu');
 					routie('/rajoitteet');
 				}
 			});
