@@ -138,6 +138,7 @@ nav {
 			li a {
 				font-size: 0.75rem;
 				color: white;
+				text-shadow: 0 0 6px black;
 				@include narrow {
 					&:before {content: url(../img/nuoli22.gif) " ";}
 				}
@@ -161,7 +162,7 @@ nav {
 }
 /* GLOBAL CONTENT STYLES */
 section {
-	background:url(../img/dot2.gif) bottom repeat-x $semigray;
+	background: url(../img/dot2.gif) bottom repeat-x $semigray;
 }
 div.etusivu, div.rajoite, div.rajoitteet {
 	padding: 30px 0;
@@ -489,9 +490,9 @@ div.etusivu {
 	text-align: center;
 	width: 100%;
 	background: url(../img/dot.gif) bottom repeat-x;
-	height:25px;
+	height: 25px;
 	@include narrow {
-		height:55px;
+		height: 55px;
 	}
 }
 .alarajoitenavi {
@@ -510,10 +511,10 @@ div.etusivu {
 	font-size: 12px;
 	width: 140px;
 	float: right;
-	margin: 28px 0 0 0px;
+	margin: 28px 0 0 0;
 }
 .rajoitteet p:nth-of-type(3) {
-	margin: 34px 0 0 0px;
+	margin: 34px 0 0 0;
 }
 .rajoitteet h4 {
 	@include narrow {
