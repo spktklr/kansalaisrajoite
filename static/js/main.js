@@ -389,15 +389,19 @@ $(function() {
 			global: false,
 			data: {
 				title: $('#newrestriction input[name=title]').val(),
-				body: $('#newrestriction textarea[name=body]').val()
+				body: $('#newrestriction textarea[name=body]').val(),
+				name: $('#newrestriction input[name=name]').val(),
+				city: $('#newrestriction input[name=city]').val()
 			},
 			type: 'POST',
 			statusCode: {
 				200: function(data) {
+					notification.setInfo('Rajoite luotu');
 					routie('/rajoite/' + data.id + '/' + slugFunc(data.title));
 				},
-				401: function() {
-					// todo: tell user about invalid input
+				400: function() {
+					notification.setError('Kaikki kentät ovat pakollisia');
+					notification.show();
 				}
 			}
 		});
@@ -532,7 +536,7 @@ $(function() {
 					},
 					'/rajoita': function() {
 						if (user.isLogged) {
-							show('section', 'restrict');
+							show('section', 'restrict', user);
 						} else {
 							show('section', 'error-login');
 						}

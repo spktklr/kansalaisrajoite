@@ -108,7 +108,7 @@
 <script id="restrict" type="text/html">
 	<div class="rajoite">
 		<h1 style="float:none;">Tee kansalaisrajoite</h1>
-		<p>Voit luoda kansalaisrajoite-ehdotuksen antamalla sille otsikon ja perustelut. Huomaa, että sinut merkitään rajoitteen ehdottajaksi. Lisäksi otsikon alkuun lisätään automaattisesti Kielletään-sana. Voit halutessasi tutustua <a href="#/ohjeet">ohjeisiin</a> ennen ehdotuksen tekoa.</p>
+		<p>Voit luoda kansalaisrajoite-ehdotuksen antamalla sille otsikon ja perustelut. Lisäksi otsikon alkuun lisätään automaattisesti Kielletään-sana. Voit halutessasi tutustua <a href="#/ohjeet/rajoitteenluominen">ohjeisiin</a> ennen ehdotuksen tekoa.</p>
 		<form id="newrestriction" class="teerajoite">
 			<article>
 				<label>
@@ -118,7 +118,7 @@
 								<span>Kielletään</span>
 							</td>
 							<td>
-								<input class="restrictionlabel" id="subject" type="text" name="title" />
+								<input class="restrictionlabel" type="text" name="title" />
 							</td>
 						</tr>
 					</table>
@@ -127,8 +127,24 @@
 			<article>
 				<h2>Rajoitteen sisältö ja perustelut</h2>
 				<label>
-					<textarea class="restrictiontext" id="feedback" name="body"></textarea>
+					<textarea class="restrictiontext" name="body"></textarea>
 				</label>
+			</article>
+			<article>
+				<table class="formtable">
+					<tr>
+						<td class="formlabel">Nimi</td>
+						<td>
+							<input class="restrictionlabel" type="text" name="name" value="{{info.name}}"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="formlabel">Paikkakunta</td>
+						<td>
+							<input class="restrictionlabel" type="text" name="city" value="{{info.city}}"/>
+						</td>
+					</tr>
+				</table>
 			</article>
 			<p class="tip">Kansalaisrajoite-ehdotukset tarkastetaan ennen sivustolle lisäämistä.</p>
 			<input class="painike" type="submit" value="Lähetä rajoite tarkastettavaksi" />

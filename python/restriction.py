@@ -52,12 +52,21 @@ def create(db):
     if not user:
         return HTTPError(401, 'Unauthorized')
 
+    title = request.forms.get('title')
+    body = request.forms.get('body')
+    name = request.forms.get('name')
+    city = request.forms.get('city')
+
+    for field in [title, body, name, city]:
+        if not field or len(field) == 0:
+            return HTTPError(400, 'Bad request')
+
     item = model.Restriction()
-    item.title = request.forms.get('title')
-    item.body = request.forms.get('body')
+    item.title = title
+    item.body = body
     item.user = user
-    item.user_name = user.name
-    item.user_city = user.city
+    item.user_name = name
+    item.user_city = city
 
     db.add(item)
     db.flush()
