@@ -15,6 +15,28 @@ $(function() {
 		}
 	};
 
+	var notification = {
+		msg: null,
+		type: null,
+		setError: function(msg) {
+			this.msg = msg;
+			this.type = 'alert';
+		},
+		setInfo: function(msg) {
+			this.msg = msg;
+			this.type = 'info';
+		},
+		show: function() {
+			$('#notification').hide();
+
+			if (this.msg) {
+				$('#notification').html(this.msg).attr('class', this.type).show('fast');
+				this.msg = null;
+				this.type = null;
+			}
+		}
+	}
+
 	var slugFunc = function(text) {
 		// \u00E4 = ä
 		// \u00F6 = ö
@@ -39,6 +61,10 @@ $(function() {
 	}
 
 	var show = function(element, template, data) {
+		if (element === 'section') {
+			notification.show();
+		}
+
 		$(element).mustache(template, (data === undefined ? null : data), {
 			method: 'html'
 		});
