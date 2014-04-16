@@ -551,7 +551,7 @@ a img {
   border: none;
 }
 
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
 
@@ -844,7 +844,7 @@ html {
 
 #facebox .popup {
   position: relative;
-  border: 2px solid rgba(0, 0, 0, 0);
+  border: 2px solid transparent;
   -webkit-box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
@@ -927,7 +927,7 @@ html {
 
 body {
   font-family: 'Merriweather Sans', sans-serif;
-  background: white;
+  background: #f2f2f2;
   color: #111;
 }
 
@@ -982,16 +982,16 @@ ol {
   list-style-position: inside;
 }
 
-nav, footer {
+nav, .footcontainer {
   margin: 0 auto;
 }
 @media screen and (min-width: 980px) {
-  nav, footer {
+  nav, .footcontainer {
     width: 960px;
   }
 }
 @media screen and (max-width: 980px) {
-  nav, footer {
+  nav, .footcontainer {
     min-width: 320px;
     width: 80%;
   }
@@ -1123,7 +1123,6 @@ nav ul {
 nav ul:nth-of-type(2) li a {
   font-size: 0.75rem;
   color: white;
-  text-shadow: 0 0 4px black;
 }
 @media screen and (max-width: 980px) {
   nav ul:nth-of-type(2) li a:before {
@@ -1512,8 +1511,14 @@ div.etusivu article h1 {
 .info {
   margin: 0 auto;
   padding: 11px 10px 15px 50px;
-  background: url(../img/done.png) no-repeat 0 0, url(../img/alertbg.gif) repeat-y 0 0;
+  background: url(../img/done.png) no-repeat 0 0, url(../img/alertbg.gif) repeat-y 0 0 white;
   font-size: 1.125rem;
+}
+
+.notification {
+  font-size: 1rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* NON MODAL CONTENT AREA FORM STYLES */
@@ -1855,6 +1860,7 @@ textarea:focus, input:focus {
 
 /* FOOTER STYLES */
 footer {
+  background: white;
   color: #666;
   padding: 40px 0 200px 0;
 }

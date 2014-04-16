@@ -11,7 +11,7 @@ html {
 }
 body {
 	font-family: 'Merriweather Sans', sans-serif;
-	background: white;
+	background: $semigray;
 	color: #111;
 }
 h1 {
@@ -53,7 +53,7 @@ ol {
 	list-style-type: decimal;
 	list-style-position: inside;
 }
-nav,footer {
+nav, .footcontainer {
 	@include scale();
 }
 .hidden {
@@ -138,7 +138,6 @@ nav {
 			li a {
 				font-size: 0.75rem;
 				color: white;
-				text-shadow: 0 0 4px black;
 				@include narrow {
 					&:before {content: url(../img/nuoli22.gif) " ";}
 				}
@@ -406,8 +405,14 @@ div.etusivu {
 	@extend .infoboksi;
 	margin: 0 auto;
 	padding: 11px 10px 15px 50px;
-	background: url(../img/done.png) no-repeat 0 0, url(../img/alertbg.gif) repeat-y 0 0;
+	background: url(../img/done.png) no-repeat 0 0, url(../img/alertbg.gif) repeat-y 0 0 white;
 	font-size: 1.125rem;
+}
+
+.notification {
+	font-size: 1rem;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 /* NON MODAL CONTENT AREA FORM STYLES */
 
@@ -688,6 +693,7 @@ textarea:focus, input:focus {
 
 /* FOOTER STYLES */
 footer {
+	background: white;
 	color:#666;
 	padding: 40px 0 200px 0;
 }
