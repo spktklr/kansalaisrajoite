@@ -20,7 +20,7 @@ $(function() {
         type: null,
         setError: function(msg) {
             this.msg = msg;
-            this.type = 'alert';
+            this.type = 'alert notification';
         },
         setInfo: function(msg) {
             this.msg = msg;
@@ -158,7 +158,12 @@ $(function() {
                 user.setLoggedOut();
                 show('header', 'headerbox', user);
                 notification.setInfo('Kirjauduit ulos');
-                routie('');
+
+                if (window.location.hash === '') {
+                    routie.reload();
+                } else {
+                    routie('');
+                }
             }
         });
 
