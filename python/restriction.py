@@ -67,6 +67,7 @@ def create(db):
     item.user = user
     item.user_name = name
     item.user_city = city
+    item.voters.append(user)
 
     db.add(item)
     db.flush()
