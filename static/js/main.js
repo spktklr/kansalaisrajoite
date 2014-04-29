@@ -89,23 +89,9 @@ $(function() {
     }
 
     var restrictionStateForMustache = function(item) {
-        switch (item.state) {
-            case 'NEW':
-                item.isNew = true;
-                item.isApproved = false;
-                item.isRejected = false;
-                break;
-            case 'APPROVED':
-                item.isNew = false;
-                item.isApproved = true;
-                item.isRejected = false;
-                break;
-            case 'REJECTED':
-                item.isNew = false;
-                item.isApproved = false;
-                item.isRejected = true;
-                break;
-        }
+        item.isNew      = (item.state === 'NEW');
+        item.isApproved = (item.state === 'APPROVED');
+        item.isRejected = (item.state === 'REJECTED');
     }
 
     /* modal event handlers start */
