@@ -43,18 +43,23 @@
 			{{#restrictions}}
 			<a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">
 				<article>
-					{{#approved}}
+					{{#isNew}}
+						<h4>Jonossa</h4>
+						<p>{{title}}</p>
+						<p>Luotu {{#date}}{{created}}{{/date}}</p>
+					{{/isNew}}
+					{{#isApproved}}
 						<h4>Kielletään</h4>
 						<p{{#voted}} class="voted tooltip" title="Olet kannattanut rajoitetta"{{/voted}}>{{title}}</p>
 						<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}}</p>
 						<p>{{votes}} kieltäjää</p>
 						<div class="bar" style="width:{{#percentCompleted}}{{votes}}{{/percentCompleted}}%;"></div>
-					{{/approved}}
-					{{^approved}}
-						<h4>Jonossa</h4>
+					{{/isApproved}}
+					{{#isRejected}}
+						<h4>Hylätty</h4>
 						<p>{{title}}</p>
 						<p>Luotu {{#date}}{{created}}{{/date}}</p>
-					{{/approved}}
+					{{/isRejected}}
 				</article>
 			</a>
 			{{/restrictions}}
@@ -72,15 +77,21 @@
 		<a href="#" class="sharefb" data-title="{{title}}"><div id="fb" class="tooltip" title="Jaa Facebookissa"></div></a>
 		<div class="clear"></div>
 		<article>
-			{{#approved}}
+			{{#isNew}}
+				<p>Rajoite odottaa vahvistusta. Luotu {{#date}}{{created}}{{/date}}.</p>
+			{{/isNew}}
+			{{#isApproved}}
 				<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}} ja on saavuttanut <em>{{votes}}</em> kannattajaa.</p>
 				{{#approver}}
 					<p>Rajoitteen vahvisti {{approver.name}}.</p>
 				{{/approver}}
-			{{/approved}}
-			{{^approved}}
-				<p>Rajoite odottaa vahvistusta. Luotu {{#date}}{{created}}{{/date}}.</p>
-			{{/approved}}
+			{{/isApproved}}
+			{{#isRejected}}
+				<p>Rajoite on hylätty. Syitä tähän voivat olla mm. surkea kielioppi, hyvien tapojen vastaisuus, tai rajoitteen samankaltaisuus jo olemassa olevan rajoitteen kanssa.</p>
+				{{#approver}}
+					<p>Rajoitteen hylkäsi {{approver.name}}.</p>
+				{{/approver}}
+			{{/isRejected}}
 		</article>
 		<article>
 			<h3>Rajoitteen sisältö ja perustelut</h3>
@@ -90,20 +101,24 @@
 			<h3>Rajoitteen ehdottaja</h3>
 			<p>{{user_name}}, {{user_city}}</p>
 		</article>
-		{{#approved}}
+		{{#isNew}}
+			{{#isAdmin}}
+				<input class="painike lower" type="submit" name="approve" data-restriction-id="{{id}}" value="Vahvista rajoite" />
+				<input class="painike lower" type="submit" name="reject" data-restriction-id="{{id}}" value="Hylkää rajoite" />
+			{{/isAdmin}}
+			<input class="painike lower" type="submit" name="delete" data-restriction-id="{{id}}" value="Poista rajoite" />
+		{{/isNew}}
+		{{#isApproved}}
 			{{#voted}}
 				<p class="info">Olet kannattanut rajoitetta</p>
 			{{/voted}}
 			{{^voted}}
 				<input class="painike lower" type="submit" name="vote" data-restriction-id="{{id}}" value="Kannata rajoitetta" />
 			{{/voted}}
-		{{/approved}}
-		{{^approved}}
-			{{#isAdmin}}
-				<input class="painike lower" type="submit" name="approve" data-restriction-id="{{id}}" value="Vahvista rajoite" />
-			{{/isAdmin}}
+		{{/isApproved}}
+		{{#isRejected}}
 			<input class="painike lower" type="submit" name="delete" data-restriction-id="{{id}}" value="Poista rajoite" />
-		{{/approved}}
+		{{/isRejected}}
 	</div>
 </script>
 

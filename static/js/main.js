@@ -88,6 +88,26 @@ $(function() {
         return 0;
     }
 
+    var restrictionStateForMustache = function(item) {
+        switch (item.state) {
+            case 'NEW':
+                item.isNew = true;
+                item.isApproved = false;
+                item.isRejected = false;
+                break;
+            case 'APPROVED':
+                item.isNew = false;
+                item.isApproved = true;
+                item.isRejected = false;
+                break;
+            case 'REJECTED':
+                item.isNew = false;
+                item.isApproved = false;
+                item.isRejected = true;
+                break;
+        }
+    }
+
     /* modal event handlers start */
     $(document).on('click', '.link-login', function() {
         jQuery.facebox($.Mustache.render('dialog-login'));
@@ -353,6 +373,16 @@ $(function() {
         });
     });
 
+    $(document).on('click', 'input[name="reject"]', function() {
+        $.ajax({
+            url: 'restriction/' + $(this).data('restriction-id') + '/reject',
+            type: 'POST',
+            success: function() {
+                routie.reload();
+            }
+        });
+    });
+
     $(document).on('click', 'input[name="delete"]', function() {
         if (window.confirm('Oletko varma, että haluat poistaa rajoitteen?')) {
             $.ajax({
@@ -474,6 +504,10 @@ $(function() {
             return percentCompleted;
         };
 
+        for (i = 0; i < data.restrictions.length; i++) {
+            restrictionStateForMustache(data.restrictions[i]);
+        }
+
         show('section', 'restrictions', data);
     }
     /* content functions end */
@@ -530,6 +564,7 @@ $(function() {
                                 return convertToDateStr;
                             };
                             data.isAdmin = (user.info ? user.info.admin : false);
+                            restrictionStateForMustache(data);
                             show('section', 'restriction', data);
                         });
                     },

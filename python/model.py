@@ -1,7 +1,7 @@
 # coding=utf-8
 from bottle.ext import sqlalchemy
 from sqlalchemy import create_engine, Table, Column, ForeignKey
-from sqlalchemy import Integer, String, DateTime, Boolean
+from sqlalchemy import Integer, String, DateTime, Boolean, Enum
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
@@ -29,7 +29,7 @@ class Restriction(Base):
     modified = Column(DateTime, server_default=func.current_timestamp())
     title = Column(String)
     body = Column(String)
-    approved = Column(Boolean, server_default='FALSE')
+    state = Column(Enum('NEW', 'APPROVED', 'REJECTED'))
 
     approver_id = Column(Integer, ForeignKey('user.id'))
     approver = relationship('User', foreign_keys=approver_id)
@@ -54,7 +54,7 @@ class Restriction(Base):
         ret['body'] = self.body
         ret['user_name'] = self.user_name
         ret['user_city'] = self.user_city
-        ret['approved'] = self.approved
+        ret['state'] = self.state
         if full:
             if self.approver:
                 ret['approver'] = self.approver.toDict()

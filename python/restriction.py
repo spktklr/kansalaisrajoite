@@ -19,7 +19,7 @@ def read_one(db, id):
 
         item = db.query(model.Restriction).filter_by(id=id).one()
 
-        if not item.approved and user != item.user and not is_admin:
+        if item.state != 'APPROVED' and user != item.user and not is_admin:
             return HTTPError(403, 'Forbidden')
 
         return item.toDict(is_admin, user)
@@ -36,11 +36,11 @@ def read_all(db):
         items = db.query(model.Restriction)
     elif user:
         items = db.query(model.Restriction).filter(
-            (model.Restriction.approved) |
+            (model.Restriction.state == 'APPROVED') |
             (model.Restriction.user == user))
     else:
         items = db.query(model.Restriction).filter(
-            model.Restriction.approved)
+            model.Restriction.state == 'APPROVED')
 
     return {'restrictions': [i.toDict(is_admin, user) for i in items]}
 
@@ -64,6 +64,7 @@ def create(db):
     item = model.Restriction()
     item.title = title
     item.body = body
+    item.state = 'NEW'
     item.user = user
     item.user_name = name
     item.user_city = city
@@ -104,7 +105,23 @@ def approve(db, id):
             return HTTPError(403, 'Forbidden')
 
         item = db.query(model.Restriction).filter_by(id=id).one()
-        item.approved = not item.approved
+        item.state = 'APPROVED'
+        item.approver = user
+    except NoResultFound:
+        return HTTPError(404, 'Not found')
+
+
+@app.post('/<id:int>/reject')
+def reject(db, id):
+    try:
+        user = session_user(request, db)
+        is_admin = user and user.admin
+
+        if not is_admin:
+            return HTTPError(403, 'Forbidden')
+
+        item = db.query(model.Restriction).filter_by(id=id).one()
+        item.state = 'REJECTED'
         item.approver = user
     except NoResultFound:
         return HTTPError(404, 'Not found')
