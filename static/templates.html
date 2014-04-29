@@ -41,20 +41,22 @@
 		<div class="clear line"></div>
 		<div class="rajoitelista">
 			{{#restrictions}}
+			<a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">
 				<article>
 					{{#approved}}
 						<h4>Kielletään</h4>
-						<p{{#voted}} class="voted tooltip" title="Olet kannattanut rajoitetta"{{/voted}}><a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">{{title}}</a></p>
+						<p{{#voted}} class="voted tooltip" title="Olet kannattanut rajoitetta"{{/voted}}>{{title}}</p>
 						<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}}</p>
 						<p>{{votes}} kieltäjää</p>
 						<div class="bar" style="width:{{#percentCompleted}}{{votes}}{{/percentCompleted}}%;"></div>
 					{{/approved}}
 					{{^approved}}
 						<h4>Jonossa</h4>
-						<p><a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">{{title}}</a></p>
+						<p>{{title}}</p>
 						<p>Luotu {{#date}}{{created}}{{/date}}</p>
 					{{/approved}}
 				</article>
+			</a>
 			{{/restrictions}}
 		</div>
 		<div class="clear line" style="margin-top: 8px;"></div>
