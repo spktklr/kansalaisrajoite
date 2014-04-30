@@ -1,6 +1,7 @@
 # coding=utf-8
 from bottle import Bottle, HTTPError, request
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.orm import joinedload
 
 import model
 from utils import session_user, jsonplugin
@@ -17,7 +18,11 @@ def read_one(db, id):
         user = session_user(request, db)
         is_admin = user and user.admin
 
-        item = db.query(model.Restriction).filter_by(id=id).one()
+        item = db.query(model.Restriction) \
+            .options(joinedload(model.Restriction.voters),
+                     joinedload(model.Restriction.user),
+                     joinedload(model.Restriction.approver)) \
+            .filter_by(id=id).one()
 
         if item.state != 'APPROVED' and user != item.user and not is_admin:
             return HTTPError(403, 'Forbidden')
@@ -33,14 +38,20 @@ def read_all(db):
     is_admin = user and user.admin
 
     if is_admin:
-        items = db.query(model.Restriction)
+        items = db.query(model.Restriction) \
+            .options(joinedload(model.Restriction.voters),
+                     joinedload(model.Restriction.user),
+                     joinedload(model.Restriction.approver))
     elif user:
         items = db.query(model.Restriction).filter(
             (model.Restriction.state == 'APPROVED') |
-            (model.Restriction.user == user))
+            (model.Restriction.user == user)) \
+            .options(joinedload(model.Restriction.voters),
+                     joinedload(model.Restriction.user))
     else:
         items = db.query(model.Restriction).filter(
-            model.Restriction.state == 'APPROVED')
+            model.Restriction.state == 'APPROVED') \
+            .options(joinedload(model.Restriction.voters))
 
     return {'restrictions': [i.toDict(is_admin, user) for i in items]}
 

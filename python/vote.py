@@ -1,6 +1,7 @@
 # coding=utf-8
 from bottle import Bottle, HTTPError, request
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.orm import joinedload
 
 import model
 from utils import session_user, jsonplugin
@@ -19,7 +20,9 @@ def read_one(db, id):
         if not user:
             return HTTPError(401, 'Unauthorized')
 
-        item = db.query(model.Restriction).filter_by(id=id).one()
+        item = db.query(model.Restriction) \
+            .options(joinedload(model.Restriction.voters)) \
+            .filter_by(id=id).one()
         return {'voted': user in item.voters}
     except NoResultFound:
         return HTTPError(404, 'Not found')
