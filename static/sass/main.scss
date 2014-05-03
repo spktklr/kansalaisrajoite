@@ -178,7 +178,7 @@ div.etusivu {
 		opacity: 0.9;
 		@include wide {
 			margin: 0 0 40px 410px;
-			padding: 50px;
+			padding: 50px 50px 20px 50px;
 		}
 		@include narrow {
 			margin: 0 0 20px 0;
