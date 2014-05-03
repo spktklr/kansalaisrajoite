@@ -63,13 +63,13 @@ def create(db):
     if not user:
         return HTTPError(401, 'Unauthorized')
 
-    title = request.forms.get('title')
-    body = request.forms.get('body')
-    name = request.forms.get('name')
-    city = request.forms.get('city')
+    title = request.forms.get('title').strip()
+    body = request.forms.get('body').strip()
+    name = request.forms.get('name').strip()
+    city = request.forms.get('city').strip()
 
     for field in [title, body, name, city]:
-        if not field or len(field) == 0:
+        if not field:
             return HTTPError(400, 'Bad request')
 
     item = model.Restriction()

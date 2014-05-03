@@ -4,3 +4,5 @@ bottle
 bottle-sqlalchemy
 psycopg2
 sqlalchemy
+validate_email
+

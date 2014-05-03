@@ -5,6 +5,7 @@ import json
 from bottle import Bottle, HTTPError, request, template
 from sqlalchemy.orm.exc import NoResultFound
 import bcrypt
+from validate_email import validate_email
 
 from utils import session_user, jsonplugin, gen_pw_reset_payload, send_email
 import model
@@ -18,15 +19,15 @@ app.install(jsonplugin)
 
 @app.post('/register')
 def register(db):
-    email = request.forms.get('email')
-    name = request.forms.get('name')
+    email = request.forms.get('email').strip()
+    name = request.forms.get('name').strip()
     password = request.forms.get('password')
-    city = request.forms.get('city')
+    city = request.forms.get('city').strip()
 
-    if not password or len(password) < 8:
+    if len(password) < 8:
         return HTTPError(400, 'Bad request')
 
-    if not email or len(email) == 0:
+    if not email or not validate_email(email):
         return HTTPError(400, 'Bad request')
 
     if db.query(model.User).filter_by(email=email).first():
@@ -35,10 +36,10 @@ def register(db):
     user = model.User()
     user.email = email
 
-    if name and len(name) > 0:
+    if name:
         user.name = name
 
-    if city and len(city) > 0:
+    if city:
         user.city = city
 
     user.password = bcrypt.hashpw(password, bcrypt.gensalt())
@@ -67,15 +68,14 @@ def modify(db):
     if not user:
         return HTTPError(401, 'Unauthorized')
 
-    name = request.forms.get('name')
+    name = request.forms.get('name').strip()
     password = request.forms.get('password')
-    city = request.forms.get('city')
+    city = request.forms.get('city').strip()
 
-    if password:
-        if len(password) < 8:
-            return HTTPError(400, 'Bad request')
-        else:
-            user.password = bcrypt.hashpw(password, bcrypt.gensalt())
+    if len(password) < 8:
+        return HTTPError(400, 'Bad request')
+    elif password:
+        user.password = bcrypt.hashpw(password, bcrypt.gensalt())
 
     if name:
         user.name = name
@@ -92,8 +92,8 @@ def modify(db):
 
 @app.post('/verify')
 def verify(db):
-    email = request.forms.get('email')
-    token = request.forms.get('token')
+    email = request.forms.get('email').strip()
+    token = request.forms.get('token').strip()
 
     if not email or not token:
         return HTTPError(400, 'Bad request')
@@ -116,7 +116,7 @@ def verify(db):
 
 @app.post('/reset-password-1')
 def send_reset_email(db):
-    email = request.forms.get('email')
+    email = request.forms.get('email').strip()
 
     if not email:
         return HTTPError(400, 'Bad request')
@@ -144,8 +144,8 @@ def send_reset_email(db):
 
 @app.post('/reset-password-2')
 def reset_password(db):
-    email = request.forms.get('email')
-    token = request.forms.get('token')
+    email = request.forms.get('email').strip()
+    token = request.forms.get('token').strip()
     password = request.forms.get('password')
 
     if not email or not token or not password or len(password) < 8:
@@ -172,7 +172,7 @@ def reset_password(db):
 
 @app.post('/login')
 def login(db):
-    email = request.forms.get('email')
+    email = request.forms.get('email').strip()
     password = request.forms.get('password')
 
     if not email or not password:
