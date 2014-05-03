@@ -53,6 +53,7 @@
 						<p{{#voted}} class="voted tooltip" title="Olet kannattanut rajoitetta"{{/voted}}>{{title}}</p>
 						<p>Kieltäminen alkoi {{#date}}{{created}}{{/date}}</p>
 						<p>{{votes}} kieltäjää</p>
+						<div class="clear"></div>
 						<div class="bar" style="width:{{#percentCompleted}}{{votes}}{{/percentCompleted}}%;"></div>
 					{{/isApproved}}
 					{{#isRejected}}
@@ -338,9 +339,9 @@
 
 <script id="verification-sent" type="text/html">
 	<div class="tiedotteet">
+		<h1>Vahvistuspyyntö lähetetty</h1>
 		<article>
-			<h2>Vahvistuspyyntö lähetetty</h2>
-			<p>Lähetimme sähköpostilla antamaasi osoitteeseen linkin, jota klikkaamalla voit vahvistaa rekisteröinnin.</p>
+			<p>Lähetimme antamaasi sähköpostiosoitteeseen linkin, jota klikkaamalla voit vahvistaa rekisteröinnin.</p>
 		</article>
 	</div>
 </script>
@@ -350,7 +351,7 @@
 		<article>
 			{{#info}}
 			<h2>Rekisteröityminen vahvistettu</h2>
-			<p>Voit nyt kannattaa olemassa olevia rajoituksia, tai keksiä uutta rajoitettavaa.</p>
+			<p>Voit nyt kannattaa olemassa olevia rajoituksia tai luoda uusia rajoituksia kannatettavaksi.</p>
 			{{/info}}
 			{{^info}}
 			<h2>Vahvistus epäonnistui</h2>
