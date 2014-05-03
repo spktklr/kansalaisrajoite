@@ -151,6 +151,9 @@ $(function() {
                 },
                 401: function() {
                     $('p.alert.wrongpw').show('fast');
+                },
+                412: function() {
+                    $('p.alert.notverified').show('fast');
                 }
             }
         });
