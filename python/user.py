@@ -5,6 +5,7 @@ import json
 from bottle import Bottle, HTTPError, request, template
 from sqlalchemy.orm.exc import NoResultFound
 import bcrypt
+from validate_email import validate_email
 
 from utils import session_user, jsonplugin, gen_pw_reset_payload, send_email
 import model
@@ -26,7 +27,7 @@ def register(db):
     if len(password) < 8:
         return HTTPError(400, 'Bad request')
 
-    if not email:
+    if not email or not validate_email(email):
         return HTTPError(400, 'Bad request')
 
     if db.query(model.User).filter_by(email=email).first():
