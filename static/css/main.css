@@ -1790,11 +1790,11 @@ textarea:focus, input:focus {
   margin: 0 0 30px 0;
   padding: 30px;
 }
-.tiedotteet article a {
-  color: #e74c3c;
-}
 .tiedotteet article p {
   line-height: 22px;
+}
+.tiedotteet article p a {
+  color: #e74c3c;
 }
 
 /* OHJEET STYLES */
