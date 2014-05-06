@@ -58,33 +58,29 @@ def read_all(db):
 
 @app.post('/')
 def create(db):
-    user = session_user(request, db)
+    try:
+        user = session_user(request, db)
 
-    if not user:
-        return HTTPError(401, 'Unauthorized')
+        if not user:
+            return HTTPError(401, 'Unauthorized')
 
-    title = request.forms.get('title').strip()
-    body = request.forms.get('body').strip()
-    name = request.forms.get('name').strip()
-    city = request.forms.get('city').strip()
+        item = model.Restriction()
+        item.title = request.forms.get('title').strip()
+        item.body = request.forms.get('body').strip()
+        item.state = 'NEW'
+        item.user = user
+        item.user_name = request.forms.get('name').strip()
+        item.user_city = request.forms.get('city').strip()
+        item.voters.append(user)
 
-    for field in [title, body, name, city]:
-        if not field:
-            return HTTPError(400, 'Bad request')
+        db.add(item)
+        db.flush()
 
-    item = model.Restriction()
-    item.title = title
-    item.body = body
-    item.state = 'NEW'
-    item.user = user
-    item.user_name = name
-    item.user_city = city
-    item.voters.append(user)
+        return {'id': item.id, 'title': item.title}
+    except AssertionError:
+        return HTTPError(400, 'Bad request')
 
-    db.add(item)
-    db.flush()
 
-    return {'id': item.id, 'title': item.title}
 
 
 @app.delete('/<id:int>')

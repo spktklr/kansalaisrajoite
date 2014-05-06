@@ -5,7 +5,6 @@ import json
 from bottle import Bottle, HTTPError, request, template
 from sqlalchemy.orm.exc import NoResultFound
 import bcrypt
-from validate_email import validate_email
 
 from utils import session_user, jsonplugin, gen_pw_reset_payload, send_email
 import model
@@ -19,75 +18,56 @@ app.install(jsonplugin)
 
 @app.post('/register')
 def register(db):
-    email = request.forms.get('email').strip()
-    name = request.forms.get('name').strip()
-    password = request.forms.get('password')
-    city = request.forms.get('city').strip()
+    try:
+        email = request.forms.get('email').strip()
 
-    if len(password) < 8:
+        if db.query(model.User).filter_by(email=email).first():
+            return HTTPError(409, 'Conflict')
+
+        user = model.User()
+        user.email = email
+        user.password = request.forms.get('password')
+        user.name = request.forms.get('name').strip()
+        user.city = request.forms.get('city').strip()
+
+        db.add(user)
+
+        # create hmac verification token
+        token = hmac.new(config.site_secret, user.email).hexdigest()
+
+        subject = config.verification_email_subject
+        body = template(
+            'mail_verification',
+            email=user.email,
+            site_name=config.site_name,
+            site_url=config.site_url,
+            token=token
+        )
+
+        send_email(email, subject, body)
+    except AssertionError:
         return HTTPError(400, 'Bad request')
-
-    if not email or not validate_email(email):
-        return HTTPError(400, 'Bad request')
-
-    if db.query(model.User).filter_by(email=email).first():
-        return HTTPError(409, 'Conflict')
-
-    user = model.User()
-    user.email = email
-
-    if name:
-        user.name = name
-
-    if city:
-        user.city = city
-
-    user.password = bcrypt.hashpw(password, bcrypt.gensalt())
-
-    db.add(user)
-
-    # create hmac verification token
-    token = hmac.new(config.site_secret, user.email).hexdigest()
-
-    subject = config.verification_email_subject
-    body = template(
-        'mail_verification',
-        email=user.email,
-        site_name=config.site_name,
-        site_url=config.site_url,
-        token=token
-    )
-
-    send_email(email, subject, body)
 
 
 @app.post('/')
 def modify(db):
-    user = session_user(request, db)
+    try:
+        user = session_user(request, db)
 
-    if not user:
-        return HTTPError(401, 'Unauthorized')
+        if not user:
+            return HTTPError(401, 'Unauthorized')
 
-    name = request.forms.get('name').strip()
-    password = request.forms.get('password')
-    city = request.forms.get('city').strip()
+        password = request.forms.get('password')
 
-    if len(password) < 8:
+        if password:
+            user.password = password
+
+        user.name = request.forms.get('name').strip()
+        user.city = request.forms.get('city').strip()
+
+        return user.toDict(True)
+    except AssertionError:
         return HTTPError(400, 'Bad request')
-    elif password:
-        user.password = bcrypt.hashpw(password, bcrypt.gensalt())
-
-    if name:
-        user.name = name
-    else:
-        user.name = None
-
-    if city:
-        user.city = city
-    else:
-        user.city = None
-
-    return user.toDict(True)
 
 
 @app.post('/verify')
@@ -144,30 +124,32 @@ def send_reset_email(db):
 
 @app.post('/reset-password-2')
 def reset_password(db):
-    email = request.forms.get('email').strip()
-    token = request.forms.get('token').strip()
-    password = request.forms.get('password')
+    try:
+        email = request.forms.get('email').strip()
+        token = request.forms.get('token').strip()
 
-    if not email or not token or not password or len(password) < 8:
-        return HTTPError(400, 'Bad request')
+        if not email or not token:
+            return HTTPError(400, 'Bad request')
 
-    user = db.query(model.User).filter_by(email=email).first()
+        user = db.query(model.User).filter_by(email=email).first()
 
-    if user:
-        # validate hmac token
-        json_payload = json.dumps(gen_pw_reset_payload(user))
-        new_token = hmac.new(config.site_secret, json_payload).hexdigest()
+        if user:
+            # validate hmac token
+            json_payload = json.dumps(gen_pw_reset_payload(user))
+            new_token = hmac.new(config.site_secret, json_payload).hexdigest()
 
-        if token != new_token:
+            if token != new_token:
+                return HTTPError(401, 'Unauthorized')
+
+            # change password
+            user.password = request.forms.get('password')
+
+            # pw reset can also be used in activating the account
+            user.verified = True
+        else:
             return HTTPError(401, 'Unauthorized')
-
-        # change password
-        user.password = bcrypt.hashpw(password, bcrypt.gensalt())
-
-        # pw reset can also be used in activating the account
-        user.verified = True
-    else:
-        return HTTPError(401, 'Unauthorized')
+    except AssertionError:
+        return HTTPError(400, 'Bad request')
 
 
 @app.post('/login')

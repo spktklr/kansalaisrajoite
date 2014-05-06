@@ -232,6 +232,7 @@ $(function() {
 
         e.preventDefault();
         $('p.alert').hide();
+        $('p.info').hide();
 
         if (pass.length > 0) {
             switch (validatePassword(pass)) {
