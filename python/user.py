@@ -19,16 +19,16 @@ app.install(jsonplugin)
 @app.post('/register')
 def register(db):
     try:
-        email = request.forms.get('email').strip()
+        email = request.forms.email.strip()
 
         if db.query(model.User).filter_by(email=email).first():
             return HTTPError(409, 'Conflict')
 
         user = model.User()
         user.email = email
-        user.password = request.forms.get('password')
-        user.name = request.forms.get('name').strip()
-        user.city = request.forms.get('city').strip()
+        user.password = request.forms.password.strip()
+        user.name = request.forms.name.strip()
+        user.city = request.forms.city.strip()
 
         db.add(user)
 
@@ -62,8 +62,8 @@ def modify(db):
         if password:
             user.password = password
 
-        user.name = request.forms.get('name').strip()
-        user.city = request.forms.get('city').strip()
+        user.name = request.forms.name.strip()
+        user.city = request.forms.city.strip()
 
         return user.toDict(True)
     except AssertionError:
@@ -72,8 +72,8 @@ def modify(db):
 
 @app.post('/verify')
 def verify(db):
-    email = request.forms.get('email').strip()
-    token = request.forms.get('token').strip()
+    email = request.forms.email.strip()
+    token = request.forms.token.strip()
 
     if not email or not token:
         return HTTPError(400, 'Bad request')
@@ -96,7 +96,7 @@ def verify(db):
 
 @app.post('/reset-password-1')
 def send_reset_email(db):
-    email = request.forms.get('email').strip()
+    email = request.forms.email.strip()
 
     if not email:
         return HTTPError(400, 'Bad request')
@@ -125,8 +125,8 @@ def send_reset_email(db):
 @app.post('/reset-password-2')
 def reset_password(db):
     try:
-        email = request.forms.get('email').strip()
-        token = request.forms.get('token').strip()
+        email = request.forms.email.strip()
+        token = request.forms.token.strip()
 
         if not email or not token:
             return HTTPError(400, 'Bad request')
@@ -142,7 +142,7 @@ def reset_password(db):
                 return HTTPError(401, 'Unauthorized')
 
             # change password
-            user.password = request.forms.get('password')
+            user.password = request.forms.password.strip()
 
             # pw reset can also be used in activating the account
             user.verified = True
@@ -154,8 +154,8 @@ def reset_password(db):
 
 @app.post('/login')
 def login(db):
-    email = request.forms.get('email').strip()
-    password = request.forms.get('password')
+    email = request.forms.email.strip()
+    password = request.forms.password.strip()
 
     if not email or not password:
         return HTTPError(400, 'Bad request')

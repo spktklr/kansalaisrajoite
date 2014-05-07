@@ -65,12 +65,12 @@ def create(db):
             return HTTPError(401, 'Unauthorized')
 
         item = model.Restriction()
-        item.title = request.forms.get('title').strip()
-        item.body = request.forms.get('body').strip()
+        item.title = request.forms.title.strip()
+        item.body = request.forms.body.strip()
         item.state = 'NEW'
         item.user = user
-        item.user_name = request.forms.get('name').strip()
-        item.user_city = request.forms.get('city').strip()
+        item.user_name = request.forms.name.strip()
+        item.user_city = request.forms.city.strip()
         item.voters.append(user)
 
         db.add(item)

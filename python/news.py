@@ -33,8 +33,8 @@ def create(db):
 
     item = model.News()
 
-    item.title = request.forms.get('title').strip()
-    item.body = request.forms.get('body').strip()
+    item.title = request.forms.title.strip()
+    item.body = request.forms.body.strip()
     item.user = user
 
     db.add(item)
