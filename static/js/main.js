@@ -42,7 +42,9 @@ $(function() {
         // \u00F6 = ö
         return text
             .toLowerCase()
-            .replace(/[^\w\u00E4\u00F6 ]+/g, '')
+            .replace(/[\u00E4]/g, 'a')
+            .replace(/[\u00F6]/g, 'o')
+            .replace(/[^\w ]+/g, '')
             .replace(/ +/g, '-');
     }
 
