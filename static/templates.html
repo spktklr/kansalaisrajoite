@@ -3,12 +3,12 @@
 		<article>
 			<h1>Paljon on jo kielletty, mutta enemmänkin voitaisiin kieltää</h1>
 			<h2>Kansalaisrajoite.fi -verkkopalvelussa voit ehdottaa uusia kieltoja, jotka rajoittavat kansalaisen elämää sekä kannattaa ja seurata muiden ehdottamia kansalaisrajoitteita.</h2>
-			<a class="painike" href="#/ohjeet"><h2>Lue lisää kansalaisrajoitteesta</h2></a>
+			<a class="painike" href="#!/ohjeet"><h2>Lue lisää kansalaisrajoitteesta</h2></a>
 		</article>
 		<article>
 			<h1>Selaa kansalaisrajoitteita</h1>
 			<h2>Kansalaisrajoite.fi -palvelussa vireillä olevat kiellot löytyvät täältä.</h2>
-			<a class="painike" href="#/rajoitteet"><h2>Selaa kansalaisrajoitteita</h2></a>
+			<a class="painike" href="#!/rajoitteet"><h2>Selaa kansalaisrajoitteita</h2></a>
 		</article>
 		<article>
 			<h1>Tarvitsetko apua?</h1>
@@ -25,13 +25,13 @@
 			<ul>
 				{{#sort}}
 				<li{{#byTitle}} class="valittu"{{/byTitle}}>
-					<a href="#/rajoitteet/{{#byTitleDesc}}-{{/byTitleDesc}}otsikko">Otsikko{{#byTitle}} {{#byTitleDesc}}▾{{/byTitleDesc}}{{^byTitleDesc}}▴{{/byTitleDesc}}{{/byTitle}}</a>
+					<a href="#!/rajoitteet/{{#byTitleDesc}}-{{/byTitleDesc}}otsikko">Otsikko{{#byTitle}} {{#byTitleDesc}}▾{{/byTitleDesc}}{{^byTitleDesc}}▴{{/byTitleDesc}}{{/byTitle}}</a>
 				</li>
 				<li{{#byVotes}} class="valittu"{{/byVotes}}>
-					<a href="#/rajoitteet/{{#byVotesDesc}}-{{/byVotesDesc}}aanet">Äänet{{#byVotes}} {{#byVotesDesc}}▾{{/byVotesDesc}}{{^byVotesDesc}}▴{{/byVotesDesc}}{{/byVotes}}</a>
+					<a href="#!/rajoitteet/{{#byVotesDesc}}-{{/byVotesDesc}}aanet">Äänet{{#byVotes}} {{#byVotesDesc}}▾{{/byVotesDesc}}{{^byVotesDesc}}▴{{/byVotesDesc}}{{/byVotes}}</a>
 				</li>
 				<li{{#byAge}} class="valittu"{{/byAge}}>
-					<a href="#/rajoitteet/{{#byAgeDesc}}-{{/byAgeDesc}}aika">Luomisaika{{#byAge}} {{#byAgeDesc}}▾{{/byAgeDesc}}{{^byAgeDesc}}▴{{/byAgeDesc}}{{/byAge}}</a>
+					<a href="#!/rajoitteet/{{#byAgeDesc}}-{{/byAgeDesc}}aika">Luomisaika{{#byAge}} {{#byAgeDesc}}▾{{/byAgeDesc}}{{^byAgeDesc}}▴{{/byAgeDesc}}{{/byAge}}</a>
 				</li>
 				{{/sort}}
 			</ul>
@@ -41,7 +41,7 @@
 		<div class="clear line"></div>
 		<div class="rajoitelista">
 			{{#restrictions}}
-			<a href="#/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">
+			<a href="#!/rajoite/{{id}}/{{#slug}}{{title}}{{/slug}}">
 				<article>
 					{{#isNew}}
 						<h4>Jonossa</h4>
@@ -128,7 +128,7 @@
 <script id="restrict" type="text/html">
 	<div class="rajoite">
 		<h1 style="float:none;">Tee kansalaisrajoite</h1>
-		<p>Voit luoda kansalaisrajoite-ehdotuksen antamalla sille otsikon ja perustelut. Lisäksi otsikon alkuun lisätään automaattisesti Kielletään-sana. Voit halutessasi tutustua <a href="#/ohjeet/rajoitteenluominen">ohjeisiin</a> ennen ehdotuksen tekoa.</p>
+		<p>Voit luoda kansalaisrajoite-ehdotuksen antamalla sille otsikon ja perustelut. Lisäksi otsikon alkuun lisätään automaattisesti Kielletään-sana. Voit halutessasi tutustua <a href="#!/ohjeet/rajoitteenluominen">ohjeisiin</a> ennen ehdotuksen tekoa.</p>
 		<form id="newrestriction" class="teerajoite">
 			<article>
 				<label>
@@ -195,10 +195,10 @@
 		<aside>
 			<h1>Ohjeet</h1>
 			<ul>
-				<li><a href="#/ohjeet/palvelu">Kansalaisrajoite.fi-palvelu</a></li>
-				<li><a href="#/ohjeet/rajoitteenkannattaminen">Rajoitteen kannattaminen</a></li>
-				<li><a href="#/ohjeet/rajoitteenluominen">Rajoitteen luominen</a></li>
-				<li><a href="#/ohjeet/rekisteriseloste">Rekisteriseloste</a></li>
+				<li><a href="#!/ohjeet/palvelu">Kansalaisrajoite.fi-palvelu</a></li>
+				<li><a href="#!/ohjeet/rajoitteenkannattaminen">Rajoitteen kannattaminen</a></li>
+				<li><a href="#!/ohjeet/rajoitteenluominen">Rajoitteen luominen</a></li>
+				<li><a href="#!/ohjeet/rekisteriseloste">Rekisteriseloste</a></li>
 			</ul>
 		</aside>
 		<div class="content">
@@ -278,24 +278,24 @@
 <script id="headerbox" type="text/html">
 	<div><div>
 		{{#isLogged}}
-		<p><strong>Kirjautuneena: {{#info.name}}{{info.name}}{{/info.name}}{{^info.name}}{{info.email}}{{/info.name}} </strong><a href="#/muuta-tietoja"><span>Muuta tietojasi</span></a><a href="#" class="link-logout"><span>Kirjaudu ulos</span></a></p>
+		<p><strong>Kirjautuneena: {{#info.name}}{{info.name}}{{/info.name}}{{^info.name}}{{info.email}}{{/info.name}} </strong><a href="#!/muuta-tietoja"><span>Muuta tietojasi</span></a><a href="#" class="link-logout"><span>Kirjaudu ulos</span></a></p>
 		{{/isLogged}}
 		{{^isLogged}}
 		<p><a class="link-register" href="#"><span>Rekisteröidy käyttäjäksi</span></a><a class="link-login" href="#"><span>Kirjaudu sisään</span></a></p>
 		{{/isLogged}}
 	</div></div>
 	<nav>
-		<h1><a href="#/etusivu">Kansalais<span class="highlight">rajoite<em>.</em>fi</span></a></h1>
+		<h1><a href="#!/etusivu">Kansalais<span class="highlight">rajoite<em>.</em>fi</span></a></h1>
 		<ul>
-			<li><a href="#/etusivu">Kansalaisrajoite.fi etusivu</a></li>
-			<li><a href="#/rajoitteet">Selaa kansalaisrajoitteita</a></li>
-			<li><a href="#/rajoita">Tee kansalaisrajoite</a></li>
-			<li><a href="#/ohjeet">Ohjeet</a></li>
-			<li><a href="#/tiedotteet">Tiedotteet</a></li>
+			<li><a href="#!/etusivu">Kansalaisrajoite.fi etusivu</a></li>
+			<li><a href="#!/rajoitteet">Selaa kansalaisrajoitteita</a></li>
+			<li><a href="#!/rajoita">Tee kansalaisrajoite</a></li>
+			<li><a href="#!/ohjeet">Ohjeet</a></li>
+			<li><a href="#!/tiedotteet">Tiedotteet</a></li>
 		</ul>
 		<ul>
-			<li><a href="#/pasvenska">På svenska</a></li>
-			<li><a href="#/inenglish">In English</a></li>
+			<li><a href="#!/pasvenska">På svenska</a></li>
+			<li><a href="#!/inenglish">In English</a></li>
 		</ul>
 	</nav>
 </script>

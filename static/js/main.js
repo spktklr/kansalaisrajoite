@@ -540,15 +540,15 @@ $(function() {
                         // default to the front page
                         show('section', 'frontpage');
                     },
-                    '/etusivu': function() {
+                    '!/etusivu': function() {
                         show('section', 'frontpage');
                     },
-                    '/rajoitteet/:order?': function(order) {
+                    '!/rajoitteet/:order?': function(order) {
                         $.getJSON('restriction', function(data) {
                             showRestrictions(data, order);
                         });
                     },
-                    '/rajoite/:id/:slug?': function(id, slug) {
+                    '!/rajoite/:id/:slug?': function(id, slug) {
                         $.getJSON('restriction/' + id, function(data) {
                             data.date = function() {
                                 return convertToDateStr;
@@ -558,14 +558,14 @@ $(function() {
                             show('section', 'restriction', data);
                         });
                     },
-                    '/rajoita': function() {
+                    '!/rajoita': function() {
                         if (user.isLogged) {
                             show('section', 'restrict', user);
                         } else {
                             show('section', 'error-login');
                         }
                     },
-                    '/ohjeet/:anchor?': function(anchor) {
+                    '!/ohjeet/:anchor?': function(anchor) {
                         show('section', 'guide');
                         if (anchor) {
                             scrollTo('#' + anchor);
@@ -573,7 +573,7 @@ $(function() {
                             scrollTo('body');
                         }
                     },
-                    '/tiedotteet': function() {
+                    '!/tiedotteet': function() {
                         $.getJSON('news', function(data) {
                             data.hasNews = (data.news.length > 0);
                             data.date = function() {
@@ -582,16 +582,16 @@ $(function() {
                             show('section', 'news', data);
                         });
                     },
-                    '/pasvenska': function() {
+                    '!/pasvenska': function() {
                         show('section', 'pasvenska');
                     },
-                    '/inenglish': function() {
+                    '!/inenglish': function() {
                         show('section', 'inenglish');
                     },
-                    '/logout': function() {
+                    '!/logout': function() {
                         show('section', 'logout');
                     },
-                    '/muuta-tietoja': function() {
+                    '!/muuta-tietoja': function() {
                         if (user.isLogged) {
                             $.getJSON('user', function(data) {
                                 show('section', 'account-edit', data);
@@ -600,7 +600,7 @@ $(function() {
                             show('section', 'error-login');
                         }
                     },
-                    '/vahvista/:email/:token': function(email, token) {
+                    '!/vahvista/:email/:token': function(email, token) {
                         $.ajax({
                             url: 'user/verify',
                             global: false,
@@ -621,7 +621,7 @@ $(function() {
                             }
                         });
                     },
-                    '/uusi-salasana/:email/:token': function(email, token) {
+                    '!/uusi-salasana/:email/:token': function(email, token) {
                         var data = {
                             email: email,
                             token: token
