@@ -165,7 +165,7 @@ def login(db):
     if user and not user.verified:
         return HTTPError(412, 'Precondition failed')
     if (user and user.verified and
-            bcrypt.hashpw(password, user.password.encode('utf-8'))
+            bcrypt.hashpw(password.encode('utf-8'), user.password.encode('utf-8'))
             == user.password):
         session = request.environ['beaker.session']
         session['user_id'] = user.id
