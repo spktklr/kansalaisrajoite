@@ -389,7 +389,7 @@ $(function() {
                 type: 'DELETE',
                 success: function() {
                     notification.setInfo('Rajoite poistettu');
-                    routie('/rajoitteet');
+                    routie('!/rajoitteet');
                 }
             });
         }
@@ -425,7 +425,7 @@ $(function() {
             statusCode: {
                 200: function(data) {
                     notification.setInfo('Rajoite luotu');
-                    routie('/rajoite/' + data.id + '/' + slugFunc(data.title));
+                    routie('!/rajoite/' + data.id + '/' + slugFunc(data.title));
                 },
                 400: function() {
                     notification.setError('Kaikki kentät ovat pakollisia');
