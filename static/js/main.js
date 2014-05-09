@@ -1,5 +1,6 @@
 $(function() {
     var defaultLocale = 'fi-Fi';
+    var baseTitle = document.title;
 
     // user information
     var user = {
@@ -62,9 +63,15 @@ $(function() {
         return ((Math.min(parseInt(render(text)), threshold) / threshold) * 100);
     }
 
-    var show = function(element, template, data) {
+    var show = function(element, template, data, title) {
         if (element === 'section') {
             notification.show();
+
+            if (title) {
+                document.title = title;
+            } else {
+                document.title = baseTitle;
+            }
         }
 
         $(element).mustache(template, (data === undefined ? null : data), {
@@ -557,7 +564,7 @@ $(function() {
                             };
                             data.isAdmin = (user.info ? user.info.admin : false);
                             restrictionStateForMustache(data);
-                            show('section', 'restriction', data);
+                            show('section', 'restriction', data, 'Kielletään: ' + data.title);
                         });
                     },
                     '!/rajoita': function() {
