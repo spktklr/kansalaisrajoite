@@ -635,6 +635,7 @@ textarea:focus, input:focus {
 .tiedotteet h1, .tiedotteet p {
 	margin: 20px 0;
 	word-wrap:break-word;
+	white-space: pre-wrap;
 }
 .tiedotteet article {
 	background:white;
