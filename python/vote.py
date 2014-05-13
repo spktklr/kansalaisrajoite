@@ -1,10 +1,11 @@
 # coding=utf-8
-from bottle import Bottle, HTTPError, request
+from bottle import Bottle, HTTPError
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm import joinedload
 
 import model
-from utils import session_user, jsonplugin
+from utils import jsonplugin
+import auth
 
 
 app = Bottle()
@@ -13,13 +14,9 @@ app.install(jsonplugin)
 
 
 @app.get('/<id:int>')
-def read_one(db, id):
+@auth.require_login
+def read_one(db, user, id):
     try:
-        user = session_user(request, db)
-
-        if not user:
-            return HTTPError(401, 'Unauthorized')
-
         item = db.query(model.Restriction) \
             .options(joinedload(model.Restriction.voters)) \
             .filter_by(id=id).one()
@@ -29,13 +26,9 @@ def read_one(db, id):
 
 
 @app.post('/<id:int>')
-def create(db, id):
+@auth.require_login
+def create(db, user, id):
     try:
-        user = session_user(request, db)
-
-        if not user:
-            return HTTPError(401, 'Unauthorized')
-
         item = db.query(model.Restriction).filter_by(id=id).one()
         item.voters.append(user)
     except NoResultFound:
@@ -44,13 +37,9 @@ def create(db, id):
 
 # Disabled
 # @app.delete('/<id:int>')
-def delete(db, id):
+# @auth.require_login
+def delete(db, user, id):
     try:
-        user = session_user(request, db)
-
-        if not user:
-            return HTTPError(401, 'Unauthorized')
-
         item = db.query(model.Restriction).filter_by(id=id).one()
         item.voters.remove(user)
     except NoResultFound:

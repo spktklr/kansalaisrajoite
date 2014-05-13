@@ -4,7 +4,8 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm import joinedload
 
 import model
-from utils import session_user, jsonplugin
+from utils import jsonplugin
+import auth
 
 
 app = Bottle()
@@ -13,11 +14,11 @@ app.install(jsonplugin)
 
 
 @app.get('/<id:int>')
-def read_one(db, id):
-    try:
-        user = session_user(request, db)
-        is_admin = user and user.admin
+@auth.optional_login
+def read_one(db, user, id):
+    is_admin = user and user.admin
 
+    try:
         item = db.query(model.Restriction) \
             .options(joinedload(model.Restriction.voters),
                      joinedload(model.Restriction.user),
@@ -33,8 +34,8 @@ def read_one(db, id):
 
 
 @app.get('/')
-def read_all(db):
-    user = session_user(request, db)
+@auth.optional_login
+def read_all(db, user):
     is_admin = user and user.admin
 
     if is_admin:
@@ -57,13 +58,9 @@ def read_all(db):
 
 
 @app.post('/')
-def create(db):
+@auth.require_login
+def create(db, user):
     try:
-        user = session_user(request, db)
-
-        if not user:
-            return HTTPError(401, 'Unauthorized')
-
         item = model.Restriction()
         item.title = request.forms.title.strip()
         item.body = request.forms.body.strip()
@@ -81,16 +78,11 @@ def create(db):
         return HTTPError(400, 'Bad request')
 
 
-
-
 @app.delete('/<id:int>')
-def delete(db, id):
+@auth.require_login
+def delete(db, user, id):
     try:
-        user = session_user(request, db)
         is_admin = user and user.admin
-
-        if not user:
-            return HTTPError(401, 'Unauthorized')
 
         item = db.query(model.Restriction).filter_by(id=id).one()
 
@@ -103,14 +95,9 @@ def delete(db, id):
 
 
 @app.post('/<id:int>/approve')
-def approve(db, id):
+@auth.require_admin
+def approve(db, user, id):
     try:
-        user = session_user(request, db)
-        is_admin = user and user.admin
-
-        if not is_admin:
-            return HTTPError(403, 'Forbidden')
-
         item = db.query(model.Restriction).filter_by(id=id).one()
         item.state = 'APPROVED'
         item.approver = user
@@ -119,14 +106,9 @@ def approve(db, id):
 
 
 @app.post('/<id:int>/reject')
-def reject(db, id):
+@auth.require_admin
+def reject(db, user, id):
     try:
-        user = session_user(request, db)
-        is_admin = user and user.admin
-
-        if not is_admin:
-            return HTTPError(403, 'Forbidden')
-
         item = db.query(model.Restriction).filter_by(id=id).one()
         item.state = 'REJECTED'
         item.approver = user

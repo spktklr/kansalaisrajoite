@@ -3,7 +3,8 @@ from bottle import Bottle, HTTPError, request
 from sqlalchemy.orm.exc import NoResultFound
 
 import model
-from utils import session_user, jsonplugin
+from utils import jsonplugin
+import auth
 
 
 app = Bottle()
@@ -12,8 +13,8 @@ app.install(jsonplugin)
 
 
 @app.get('/')
-def read_all(db):
-    user = session_user(request, db)
+@auth.optional_login
+def read_all(db, user):
     is_admin = user and user.admin
 
     items = db.query(model.News).order_by(model.News.id.desc())
@@ -21,16 +22,8 @@ def read_all(db):
 
 
 @app.post('/')
-def create(db):
-    user = session_user(request, db)
-    is_admin = user and user.admin
-
-    if not user:
-        return HTTPError(401, 'Unauthorized')
-
-    if not is_admin:
-        return HTTPError(403, 'Forbidden')
-
+@auth.require_admin
+def create(db, user):
     item = model.News()
 
     item.title = request.forms.title.strip()
@@ -41,17 +34,9 @@ def create(db):
 
 
 @app.delete('/<id:int>')
-def delete(db, id):
+@auth.require_admin
+def delete(db, user, id):
     try:
-        user = session_user(request, db)
-        is_admin = user and user.admin
-
-        if not user:
-            return HTTPError(401, 'Unauthorized')
-
-        if not is_admin:
-            return HTTPError(403, 'Forbidden')
-
         item = db.query(model.News).filter_by(id=id).one()
         db.delete(item)
     except NoResultFound:

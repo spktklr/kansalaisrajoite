@@ -6,7 +6,8 @@ from bottle import Bottle, HTTPError, request, template
 from sqlalchemy.orm.exc import NoResultFound
 import bcrypt
 
-from utils import session_user, jsonplugin, gen_pw_reset_payload, send_email
+from utils import jsonplugin, gen_pw_reset_payload, send_email
+import auth
 import model
 import config
 
@@ -50,13 +51,9 @@ def register(db):
 
 
 @app.post('/')
-def modify(db):
+@auth.require_login
+def modify(db, user):
     try:
-        user = session_user(request, db)
-
-        if not user:
-            return HTTPError(401, 'Unauthorized')
-
         password = request.forms.get('password')
 
         if password:
@@ -185,9 +182,8 @@ def logout(db):
 
 
 @app.get('/')
-def my_data(db):
-    user = session_user(request, db)
-
+@auth.optional_login
+def my_data(db, user):
     if user:
         return user.toDict(True)
     else:
@@ -195,14 +191,9 @@ def my_data(db):
 
 
 @app.get('/<id:int>')
-def read_user(db, id):
+@auth.require_admin
+def read_user(db, user, id):
     try:
-        user = session_user(request, db)
-        is_admin = user and user.admin
-
-        if not is_admin:
-            return HTTPError(401, 'Unauthorized')
-
         item = db.query(model.User).filter_by(id=id).one()
         return item.toDict(True)
     except NoResultFound:
