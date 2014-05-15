@@ -62,7 +62,7 @@ def read_all(db, user):
 def create(db, user):
     try:
         item = model.Restriction()
-        item.title = request.forms.title.strip()
+        item.title = request.forms.title.strip().capitalize()
         item.body = request.forms.body.strip()
         item.state = 'NEW'
         item.user = user
