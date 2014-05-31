@@ -6,3 +6,4 @@ psycopg2
 sqlalchemy
 validate_email
 envoy
+awesome-slugify

@@ -5,6 +5,7 @@ import smtplib
 from email.mime.text import MIMEText
 
 from bottle import JSONPlugin
+from slugify import slugify
 
 import config
 
@@ -27,6 +28,9 @@ def gen_pw_reset_payload(user):
         'password': user.password
     }
 
+
+def slug(s):
+    return slugify(s, to_lower=True, max_length=100)
 
 class JsonEncoder(json.JSONEncoder):
 

@@ -9,6 +9,7 @@ from validate_email import validate_email
 import bcrypt
 
 import config
+from utils import slug
 
 
 Base = declarative_base()
@@ -57,6 +58,7 @@ class Restriction(Base):
         ret['user_name'] = self.user_name
         ret['user_city'] = self.user_city
         ret['state'] = self.state
+        ret['slug'] = slug(self.title)
         if full:
             if self.approver:
                 ret['approver'] = self.approver.toDict()

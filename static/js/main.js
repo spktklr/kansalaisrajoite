@@ -38,21 +38,6 @@ $(function() {
         }
     }
 
-    var slugFunc = function(text) {
-        // \u00E4 = ä
-        // \u00F6 = ö
-        return text
-            .toLowerCase()
-            .replace(/[\u00E4]/g, 'a')
-            .replace(/[\u00F6]/g, 'o')
-            .replace(/[^\w ]+/g, '')
-            .replace(/ +/g, '-');
-    }
-
-    var convertToSlug = function(text, render) {
-        return slugFunc(render(text));
-    }
-
     var convertToDateStr = function(text, render) {
         var timestamp = parseInt(render(text)) * 1000;
         return new Date(timestamp).toLocaleDateString(defaultLocale);
@@ -425,7 +410,7 @@ $(function() {
             statusCode: {
                 200: function(data) {
                     notification.setInfo('Rajoite luotu');
-                    routie('!/rajoite/' + data.id + '/' + slugFunc(data.title));
+                    routie('!/rajoite/' + data.id + '/' + data.slug);
                 },
                 400: function() {
                     notification.setError('Kaikki kentät ovat pakollisia');
@@ -493,9 +478,6 @@ $(function() {
                 break;
         }
 
-        data.slug = function() {
-            return convertToSlug;
-        };
         data.date = function() {
             return convertToDateStr;
         };

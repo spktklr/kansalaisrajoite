@@ -4,7 +4,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm import joinedload
 
 import model
-from utils import jsonplugin
+from utils import jsonplugin, slug
 import auth
 
 
