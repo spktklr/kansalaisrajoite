@@ -32,6 +32,7 @@ def gen_pw_reset_payload(user):
 def slug(s):
     return slugify(s, to_lower=True, max_length=100)
 
+
 class JsonEncoder(json.JSONEncoder):
 
     def default(self, obj):

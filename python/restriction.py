@@ -1,11 +1,12 @@
 # coding=utf-8
-from bottle import Bottle, HTTPError, request
+from bottle import Bottle, HTTPError, request, template
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm import joinedload
 
 import model
-from utils import jsonplugin, slug
+from utils import jsonplugin, slug, send_email
 import auth
+import config
 
 
 app = Bottle()
@@ -73,7 +74,19 @@ def create(db, user):
         db.add(item)
         db.flush()
 
-        return {'id': item.id, 'title': item.title}
+        if not user.admin:
+            subject = config.restriction_created_email_subject
+            body = template(
+                'mail_restriction_created',
+                site_name=config.site_name,
+                site_url=config.site_url,
+                id=item.id,
+                slug=slug(item.title)
+            )
+
+            send_email(config.site_email, subject, body)
+
+        return {'id': item.id, 'slug': slug(item.title)}
     except AssertionError:
         return HTTPError(400, 'Bad request')
 
@@ -101,6 +114,19 @@ def approve(db, user, id):
         item = db.query(model.Restriction).filter_by(id=id).one()
         item.state = 'APPROVED'
         item.approver = user
+        db.flush()
+
+        # email user the restriction was approved
+        subject = config.restriction_approved_email_subject
+        body = template(
+            'mail_restriction_approved',
+            site_name=config.site_name,
+            site_url=config.site_url,
+            id=item.id,
+            slug=slug(item.title)
+        )
+
+        send_email(item.user.email, subject, body)
     except NoResultFound:
         return HTTPError(404, 'Not found')
 
