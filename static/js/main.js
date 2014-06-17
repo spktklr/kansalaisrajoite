@@ -361,6 +361,9 @@ $(function() {
         $.ajax({
             url: 'restriction/' + $(this).data('restriction-id') + '/reject',
             type: 'POST',
+            data: {
+                reason: prompt('Syy hylkäämiselle:')
+            },
             success: function() {
                 routie.reload();
             }

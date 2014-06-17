@@ -138,5 +138,26 @@ def reject(db, user, id):
         item = db.query(model.Restriction).filter_by(id=id).one()
         item.state = 'REJECTED'
         item.approver = user
+        db.flush()
+
+        # email user the restriction was rejected
+        reason = request.forms.reason.strip()
+
+        if reason:
+            tpl = 'mail_restriction_rejected_reason'
+        else:
+            tpl = 'mail_restriction_rejected'
+
+        subject = config.restriction_rejected_email_subject
+        body = template(
+            tpl,
+            site_name=config.site_name,
+            site_url=config.site_url,
+            id=item.id,
+            slug=slug(item.title),
+            reason=reason
+        )
+
+        send_email(item.user.email, subject, body)
     except NoResultFound:
         return HTTPError(404, 'Not found')
