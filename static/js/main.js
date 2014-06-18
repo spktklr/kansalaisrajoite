@@ -551,9 +551,11 @@ $(function() {
                         });
                     },
                     '!/rajoite/:id/:slug?': function(id, slug) {
-
-                        // Store users' scroll position before navigating forward
+                        // store users' scroll position before navigating forward
                         user.scrollPosition = $(document).scrollTop();
+
+                        // scroll to top
+                        scrollTo('body');
 
                         $.getJSON('restriction/' + id, function(data) {
                             data.date = function() {
