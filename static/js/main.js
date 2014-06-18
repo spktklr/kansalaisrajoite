@@ -6,6 +6,7 @@ $(function() {
     var user = {
         isLogged: false,
         info: null,
+        scrollPosition: null,
         setLoggedIn: function(info) {
             this.isLogged = true;
             this.info = info;
@@ -493,6 +494,13 @@ $(function() {
         }
 
         show('section', 'restrictions', data);
+
+        // Restore users' scroll position when navigating back to restrictions
+        if (user.scrollPosition) {
+            $(document).scrollTop(user.scrollPosition);
+            delete user.scrollPosition;
+        }
+
     }
     /* content functions end */
 
@@ -543,6 +551,10 @@ $(function() {
                         });
                     },
                     '!/rajoite/:id/:slug?': function(id, slug) {
+
+                        // Store users' scroll position before navigating forward
+                        user.scrollPosition = $(document).scrollTop();
+
                         $.getJSON('restriction/' + id, function(data) {
                             data.date = function() {
                                 return convertToDateStr;
