@@ -259,8 +259,9 @@ div.etusivu {
 		word-wrap:break-word;
 	}
 	p {
-		@include narrow {margin: 0 20px;}
+		@include narrow {margin: 0;}
 		white-space: pre-wrap;
+		line-height: 20px;
 	}
 	p.alert, p.info {
 		font-size: 0.75rem;
@@ -299,22 +300,27 @@ div.etusivu {
 	height: 32px;
 	width: 32px;
 	margin-right: 20px;
-	background: url("../img/graytw.png") no-repeat;
+	margin-bottom: 4px;
+	background: url("../img/bluetw.png") no-repeat;
 	@include transition(background, $anitime ease-in);
+	/*
 	&:hover {
 		background: url("../img/bluetw.png") no-repeat;
 	}
+	*/
 }
 #fb {
 	float: right;
 	height: 32px;
 	width: 32px;
 	padding: 0 10px 0 0;
-	background: url("../img/grayfb.png") no-repeat;
+	background: url("../img/bluefb.png") no-repeat;
 	@include transition(background, $anitime ease-in);
+	/*
 	&:hover {
 		background: url("../img/bluefb.png") no-repeat;
 	}
+	*/
 }
 
 /* KIRJAUDU STYLES */

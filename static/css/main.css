@@ -1316,10 +1316,11 @@ div.etusivu article h1 {
 }
 .rajoite p, .contentform p {
   white-space: pre-wrap;
+  line-height: 20px;
 }
 @media screen and (max-width: 980px) {
   .rajoite p, .contentform p {
-    margin: 0 20px;
+    margin: 0;
   }
 }
 .rajoite p.alert, .contentform p.alert, .rajoite p.info, .contentform p.info {
@@ -1388,14 +1389,17 @@ div.etusivu article h1 {
   height: 32px;
   width: 32px;
   margin-right: 20px;
-  background: url("../img/graytw.png") no-repeat;
+  margin-bottom: 4px;
+  background: url("../img/bluetw.png") no-repeat;
   -webkit-transition: background, 0.1s ease-in;
   -moz-transition: background, 0.1s ease-in;
   -o-transition: background, 0.1s ease-in;
   transition: background, 0.1s ease-in;
-}
-#tw:hover {
-  background: url("../img/bluetw.png") no-repeat;
+  /*
+  &:hover {
+  	background: url("../img/bluetw.png") no-repeat;
+  }
+  */
 }
 
 #fb {
@@ -1403,14 +1407,16 @@ div.etusivu article h1 {
   height: 32px;
   width: 32px;
   padding: 0 10px 0 0;
-  background: url("../img/grayfb.png") no-repeat;
+  background: url("../img/bluefb.png") no-repeat;
   -webkit-transition: background, 0.1s ease-in;
   -moz-transition: background, 0.1s ease-in;
   -o-transition: background, 0.1s ease-in;
   transition: background, 0.1s ease-in;
-}
-#fb:hover {
-  background: url("../img/bluefb.png") no-repeat;
+  /*
+  &:hover {
+  	background: url("../img/bluefb.png") no-repeat;
+  }
+  */
 }
 
 /* KIRJAUDU STYLES */
