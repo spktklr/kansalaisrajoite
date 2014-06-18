@@ -207,7 +207,7 @@ $(function() {
             statusCode: {
                 200: function(data) {
                     jQuery(document).trigger('close.facebox');
-                    show('section', 'verification-sent');
+                    show('section', 'verification-sent', null, 'Rekisteröityminen');
                 },
                 400: function() {
                     $('p.alert.badrequest').show('fast');
@@ -493,7 +493,7 @@ $(function() {
             restrictionStateForMustache(data.restrictions[i]);
         }
 
-        show('section', 'restrictions', data);
+        show('section', 'restrictions', data, 'Rajoitteet');
 
         // Restore users' scroll position when navigating back to restrictions
         if (user.scrollPosition) {
@@ -512,16 +512,16 @@ $(function() {
             $(document).ajaxError(function(event, request, settings) {
                 switch (request.status) {
                     case 401:
-                        show('section', 'error-login');
+                        show('section', 'error-login', null, 'Virhe');
                         break;
                     case 403:
-                        show('section', 'error-unauthorized');
+                        show('section', 'error-unauthorized', null, 'Virhe');
                         break;
                     case 404:
-                        show('section', 'error-notfound');
+                        show('section', 'error-notfound', null, 'Virhe');
                         break;
                     default:
-                        show('section', 'error-generic');
+                        show('section', 'error-generic', null, 'Virhe');
                         break;
                 }
             });
@@ -568,13 +568,13 @@ $(function() {
                     },
                     '!/rajoita': function() {
                         if (user.isLogged) {
-                            show('section', 'restrict', user);
+                            show('section', 'restrict', user, 'Rajoita');
                         } else {
-                            show('section', 'error-login');
+                            show('section', 'error-login', null, 'Virhe');
                         }
                     },
                     '!/ohjeet/:anchor?': function(anchor) {
-                        show('section', 'guide');
+                        show('section', 'guide', null, 'Ohjeet');
                         if (anchor) {
                             scrollTo('#' + anchor);
                         } else {
@@ -587,25 +587,22 @@ $(function() {
                             data.date = function() {
                                 return convertToDateStr;
                             };
-                            show('section', 'news', data);
+                            show('section', 'news', data, 'Tiedotteet');
                         });
                     },
                     '!/pasvenska': function() {
-                        show('section', 'pasvenska');
+                        show('section', 'pasvenska', null, 'På svenska');
                     },
                     '!/inenglish': function() {
-                        show('section', 'inenglish');
-                    },
-                    '!/logout': function() {
-                        show('section', 'logout');
+                        show('section', 'inenglish', null, 'In english');
                     },
                     '!/muuta-tietoja': function() {
                         if (user.isLogged) {
                             $.getJSON('user', function(data) {
-                                show('section', 'account-edit', data);
+                                show('section', 'account-edit', data, 'Muuta tietoja');
                             });
                         } else {
-                            show('section', 'error-login');
+                            show('section', 'error-login', null, 'Virhe');
                         }
                     },
                     '!/vahvista/:email/:token': function(email, token) {
@@ -621,10 +618,10 @@ $(function() {
                                 200: function(data) {
                                     user.setLoggedIn(data);
                                     show('header', 'headerbox', user);
-                                    show('section', 'verification', user);
+                                    show('section', 'verification', user, 'Rekisteröityminen');
                                 },
                                 401: function(data) {
-                                    show('section', 'verification', null);
+                                    show('section', 'verification', null, 'Virhe');
                                 }
                             }
                         });
@@ -634,11 +631,11 @@ $(function() {
                             email: email,
                             token: token
                         };
-                        show('section', 'new-password', data);
+                        show('section', 'new-password', data, 'Uusi salasana');
                     },
                     '*': function() {
                         // show 404 page for other urls
-                        show('section', 'error-notfound');
+                        show('section', 'error-notfound', null, 'Sivua ei löytynyt');
                     }
                 });
             });
