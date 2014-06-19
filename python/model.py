@@ -44,6 +44,7 @@ class Restriction(Base):
     user_city = Column(String)
 
     voters = relationship('User', secondary=vote_table, backref='restrictions')
+    vote_count = relationship('VoteCount', uselist=False, lazy='joined')
 
     def __repr__(self):
         return '<Restriction: %s>' % self.title
@@ -52,7 +53,7 @@ class Restriction(Base):
         ret = {}
         ret['id'] = self.id
         ret['created'] = self.created
-        ret['votes'] = len(self.voters)
+        ret['votes'] = self.vote_count.num if self.vote_count else 0
         ret['title'] = self.title
         ret['state'] = self.state
         ret['slug'] = slug(self.title)
@@ -176,3 +177,13 @@ class News(Base):
             ret['user'] = self.user.toDict()
             ret['modified'] = self.modified
         return ret
+
+
+class VoteCount(Base):
+    __tablename__ = 'vote_count'
+
+    restriction_id = Column(Integer, ForeignKey('restriction.id'), primary_key=True)
+    num = Column(Integer)
+
+    def __repr__(self):
+        return '<VoteCount: %s>' % self.restriction_id

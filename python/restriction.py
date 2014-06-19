@@ -51,9 +51,7 @@ def read_all(db, user):
             .options(joinedload(model.Restriction.voters),
                      joinedload(model.Restriction.user))
     else:
-        items = db.query(model.Restriction).filter(
-            model.Restriction.state == 'APPROVED') \
-            .options(joinedload(model.Restriction.voters))
+        items = db.query(model.Restriction).filter(model.Restriction.state == 'APPROVED')
 
     return {'restrictions': [i.toDict(False, user) for i in items]}
 

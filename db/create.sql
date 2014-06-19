@@ -44,4 +44,8 @@ CREATE TABLE news (
 	user_id INTEGER REFERENCES "user"(id) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
+CREATE VIEW vote_count AS SELECT restriction.id as restriction_id, COUNT(*) AS num FROM restriction
+	LEFT OUTER JOIN vote ON (restriction.id = vote.restriction_id) WHERE vote.user_id IS NOT NULL
+	GROUP BY restriction.id;
+
 COMMIT;
