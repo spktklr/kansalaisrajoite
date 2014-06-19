@@ -29,7 +29,7 @@ def read_one(db, user, id):
         if item.state != 'APPROVED' and user != item.user and not is_admin:
             return HTTPError(403, 'Forbidden')
 
-        return item.toDict(is_admin, user)
+        return item.toDict(True, user)
     except NoResultFound:
         return HTTPError(404, 'Not found')
 
@@ -55,7 +55,7 @@ def read_all(db, user):
             model.Restriction.state == 'APPROVED') \
             .options(joinedload(model.Restriction.voters))
 
-    return {'restrictions': [i.toDict(is_admin, user) for i in items]}
+    return {'restrictions': [i.toDict(False, user) for i in items]}
 
 
 @app.post('/')

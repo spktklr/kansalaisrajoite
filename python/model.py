@@ -54,19 +54,23 @@ class Restriction(Base):
         ret['created'] = self.created
         ret['votes'] = len(self.voters)
         ret['title'] = self.title
-        ret['body'] = self.body
-        ret['user_name'] = self.user_name
-        ret['user_city'] = self.user_city
         ret['state'] = self.state
         ret['slug'] = slug(self.title)
+
         if full:
-            if self.approver:
-                ret['approver'] = self.approver.toDict()
-            else:
-                ret['approver'] = None
-            ret['modified'] = self.modified
+            ret['body'] = self.body
+            ret['user_name'] = self.user_name
+            ret['user_city'] = self.user_city
+
         if user:
+            if user.admin:
+                if self.approver:
+                    ret['approver'] = self.approver.toDict()
+                else:
+                    ret['approver'] = None
+                ret['modified'] = self.modified
             ret['voted'] = user in self.voters
+
         return ret
 
     @validates('title')
