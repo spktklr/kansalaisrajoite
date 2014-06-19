@@ -6,6 +6,7 @@ import restriction
 import vote
 import user
 import news
+import populate
 import config
 
 
@@ -14,6 +15,7 @@ app.mount('/restriction', restriction.app)
 app.mount('/vote', vote.app)
 app.mount('/user', user.app)
 app.mount('/news', news.app)
+app.mount('/populate', populate.app)
 
 
 @app.get('/')
