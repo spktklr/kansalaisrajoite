@@ -7,6 +7,7 @@ import vote
 import user
 import news
 import config
+import comment
 
 
 app = Bottle()
@@ -14,6 +15,7 @@ app.mount('/restriction', restriction.app)
 app.mount('/vote', vote.app)
 app.mount('/user', user.app)
 app.mount('/news', news.app)
+app.mount('/comment', comment.app)
 
 
 @app.get('/')

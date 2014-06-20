@@ -350,7 +350,7 @@ $(function() {
 
     $(document).on('click', 'input[name="send-comment"]', function() {
         $.ajax({
-            url: 'send-comment/' + $(this).data('restriction-id'),
+            url: 'comment/' + $(this).data('restriction-id'),
             type: 'POST',
             data: {
                 comment: $('#comment').val()
