@@ -1,4 +1,6 @@
 $(function() {
+    var SECTION_FIRST = "section.first";
+    var SECTION_SECOND = "section.second";
     var defaultLocale = 'fi-Fi';
     var baseTitle = document.title;
 
@@ -56,7 +58,11 @@ $(function() {
     }
 
     var show = function(element, template, data, title) {
-        if (element === 'section') {
+        console.log("showing", element);
+        if (element === SECTION_FIRST) {
+            $(SECTION_SECOND).mustache(null, null, {method: "html"});
+        }
+        if (element && element.indexOf('section') === 0) {
             notification.show();
 
             if (title) {
@@ -213,7 +219,7 @@ $(function() {
             statusCode: {
                 200: function(data) {
                     jQuery(document).trigger('close.facebox');
-                    show('section', 'verification-sent', null, 'Rekisteröityminen');
+                    show(SECTION_FIRST, 'verification-sent', null, 'Rekisteröityminen');
                 },
                 400: function() {
                     $('p.alert.badrequest').show('fast');
@@ -513,7 +519,7 @@ $(function() {
             restrictionStateForMustache(data.restrictions[i]);
         }
 
-        show('section', 'restrictions', data, 'Rajoitteet');
+        show(SECTION_FIRST, 'restrictions', data, 'Rajoitteet');
 
         // Restore users' scroll position when navigating back to restrictions
         if (user.scrollPosition) {
@@ -532,16 +538,16 @@ $(function() {
             $(document).ajaxError(function(event, request, settings) {
                 switch (request.status) {
                     case 401:
-                        show('section', 'error-login', null, 'Virhe');
+                        show(SECTION_FIRST, 'error-login', null, 'Virhe');
                         break;
                     case 403:
-                        show('section', 'error-unauthorized', null, 'Virhe');
+                        show(SECTION_FIRST, 'error-unauthorized', null, 'Virhe');
                         break;
                     case 404:
-                        show('section', 'error-notfound', null, 'Virhe');
+                        show(SECTION_FIRST, 'error-notfound', null, 'Virhe');
                         break;
                     default:
-                        show('section', 'error-generic', null, 'Virhe');
+                        show(SECTION_FIRST, 'error-generic', null, 'Virhe');
                         break;
                 }
             });
@@ -560,10 +566,10 @@ $(function() {
                 routie({
                     '': function() {
                         // default to the front page
-                        show('section', 'frontpage');
+                        show(SECTION_FIRST, 'frontpage');
                     },
                     '!/etusivu': function() {
-                        show('section', 'frontpage');
+                        show(SECTION_FIRST, 'frontpage');
                     },
                     '!/rajoitteet/:order?': function(order) {
                         $.getJSON('restriction', function(data) {
@@ -583,27 +589,29 @@ $(function() {
                             };
                             data.isAdmin = (user.info ? user.info.admin : false);
                             restrictionStateForMustache(data);
-                            show('section', 'restriction', data, 'Kielletään: ' + data.title);
-                        });
-                        $.getJSON('comment/' + id, function (data) {
-                            console.log("haha");
-                            data.isLogged = user.isLogged;
-                            data.id = id;
-                            data.dateTime = function () {
-                                return convertToDateTimeStr;
-                            };
-                            show("subsection", "comments", data);
+                            show(SECTION_FIRST, 'restriction', data, 'Kielletään: ' + data.title);
+
+                            $.getJSON('comment/' + id, function (data) {
+                                console.log("haha");
+                                data.isLogged = user.isLogged;
+                                data.id = id;
+                                data.dateTime = function () {
+                                    return convertToDateTimeStr;
+                                };
+                                show(SECTION_SECOND, "comments", data);
+                            });
+
                         });
                     },
                     '!/rajoita': function() {
                         if (user.isLogged) {
-                            show('section', 'restrict', user, 'Rajoita');
+                            show(SECTION_FIRST, 'restrict', user, 'Rajoita');
                         } else {
-                            show('section', 'error-login', null, 'Virhe');
+                            show(SECTION_FIRST, 'error-login', null, 'Virhe');
                         }
                     },
                     '!/ohjeet/:anchor?': function(anchor) {
-                        show('section', 'guide', null, 'Ohjeet');
+                        show(SECTION_FIRST, 'guide', null, 'Ohjeet');
                         if (anchor) {
                             scrollTo('#' + anchor);
                         } else {
@@ -616,22 +624,22 @@ $(function() {
                             data.date = function() {
                                 return convertToDateStr;
                             };
-                            show('section', 'news', data, 'Tiedotteet');
+                            show(SECTION_FIRST, 'news', data, 'Tiedotteet');
                         });
                     },
                     '!/pasvenska': function() {
-                        show('section', 'pasvenska', null, 'På svenska');
+                        show(SECTION_FIRST, 'pasvenska', null, 'På svenska');
                     },
                     '!/inenglish': function() {
-                        show('section', 'inenglish', null, 'In english');
+                        show(SECTION_FIRST, 'inenglish', null, 'In english');
                     },
                     '!/muuta-tietoja': function() {
                         if (user.isLogged) {
                             $.getJSON('user', function(data) {
-                                show('section', 'account-edit', data, 'Muuta tietoja');
+                                show(SECTION_FIRST, 'account-edit', data, 'Muuta tietoja');
                             });
                         } else {
-                            show('section', 'error-login', null, 'Virhe');
+                            show(SECTION_FIRST, 'error-login', null, 'Virhe');
                         }
                     },
                     '!/vahvista/:email/:token': function(email, token) {
@@ -647,10 +655,10 @@ $(function() {
                                 200: function(data) {
                                     user.setLoggedIn(data);
                                     show('header', 'headerbox', user);
-                                    show('section', 'verification', user, 'Rekisteröityminen');
+                                    show(SECTION_FIRST, 'verification', user, 'Rekisteröityminen');
                                 },
                                 401: function(data) {
-                                    show('section', 'verification', null, 'Virhe');
+                                    show(SECTION_FIRST, 'verification', null, 'Virhe');
                                 }
                             }
                         });
@@ -660,11 +668,11 @@ $(function() {
                             email: email,
                             token: token
                         };
-                        show('section', 'new-password', data, 'Uusi salasana');
+                        show(SECTION_FIRST, 'new-password', data, 'Uusi salasana');
                     },
                     '*': function() {
                         // show 404 page for other urls
-                        show('section', 'error-notfound', null, 'Sivua ei löytynyt');
+                        show(SECTION_FIRST, 'error-notfound', null, 'Sivua ei löytynyt');
                     }
                 });
             });
