@@ -348,6 +348,19 @@ $(function() {
         });
     });
 
+    $(document).on('click', 'input[name="send-comment"]', function() {
+        $.ajax({
+            url: 'send-comment/' + $(this).data('restriction-id'),
+            type: 'POST',
+            data: {
+                comment: $('#comment').val()
+            },
+            success: function() {
+                routie.reload();
+            }
+        });
+    });
+
     $(document).on('click', 'input[name="approve"]', function() {
         $.ajax({
             url: 'restriction/' + $(this).data('restriction-id') + '/approve',
@@ -562,6 +575,7 @@ $(function() {
                                 return convertToDateStr;
                             };
                             data.isAdmin = (user.info ? user.info.admin : false);
+                            data.isLogged = user.isLogged;
                             restrictionStateForMustache(data);
                             show('section', 'restriction', data, 'Kielletään: ' + data.title);
                         });
