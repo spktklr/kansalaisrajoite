@@ -575,9 +575,13 @@ $(function() {
                                 return convertToDateStr;
                             };
                             data.isAdmin = (user.info ? user.info.admin : false);
-                            data.isLogged = user.isLogged;
                             restrictionStateForMustache(data);
                             show('section', 'restriction', data, 'Kielletään: ' + data.title);
+                        });
+                        $.getJSON('comment/' + id, function (data) {
+                            console.log("haha");
+                            data.isLogged = user.isLogged;
+                            show("subsection", "comments", data);
                         });
                     },
                     '!/rajoita': function() {

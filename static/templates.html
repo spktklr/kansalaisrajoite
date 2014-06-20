@@ -124,13 +124,25 @@
 		{{#isRejected}}
 			<input class="painike lower" type="submit" name="delete" data-restriction-id="{{id}}" value="Poista rajoite" />
 		{{/isRejected}}
-        {{#isLogged}}
+	</div>
+</script>
 
-            <label for="comment">Lisää kommentti</label><br/>
+<script id="comments" type="text/html">
+    <h3>Kommentit</h3>
+    <div class="rajoitelista">
+        {{#comments}}
+        <div>
+            <span>{{created}}</span>
+            <span>{{user}}</span>
+            <span>{{comment}}</span>
+        </div>
+        {{/comments}}
+
+        {{#isLogged}}
+            <label for="comment">Kirjoita kommentti</label><br/>
             <textarea id="comment" name="comment"></textarea>
             <input class="painike lower" type="submit" name="send-comment" data-restriction-id="{{id}}" value="Lisää kommentti" />
         {{/isLogged}}
-	</div>
 </script>
 
 <script id="restrict" type="text/html">
