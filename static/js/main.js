@@ -44,6 +44,12 @@ $(function() {
         return new Date(timestamp).toLocaleDateString(defaultLocale);
     }
 
+    var convertToDateTimeStr = function(text, render) {
+        var timestamp = parseInt(render(text)) * 1000;
+        var date = new Date(timestamp);
+        return date.toLocaleDateString(defaultLocale) + " " + date.toLocaleTimeString(defaultLocale).replace(/\./g,':')
+    }
+
     var percentCompleted = function(text, render) {
         var threshold = 101;
         return ((Math.min(parseInt(render(text)), threshold) / threshold) * 100);
@@ -581,6 +587,9 @@ $(function() {
                         $.getJSON('comment/' + id, function (data) {
                             console.log("haha");
                             data.isLogged = user.isLogged;
+                            data.dateTime = function () {
+                                return convertToDateTimeStr;
+                            };
                             show("subsection", "comments", data);
                         });
                     },
