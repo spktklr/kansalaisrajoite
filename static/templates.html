@@ -140,13 +140,16 @@
                 </div>
                 {{/comments}}
 
-                {{#isLogged}}
                 <div class="commentadd">
+                {{#isLogged}}
                     <label for="comment">Kirjoita kommentti</label><br/>
                     <textarea id="comment" name="comment"></textarea>
                     <input class="painike lower" type="submit" name="send-comment" data-restriction-id="{{id}}" value="Lisää kommentti" />
-                </div>
                 {{/isLogged}}
+                {{^isLogged}}
+                    <button class="painike link-login login-button" value="asd">Kirjaudu sisään kommentoidaksesi</button>
+                {{/isLogged}}
+                </div>
         </article>
     </div>
 </script>
