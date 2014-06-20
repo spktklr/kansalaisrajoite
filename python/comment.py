@@ -25,18 +25,11 @@ def read_one(db, id):
 def create(db, user, id):
     try:
 
-        # comment = model.Comment
-        #
-        # comment.restriction_id = id
-        # comment.user_id = user.id
-        # comment.comment = request.forms.comment
-        # #
-        # # items = db.query(model.Comment).filter_by(restriction_id=id).all()
-        # # print items
-        #
-        # item = db.query(model.Restriction).filter_by(id=id).one()
-        # print item
-        # print item.comments
-        # item.comments.append(comment)
+        comment = model.Comment()
+        comment.restriction_id = id
+        comment.user_id = user.id
+        comment.comment = request.forms.comment
+        db.add(comment)
+
     except NoResultFound:
         return HTTPError(404, 'Not found')
