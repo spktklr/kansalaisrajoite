@@ -284,6 +284,40 @@ div.etusivu {
 			@include rajoitteentausta("../img/punviiva.gif", "../img/hlo.png")
 		}
 	}
+    article.comments {
+        div.commentlist {
+          div.comment {
+            margin-bottom:5px;
+          }
+          span.time {
+            width:160px;
+            float:left;
+          }
+          span.user {
+            font-weight:bold;
+          }
+          span.comment {
+
+          }
+          padding-top: 10px;
+        }
+        div.commentadd {
+          padding-top: 15px;
+          label {
+            font-weight:bold;
+          }
+          textarea {
+            margin-top: 5px;
+            width:400px;
+            height:80px;
+          }
+          input.painike {
+            margin-left: 0px;
+            margin-top: 5px;
+          }
+        }
+        @include rajoitteentausta("../img/punviiva.gif", "../img/hlo.png")
+    }
 }
 .salasana {
 	@include wide {

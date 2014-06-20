@@ -363,6 +363,7 @@ $(function() {
             },
             success: function() {
                 routie.reload();
+                scrollTo('#comment');
             }
         });
     });
@@ -587,6 +588,7 @@ $(function() {
                         $.getJSON('comment/' + id, function (data) {
                             console.log("haha");
                             data.isLogged = user.isLogged;
+                            data.id = id;
                             data.dateTime = function () {
                                 return convertToDateTimeStr;
                             };
