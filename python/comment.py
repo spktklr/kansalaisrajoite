@@ -4,6 +4,7 @@ from sqlalchemy.orm.exc import NoResultFound
 
 import model
 from utils import jsonplugin
+from sqlalchemy import asc
 import auth
 
 
@@ -14,7 +15,7 @@ app.install(jsonplugin)
 @app.get('/<id:int>')
 def read_one(db, id):
     try:
-        items = db.query(model.Comment) \
+        items = db.query(model.Comment).order_by(asc(model.Comment.created)) \
             .filter_by(restriction_id=id).all()
         return {"comments" : [i.toDict() for i in items]}
     except NoResultFound:
