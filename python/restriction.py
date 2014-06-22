@@ -21,15 +21,21 @@ def read_one(db, user, id):
 
     try:
         item = db.query(model.Restriction) \
-            .options(joinedload(model.Restriction.voters),
-                     joinedload(model.Restriction.user),
-                     joinedload(model.Restriction.approver)) \
+            .options(joinedload(model.Restriction.voters)) \
             .filter_by(id=id).one()
 
         if item.state != 'APPROVED' and user != item.user and not is_admin:
             return HTTPError(403, 'Forbidden')
 
-        return item.toDict(True, user)
+        result = item.toDict(True, user)
+
+        if user:
+            if user in item.voters:
+                result['voted'] = True
+            else:
+                result['voted'] = False
+
+        return result
     except NoResultFound:
         return HTTPError(404, 'Not found')
 
@@ -40,20 +46,29 @@ def read_all(db, user):
     is_admin = user and user.admin
 
     if is_admin:
-        items = db.query(model.Restriction) \
-            .options(joinedload(model.Restriction.voters),
-                     joinedload(model.Restriction.user),
-                     joinedload(model.Restriction.approver))
+        items = db.query(model.Restriction)
     elif user:
         items = db.query(model.Restriction).filter(
             (model.Restriction.state == 'APPROVED') |
-            (model.Restriction.user == user)) \
-            .options(joinedload(model.Restriction.voters),
-                     joinedload(model.Restriction.user))
+            (model.Restriction.user == user))
     else:
         items = db.query(model.Restriction).filter(model.Restriction.state == 'APPROVED')
 
-    return {'restrictions': [i.toDict(False, user) for i in items]}
+    result = {'restrictions': [i.toDict(False, user) for i in items]}
+
+    if user:
+        votes = set()
+
+        for voted in user.restrictions:
+            votes.add(voted.id)
+
+        for restriction in result['restrictions']:
+            if restriction['id'] in votes:
+                restriction['voted'] = True
+            else:
+                restriction['voted'] = False
+
+    return result
 
 
 @app.post('/')

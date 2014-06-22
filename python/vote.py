@@ -30,7 +30,7 @@ def read_one(db, user, id):
 def create(db, user, id):
     try:
         item = db.query(model.Restriction).filter_by(id=id).one()
-        item.voters.append(user)
+        item.voters.add(user)
     except NoResultFound:
         return HTTPError(404, 'Not found')
 

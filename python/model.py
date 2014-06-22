@@ -35,15 +35,15 @@ class Restriction(Base):
     state = Column(Enum('NEW', 'APPROVED', 'REJECTED'))
 
     approver_id = Column(Integer, ForeignKey('user.id'))
-    approver = relationship('User', foreign_keys=approver_id)
+    approver = relationship('User', foreign_keys=approver_id, lazy='joined')
 
     user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship('User', foreign_keys=user_id)
+    user = relationship('User', foreign_keys=user_id, lazy='joined')
 
     user_name = Column(String)
     user_city = Column(String)
 
-    voters = relationship('User', secondary=vote_table, backref='restrictions')
+    voters = relationship('User', secondary=vote_table, backref='restrictions', collection_class=set)
     vote_count = relationship('VoteCount', uselist=False, lazy='joined')
 
     def __repr__(self):
@@ -70,7 +70,6 @@ class Restriction(Base):
                 else:
                     ret['approver'] = None
                 ret['modified'] = self.modified
-            ret['voted'] = user in self.voters
 
         return ret
 
