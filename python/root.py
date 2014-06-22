@@ -29,7 +29,9 @@ session_opts = {
     'session.type': 'ext:database',
     'session.url': config.db_url,
     'session.auto': True,
-    'session.lock_dir': '/var/lock'
+    'session.lock_dir': '/var/lock',
+    'session.cookie_expires': False,
+    'session.cookie_domain': config.cookie_domain
 }
 
 middleware_app = beaker.middleware.SessionMiddleware(app, session_opts)

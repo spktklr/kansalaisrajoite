@@ -6,6 +6,8 @@ site_email = 'yllapito@kansalaisrajoite.fi'
 
 db_url = 'postgresql+psycopg2:///kansalaisrajoite'
 
+cookie_domain = '.kansalaisrajoite.fi'
+
 site_secret = 'changeme'
 
 verification_email_subject = 'Rekisteröityminen'
