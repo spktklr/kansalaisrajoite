@@ -82,7 +82,7 @@ def create(db, user):
         item.user = user
         item.user_name = request.forms.name.strip()
         item.user_city = request.forms.city.strip()
-        item.voters.append(user)
+        item.voters.add(user)
 
         db.add(item)
         db.flush()
