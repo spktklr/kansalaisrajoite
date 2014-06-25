@@ -44,7 +44,7 @@ class Restriction(Base):
     user_city = Column(String)
 
     voters = relationship('User', secondary=vote_table, backref='restrictions', collection_class=set)
-    vote_count = relationship('VoteCount', uselist=False, lazy='joined')
+    vote_count = relationship('VoteCount', uselist=False, lazy='joined', viewonly=True)
 
     def __repr__(self):
         return '<Restriction: %s>' % self.title
