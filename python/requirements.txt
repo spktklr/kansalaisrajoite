@@ -5,5 +5,5 @@ bottle-sqlalchemy
 psycopg2
 sqlalchemy
 validate_email
-envoy
+envoy==0.0.2
 awesome-slugify
