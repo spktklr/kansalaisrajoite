@@ -127,6 +127,33 @@
 	</div>
 </script>
 
+<script id="comments" type="text/html">
+    <div class="rajoite">
+        <article class="comments">
+            <h3>Kommentit</h3>
+            <div class="commentlist">
+                {{#comments}}
+                <div class="comment"v>
+                    <span class="time">{{#dateTime}}{{created}}{{/dateTime}}</span>
+                    <span class="user">{{user}}</span>
+                    <span class="comment">{{comment}}</span>
+                </div>
+                {{/comments}}
+
+                <div class="commentadd">
+                {{#isLogged}}
+                    <label for="comment">Kirjoita kommentti</label><br/>
+                    <textarea id="comment" name="comment"></textarea>
+                    <input class="painike lower" type="submit" name="send-comment" data-restriction-id="{{id}}" value="Lisää kommentti" />
+                {{/isLogged}}
+                {{^isLogged}}
+                    <button class="painike link-login login-button" value="asd">Kirjaudu sisään kommentoidaksesi</button>
+                {{/isLogged}}
+                </div>
+        </article>
+    </div>
+</script>
+
 <script id="restrict" type="text/html">
 	<div class="rajoite">
 		<h1 style="float:none;">Tee kansalaisrajoite</h1>

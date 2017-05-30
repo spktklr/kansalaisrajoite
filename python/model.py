@@ -23,6 +23,30 @@ vote_table = Table(
     Column('user_id', Integer, ForeignKey('user.id'))
 )
 
+class Comment(Base):
+    __tablename__ = 'comment'
+
+    id = Column(Integer, primary_key=True)
+    restriction_id = Column(Integer, ForeignKey('restriction.id'))
+    restriction = relationship('Restriction', foreign_keys=restriction_id)
+
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship('User', foreign_keys=user_id)
+
+    created = Column(DateTime, server_default=func.current_timestamp())
+
+    comment = Column(String)
+
+    def __repr__(self):
+        return '<Comment: %s>' % self.comment
+
+    def toDict(self):
+        ret = {}
+        ret['comment'] = self.comment
+        ret['created'] = self.created
+        ret['user'] = self.user.name
+        return ret
+
 
 class Restriction(Base):
     __tablename__ = 'restriction'

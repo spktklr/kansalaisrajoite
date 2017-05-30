@@ -16,3 +16,4 @@ sudo -u postgres createuser -E -d -r -S vagrant
 sudo -u vagrant createdb kansalaisrajoite --lc-collate 'en_US.UTF-8' --lc-ctype 'en_US.UTF-8' --encoding 'UTF-8' --template 'template0'
 sudo -u vagrant psql -d kansalaisrajoite -f create.sql
 sudo -u vagrant psql -d kansalaisrajoite -f populate.sql
+sudo -u vagrant psql -d kansalaisrajoite -f 01_add_comments.sql
