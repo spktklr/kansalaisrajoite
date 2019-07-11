@@ -1,0 +1,11 @@
+version: '3'
+services:
+  kansalaisrajoite:
+    environment:
+      - SITE_SECRET=supersecret
+      - DEVELOPMENT="true"
+      - EMAIL_ENABLED="false"
+  db:
+    volumes:
+      # include db initialization scripts to automatically populate db
+      - ./assets/initdb:/docker-entrypoint-initdb.d

@@ -1,0 +1,31 @@
+version: '3'
+services:
+  kansalaisrajoite:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: kansalaisrajoite
+    environment:
+      - DOMAIN=kansalaisrajoite.fi
+      - DB_URL=postgresql+psycopg2://postgres:postgres@db:5432/postgres
+      - SITE_SECRET
+      - DEVELOPMENT="false"
+      - EMAIL_ENABLED="true"
+    expose:
+      - "8000"
+    depends_on:
+      - db
+    restart: unless-stopped
+  nginx:
+    image: nginx:1.17
+    restart: unless-stopped
+    volumes:
+      - ./assets/nginx:/etc/nginx/conf.d
+      - ./static:/static
+    ports:
+      - "8000:8000"
+    depends_on:
+      - kansalaisrajoite
+  db:
+    image: postgres:12
+    restart: unless-stopped

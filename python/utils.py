@@ -11,6 +11,9 @@ import config
 
 
 def send_email(address, subject, body):
+    if not config.EMAIL_ENABLED:
+        return
+
     message = MIMEText(body.encode('ISO-8859-1'))
     message['Subject'] = subject
     message['From'] = '%s <%s>' % (config.site_name, config.site_email)

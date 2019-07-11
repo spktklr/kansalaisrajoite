@@ -1,14 +1,25 @@
 # coding=utf-8
+import os
 
-site_url = 'https://kansalaisrajoite.fi'
+DEV = os.environ['DEVELOPMENT'] == 'true'
+PROD = not DEV
+EMAIL_ENABLED = os.environ['EMAIL_ENABLED'] == 'true'
+
+domain = os.environ['DOMAIN']
+db_url = os.environ['DB_URL']
+
+site_url = 'https://{}'.format(domain)
 site_name = 'Kansalaisrajoite.fi'
 site_email = 'yllapito@kansalaisrajoite.fi'
 
-db_url = 'postgresql+psycopg2:///kansalaisrajoite'
+site_secret = os.environ['SITE_SECRET']
 
-cookie_domain = '.kansalaisrajoite.fi'
+assert site_secret, 'SITE_SECRET is not set'
 
-site_secret = 'changeme'
+if PROD:
+    cookie_domain = '.' + domain
+else:
+    cookie_domain = None
 
 verification_email_subject = 'Rekisteröityminen'
 pw_reset_email_subject = 'Salasanan palautus'

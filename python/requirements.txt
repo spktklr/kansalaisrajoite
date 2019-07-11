@@ -1,9 +1,0 @@
-bcrypt
-beaker
-bottle
-bottle-sqlalchemy
-psycopg2
-sqlalchemy
-validate_email
-envoy==0.0.2
-awesome-slugify
