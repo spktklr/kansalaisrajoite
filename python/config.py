@@ -18,8 +18,10 @@ assert site_secret, 'SITE_SECRET is not set'
 
 if PROD:
     cookie_domain = '.' + domain
+    secure_cookies = True
 else:
     cookie_domain = None
+    secure_cookies = False
 
 verification_email_subject = 'Rekisteröityminen'
 pw_reset_email_subject = 'Salasanan palautus'

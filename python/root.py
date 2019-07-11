@@ -32,6 +32,7 @@ session_opts = {
     'session.lock_dir': '/var/lock',
     'session.cookie_expires': False,
     'session.cookie_domain': config.cookie_domain,
+    'session.secure': config.secure_cookies,
 }
 
 middleware_app = beaker.middleware.SessionMiddleware(app, session_opts)
