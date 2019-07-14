@@ -1,6 +1,6 @@
 version: '3'
 services:
-  kansalaisrajoite:
+  backend:
     environment:
       - PROTOCOL=http
       - DOMAIN=localhost:8000
