@@ -1,26 +1,28 @@
 # coding=utf-8
+import hmac
 import json
 import datetime
 import smtplib
-from email.mime.text import MIMEText
+from email.message import EmailMessage
 
 from bottle import JSONPlugin
 from slugify import slugify
 
 import config
 
-
 def send_email(address, subject, body):
-    if not config.EMAIL_ENABLED:
-        return
-
-    message = MIMEText(body.encode('ISO-8859-1'))
+    message = EmailMessage()
     message['Subject'] = subject
     message['From'] = '%s <%s>' % (config.site_name, config.site_email)
     message['To'] = address
+    message.set_content(body)
 
-    smtp = smtplib.SMTP('localhost')
-    smtp.sendmail(config.site_email, [address], message.as_string())
+    if config.DEV:
+        print('sending email:')
+        print(body)
+
+    with smtplib.SMTP(config.smtp_host) as s:
+        s.send_message(message)
 
 
 def gen_pw_reset_payload(user):
@@ -34,6 +36,13 @@ def gen_pw_reset_payload(user):
 
 def slug(s):
     return slugify(s, to_lower=True, max_length=100)
+
+
+def sign_message(msg):
+    key = bytes(config.site_secret, 'utf-8')
+    data = bytes(msg, 'utf-8')
+
+    return hmac.new(key, data).hexdigest()
 
 
 class JsonEncoder(json.JSONEncoder):

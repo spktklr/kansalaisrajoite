@@ -6,11 +6,12 @@ services:
       dockerfile: Dockerfile
     image: kansalaisrajoite
     environment:
+      - PROTOCOL=https
       - DOMAIN=kansalaisrajoite.fi
       - DB_URL=postgresql+psycopg2://postgres:postgres@db:5432/postgres
       - SITE_SECRET
-      - DEVELOPMENT="false"
-      - EMAIL_ENABLED="true"
+      - DEVELOPMENT=false
+      - SMTP_HOST=localhost
     expose:
       - "8000"
     depends_on:

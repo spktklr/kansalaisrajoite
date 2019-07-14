@@ -10,6 +10,7 @@ from utils import jsonplugin, gen_pw_reset_payload, send_email
 import auth
 import model
 import config
+import utils
 
 
 app = Bottle()
@@ -34,7 +35,7 @@ def register(db):
         db.add(user)
 
         # create hmac verification token
-        token = hmac.new(config.site_secret, user.email).hexdigest()
+        token = utils.sign_message(user.email)
 
         subject = config.verification_email_subject
         body = template(
@@ -75,7 +76,9 @@ def verify(db):
     if not email or not token:
         return HTTPError(400, 'Bad request')
 
-    if token != hmac.new(config.site_secret, email).hexdigest():
+    expected_token = utils.sign_message(email)
+
+    if not hmac.compare_digest(token, expected_token):
         return HTTPError(401, 'Unauthorized')
 
     user = db.query(model.User).filter_by(email=email).first()
@@ -103,7 +106,7 @@ def send_reset_email(db):
     if user:
         json_payload = json.dumps(gen_pw_reset_payload(user))
 
-        token = hmac.new(config.site_secret, json_payload).hexdigest()
+        token = utils.sign_message(json_payload)
 
         subject = config.pw_reset_email_subject
         body = template(
@@ -133,9 +136,9 @@ def reset_password(db):
         if user:
             # validate hmac token
             json_payload = json.dumps(gen_pw_reset_payload(user))
-            new_token = hmac.new(config.site_secret, json_payload).hexdigest()
+            expected_token = utils.sign_message(json_payload)
 
-            if token != new_token:
+            if not hmac.compare_digest(token, expected_token):
                 return HTTPError(401, 'Unauthorized')
 
             # change password
@@ -162,8 +165,7 @@ def login(db):
     if user and not user.verified:
         return HTTPError(412, 'Precondition failed')
     if (user and user.verified and
-            bcrypt.hashpw(password.encode('utf-8'), user.password.encode('utf-8'))
-            == user.password):
+            bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8'))):
         session = request.environ['beaker.session']
         session['user_id'] = user.id
         return user.toDict(True)

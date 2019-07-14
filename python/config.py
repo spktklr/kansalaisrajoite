@@ -3,12 +3,13 @@ import os
 
 DEV = os.environ['DEVELOPMENT'] == 'true'
 PROD = not DEV
-EMAIL_ENABLED = os.environ['EMAIL_ENABLED'] == 'true'
 
+protocol = os.environ['PROTOCOL']
 domain = os.environ['DOMAIN']
 db_url = os.environ['DB_URL']
+smtp_host = os.environ['SMTP_HOST']
 
-site_url = 'https://{}'.format(domain)
+site_url = '{}://{}'.format(protocol, domain)
 site_name = 'Kansalaisrajoite.fi'
 site_email = 'yllapito@kansalaisrajoite.fi'
 

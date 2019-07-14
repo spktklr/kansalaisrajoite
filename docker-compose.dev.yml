@@ -2,10 +2,17 @@ version: '3'
 services:
   kansalaisrajoite:
     environment:
+      - PROTOCOL=http
+      - DOMAIN=localhost:8000
       - SITE_SECRET=supersecret
-      - DEVELOPMENT="true"
-      - EMAIL_ENABLED="false"
+      - DEVELOPMENT=true
+      - SMTP_HOST=smtp-sink
+    depends_on:
+      - smtp-sink
   db:
     volumes:
       # include db initialization scripts to automatically populate db
       - ./assets/initdb:/docker-entrypoint-initdb.d
+  smtp-sink:
+      # fake smtp sink
+      image: tecnativa/smtp-sink

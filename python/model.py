@@ -148,7 +148,7 @@ class User(Base):
     @validates('password')
     def validate_password(self, key, password):
         assert len(password) >= 8
-        return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode()
 
 
 class News(Base):
