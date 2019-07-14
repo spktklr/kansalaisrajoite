@@ -23,5 +23,5 @@ restart:
 logs:
 	docker-compose $(COMPOSE_FILES) logs -f $(SERVICE)
 
-dump-config:
+config:
 	docker-compose $(COMPOSE_FILES) config
