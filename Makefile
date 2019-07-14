@@ -7,7 +7,7 @@ COMPOSE_FILES := -f docker-compose.yml -f docker-compose.$(ENV).yml
 build:
 	docker-compose $(COMPOSE_FILES) build $(SERVICE)
 
-start:
+up:
 	docker-compose $(COMPOSE_FILES) up -d $(SERVICE)
 
 stop:
