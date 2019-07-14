@@ -11,7 +11,7 @@ services:
       - DB_URL=postgresql+psycopg2://postgres:postgres@db:5432/postgres
       - SITE_SECRET
       - DEVELOPMENT=false
-      - SMTP_HOST=localhost
+      - SMTP_HOST=172.17.0.1
     expose:
       - "8000"
     depends_on:
