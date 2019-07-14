@@ -3,3 +3,4 @@
 python/build/*
 python/session
 *Thumbs.db
+.env
