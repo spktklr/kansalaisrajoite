@@ -21,8 +21,8 @@ services:
     image: nginx:1.17
     restart: unless-stopped
     volumes:
-      - ./assets/nginx:/etc/nginx/conf.d
-      - ./static:/static
+      - ./assets/nginx:/etc/nginx/conf.d:ro
+      - ./static:/static:ro
     ports:
       - "8000:8000"
     depends_on:

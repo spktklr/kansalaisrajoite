@@ -12,7 +12,7 @@ services:
   db:
     volumes:
       # include db initialization scripts to automatically populate db
-      - ./assets/initdb:/docker-entrypoint-initdb.d
+      - ./assets/initdb:/docker-entrypoint-initdb.d:ro
   smtp-sink:
       # fake smtp sink
       image: tecnativa/smtp-sink
