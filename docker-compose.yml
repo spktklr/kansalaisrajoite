@@ -28,5 +28,5 @@ services:
     depends_on:
       - backend
   db:
-    image: postgres:12
+    image: postgres:12-beta2
     restart: unless-stopped
